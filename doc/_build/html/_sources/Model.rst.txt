@@ -1,0 +1,10 @@
+Model
+========================
+
+.. automodule:: model.HtmlConverter
+   :members:
+   :private-members:
+
+.. automodule:: model.QUndoCommands
+   :members:
+   :private-members:

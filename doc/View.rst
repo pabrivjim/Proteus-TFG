@@ -1,0 +1,34 @@
+View
+========================
+
+.. automodule:: proteus.view.main_window
+   :members:
+   :private-members:
+
+.. automodule:: proteus.view.main_structure
+   :members:
+   :private-members:
+
+.. automodule:: proteus.view.stacks.file_view
+   :members:
+   :private-members:
+
+.. automodule:: proteus.view.actions.delete_action
+   :members:
+   :private-members:
+
+.. automodule:: proteus.view.actions.insert_action
+   :members:
+   :private-members:
+
+.. automodule:: proteus.view.actions.redo_action
+   :members:
+   :private-members:
+
+.. automodule:: proteus.view.actions.translate_action
+   :members:
+   :private-members:
+
+.. automodule:: proteus.view.actions.undo_action
+   :members:
+   :private-members:

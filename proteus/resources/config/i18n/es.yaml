@@ -1,0 +1,54 @@
+visualizer: Vista
+general: General
+comments: Comentarios
+estilo: Estilo
+contenido: Contenido
+traces: Trazas
+name: Nombre
+version: Version
+info: Información
+text: Texto
+edit properties: Editar propiedades
+project: Proyecto
+open: Abrir
+open project: Abrir proyecto
+new: Nuevo
+new project: Nuevo proyecto
+save: Guardar
+save project: Guardar proyecto
+edit: Editar
+edit project properties: Editar propiedades del proyecto
+document: Documento
+create: Crear
+new document from archetype: Nuevo documento de arquetipo
+delete: Eliminar
+delete current document: Eliminar documento actual
+undo: Deshacer
+undo action: Deshacer accion
+redo: Rehacer
+redo action: Rehacer accion
+figure: Figura
+paragraph: Parrafo
+section: Seccion
+actor: Actor
+constraintRequirement: Requisito de restricción
+functionalRequirement: Requisito functional
+informationRequirement: Requisito de informacion
+meeting: Reunion
+nonFunctionalRequirement: Requisito no functionalRequirement
+objective: Objetivo
+organization: Organización
+stakeholder: Stakeholder
+traceabilityMatrix: Matriz de trazabilidad
+useCase: Caso de uso
+archetypes: Arquetipos
+requirements: Requisitos
+export: Exportar
+export current document: Exportar documento actual
+QUIT: Salir
+If you leave before saving, your changes will be lost.: Si sales antes de guardar, los cambios serán descartados.
+Yes: Sí
+Sorry!: Lo sentimos!
+You can't add traces to this object.: No se pueden agregar trazas a este objeto.
+If you delete this item, the following traces will be discarted: Si borras este objeto, las siguientes trazas serán descartadas
+Traces will be lost even if you undo your changes!: Las trazas se perderán incluso si deshaces los cambios!

@@ -1,0 +1,57 @@
+QWidget {
+    color: rgba(255,255,255,0.7);
+    background-color: #1F272C;
+}
+
+QMainWindow {
+    background-color: #283238;
+}
+
+QToolButton { border: none; }
+
+QMainWindow::separator {
+    width: 1px;
+    border: none;
+}
+
+QDockWidget::title {
+    border: 0;
+    border-bottom: 1px solid #1F272C;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+QTabWidget::pane {
+    border-top: 1px solid #666666;
+    border-bottom: 1px solid #666666;
+    top: -1px;
+}
+
+QTabBar::tab {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 0px;
+}
+
+QTabBar::tab:!selected {
+    background-color: #283238;
+    border-bottom: 1px solid #999999;
+}
+
+QTabBar::tab:selected {
+    background-color: rgba(255,255,255,0.2);
+    border-top: 1px solid #1F272C;
+    border-bottom: 2px solid rgba(255,255,255,0.6);
+}
+
+QTabBar::tab:hover {
+    background-color: #666666;
+    border-top: 1px solid #1F272C;
+    border-bottom: 2px solid #999999;
+}
+
+QTabBar::tab:selected:hover {
+    background-color: #1F272C;
+}

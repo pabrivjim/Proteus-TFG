@@ -1,0 +1,14 @@
+Utils
+========================
+
+.. automodule:: proteus.utils.html_converter
+   :members:
+   :private-members:
+
+.. automodule:: proteus.utils.qundo_commands
+   :members:
+   :private-members:
+
+.. automodule:: proteus.utils.translator
+   :members:
+   :private-members:

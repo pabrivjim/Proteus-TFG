@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Model &#8212; Test Esquema 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="View" href="View.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-model.HtmlConverter">
+<span id="model"></span><h1>Model<a class="headerlink" href="#module-model.HtmlConverter" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.HtmlConverter.HtmlConverter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.HtmlConverter.</span></span><span class="sig-name descname"><span class="pre">HtmlConverter</span></span><a class="headerlink" href="#model.HtmlConverter.HtmlConverter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clase que se encarga de agregar texto a HTML, parsearlo HTML mediante el uso de XSLT
+y borrar contenido añadido al XML.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.HtmlConverter.HtmlConverter.addText">
+<span class="sig-name descname"><span class="pre">addText</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.HtmlConverter.HtmlConverter.addText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operación: <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::addText</span></code>.
+Operación que inserta texto del XML en el fichero del Stack.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.HtmlConverter.HtmlConverter.generateHtml">
+<span class="sig-name descname"><span class="pre">generateHtml</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.HtmlConverter.HtmlConverter.generateHtml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operación: <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::generateHtml</span></code>.
+Operación que genera el HTMl a partir del XSLT y el fichero XML del Stack.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.HtmlConverter.HtmlConverter.removeRecentAdded">
+<span class="sig-name descname"><span class="pre">removeRecentAdded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.HtmlConverter.HtmlConverter.removeRecentAdded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operación: <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::removeRecentAdded</span></code>.
+Operación que quita del fichero del Stack el contenido añadido previamente.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-model.QUndoCommands"></span><dl class="py class">
+<dt class="sig sig-object py" id="model.QUndoCommands.CommandInsertText">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.QUndoCommands.</span></span><span class="sig-name descname"><span class="pre">CommandInsertText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HtmlConverter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stackedExample</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model.QUndoCommands.CommandInsertText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta es la clase donde se realizan las operaciones de deshacer y rehacer a la hora
+de usar la accion <code class="xref py py-class docutils literal notranslate"><span class="pre">MainStacked::insertText</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.QUndoCommands.CommandInsertText.redo">
+<span class="sig-name descname"><span class="pre">redo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.QUndoCommands.CommandInsertText.redo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operación: <code class="xref py py-class docutils literal notranslate"><span class="pre">CommandInsertText::redo</span></code>.
+Operación que rehace la acción deshecha.
+Llama a la funcion <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::addText</span></code>, para agregar el texto y 
+generar un archivo XML.
+Después a la funcion <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::generateHtml</span></code>, para generar el HTML.
+Y finalmente a la función <code class="xref py py-class docutils literal notranslate"><span class="pre">Stack3::reload</span></code>, para actualizar el contenido.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.QUndoCommands.CommandInsertText.undo">
+<span class="sig-name descname"><span class="pre">undo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.QUndoCommands.CommandInsertText.undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operación: <code class="xref py py-class docutils literal notranslate"><span class="pre">CommandInsertText::undo</span></code>.
+Operación que deshace la acción hecha.
+Llama a la funcion <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::removeRecentAdded</span></code>, para borrar el contenido
+añadido en el XML.
+Después a la funcion <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::generateHtml</span></code>, para generar el HTML.
+Y finalmente a la función <code class="xref py py-class docutils literal notranslate"><span class="pre">Stack3::reload</span></code>, para actualizar el contenido.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.QUndoCommands.CommandNewFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.QUndoCommands.</span></span><span class="sig-name descname"><span class="pre">CommandNewFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stackedExample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newText</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oldText</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currentWidget</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model.QUndoCommands.CommandNewFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta es la clase donde se realizan las operaciones de deshacer y rehacer a la hora
+de usar la accion <code class="xref py py-class docutils literal notranslate"><span class="pre">MainStacked::newFile</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.QUndoCommands.CommandNewFile.redo">
+<span class="sig-name descname"><span class="pre">redo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.QUndoCommands.CommandNewFile.redo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operación: <code class="xref py py-class docutils literal notranslate"><span class="pre">CommandNewFile::redo</span></code>.
+Operación que rehace la acción deshecha.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.QUndoCommands.CommandNewFile.undo">
+<span class="sig-name descname"><span class="pre">undo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.QUndoCommands.CommandNewFile.undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operación: <code class="xref py py-class docutils literal notranslate"><span class="pre">CommandNewFile::undo</span></code>.
+Operación que deshace la acción hecha.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Test Esquema</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="module.html">PROTEUS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Main_app.html">Main_app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="View.html">View</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="module.html">PROTEUS</a><ul>
+      <li>Previous: <a href="View.html" title="previous chapter">View</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Pablo R..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Model.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
