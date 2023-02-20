@@ -59,9 +59,8 @@ class ProjectDialogLogic():
         """
         logging.info('ProjectDialogLogic - change archetype')
         
-        project_path = f"{config.ARCHETYPES_FOLDER}/projects/{archetype}/project.xml"
+        project_path = f"{config.ARCHETYPES_FOLDER}/projects/{archetype}/proteus.xml"
         element = ET.parse(project_path).getroot()
-
         # Load properties to get name FIXME
         project_properties = {}
         for prop in element.find("properties"):

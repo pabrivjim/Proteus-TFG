@@ -13,6 +13,7 @@
 
 # standard library imports
 import logging
+import shortuuid
 from enum import Enum, auto
 from os import listdir
 import os
@@ -145,10 +146,10 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_document_archetypes( cls ) -> list:
+    def load_document_archetypes( cls ) -> dict:
         """
         Method that loads the document archetypes.
-        :return: A list of DocumentArchetypeProxy objects.
+        :return: A dict of project document name and DocumentArchetypeProxy objects.
         """
         log.info('ArchetypeManager - load document archetypes')
         # Build archetypes directory name from archetype type
@@ -162,7 +163,7 @@ class ArchetypeManager:
         
         # Result as a list of pairs (path,name) <-- is that enough?
         # TODO: check the possibility of using proxy classes
-        result : list[DocumentArchetypeProxy] = list ()
+        result : dict[str, DocumentArchetypeProxy] = dict ()
 
         # For each subdirectory
         for subdir in subdirs:
@@ -184,10 +185,10 @@ class ArchetypeManager:
                 # add it to the result list
                 if( archetype_file == 'document.xml' ):
                     # Parse the XML file
-                    subdir : ET.Element = ET.parse(archetype_file_path)
+                    file_subdir : ET.Element = ET.parse(archetype_file_path)
 
                     # Get the id of the root document from document.xml
-                    id : str = subdir.getroot().attrib["id"]
+                    id : str = file_subdir.getroot().attrib["id"]
 
                     # Build the path to the root document
                     objects_path = join(subdir_path, "objects")
@@ -201,6 +202,10 @@ class ArchetypeManager:
 
                     # We get the properties and save the id & path
                     properties_element : ET.Element = root_document.find(PROPERTIES_TAG)
+                    
+
+                    # TODO en caso de que queramos usar el mismo documento varias veces, tenemos que cambiarle el id ?
+                    #document_dicc["id"] =str(shortuuid.random(length=12)) check CreateDocument because probably is there
                     document_dicc["id"] = id
                     document_dicc["path"] = document_root_path
                     document_dicc["classes"] = root_document.attrib["classes"]
@@ -214,9 +219,7 @@ class ArchetypeManager:
                         property_name : str = property.name
                         if(property_name in DOCUMENT_PROPERTIES_TO_SAVE):
                             document_dicc[property_name] = property.value
-
-                    result.append(DocumentArchetypeProxy(document_dicc))
-
+                    result[subdir] = DocumentArchetypeProxy(document_dicc)
         return result
 
 

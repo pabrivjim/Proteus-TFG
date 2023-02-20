@@ -8,17 +8,19 @@
 import logging
 from PyQt5.QtWidgets import (QWidget, QTextEdit, QPushButton, QVBoxLayout)
 
+from proteus.model.property import MarkdownProperty
+
 class MarkdownWidget(QWidget):
     """
     Class to edit and visualize markdown object type.
     """
 
-    def __init__(self, parent: QWidget, obj: dict):
+    def __init__(self, parent: QWidget, obj: MarkdownProperty):
         logging.info('Init MarkdownWidget')
         super(MarkdownWidget, self).__init__(parent)
 
         self.widget = QTextEdit()
-        self.widget.setPlainText(obj["value"])
+        self.widget.setPlainText(obj.value)
         # self.widget.setEnabled(False)
         self.btn = QPushButton("Visualize")
         self.visualize_html = False

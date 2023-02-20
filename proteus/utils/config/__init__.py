@@ -16,6 +16,7 @@ from datetime import datetime
 
 CURRENT_FOLDER = dirname(dirname(__file__))
 PARENT_FOLDER =  abspath(join(CURRENT_FOLDER, pardir))
+RESOURCES_FOLDER = join(PARENT_FOLDER, 'resources')
 CONFIG_FOLDER = join(PARENT_FOLDER, 'resources\config')
 ARCHETYPES_FOLDER = join(abspath(join(PARENT_FOLDER, pardir)), 'archetypes')
 

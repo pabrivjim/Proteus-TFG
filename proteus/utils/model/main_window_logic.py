@@ -31,14 +31,14 @@ class MainWindowLogic():
         
         item = self.parent.document_tree.itemFromIndex(index)
         obj = item.data(0, Qt.UserRole)
-        self.parent.views.focus_object(item.data(0, Qt.UserRole)["id"])
-        self.parent.selected_object = item.data(0, Qt.UserRole)["id"]
+        self.parent.views.focus_object(item.data(0, Qt.UserRole).id)
+        self.parent.selected_object = item.data(0, Qt.UserRole).id
 
         for button in self.parent.ribbon.buttons:
             tb, b = self.parent.ribbon.buttons[button]
             if b["type"] == "archetype":
                 # Check if :Proteus-any or archetype class in acceptedChildren
-                accepted = {":Proteus-any", button} & set(obj["acceptedChildren"])
+                accepted = {":Proteus-any", button} & set(obj.acceptedChildren)
                 tb.setEnabled(bool(accepted))
 
     def add_object(self, obj) -> None:

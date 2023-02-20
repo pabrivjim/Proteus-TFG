@@ -6,6 +6,8 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from PyQt5.QtGui import (QIcon)
+from proteus.model.object import Object
+from proteus.model.property import Property
 from proteus.utils.model.nodes_utils import get_node
 from proteus.utils.model.qundo_commands import UpdateNode
 import proteus.utils.config as config 
@@ -31,18 +33,12 @@ class PropertiesLogic():
         logging.info('PropertiesLogic - load traces')
         
         self.traces_widget = self.parent.traces_widget
-        self.updated_obj = self.parent.updated_obj
+        self.updated_obj: Object = self.parent.updated_obj
         # print(self.parent)
         # print(self.parent.parent().project.data)
         self.traces_widget.clear()
         self.traces_widget.setHeaderItem(QTreeWidgetItem(["Name", "Trace type"]))
-        for trace in self.updated_obj.get("traces", []):
-            traced_item = get_node(self.parent.parent().project.data, trace["id"])
-            traced_item_name = traced_item['properties']['name']['value']
-            item = QTreeWidgetItem(self.traces_widget, [f"{traced_item_name}", f"{trace['type']}"])
-            klass = traced_item["classes"][0]
-            if klass:
-                item.setIcon(0, QIcon(f"{config.CONFIG_FOLDER}/assets/icons/{klass}.svg"))
+        
 
     def update_property(self, prop, value) -> None:
         """
@@ -59,7 +55,7 @@ class PropertiesLogic():
         logging.info('PropertiesLogic - save changes')
         
         app = self.parent.parentWidget()
-        project_data = app.project.data
+        project_data = app.projectController.project
         obj = SaveMachine(self.updated_obj["id"])
 
         command = UpdateNode(project_data, self.updated_obj["id"], self.updated_obj, obj)
@@ -72,8 +68,10 @@ class PropertiesLogic():
         """
         categories = {}
         widgets = {}
-        for name, prop in self.parent.obj["properties"].items():
-            category = prop.get("category", "general")
+        name: str
+        prop: Property
+        for name, prop in self.parent.obj.properties.items():
+            category = prop.category
 
             if category in categories:
                 categories[category][name] = prop
@@ -86,7 +84,7 @@ class PropertiesLogic():
 
             for name, prop in properties.items():
                 w = QWidget()
-                hl = QHBoxLayout() if prop["type"] != "text" else QVBoxLayout()
+                hl = QHBoxLayout() if prop.element_tagname != "text" else QVBoxLayout()
                 label = QLabel(trans(name))
 
 

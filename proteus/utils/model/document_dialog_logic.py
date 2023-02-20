@@ -9,6 +9,10 @@ import shortuuid
 from os import listdir
 from os.path import isfile, join
 from lxml import etree as ET
+from proteus.model.archetype_manager import ArchetypeManager
+from proteus.model.archetype_proxys import DocumentArchetypeProxy
+from proteus.model.object import Object
+from proteus.model.project import Project
 from proteus.utils.model.qundo_commands import CreateDocument
 import proteus.utils.config as config 
 import proteus.utils.persistence as persistence
@@ -21,6 +25,7 @@ def load_objects(path):
     logging.info('document dialog logic - load objects')
     res = {}
     for obj in [f for f in listdir(path) if isfile(join(path, f))]:
+        
         o = ET.parse(join(path, obj))
         o = persistence.xml2dict(o.getroot())
         res[o["id"]] = o
@@ -32,14 +37,15 @@ def change_combo_box(app):
     And updates the combobox with the new documents.
     """
     logging.info('document dialog logic - change combo box')
-    project_data = app.project.data
+    project = app.projectController.project
     app.document_combobox.clear()
-    for document in project_data["documents"]:
-        name = document["properties"]["name"]["value"]
+    document: Object
+    for document in project.documents.values():
+        name = document.get_property("name").value
         app.document_combobox.addItem(name)
     app.document_combobox.currentIndexChanged.connect(
-        lambda index: app.project.change_document(index=index))
-    app.document_combobox.setCurrentIndex(len(project_data["documents"]) - 1)
+        lambda index: app.projectController.change_document(index=index))
+    app.document_combobox.setCurrentIndex(len(project.documents) - 1)
 
 class DocumentDialogLogic():
     """
@@ -51,7 +57,7 @@ class DocumentDialogLogic():
         self.parent = parent
     
 
-    def create_document(self, archetype: int) -> None:
+    def create_document(self, archetype: str) -> None:
         """
         Clone document archetype and adds to project documents list.
 
@@ -59,22 +65,12 @@ class DocumentDialogLogic():
         """
         logging.info('DocumentDialogLogic - create document')
         
-        archetype_dir = join(f"{config.ARCHETYPES_FOLDER}/documents/", archetype)
-        objects = load_objects(archetype_dir)
-
-        for _, value in objects.items():
-            value["children"] = list(map(lambda o: objects[o], value["children"]))
-
-        # regen ids
-        for _, value in objects.items():
-            value["id"] = str(shortuuid.random(length=12))
+        document = ArchetypeManager.load_document_archetypes()
 
         app = self.parent.parentWidget()
-        project_data = app.project.data
-
-        command = CreateDocument(project_data, objects[archetype], len(project_data["documents"]))
+        project: Project  = app.projectController.project
+        command = CreateDocument(project, document[archetype].get_document(project), len(project.documents))
         app.undoStack.push(command)
-
         # Change combobox
         change_combo_box(app)
 
@@ -86,9 +82,10 @@ class DocumentDialogLogic():
         """
         logging.info('DocumentDialogLogic - change archetype')
         
-        archetype_dir = join(f"{config.ARCHETYPES_FOLDER}/documents/", archetype)
-        objects = load_objects(archetype_dir)
-        document_description = objects[archetype]["properties"].get("description", {}).get("value", "")
+        document = ArchetypeManager.load_document_archetypes()
+        print(archetype)
+        print(document)
+        document_description = document[archetype].description
         self.parent.archetype_description.setText(document_description)
 
 

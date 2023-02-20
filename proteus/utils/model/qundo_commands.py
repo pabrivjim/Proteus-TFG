@@ -7,7 +7,11 @@
 # ==========================================================================
 from PyQt5.QtWidgets import QUndoCommand
 from proteus.controllers.save_state_machine import SaveMachine
+import shortuuid
 from proteus.controllers.save_state_machine import States
+from proteus.model.abstract_object import ProteusState
+from proteus.model.object import Object
+from proteus.model.project import Project
 import proteus.utils.persistence as persistence
 from proteus.utils.model.nodes_utils import (get_node, get_parent)
 from copy import deepcopy
@@ -56,18 +60,16 @@ class CreateObject(QUndoCommand):
 
 
 class CreateDocument(QUndoCommand):
-    """
+    """ 
     Command to create project documents.
     """
 
-    def __init__(self, project: dict, document: dict, index: int):
+    def __init__(self, project: Project, document: Object, index: int):
         logging.info('Init CreateDocument')
         super(CreateDocument, self).__init__()
         self.document = document
         self.position = index
-        self.project = project
-        self.doc = SaveMachine(self.document["id"])
-        self.objects = persistence.get_project_objects(self.project)
+        self.project: Project = project
 
     def redo(self) -> None:
         logging.info('CreateDocument - redo')
@@ -76,11 +78,8 @@ class CreateDocument(QUndoCommand):
         Set object state to FRESH.
         Set objects's children to FRESH.
         """
-        self.doc.set_state(States.FRESH)
-        for i in self.objects:
-            obj = SaveMachine(i["id"])
-            obj.set_state(States.FRESH)
-        self.project["documents"].insert(self.position, self.document)
+        print(self.document)
+        self.project.documents[self.document.id] = self.document
 
     def undo(self) -> None:
         logging.info('CreateDocument - undo')
@@ -89,11 +88,8 @@ class CreateDocument(QUndoCommand):
         Removes object state.
         Removes object's children states.
         """
-        for i in self.objects:
-            obj = SaveMachine(i["id"])
-            obj.remove_state()
-        self.doc.remove_state()
-        self.project["documents"].pop(self.position)
+        #FIXME SET TO DEAD
+        # self.project.documents.pop(self.position)
 
 
 class DeleteObject(QUndoCommand):

@@ -127,7 +127,7 @@ class MainWindow(QMainWindow):
 
         self.document_combobox = QComboBox()
         self.window_logic.combo_box_add_item()
-        self.document_combobox.currentIndexChanged.connect(lambda index: self.project.change_document(index=index))
+        self.document_combobox.currentIndexChanged.connect(lambda index: self.projectController.change_document(index=index))
 
         layout.addWidget(self.document_combobox)
         layout.addWidget(self.document_tree)

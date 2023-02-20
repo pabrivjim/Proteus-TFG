@@ -47,7 +47,7 @@ class ProjectController(Controller):
         Removes document.
         """
         if self.data["documents"]:
-            command = DeleteDocument(self.data, index)
+            command = DeleteDocument(self.project, index)
             self.app.undoStack.push(command)
 
     def create_document(self) -> None:
@@ -61,7 +61,7 @@ class ProjectController(Controller):
         """
         edit_project
         """
-        dialog = PropertyDialog(self.app, self.data)
+        dialog = PropertyDialog(self.app, self.project)
         dialog.exec()
 
     def export_project(self):

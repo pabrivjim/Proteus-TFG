@@ -133,7 +133,7 @@ class Visualizer(QWebEngineView):
         """
         logging.info('visualizer - update')
         
-        if project["documents"]:
+        if project.documents:
             self.load(None, project, index)
         else:
             self.page().setHtml("")

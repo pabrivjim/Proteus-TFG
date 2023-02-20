@@ -49,7 +49,7 @@ class ViewsController(Controller):
         """
         for visualizer in self.app.visualizers:
             visualizer.update(
-                self.app.projectController.data,
+                self.app.projectController.project,
                 self.app.projectController.selected_document_index)
 
     def focus_object(self, object_id: str):

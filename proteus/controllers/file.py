@@ -107,7 +107,7 @@ class FileController(Controller):
         # If we have a project folder it means the project already exists.
         if(config.project_folder != ""):
             # self.save_project(config.project_folder)
-            persistence.save_existing_project(config.project_folder, self.app.projectController.data)
+            persistence.save_existing_project(config.project_folder, self.app.projectController.project)
             self.app.ribbon.save_tb.setEnabled(False)
         
         # Otherwise we have to save as new.
@@ -167,7 +167,7 @@ class FileController(Controller):
                 # Change directory
                 return self.req_save_project()
 
-        persistence.save_project(filename, self.app.projectController.data)
+        persistence.save_project(filename, self.app.projectController.project)
         # self.path = filename
 
         self.app.statusBar().showMessage(f"Saved '{filename}'", 2000)
