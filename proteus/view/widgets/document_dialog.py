@@ -32,7 +32,7 @@ class DocumentDialog(QDialog):
         list_keys = list(archetypes.keys())
         self.document_logic.change_archetype(list_keys[0])
         self.archetypes.addItems(list_keys)
-
+        
         # Connect the combobox change index to the change_archetype method
         self.archetypes.currentIndexChanged.connect(
             lambda: self.document_logic.change_archetype(self.archetypes.currentText()))
@@ -40,5 +40,3 @@ class DocumentDialog(QDialog):
         # Connect the accept button to the create_document method
         self.buttonBox.accepted.connect(
             lambda: self.document_logic.create_document(self.archetypes.currentText()))
-
-

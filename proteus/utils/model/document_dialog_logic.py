@@ -65,11 +65,18 @@ class DocumentDialogLogic():
         """
         logging.info('DocumentDialogLogic - create document')
         
-        document = ArchetypeManager.load_document_archetypes()
+        documents = ArchetypeManager.load_document_archetypes()
 
         app = self.parent.parentWidget()
         project: Project  = app.projectController.project
-        command = CreateDocument(project, document[archetype].get_document(project), len(project.documents))
+        id: str = str(shortuuid.random(length=12))
+        documents[archetype].id = id
+        
+        document: Object = documents[archetype].get_document(project)
+        document.id = id
+        #TODO reassign id to children
+
+        command = CreateDocument(project, document, len(project.documents))
         app.undoStack.push(command)
         # Change combobox
         change_combo_box(app)
@@ -83,9 +90,10 @@ class DocumentDialogLogic():
         logging.info('DocumentDialogLogic - change archetype')
         
         document = ArchetypeManager.load_document_archetypes()
-        print(archetype)
-        print(document)
         document_description = document[archetype].description
+        app = self.parent.parentWidget()
+        project: Project  = app.projectController.project
+        print(project.documents)
         self.parent.archetype_description.setText(document_description)
 
 

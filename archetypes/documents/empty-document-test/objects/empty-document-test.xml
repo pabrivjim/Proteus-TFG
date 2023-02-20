@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object id="empty-document-test" classes=":Proteus-document" acceptedChildren=":Proteus-any">
   <properties>
-    <stringProperty name="name"><![CDATA[Empty document]]></stringProperty>
+    <stringProperty name="name"><![CDATA[Empty document Test]]></stringProperty>
     <stringProperty name="version"><![CDATA[1.0]]></stringProperty>
 	  <dateProperty name="date">2022-03-20</dateProperty>
 	  <stringProperty name="author"><![CDATA[Pablo Rivera Jiménez]]></stringProperty>	

@@ -78,7 +78,7 @@ class CreateDocument(QUndoCommand):
         Set object state to FRESH.
         Set objects's children to FRESH.
         """
-        print(self.document)
+        print("ID del document: ",self.document.id)
         self.project.documents[self.document.id] = self.document
 
     def undo(self) -> None:

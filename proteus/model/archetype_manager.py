@@ -205,7 +205,6 @@ class ArchetypeManager:
                     
 
                     # TODO en caso de que queramos usar el mismo documento varias veces, tenemos que cambiarle el id ?
-                    #document_dicc["id"] =str(shortuuid.random(length=12)) check CreateDocument because probably is there
                     document_dicc["id"] = id
                     document_dicc["path"] = document_root_path
                     document_dicc["classes"] = root_document.attrib["classes"]
