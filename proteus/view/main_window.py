@@ -86,9 +86,8 @@ class MainWindow(QMainWindow):
         Creates dock windows.
         """
         logging.info('Main Window - create dock windows')
-        
-        self.create_document_inspector()
         self.create_visualizer_widget()
+        self.create_document_inspector()
         self.setDockNestingEnabled(1)
 
     def load_ribbon(self) -> Ribbon:
@@ -125,9 +124,15 @@ class MainWindow(QMainWindow):
         self.document_tree.update.connect(self.projectController.update_document)
         self.document_tree.clicked.connect(self.window_logic.select_object)
 
+        #Basically we create the Combobox and set the first document as the current one
         self.document_combobox = QComboBox()
         self.window_logic.combo_box_add_item()
-        self.document_combobox.currentIndexChanged.connect(lambda index: self.projectController.change_document(index=index))
+        self.projectController.change_document_index(index=0)
+        self.projectController.change_document(document = self.document_combobox.itemData(0))
+        
+        # Signals so the combobox update automatically when change from one to another doc
+        self.document_combobox.currentIndexChanged.connect(lambda index: self.projectController.change_document_index(index=index))
+        self.document_combobox.currentIndexChanged.connect(lambda index: self.projectController.change_document(document = self.document_combobox.itemData(index)))
 
         layout.addWidget(self.document_combobox)
         layout.addWidget(self.document_tree)

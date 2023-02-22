@@ -17,6 +17,7 @@ from proteus.utils.model.qundo_commands import CreateDocument
 import proteus.utils.config as config 
 import proteus.utils.persistence as persistence
 import logging
+from PyQt5.QtCore import Qt
 
 def load_objects(path):
     """
@@ -42,9 +43,10 @@ def change_combo_box(app):
     document: Object
     for document in project.documents.values():
         name = document.get_property("name").value
-        app.document_combobox.addItem(name)
+        app.document_combobox.addItem(name, document)
     app.document_combobox.currentIndexChanged.connect(
-        lambda index: app.projectController.change_document(index=index))
+        lambda index: app.projectController.change_document_index(index=index))
+    app.document_combobox.currentIndexChanged.connect(lambda index: app.projectController.change_document(document = app.document_combobox.itemData(index))) 
     app.document_combobox.setCurrentIndex(len(project.documents) - 1)
 
 class DocumentDialogLogic():

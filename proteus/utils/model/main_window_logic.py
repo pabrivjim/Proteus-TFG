@@ -64,4 +64,4 @@ class MainWindowLogic():
         
         for document in self.parent.projectController.project.documents.values():
             name = document.get_property("name").value
-            self.parent.document_combobox.addItem(name)
+            self.parent.document_combobox.addItem(name, document)

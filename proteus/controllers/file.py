@@ -126,8 +126,6 @@ class FileController(Controller):
             return self.app.__class__(path=filename).show()
         # Load...
         project: Project = Project.load(pathlib.Path(filename).parent)
-        print(self.app)
-        print(self.app.projectController)
         self.app.projectController.project = project
         self.app.create_dock_windows()
 

@@ -149,7 +149,9 @@ class ArchetypeManager:
     def load_document_archetypes( cls ) -> dict:
         """
         Method that loads the document archetypes.
-        :return: A dict of project document name and DocumentArchetypeProxy objects.
+        :return: A dict of project file name and DocumentArchetypeProxy objects.
+        The reason Why we retun a dict with key value, where the key is the project file name, is because the
+        we need to know which document is, and if a dict is not use it, we have to iterate above the whole list.
         """
         log.info('ArchetypeManager - load document archetypes')
         # Build archetypes directory name from archetype type

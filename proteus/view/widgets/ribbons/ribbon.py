@@ -80,11 +80,7 @@ class Ribbon:
         self.export_tb.clicked.connect(self.parent.projectController.export_project)
 
         # When Delete Document Button is clicked, delete the document.
-        self.delete_tb.clicked.connect(
-            partial(
-                self.parent.projectController.remove_document,
-                self.parent.projectController.selected_document_index)
-        )
+        self.delete_tb.clicked.connect(self.parent.projectController.remove_document)
 
     def tabs_add_button(self):
         """

@@ -6,6 +6,8 @@
 # Author: Gamaza
 # ==========================================================================
 
+from proteus.model.object import Object
+from proteus.model.project import Project
 from proteus.view.widgets.export_dialog import ExportDialog
 from proteus.utils.model.qundo_commands import DeleteDocument
 from proteus.view.widgets.document_dialog import DocumentDialog
@@ -20,10 +22,11 @@ class ProjectController(Controller):
     """
     def __init__(self, *args, **kwargs):
         super(ProjectController, self).__init__(*args, **kwargs)
-        self.project = None
+        self.project: Project = None
         self.saved_command = None
         self.selected_object = None
-        self.selected_document_index = 0
+        self.selected_document: Object = None
+        self.selected_document_index: int = 0
 
     def update_document(self) -> None:
         """
@@ -34,21 +37,34 @@ class ProjectController(Controller):
         can_save = self.saved_command != self.app.undoStack.index()
         self.app.ribbon.save_tb.setEnabled(can_save)
 
-    def change_document(self, index=0) -> None:
+
+    #TODO FIXME it works but the index is not the proper one. We also should search for the id and not the index
+    def change_document_index(self, index=0) -> None:
         """
         Changes document.
         """
+        print("Change document index")
         self.selected_document_index = index
         self.app.document_tree.load_document()
         self.app.views.update_views()
+    
+    def change_document(self, document) -> None:
+        """
+        Changes document.
+        """
+        print("Change document")
+        self.selected_document = document
 
-    def remove_document(self, index=0) -> None:
+    def remove_document(self) -> None:
         """
         Removes document.
         """
-        if self.data["documents"]:
-            command = DeleteDocument(self.project, index)
+        if self.project.documents:
+            command = DeleteDocument(self.project, self.project.documents[self.selected_document.id], 
+                                     self.app.document_combobox, self.selected_document_index)
             self.app.undoStack.push(command)
+            
+            
 
     def create_document(self) -> None:
         """

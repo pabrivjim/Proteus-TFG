@@ -8,6 +8,7 @@
 from PyQt5.QtWidgets import QUndoCommand
 from proteus.controllers.save_state_machine import SaveMachine
 import shortuuid
+from PyQt5.QtWidgets import QComboBox
 from proteus.controllers.save_state_machine import States
 from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
@@ -97,16 +98,13 @@ class DeleteObject(QUndoCommand):
     Command to delete an object.
     """
 
-    def __init__(self, project: dict, object_id: str, obj: SaveMachine, parent_obj: SaveMachine):
+    def __init__(self, project: Project, object_id: str, obj_state: ProteusState, parent_state: ProteusState):
         logging.info('Init DeleteObject')
         super(DeleteObject, self).__init__()
-        self.node = get_node(project, object_id)
-        self.parent = get_parent(project, object_id)
-        self.position = self.parent["children"].index(self.node)
-        self.state = obj.get_state()
-        self.parent_state = parent_obj.get_state()
-        self.obj = obj
-        self.parent_obj = parent_obj
+        self.project = project
+        self.object = self.project.documents[object_id]
+        self.object_state = obj_state
+        self.parent_state = parent_state
 
     def redo(self):
         logging.info('DeleteObject - redo')
@@ -115,7 +113,7 @@ class DeleteObject(QUndoCommand):
         Set object state to DELETED.
         Set parent's object to DIRTY.
         """
-        self.parent["children"].remove(self.node)
+        self.parent.children.remove(self.node)
         self.obj.set_state(States.DELETED)
         self.parent_obj.set_state(States.DIRTY)
 
@@ -136,13 +134,14 @@ class DeleteDocument(QUndoCommand):
     Command to delete document from project.
     """
 
-    def __init__(self, project, document_index):
+    def __init__(self, project: Project, document: Object, combo_box: QComboBox, combo_box_index: int):
         logging.info('Init DeleteDocument')
         super(DeleteDocument, self).__init__()
-        self.document = project["documents"][document_index]
-        self.position = document_index
-        self.project = project
-        self.old_states = deepcopy(SaveMachine.states)
+        self.document: Object = document
+        self.project: Project = project
+        self.combo_box: QComboBox = combo_box
+        self.combo_box_index: int = combo_box_index
+        self.old_document_state = deepcopy(document.state)
 
     def redo(self):
         logging.info('DeleteDocument - redo')
@@ -150,8 +149,9 @@ class DeleteDocument(QUndoCommand):
         Deletes document from project documents list.
         Sets all objects in document to DELETED.
         """
-        self.project["documents"].pop(self.position)
-        SaveMachine.set_document_objects_to_deleted(self.document)
+        self.project.documents.pop(self.document.id)
+        self.document.state = ProteusState.DEAD
+        self.combo_box.removeItem(self.combo_box_index)
 
     def undo(self):
         logging.info('DeleteDocument - undo')
@@ -159,8 +159,10 @@ class DeleteDocument(QUndoCommand):
         Inserts document to project documents list.
         Sets all objects states to previous states.
         """
-        self.project["documents"].insert(self.position, self.document)
-        SaveMachine.states = self.old_states
+        self.document.state= self.old_document_state
+        self.project.documents[self.document.id] = self.document
+        self.combo_box.addItem(self.document.get_property("name").value, self.document)
+        
 
 
 class UpdateNode(QUndoCommand):

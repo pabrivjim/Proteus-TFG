@@ -293,28 +293,15 @@ class TreeLogic():
         :param item: Item to remove from the tree.
         """
         logging.info('TreeLogic - delete item')
-        item_id = item.data(0, Qt.UserRole)["id"]
-        obj = SaveMachine(item_id)
+        proteus_item: Object = item.data(0, Qt.UserRole)
         if item.parent():
-            parent_id = item.parent().data(0, Qt.UserRole)["id"]
-            parent_obj = SaveMachine(parent_id)
-            traces = IncomingTraces(item_id).get_traces()
-            if(traces):
-                
-                dialog = DeleteObjectWithTraces(traces, self.parent.project.data)
-                dialog.exec()
-                # result returns 1 when its true and 0 when its false
-                if dialog.result() == 1:
-                    item.parent().removeChild(item)
-                    command = DeleteObject(self.parent.project.data, item_id, obj, parent_obj)
-                    TraceLogic(self).delete_outgoing_traces(self.parent.project.data,traces,item_id)
-                    self.parent.undoStack.push(command)
-            else:
-                item.parent().removeChild(item)
-                command = DeleteObject(self.parent.project.data, item_id, obj, parent_obj)
-                self.parent.undoStack.push(command)    
+            parent_obj = item.parent().data(0, Qt.UserRole).state
+            item.parent().removeChild(item)
+            command = DeleteObject(self.parent.project.data, proteus_item.id, proteus_item.state, parent_obj)
+            self.parent.undoStack.push(command)    
         else:
-            command = DeleteDocument(self.parent.project.data, self.parent.project.selected_document_index)
+            command = DeleteDocument(self.parent.projectController.project, proteus_item,
+                                     self.parent.document_combobox, self.parent.projectController.selected_document_index)
             self.parent.undoStack.push(command)
 
 
