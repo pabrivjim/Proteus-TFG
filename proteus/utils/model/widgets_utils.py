@@ -54,7 +54,7 @@ def date_widget(parent: QWidget, obj: DateProperty) -> QDateEdit:
     logging.info('widgets utils - date widget')
     
     w = QDateEdit(parent)
-    date = QDate.fromString(str(obj.value))
+    date = QDate.fromString(str(obj.value), "yyyy-MM-dd")
     w.setDate(date)
     return w
 
@@ -121,7 +121,7 @@ def real_widget(parent: QWidget, obj: FloatProperty) -> QDoubleSpinBox:
     if(obj.value is None or obj.value == "None"):
         obj.value = 1
     
-    # check if is str
+    # check if is str and have , instead of . and replace it
     if(isinstance(obj.value, str) and "," in obj.value):
         obj.value = obj.value.replace(",", ".")
     w.setValue(float(obj.value))

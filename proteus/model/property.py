@@ -253,6 +253,8 @@ class DateProperty(Property):
         try:
             # self.value = datetime.datetime.strptime(self.value, DATE_FORMAT).date() cannot be used when frozen=True
             # https://stackoverflow.com/questions/53756788/how-to-set-the-value-of-dataclass-field-in-post-init-when-frozen-true
+            print("Date: ", self.value)
+            print(datetime.datetime.strptime(self.value, DATE_FORMAT).date())
             object.__setattr__(self, 'value', datetime.datetime.strptime(self.value, DATE_FORMAT).date())
         except ValueError:
             proteus.logger.warning(f"Date property '{self.name}': Wrong format ({self.value}). Please use YYYY-MM-DD -> assigning today's date")
@@ -374,7 +376,11 @@ class FloatProperty(Property):
         try:
             # self.value = float(self.value) cannot be used when frozen=True
             # https://stackoverflow.com/questions/53756788/how-to-set-the-value-of-dataclass-field-in-post-init-when-frozen-true
-            object.__setattr__(self, 'value', float(self.value))
+            print("float: ", self.value)
+            if(isinstance(self.value, str) and "," in self.value):
+                object.__setattr__(self, 'value', float(self.value.replace(",", ".")))
+            else:
+                object.__setattr__(self, 'value', float(self.value))
         except ValueError:
             proteus.logger.warning(f"Float property '{self.name}': Wrong format ({self.value}) -> assigning 0.0 value")
             #self.value = float(0.0) cannot be used when frozen=True

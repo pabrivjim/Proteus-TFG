@@ -14,6 +14,7 @@ from proteus.controllers import (FileController, ViewsController,
                          ProjectController)
 from PyQt5 import uic
 from proteus.controllers.save_state_machine import SaveMachine
+from proteus.model.object import Object
 from proteus.utils.model.main_window_logic import MainWindowLogic
 from proteus.utils.config import Config, PARENT_FOLDER
 from proteus.utils.i18n import trans
@@ -46,7 +47,7 @@ class MainWindow(QMainWindow):
 
         self.ribbon = self.load_ribbon()
         self.settings = Preferences.load_all(self)
-        self.selected_object = None
+        self.selected_object: Object = None
 
         # Command stack (undo/redo)
         self.undoStack = QUndoStack()

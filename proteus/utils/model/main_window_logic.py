@@ -8,6 +8,8 @@
 import copy
 import shortuuid
 from PyQt5.QtCore import (Qt, QModelIndex)
+from proteus.model.archetype_proxys import ObjectArchetypeProxy
+from proteus.model.object import Object
 from proteus.utils.model.qundo_commands import CreateObject
 import logging
 
@@ -29,19 +31,32 @@ class MainWindowLogic():
         """
         logging.info('Main Window Logic - select object')
         
-        item = self.parent.document_tree.itemFromIndex(index)
-        obj = item.data(0, Qt.UserRole)
-        self.parent.views.focus_object(item.data(0, Qt.UserRole).id)
-        self.parent.selected_object = item.data(0, Qt.UserRole).id
+        # item = self.parent.document_tree.itemFromIndex(index)
+        # obj = item.data(0, Qt.UserRole)
+        # self.parent.views.focus_object(item.data(0, Qt.UserRole).id)
+        # self.parent.selected_object = item.data(0, Qt.UserRole).id
+        # for button in self.parent.ribbon.buttons:
+        #     tb, b = self.parent.ribbon.buttons[button]
+        #     if b["type"] == "archetype":
+        #         # Check if :Proteus-any or archetype class in acceptedChildren
+        #         accepted = {":Proteus-any", button} & set(obj.acceptedChildren)
+        #         tb.setEnabled(bool(accepted))
 
+
+        item = self.parent.document_tree.itemFromIndex(index)
+        obj: Object = item.data(0, Qt.UserRole)
+        self.parent.views.focus_object(item.data(0, Qt.UserRole).id)
+        self.parent.selected_object: Object = item.data(0, Qt.UserRole)
         for button in self.parent.ribbon.buttons:
-            tb, b = self.parent.ribbon.buttons[button]
-            if b["type"] == "archetype":
+            tb, b, b_type = self.parent.ribbon.buttons[button]
+            if b_type == "archetype":
                 # Check if :Proteus-any or archetype class in acceptedChildren
+                
                 accepted = {":Proteus-any", button} & set(obj.acceptedChildren)
                 tb.setEnabled(bool(accepted))
 
-    def add_object(self, obj) -> None:
+
+    def add_object(self, obj: ObjectArchetypeProxy) -> None:
         """
         Adds a child to the selected object.
 
@@ -50,9 +65,10 @@ class MainWindowLogic():
         logging.info('Main Window Logic - add object')
         
         if self.parent.selected_object:
-            obj_clone = copy.copy(obj)
-            obj_clone["id"] = str(shortuuid.random(length=12))
-            command = CreateObject(self.parent.project.data, self.parent.selected_object,
+            obj_clone = copy.copy(obj.get_object(self.parent.projectController.project))
+            obj_clone.id = str(shortuuid.random(length=12))
+            print(self.parent.selected_object)
+            command = CreateObject(self.parent.projectController.project, self.parent.selected_object,
                                    obj_clone)
             self.parent.undoStack.push(command)
         

@@ -146,9 +146,18 @@ class Object(AbstractObject):
         self.parent : Union[Object,Project] = None
 
         # Get object classes and accepted children classes
-        self.classes          : List[ProteusClassTag] = root.attrib['classes']
-        self.acceptedChildren : List[ProteusClassTag] = root.attrib['acceptedChildren']
+        self.classes          : List[ProteusClassTag] = []
+        if(" " in root.attrib['classes']):
+            self.classes = root.attrib['classes'].split(" ")
+        else:
+            self.classes = [root.attrib['classes']]
 
+        self.acceptedChildren : List[ProteusClassTag] = []
+
+        if(" " in root.attrib['acceptedChildren']):
+            self.acceptedChildren = root.attrib['acceptedChildren'].split(" ")
+        else:
+            self.acceptedChildren = [root.attrib['acceptedChildren']]
         # Load object's properties using superclass method
         super().load_properties(root)
 
@@ -215,8 +224,8 @@ class Object(AbstractObject):
         # Create <object> element and set ID
         object_element = ET.Element(OBJECT_TAG)
         object_element.set('id', self.id)
-        object_element.set("classes", self.classes)
-        object_element.set("acceptedChildren", self.acceptedChildren)
+        object_element.set("classes", " ".join(self.classes))
+        object_element.set("acceptedChildren", " ".join(self.classes))
 
         # Create <properties> element
         super().generate_xml_properties(object_element)

@@ -16,7 +16,6 @@ from proteus.controllers.save_state_machine import SaveMachine
 from proteus.model.object import Object
 from proteus.utils.model.traces_logic import TraceLogic
 from .nodes_utils import rename_children_ids_from_node
-from .document_dialog_logic import change_combo_box
 from .qundo_commands import CreateDocument
 from proteus.utils.model.qundo_commands import CreateObject
 from proteus.view.widgets.properties import PropertyDialog
@@ -335,7 +334,7 @@ class TreeLogic():
             obj_clone = rename_children_ids_from_node(obj_clone)
             command = CreateDocument(project_data, obj_clone, len(project_data["documents"]))
             self.parent.undoStack.push(command)
-            change_combo_box(self.parent)
+            #change_combo_box(self.parent)
         else:
             command = CreateObject(project_data, item.parent().data(0, Qt.UserRole)["id"],
                                 obj_clone)

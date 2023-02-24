@@ -122,3 +122,18 @@ class ObjectArchetypeProxy:
         self.name : str = data["name"]
         self.classes : str = data["classes"]
         self.acceptedChildren : str = data["acceptedChildren"]
+
+    # ----------------------------------------------------------------------
+    # Method     : get_project
+    # Description: It returns an instance of a object.
+    # Date       : 08/10/2022
+    # Version    : 0.1
+    # Author     : Pablo Rivera Jiménez
+    # # ----------------------------------------------------------------------
+    def get_object(self, project: project.Project) -> object.Object:
+        """
+        It returns an instance of a object.
+        :param project: Project where the object is located.
+        :return: Instance of a object.
+        """
+        return object.Object(project, self.path)

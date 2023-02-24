@@ -31,23 +31,23 @@ def load_objects(path):
         o = persistence.xml2dict(o.getroot())
         res[o["id"]] = o
     return res
-
-def change_combo_box(app):
-    """
-    This function changes the combo box of the document dialog.
-    And updates the combobox with the new documents.
-    """
-    logging.info('document dialog logic - change combo box')
-    project = app.projectController.project
-    app.document_combobox.clear()
-    document: Object
-    for document in project.documents.values():
-        name = document.get_property("name").value
-        app.document_combobox.addItem(name, document)
-    app.document_combobox.currentIndexChanged.connect(
-        lambda index: app.projectController.change_document_index(index=index))
-    app.document_combobox.currentIndexChanged.connect(lambda index: app.projectController.change_document(document = app.document_combobox.itemData(index))) 
-    app.document_combobox.setCurrentIndex(len(project.documents) - 1)
+# TODO DELETE, IS IN CREATEDOCUMENT
+# def change_combo_box(app):
+#     """
+#     This function changes the combo box of the document dialog.
+#     And updates the combobox with the new documents.
+#     """
+#     logging.info('document dialog logic - change combo box')
+#     project = app.projectController.project
+#     app.document_combobox.clear()
+#     document: Object
+#     for document in project.documents.values():
+#         name = document.get_property("name").value
+#         app.document_combobox.addItem(name, document)
+#     app.document_combobox.currentIndexChanged.connect(
+#         lambda index: app.projectController.change_document_index(index=index))
+#     app.document_combobox.currentIndexChanged.connect(lambda index: app.projectController.change_document(document = app.document_combobox.itemData(index))) 
+#     app.document_combobox.setCurrentIndex(len(project.documents) - 1)
 
 class DocumentDialogLogic():
     """
@@ -77,11 +77,11 @@ class DocumentDialogLogic():
         document: Object = documents[archetype].get_document(project)
         document.id = id
         #TODO reassign id to children
-
-        command = CreateDocument(project, document, len(project.documents))
+        
+        command = CreateDocument(project, document, app, len(project.documents))
         app.undoStack.push(command)
         # Change combobox
-        change_combo_box(app)
+        
 
     def change_archetype(self, archetype: int) -> None:
         """

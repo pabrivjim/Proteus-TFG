@@ -86,7 +86,7 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_object_archetypes( cls ) -> list:
+    def load_object_archetypes( cls ) -> dict:
         """
         Method that loads the object archetypes.
         :return: A list of ObjectArchetypeProxy objects.
@@ -102,8 +102,7 @@ class ArchetypeManager:
         subdirs : list[str] = [f for f in listdir(archetypes_dir) if isdir(join(archetypes_dir, f))]
         
         # Result as a list of pairs (path,name) <-- is that enough?
-        # TODO: check the possibility of using proxy classes
-        result : list[ObjectArchetypeProxy] = list ()
+        result : dict[str, list] = dict ()
 
         # For each subdirectory
         for subdir in subdirs:
@@ -132,8 +131,10 @@ class ArchetypeManager:
                 object_dicc["acceptedChildren"] = root_object.attrib["acceptedChildren"]
                 object_dicc["path"] = archetype_file_path
                 object_dicc["name"] = archetype_file
-
-            result.append(ObjectArchetypeProxy(object_dicc))
+                if(subdir not in result):
+                    result[subdir] = [ObjectArchetypeProxy(object_dicc)]
+                else:
+                    result[subdir].append(ObjectArchetypeProxy(object_dicc))
         return result
 
 

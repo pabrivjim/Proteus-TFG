@@ -3,7 +3,6 @@
   <properties>
     <stringProperty name="name" category="general"><![CDATA[NewName]]></stringProperty>
     <stringProperty name="name2" category="general"><![CDATA[TFG2]]></stringProperty>
-    <classListProperty name="rowClasses" category="general"><class>A</class><class>B</class></classListProperty>
   </properties>
   <children/>
 </object>

@@ -10,6 +10,7 @@ from proteus.model.object import Object
 from proteus.model.property import Property
 from proteus.utils.model.nodes_utils import get_node
 from proteus.utils.model.qundo_commands import UpdateNode
+import lxml.etree as ET
 import proteus.utils.config as config 
 from proteus.controllers.save_state_machine import SaveMachine
 from PyQt5.QtWidgets import (QWidget, QTreeWidgetItem, QVBoxLayout,
@@ -45,20 +46,21 @@ class PropertiesLogic():
         Method that updates the properties of the object.
         """
         logging.info('PropertiesLogic - update property')
-        
-        self.updated_obj["properties"][prop]["value"] = value
+        app = self.parent.parentWidget()
+        new_prop = app.projectController.project.get_property(prop).clone(value)
+        self.updated_obj.set_property(new_prop)
 
     def save_changes(self) -> None:
         """
-        Method that saves object or document changes.
+        Method that saves the changes of the properties in the project.
         """
         logging.info('PropertiesLogic - save changes')
         
         app = self.parent.parentWidget()
         project_data = app.projectController.project
-        obj = SaveMachine(self.updated_obj["id"])
-
-        command = UpdateNode(project_data, self.updated_obj["id"], self.updated_obj, obj)
+        
+        command = UpdateNode(project_data, self.updated_obj)
+        
         self.parent.parentWidget().undoStack.push(command)
         self.parent.close()
 
