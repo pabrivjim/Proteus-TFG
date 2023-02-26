@@ -225,7 +225,7 @@ class MarkdownProperty(StringProperty):
     """
     # XML element tag name for this class of property (class attribute)
     element_tagname : ClassVar[str] = MARKDOWN_PROPERTY_TAG
-
+    
 # --------------------------------------------------------------------------
 # Class: DateProperty
 # Description: Dataclass for PROTEUS date properties (YYYY-MM-DD)
@@ -253,8 +253,6 @@ class DateProperty(Property):
         try:
             # self.value = datetime.datetime.strptime(self.value, DATE_FORMAT).date() cannot be used when frozen=True
             # https://stackoverflow.com/questions/53756788/how-to-set-the-value-of-dataclass-field-in-post-init-when-frozen-true
-            print("Date: ", self.value)
-            print(datetime.datetime.strptime(self.value, DATE_FORMAT).date())
             object.__setattr__(self, 'value', datetime.datetime.strptime(self.value, DATE_FORMAT).date())
         except ValueError:
             proteus.logger.warning(f"Date property '{self.name}': Wrong format ({self.value}). Please use YYYY-MM-DD -> assigning today's date")

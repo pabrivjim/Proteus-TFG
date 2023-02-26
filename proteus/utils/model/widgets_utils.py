@@ -130,7 +130,6 @@ def real_widget(parent: QWidget, obj: FloatProperty) -> QDoubleSpinBox:
 
 def file_widget(parent: QWidget, obj: FileProperty) -> QLineEdit:
     """
-    TODO
     Widget for file property.
 
     :param parent: Parent widget.
@@ -145,7 +144,6 @@ def file_widget(parent: QWidget, obj: FileProperty) -> QLineEdit:
 
 def url_widget(parent: QWidget, obj: UrlProperty) -> QLineEdit:
     """
-    TODO
     Widget for url property.
 
     :param parent: Parent widget.
@@ -172,13 +170,29 @@ def class_list_widget(parent: QWidget, obj: ClassListProperty) -> QListWidget:
     w = QListWidget(parent)
     w.setSelectionMode(2)
     return w
+    
+# Variable to save the instance of the MarkdownWidgets
+_markdown_widgets = {}
 
+def markdown_widget(parent: QWidget, obj: MarkdownProperty):
+    """
+    Widget for markdown property.
 
+    :param parent: Parent widget.
+    :param obj: Property dict.
+    :return: MarkdownWidget widget.
+    """
+    if (obj.name in _markdown_widgets):
+        return _markdown_widgets[obj.name]
+    else:
+        _markdown_widgets[obj.name] = properties.MarkdownWidget(parent, obj)
+        return _markdown_widgets[obj.name]
 # Todo refactor
+
+
 def get_widget_for_property(object_property, parent=None):
     """
     Function to get widget by property type.
-
     :param object_property: object property.
     :param parent: parent widget.
     :return: property widget.
@@ -187,7 +201,7 @@ def get_widget_for_property(object_property, parent=None):
 
     # ClassList property is not shown here 
     widgets = {
-        MarkdownProperty.element_tagname: properties.MarkdownWidget,
+        MarkdownProperty.element_tagname: markdown_widget,
         StringProperty.element_tagname: string_widget,
         FloatProperty.element_tagname: real_widget,
         IntegerProperty.element_tagname: number_widget,

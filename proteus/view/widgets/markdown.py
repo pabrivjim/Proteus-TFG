@@ -19,7 +19,7 @@ class MarkdownWidget(QWidget):
         logging.info('Init MarkdownWidget')
         super(MarkdownWidget, self).__init__(parent)
 
-        self.widget = QTextEdit()
+        self.widget = QTextEdit(parent)
         self.widget.setPlainText(obj.value)
         # self.widget.setEnabled(False)
         self.btn = QPushButton("Visualize")

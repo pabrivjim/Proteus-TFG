@@ -48,6 +48,9 @@ class PropertyDialog(QDialog):
         widgets = self.properties_logic.load_widgets()
         
         # Todo refactor
+        # Because there could be different MarkdownWidgets instances, we need to add each so the app
+        # knows which one is the actual one.
+        markdown_widgets = {}
         for key in widgets.keys():
             if isinstance(widgets[key], QCheckBox):
                 widgets[key].stateChanged.connect(
@@ -57,10 +60,11 @@ class PropertyDialog(QDialog):
                     lambda value, key=key: self.properties_logic.update_property(key, value))
             elif isinstance(widgets[key], MarkdownWidget):
                 markdown_widget = widgets[key]
+                markdown_widgets[key] = markdown_widget
                 widgets[key].btn.clicked.connect(
                     lambda: markdown_widget.switch())
                 widgets[key].widget.textChanged.connect(
-                    lambda key=key: self.properties_logic.update_property(key, markdown_widget.get_value()))
+                    lambda key=key: self.properties_logic.update_property(key, markdown_widgets[key].get_value()))
             elif hasattr(widgets[key], "textChanged"):
                 widgets[key].textChanged.connect(partial(self.properties_logic.update_property, key))
 
