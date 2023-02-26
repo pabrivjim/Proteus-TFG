@@ -25,12 +25,12 @@ class CreateObject(QUndoCommand):
     object to the end of parent children list.
     """
 
-    def __init__(self, project: Project, parent: Object, obj: Object):
+    def __init__(self, project: Project, parent_obj: Object, obj: Object):
         logging.info('Init CreateObject')
         super(CreateObject, self).__init__()
         self.obj = obj
-        self.parent = parent
-        self.parent_state: ProteusState = deepcopy(parent.state)
+        self.parent_obj = parent_obj
+        self.parent_obj_state: ProteusState = deepcopy(parent_obj.state)
         self.project = project
         self.project_state: ProteusState = deepcopy(project.state)
 
@@ -42,9 +42,15 @@ class CreateObject(QUndoCommand):
         Set parent's object to DIRTY.
         """
         self.obj.state = ProteusState.FRESH
-        self.parent_state = ProteusState.DIRTY
+        self.obj.parent = self.parent_obj
+        self.parent_obj.state = ProteusState.DIRTY
         self.project.state = ProteusState.DIRTY
-        self.parent.children[self.obj.id] = self.obj
+        self.parent_obj.children[self.obj.id] = self.obj
+        updated_doc = {self.parent_obj.id: self.parent_obj}
+        if(isinstance(self.parent_obj.parent, Project)):
+            dict.update(self.parent_obj.parent.documents, updated_doc)
+        else:
+            dict.update(self.parent_obj.parent.children, updated_doc)
 
     def undo(self) -> None:
         logging.info('CreateObject - undo')
@@ -54,9 +60,16 @@ class CreateObject(QUndoCommand):
         Set parent's state to previous state.
         """
         self.obj.state = ProteusState.DEAD
-        self.parent.state = self.parent_state
-        self.parent.children.pop(self.obj.id)
+        self.parent_obj.state = self.parent_obj_state
+        self.parent_obj.children.pop(self.obj.id)
         self.project_state = self.project.state
+        updated_doc = {self.parent_obj.id: self.parent_obj}
+        #FIXME
+        if(isinstance(self.parent_obj.parent, Project)):
+            dict.update(self.parent_obj.parent.documents, updated_doc)
+        else:
+            dict.update(self.parent_obj.parent.children, updated_doc)
+            
 
 
 def change_combo_box(app):
@@ -122,13 +135,15 @@ class DeleteObject(QUndoCommand):
     Command to delete an object.
     """
 
-    def __init__(self, project: Project, object_id: str, obj_state: ProteusState, parent_state: ProteusState):
+    def __init__(self, project: Project, parent: Object, child_obj: Object):
         logging.info('Init DeleteObject')
         super(DeleteObject, self).__init__()
         self.project = project
-        self.object = self.project.documents[object_id]
-        self.object_state = obj_state
-        self.parent_state = parent_state
+        self.parent: Object = parent
+        self.obj = child_obj
+        self.parent_state = deepcopy(parent.state)
+        self.obj_state = deepcopy(child_obj.state)
+        self.project_state = deepcopy(project.state)
 
     def redo(self):
         logging.info('DeleteObject - redo')
@@ -137,9 +152,10 @@ class DeleteObject(QUndoCommand):
         Set object state to DELETED.
         Set parent's object to DIRTY.
         """
-        self.parent.children.remove(self.node)
-        self.obj.set_state(States.DELETED)
-        self.parent_obj.set_state(States.DIRTY)
+        self.obj.state = ProteusState.DEAD
+        self.parent.children.pop(self.obj.id)	
+        self.parent.state = ProteusState.DIRTY
+        self.project.state = ProteusState.DIRTY
 
     def undo(self):
         logging.info('DeleteObject - undo')
@@ -148,9 +164,10 @@ class DeleteObject(QUndoCommand):
         Set object state to previous state.
         Set parent's state to previous state.
         """
-        self.parent["children"].insert(self.position, self.node)
-        self.obj.set_state(self.state)
-        self.parent_obj.set_state(self.parent_state)
+        self.obj.state = self.obj_state
+        self.parent.state = self.parent_state
+        self.project.state = self.project_state
+        self.parent.children[self.obj.id] = self.obj
 
 
 class DeleteDocument(QUndoCommand):
@@ -198,7 +215,7 @@ class UpdateNode(QUndoCommand):
         logging.info('Init UpdateNode')
         super(UpdateNode, self).__init__()
         self.project = project
-        self.back_up_project = deepcopy(project)
+        self.back_up_project_properties = deepcopy(project.properties)
         self.new_project = new_project
         self.project_state = project.state
 
@@ -219,7 +236,6 @@ class UpdateNode(QUndoCommand):
                         pretty_print=True).decode())
         if(project_xml != new_project_xml):
             self.project.state = ProteusState.DIRTY
-            print(self.new_project.properties)
             self.project.properties = self.new_project.properties
 
     def undo(self):
@@ -228,7 +244,8 @@ class UpdateNode(QUndoCommand):
         Replace node attributes with old attributes.
         Set object state to previous state.
         """
-        self.project = self.back_up_project
+        self.project.state = self.project_state
+        self.project.properties = self.back_up_project_properties
 
 
 class MoveNode(QUndoCommand):

@@ -11,6 +11,7 @@ import pathlib
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget
 from proteus.model.archetype_manager import ArchetypeManager
 from proteus.model.archetype_proxys import ProjectArchetypeProxy
+from proteus.model.object import Object
 from proteus.model.project import Project
 import proteus.utils.config as config
 import proteus.utils.persistence as persistence
@@ -75,16 +76,12 @@ class FileController(Controller):
         if selected_files:
             filename = selected_files[0]
             config.project_folder = filename
-            # This variable is used to specify if the project is new or not
-            # So as it's opened, we will set the state of all docs and objects
-            # to "CLEAN" instead of "FRESH"
-            clean = True
-            self.load_project(filename, clean)
+            self.load_project(filename)
             project_title = self.app.projectController.project.get_property("name").value
             self.app.setWindowTitle("Proteus - " + project_title)
     
     def req_save_new_project(self, archetype) -> None:
-        """
+        """ 
         Method that request path to save a new project.
         """
         projects = ArchetypeManager.load_project_archetypes()
@@ -107,10 +104,13 @@ class FileController(Controller):
         # If we have a project folder it means the project already exists.
         if(config.project_folder != ""):
             # self.save_project(config.project_folder)
-            persistence.save_existing_project(config.project_folder, self.app.projectController.project)
+            project: Project = self.app.projectController.project
+            project.save_project()
             self.app.ribbon.save_tb.setEnabled(False)
         
-        # Otherwise we have to save as new.
+        # If we don't have a project folder it means the project is new. This should NEVER
+        # happen because we always save the project when we load it. But just in case we want to
+        # make sure that the user doesnt
         else:
             selected_files = Dialog.request(
                 self.app, "Save file", "application/xml", "xml",
@@ -121,7 +121,7 @@ class FileController(Controller):
                 self.save_project(filename)
                 self.app.ribbon.save_tb.setEnabled(False)
 
-    def load_project(self, filename: str, clean=False, project_title=None) -> None:
+    def load_project(self, filename: str, project_title=None) -> None:
         if self.app.projectController.project:
             return self.app.__class__(path=filename).show()
         # Load...
@@ -165,7 +165,8 @@ class FileController(Controller):
                 # Change directory
                 return self.req_save_project()
 
-        persistence.save_project(filename, self.app.projectController.project)
+        project: Project = self.app.projectController.project
+        project.save_project()
         # self.path = filename
 
         self.app.statusBar().showMessage(f"Saved '{filename}'", 2000)

@@ -61,7 +61,7 @@ class MainWindow(QMainWindow):
         self.selected_document_index = 0
 
         if project_path:
-            self.file.load_project(project_path, project_title=project_title, clean=clean)
+            self.file.load_project(project_path, project_title=project_title)
         
     def closeEvent(self, event):
         """

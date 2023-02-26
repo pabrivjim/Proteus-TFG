@@ -225,7 +225,7 @@ class Object(AbstractObject):
         object_element = ET.Element(OBJECT_TAG)
         object_element.set('id', self.id)
         object_element.set("classes", " ".join(self.classes))
-        object_element.set("acceptedChildren", " ".join(self.classes))
+        object_element.set("acceptedChildren", " ".join(self.acceptedChildren))
 
         # Create <properties> element
         super().generate_xml_properties(object_element)

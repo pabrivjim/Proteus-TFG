@@ -275,7 +275,7 @@ class Project(AbstractObject):
                 # we save them as well
                 def save_children(parent: Object):
                     child: Object
-                    for child in document.children.values():
+                    for child in parent.children.values():
 
                         child_path = f"{objects_repository}/{child.id}.xml"
                         child_root = child.generate_xml()
@@ -291,6 +291,8 @@ class Project(AbstractObject):
                         if(child.state == ProteusState.DEAD or parent.state == ProteusState.DEAD):
                             os.remove(child.path)
                             child.state = ProteusState.DEAD
+                        if(child.children):
+                            save_children(child)
                 save_children(document)
         
         # PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso:

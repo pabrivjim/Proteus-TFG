@@ -294,9 +294,11 @@ class TreeLogic():
         logging.info('TreeLogic - delete item')
         proteus_item: Object = item.data(0, Qt.UserRole)
         if item.parent():
-            parent_obj = item.parent().data(0, Qt.UserRole).state
+            parent_obj: Object = item.parent().data(0, Qt.UserRole)
+            print(parent_obj.id, "   ", parent_obj.get_property("name").value)
+            print(proteus_item.id, "   ", proteus_item.get_property("name").value)
             item.parent().removeChild(item)
-            command = DeleteObject(self.parent.project.data, proteus_item.id, proteus_item.state, parent_obj)
+            command = DeleteObject(self.parent.projectController.project, parent_obj, proteus_item)
             self.parent.undoStack.push(command)    
         else:
             command = DeleteDocument(self.parent.projectController.project, proteus_item,

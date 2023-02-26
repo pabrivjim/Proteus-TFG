@@ -51,8 +51,9 @@ class MainWindowLogic():
             tb, b, b_type = self.parent.ribbon.buttons[button]
             if b_type == "archetype":
                 # Check if :Proteus-any or archetype class in acceptedChildren
-                
                 accepted = {":Proteus-any", button} & set(obj.acceptedChildren)
+                print(accepted)
+                print(button)
                 tb.setEnabled(bool(accepted))
 
 
@@ -67,9 +68,9 @@ class MainWindowLogic():
         if self.parent.selected_object:
             obj_clone = copy.copy(obj.get_object(self.parent.projectController.project))
             obj_clone.id = str(shortuuid.random(length=12))
-            print(self.parent.selected_object)
             command = CreateObject(self.parent.projectController.project, self.parent.selected_object,
                                    obj_clone)
+
             self.parent.undoStack.push(command)
         
     def combo_box_add_item(self):
