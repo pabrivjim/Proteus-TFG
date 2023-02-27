@@ -28,14 +28,11 @@ class PropertyDialog(QDialog):
         proteus.logger.info('Init PropertyDialog')
         super(PropertyDialog, self).__init__(parent)
         self.setWindowTitle(trans("edit properties"))
-        self.properties_logic = PropertiesLogic(self)
         self.obj = obj
+        self.properties_logic = PropertiesLogic(self)
         self.updated_obj = copy.deepcopy(self.obj)
         self.traces_widget = QTreeWidget()
         self.traces_widget.currentItem()
-        
-        
-
         self.init_ui()
 
     def load_tab_widget(self) -> None:

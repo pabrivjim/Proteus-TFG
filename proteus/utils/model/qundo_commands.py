@@ -205,22 +205,65 @@ class DeleteDocument(QUndoCommand):
         self.combo_box.addItem(self.document.get_property("name").value, self.document)
         
 
+class UpdateObject(QUndoCommand):
+    """
+    Command to update node attributes.
+    """
 
-class UpdateNode(QUndoCommand):
+    def __init__(self, obj:Object, new_obj:Object):
+        proteus.logger.info('Init UpdateObject')
+        super(UpdateObject, self).__init__()
+        self.obj = obj
+        self.back_up_obj_properties = deepcopy(obj.properties)
+        self.new_obj = new_obj
+        self.obj_state = obj.state
+
+    def redo(self):
+        proteus.logger.info('UpdateObject - redo')
+        """
+        Update node dict attributes.
+        Set object state to DIRTY.
+        """
+        obj_xml = (ET.tostring(self.obj.generate_xml(),
+                    xml_declaration=True,
+                    encoding='utf-8',
+                    pretty_print=True).decode())
+
+        new_obj_xml = (ET.tostring(self.new_obj.generate_xml(),
+                        xml_declaration=True,
+                        encoding='utf-8',
+                        pretty_print=True).decode())
+
+        if(obj_xml != new_obj_xml):
+            self.obj.state = ProteusState.DIRTY
+            self.obj.properties = self.new_obj.properties
+
+    def undo(self):
+        proteus.logger.info('UpdateObject - undo')
+        """
+        Replace node attributes with old attributes.
+        Set object state to previous state.
+        """
+        self.obj.state = self.obj_state
+        self.obj.properties = self.back_up_obj_properties
+
+
+
+class UpdateProject(QUndoCommand):
     """
     Command to update node attributes.
     """
 
     def __init__(self, project:Project, new_project:Project):
-        proteus.logger.info('Init UpdateNode')
-        super(UpdateNode, self).__init__()
+        proteus.logger.info('Init UpdateProject')
+        super(UpdateProject, self).__init__()
         self.project = project
         self.back_up_project_properties = deepcopy(project.properties)
         self.new_project = new_project
         self.project_state = project.state
 
     def redo(self):
-        proteus.logger.info('UpdateNode - redo')
+        proteus.logger.info('UpdateProject - redo')
         """
         Update node dict attributes.
         Set object state to DIRTY.
@@ -239,7 +282,7 @@ class UpdateNode(QUndoCommand):
             self.project.properties = self.new_project.properties
 
     def undo(self):
-        proteus.logger.info('UpdateNode - undo')
+        proteus.logger.info('UpdateProject - undo')
         """
         Replace node attributes with old attributes.
         Set object state to previous state.

@@ -7,9 +7,10 @@
 # ==========================================================================
 from PyQt5.QtGui import (QIcon)
 from proteus.model.object import Object
+from proteus.model.project import Project
 from proteus.model.property import Property
 from proteus.utils.model.nodes_utils import get_node
-from proteus.utils.model.qundo_commands import UpdateNode
+from proteus.utils.model.qundo_commands import UpdateObject, UpdateProject
 import lxml.etree as ET
 import proteus.utils.config as config 
 from proteus.controllers.save_state_machine import SaveMachine
@@ -26,6 +27,7 @@ class PropertiesLogic():
     def __init__(self, parent) -> None:
         proteus.logger.info('Init PropertiesLogic')
         self.parent = parent
+        self.obj = self.parent.obj
     
     def load_traces(self) -> None:
         """
@@ -34,7 +36,7 @@ class PropertiesLogic():
         proteus.logger.info('PropertiesLogic - load traces')
         
         self.traces_widget = self.parent.traces_widget
-        self.updated_obj: Object = self.parent.updated_obj
+        self.updated_item: Object = self.parent.updated_obj
         # print(self.parent)
         # print(self.parent.parent().project.data)
         self.traces_widget.clear()
@@ -48,7 +50,7 @@ class PropertiesLogic():
         proteus.logger.info('PropertiesLogic - update property')
         app = self.parent.parentWidget()
         new_prop = app.projectController.project.get_property(prop).clone(value)
-        self.updated_obj.set_property(new_prop)
+        self.updated_item.set_property(new_prop)
 
     def save_changes(self) -> None:
         """
@@ -58,10 +60,13 @@ class PropertiesLogic():
         
         app = self.parent.parentWidget()
         project_data = app.projectController.project
-        
-        command = UpdateNode(project_data, self.updated_obj)
-        
-        self.parent.parentWidget().undoStack.push(command)
+        if(isinstance(self.updated_item, Project)):
+            command = UpdateProject(project_data, self.updated_item)
+            self.parent.parentWidget().undoStack.push(command)
+        else:    
+            command = UpdateObject(self.obj, self.updated_item)
+            self.parent.parentWidget().undoStack.push(command)
+
         self.parent.close()
 
     def load_widgets(self):

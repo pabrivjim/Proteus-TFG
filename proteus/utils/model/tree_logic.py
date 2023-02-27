@@ -14,6 +14,7 @@ from PyQt5.QtGui import (QDrag, QIcon)
 from PyQt5.QtWidgets import (QTreeWidget, QMenu, QTreeWidgetItem)
 from proteus.controllers.save_state_machine import SaveMachine
 from proteus.model.object import Object
+from proteus.model.project import Project
 from proteus.utils.model.traces_logic import TraceLogic
 from .nodes_utils import rename_children_ids_from_node
 from .qundo_commands import CreateDocument
@@ -328,16 +329,14 @@ class TreeLogic():
         """
         proteus.logger.info('TreeLogic - clone item')
 
-        obj = item.data(0, Qt.UserRole)
-        obj_clone = copy.copy(obj)
-        obj_clone["id"] = str(shortuuid.random(length=12))
-        project_data = self.parent.project.data
+        obj: Object = item.data(0, Qt.UserRole)
+        obj_clone = obj.clone_object(obj.parent)
+        project: Project = self.parent.projectController.project
+        app = self.parent
         if(item.parent() == None):
-            obj_clone = rename_children_ids_from_node(obj_clone)
-            command = CreateDocument(project_data, obj_clone, len(project_data["documents"]))
+            command = CreateDocument(project, obj_clone, app, len(project.documents))
             self.parent.undoStack.push(command)
-            #change_combo_box(self.parent)
         else:
-            command = CreateObject(project_data, item.parent().data(0, Qt.UserRole)["id"],
-                                obj_clone)
+            command = CreateObject(self.parent.projectController.project, obj.parent,
+                                   obj_clone)
             self.parent.undoStack.push(command)

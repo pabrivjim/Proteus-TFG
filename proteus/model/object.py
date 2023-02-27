@@ -284,10 +284,11 @@ class Object(AbstractObject):
         # Check if object has children
         if(new_object.children):
             rename_ids(new_object)
-            
+        """    
         object_assets_path = pathlib.Path(self.path).parent.parent / "assets"
 
         #If the parent is a Project
+        
         if (parent.__class__.__name__ == "Project"):
 
             # We add the object to the documents list
@@ -311,9 +312,10 @@ class Object(AbstractObject):
                 parent_absolute_path = parent_relative_path.resolve()
                 parent_assets_path = parent_absolute_path.parent / "assets"    
                 copy_tree(str(object_assets_path), str(parent_assets_path))
-        
+        """
         # We set the state of the partent of the new object to DIRTY and the new object
         # state to FRESH
         parent.state = ProteusState.DIRTY
         new_object.state = ProteusState.FRESH
 
+        return new_object
