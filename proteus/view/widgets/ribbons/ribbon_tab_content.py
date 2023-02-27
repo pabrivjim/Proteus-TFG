@@ -9,7 +9,7 @@
 from .ribbon_button_group import RibbonButtonGroup
 from PyQt5.QtWidgets import (QWidget)
 from PyQt5 import uic
-import logging
+import proteus
 
 class RibbonTabContent(QWidget):
     """
@@ -17,7 +17,7 @@ class RibbonTabContent(QWidget):
     """
 
     def __init__(self):
-        logging.info('Init RibbonTabContent')
+        proteus.logger.info('Init RibbonTabContent')
         super(RibbonTabContent, self).__init__()
         uic.loadUi("proteus/resources/ui/ribbonTabContent.ui", self)
 
@@ -28,7 +28,7 @@ class RibbonTabContent(QWidget):
         :param title: Group title.
         :return: Button group.
         """
-        logging.info('RibbonTabContent - add group')
+        proteus.logger.info('RibbonTabContent - add group')
         
         button_group = RibbonButtonGroup(title)
         self.ribbonHorizontalLayout.addWidget(button_group)

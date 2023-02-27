@@ -17,7 +17,7 @@ from proteus.controllers.save_state_machine import States
 from proteus.controllers.incoming_traces import IncomingTraces
 from proteus.utils.model.nodes_utils import get_node
 from .converter import dict2xml, xml2dict
-import logging
+import proteus
 import proteus.utils.config as config
 import shutil
 
@@ -27,7 +27,7 @@ def load_objects(path: str, clean=False) -> dict:
 
     :param path
     """
-    logging.info('persistence init - load object')
+    proteus.logger.info('persistence init - load object')
 
     res = {}
     print(path)
@@ -60,7 +60,7 @@ def load_project(path, clean=False) -> dict:
     :param path:
     :return project
     """
-    logging.info('persistence init - load project')
+    proteus.logger.info('persistence init - load project')
 
     root = ET.parse(path).getroot()
     obj = SaveMachine(root.attrib.get("id"))
@@ -100,7 +100,7 @@ def save_existing_project(filename, project) -> None:
     :param: filename
     :param: project
     """
-    logging.info('persistence init - save project')
+    proteus.logger.info('persistence init - save project')
     
     p = {
         "project": project["id"],
@@ -209,7 +209,7 @@ def save_project(filename, project) -> None:
     :param: filename
     :param: project
     """
-    logging.info('persistence init - save project')
+    proteus.logger.info('persistence init - save project')
     
     p = {
         "project": project["id"],
@@ -280,7 +280,7 @@ def get_project_objects(project) -> list:
     :param project:
     :return: objects
     """
-    logging.info('persistence init - get project objects')
+    proteus.logger.info('persistence init - get project objects')
     
     objects = []
 

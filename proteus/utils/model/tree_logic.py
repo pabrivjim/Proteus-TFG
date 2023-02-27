@@ -23,7 +23,7 @@ from proteus.utils.model.qundo_commands import DeleteObject, DeleteDocument, Mov
 import proteus.utils.config as config 
 from proteus.controllers.incoming_traces import IncomingTraces
 from proteus.view.widgets.traces import DeleteObjectWithTraces
-import logging
+import proteus
 
 class TreeLogic():
     """
@@ -31,7 +31,7 @@ class TreeLogic():
     """
 
     def __init__(self, docInspector, parent, dragged) -> None:
-        logging.info('Init TreeLogic')
+        proteus.logger.info('Init TreeLogic')
         self._draggedItem = dragged
         self.parent = parent
         self.docInspector = docInspector
@@ -40,7 +40,7 @@ class TreeLogic():
         """
         Returns mimetypes.
         """
-        logging.info('TreeLogic - mimeTypes')
+        proteus.logger.info('TreeLogic - mimeTypes')
         
         mimetypes = QTreeWidget.mimeTypes(self.docInspector)
         mimetypes.append(self.docInspector.mimetype)
@@ -52,7 +52,7 @@ class TreeLogic():
 
         :param supportedActions:
         """
-        logging.info('TreeLogic - start drag')
+        proteus.logger.info('TreeLogic - start drag')
         
         drag = QDrag(self.docInspector)
         mimedata = self.docInspector.model().mimeData(self.docInspector.selectedIndexes())
@@ -74,7 +74,7 @@ class TreeLogic():
 
         :param event:
         """
-        logging.info('TreeLogic - drop event')
+        proteus.logger.info('TreeLogic - drop event')
         
         # Get previous position
         from_parent = self._draggedItem.parent()
@@ -102,7 +102,7 @@ class TreeLogic():
         :param inItem:
         :param outItem:
         """
-        logging.info('TreeLogic - fill item')
+        proteus.logger.info('TreeLogic - fill item')
         
         for col in range(inItem.columnCount()):
             for key in range(Qt.UserRole):
@@ -116,7 +116,7 @@ class TreeLogic():
         :param itFrom:
         :param itTo:
         """
-        logging.info('TreeLogic - fill items')
+        proteus.logger.info('TreeLogic - fill items')
         
         for ix in range(itFrom.childCount()):
             it = QTreeWidgetItem(itTo)
@@ -131,7 +131,7 @@ class TreeLogic():
         :param items:
         :param stream:
         """
-        logging.info('TreeLogic - encode data')
+        proteus.logger.info('TreeLogic - encode data')
         
         stream.writeInt32(len(items))
         for item in items:
@@ -152,7 +152,7 @@ class TreeLogic():
         :param encoded:
         :param tree:
         """
-        logging.info('TreeLogic - decode data')
+        proteus.logger.info('TreeLogic - decode data')
         
         items = []
         rows = []
@@ -177,7 +177,7 @@ class TreeLogic():
         """
         Method that load the document from the project.
         """
-        logging.info('TreeLogic - load document')
+        proteus.logger.info('TreeLogic - load document')
         
         print("Loading doc")
         self.docInspector.clear()
@@ -200,7 +200,7 @@ class TreeLogic():
         :param data:
         :param root:
         """
-        logging.info('TreeLogic - load data')
+        proteus.logger.info('TreeLogic - load data')
         
         if not root:
             name = doc.get_property("name").value or "Untitled"
@@ -224,7 +224,7 @@ class TreeLogic():
         :param child:
         :return: Child item.
         """
-        logging.info('TreeLogic - add child')
+        proteus.logger.info('TreeLogic - add child')
         
         name = child.get_property("name").value or "Untitled"
         obj_classes = child.classes
@@ -243,7 +243,7 @@ class TreeLogic():
         :param model:
         :param root:
         """
-        logging.info('TreeLogic - transverse')
+        proteus.logger.info('TreeLogic - transverse')
         
         if not model:
             model = self.docInspector.itemAt(0, 0)
@@ -265,7 +265,7 @@ class TreeLogic():
 
         :param position: right-click position.
         """
-        logging.info('TreeLogic - open menu')
+        proteus.logger.info('TreeLogic - open menu')
         
         mdlIdx = self.docInspector.indexAt(position)
         if not mdlIdx.isValid():
@@ -291,7 +291,7 @@ class TreeLogic():
 
         :param item: Item to remove from the tree.
         """
-        logging.info('TreeLogic - delete item')
+        proteus.logger.info('TreeLogic - delete item')
         proteus_item: Object = item.data(0, Qt.UserRole)
         if item.parent():
             parent_obj: Object = item.parent().data(0, Qt.UserRole)
@@ -312,7 +312,7 @@ class TreeLogic():
 
         :param index: Index of the item to edit.
         """
-        logging.info('TreeLogic - edit item')
+        proteus.logger.info('TreeLogic - edit item')
         
         item = self.docInspector.itemFromIndex(index)
         obj = item.data(0, Qt.UserRole)
@@ -326,7 +326,7 @@ class TreeLogic():
 
         :param item: Item to remove from the tree.
         """
-        logging.info('TreeLogic - clone item')
+        proteus.logger.info('TreeLogic - clone item')
 
         obj = item.data(0, Qt.UserRole)
         obj_clone = copy.copy(obj)

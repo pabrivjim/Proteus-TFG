@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
-import logging
+import proteus
 
 class DeleteDocument():
     """
@@ -22,7 +22,7 @@ class DeleteDocument():
         :returns: Action of delete an existent doc.
         :rtype: QToolButton
         """
-        logging.info('DeleteDocument Button - get button')
+        proteus.logger.info('DeleteDocument Button - get button')
         
         self.delete_tb = QToolButton()
         self.delete_tb.setObjectName("Delete Document")

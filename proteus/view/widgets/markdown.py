@@ -5,7 +5,7 @@
 # Version: 1.0.0
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
-import logging
+import proteus
 from PyQt5.QtWidgets import (QWidget, QTextEdit, QPushButton, QVBoxLayout)
 
 from proteus.model.property import MarkdownProperty
@@ -16,7 +16,7 @@ class MarkdownWidget(QWidget):
     """
 
     def __init__(self, parent: QWidget, obj: MarkdownProperty):
-        logging.info('Init MarkdownWidget')
+        proteus.logger.info('Init MarkdownWidget')
         super(MarkdownWidget, self).__init__(parent)
 
         self.widget = QTextEdit(parent)
@@ -35,7 +35,7 @@ class MarkdownWidget(QWidget):
         """
         Switches between plain text and html.
         """
-        logging.info('MarkdownWidget - switch')
+        proteus.logger.info('MarkdownWidget - switch')
         if self.visualize_html:
             self.btn.setText("Visualize")
             self.widget.setPlainText(self.widget.toMarkdown())
@@ -48,5 +48,5 @@ class MarkdownWidget(QWidget):
         """
         Returns the value of the widget.
         """
-        logging.info('MarkdownWidget - get value')
+        proteus.logger.info('MarkdownWidget - get value')
         return self.widget.toMarkdown() if self.visualize_html else self.widget.toPlainText()

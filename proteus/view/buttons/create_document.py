@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
-import logging
+import proteus
 
 class CreateDocument():
     """
@@ -22,7 +22,7 @@ class CreateDocument():
         :returns: Action of create a new doc.
         :rtype: QToolButton
         """
-        logging.info('CreateDocument Button - get button')
+        proteus.logger.info('CreateDocument Button - get button')
         
         self.create_tb = QToolButton()
         self.create_tb.setObjectName("Create Document")

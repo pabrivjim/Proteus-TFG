@@ -11,7 +11,7 @@ from os.path import join, dirname, abspath, isfile, exists
 from os import pardir
 from lxml import etree as ET
 from ..persistence.converter import xml2dict
-import logging
+import proteus
 from datetime import datetime
 
 CURRENT_FOLDER = dirname(dirname(__file__))
@@ -41,7 +41,7 @@ class Config:
         Method that loads the object archetypes.
         """
         print("Load objects Archetypes")
-        logging.info('Config - load object archetypes')
+        proteus.logger.info('Config - load object archetypes')
         archetypes_dir = join(ARCHETYPES_FOLDER, "objects")
         categories = [f for f in listdir(archetypes_dir) if not isfile(join(archetypes_dir, f))]
         res = {}
@@ -66,7 +66,7 @@ class Config:
         Method that loads the document archetypes.
         """
         print("Load DOCS Archetypes")
-        logging.info('Config - load document archetypes')
+        proteus.logger.info('Config - load document archetypes')
         archetypes_dir = join(ARCHETYPES_FOLDER, "documents")
         return [f for f in listdir(archetypes_dir) if not isfile(join(archetypes_dir, f))]
 
@@ -75,7 +75,7 @@ class Config:
         """
         Method that loads the project archetypes.
         """
-        logging.info('Config - load project archetypes')
+        proteus.logger.info('Config - load project archetypes')
         archetypes_dir = join(ARCHETYPES_FOLDER, "projects")
         return [f for f in listdir(archetypes_dir) if not isfile(join(archetypes_dir, f))]
 
@@ -84,7 +84,7 @@ class Config:
         """
         Method that loads the views.
         """
-        logging.info('Config - load views')
+        proteus.logger.info('Config - load views')
         views_dir = join(CONFIG_FOLDER, "views")
         views = [f for f in listdir(views_dir) if not isfile(join(views_dir, f))]
         # Todo refactor
@@ -102,5 +102,5 @@ class Config:
         """
         Method that returns the views folder.
         """
-        logging.info('Config - get views folder')
+        proteus.logger.info('Config - get views folder')
         return join(CONFIG_FOLDER, "views")

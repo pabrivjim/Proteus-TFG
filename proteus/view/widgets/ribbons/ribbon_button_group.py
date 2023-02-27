@@ -9,7 +9,7 @@
 from PyQt5.QtCore import (Qt, QSize)
 from PyQt5.QtWidgets import (QWidget, QPushButton, QSizePolicy)
 from PyQt5 import uic
-import logging
+import proteus
 
 # https://github.com/martijnkoopman/Qt-Ribbon-Widget/
 class RibbonButtonGroup(QWidget):
@@ -18,7 +18,7 @@ class RibbonButtonGroup(QWidget):
     """
 
     def __init__(self, title: str):
-        logging.info('Init RibbonButtonGroup')
+        proteus.logger.info('Init RibbonButtonGroup')
         super(RibbonButtonGroup, self).__init__()
         uic.loadUi("proteus/resources/ui/ribbonButtonGroup.ui", self)
         self.label.setText(title)
@@ -29,7 +29,7 @@ class RibbonButtonGroup(QWidget):
 
         :param button: Button to add.
         """
-        logging.info('RibbonButtonGroup - add button')
+        proteus.logger.info('RibbonButtonGroup - add button')
         
         button.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         button.setMinimumSize(48, 48)

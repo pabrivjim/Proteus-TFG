@@ -7,7 +7,7 @@
 # ==========================================================================
 from collections import OrderedDict
 from lxml import etree as ET
-import logging
+import proteus
 
 #DELETE
 def dict2xml(element: dict, collapse=True) -> ET.Element:
@@ -28,7 +28,7 @@ def xml2dict(element: ET.Element) -> dict:
     :param element: XML element
     :return object dict
     """
-    logging.info('converter - xml2dict')
+    proteus.logger.info('converter - xml2dict')
     
     id = element.attrib["id"]
 

@@ -224,7 +224,7 @@ class Project(AbstractObject):
         
         # Create path to objects repository
         objects_repository : str = f"{project_directory}/{OBJECTS_REPOSITORY}"
-        
+
         # If the Project is dead (Deleted/removed)
         if(self.state == ProteusState.DEAD):
             # If the project was already saved in OS and not in memory:

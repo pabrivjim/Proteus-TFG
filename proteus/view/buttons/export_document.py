@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
-import logging
+import proteus
 
 class ExportDocument():
     """
@@ -22,7 +22,7 @@ class ExportDocument():
         :returns: Action of export a doc.
         :rtype: QToolButton
         """
-        logging.info('CreateDocument Button - get button')
+        proteus.logger.info('CreateDocument Button - get button')
         
         self.export_tb = QToolButton()
         self.export_tb.setObjectName("Export Document")

@@ -17,21 +17,21 @@ from PyQt5.QtWidgets import (QWidget, QTreeWidgetItem, QVBoxLayout,
                              QLabel,QHBoxLayout)
 from proteus.utils.i18n import trans
 import proteus.utils.model.widgets_utils as widgets_utils
-import logging
+import proteus
 
 class PropertiesLogic():
     """
     Class that contains the logic of the property dialog.
     """
     def __init__(self, parent) -> None:
-        logging.info('Init PropertiesLogic')
+        proteus.logger.info('Init PropertiesLogic')
         self.parent = parent
     
     def load_traces(self) -> None:
         """
         Method that load the traces
         """
-        logging.info('PropertiesLogic - load traces')
+        proteus.logger.info('PropertiesLogic - load traces')
         
         self.traces_widget = self.parent.traces_widget
         self.updated_obj: Object = self.parent.updated_obj
@@ -45,7 +45,7 @@ class PropertiesLogic():
         """
         Method that updates the properties of the object.
         """
-        logging.info('PropertiesLogic - update property')
+        proteus.logger.info('PropertiesLogic - update property')
         app = self.parent.parentWidget()
         new_prop = app.projectController.project.get_property(prop).clone(value)
         self.updated_obj.set_property(new_prop)
@@ -54,7 +54,7 @@ class PropertiesLogic():
         """
         Method that saves the changes of the properties in the project.
         """
-        logging.info('PropertiesLogic - save changes')
+        proteus.logger.info('PropertiesLogic - save changes')
         
         app = self.parent.parentWidget()
         project_data = app.projectController.project

@@ -16,14 +16,14 @@ from proteus.model.project import Project
 from proteus.utils.model.qundo_commands import CreateDocument
 import proteus.utils.config as config 
 import proteus.utils.persistence as persistence
-import logging
+import proteus
 from PyQt5.QtCore import Qt
 
 def load_objects(path):
     """
     Method that loads the objects.
     """
-    logging.info('document dialog logic - load objects')
+    proteus.logger.info('document dialog logic - load objects')
     res = {}
     for obj in [f for f in listdir(path) if isfile(join(path, f))]:
         
@@ -37,7 +37,7 @@ def load_objects(path):
 #     This function changes the combo box of the document dialog.
 #     And updates the combobox with the new documents.
 #     """
-#     logging.info('document dialog logic - change combo box')
+#     proteus.logger.info('document dialog logic - change combo box')
 #     project = app.projectController.project
 #     app.document_combobox.clear()
 #     document: Object
@@ -55,7 +55,7 @@ class DocumentDialogLogic():
     """
 
     def __init__(self, parent) -> None:
-        logging.info('Init DocumentDialogLogic')
+        proteus.logger.info('Init DocumentDialogLogic')
         self.parent = parent
     
 
@@ -65,7 +65,7 @@ class DocumentDialogLogic():
 
         :param archetype: archetype index.
         """
-        logging.info('DocumentDialogLogic - create document')
+        proteus.logger.info('DocumentDialogLogic - create document')
         
         documents = ArchetypeManager.load_document_archetypes()
 
@@ -89,7 +89,7 @@ class DocumentDialogLogic():
 
         :param archetype: archetype index.
         """
-        logging.info('DocumentDialogLogic - change archetype')
+        proteus.logger.info('DocumentDialogLogic - change archetype')
         
         document = ArchetypeManager.load_document_archetypes()
         document_description = document[archetype].description

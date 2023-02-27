@@ -24,7 +24,7 @@ from proteus.view.widgets.ribbons.ribbon import Ribbon
 from proteus.view.widgets.tree import DocumentInspector
 from proteus.view.actions.undo_action import UndoAction
 from proteus.view.actions.redo_action import RedoAction
-import logging
+import proteus
 
 class MainWindow(QMainWindow):
     """
@@ -33,7 +33,7 @@ class MainWindow(QMainWindow):
     update_view = pyqtSignal()
 
     def __init__(self, project_path=None, project_title=None, clean=False):
-        logging.info('Init main window')
+        proteus.logger.info('Init main window')
         super().__init__()
         uic.loadUi("proteus/resources/ui/main.ui", self)
         
@@ -86,7 +86,7 @@ class MainWindow(QMainWindow):
         """
         Creates dock windows.
         """
-        logging.info('Main Window - create dock windows')
+        proteus.logger.info('Main Window - create dock windows')
         self.create_visualizer_widget()
         self.create_document_inspector()
         self.setDockNestingEnabled(1)
@@ -97,7 +97,7 @@ class MainWindow(QMainWindow):
 
         :return: ribbon widget.
         """
-        logging.info('Main Window - load ribbon')
+        proteus.logger.info('Main Window - load ribbon')
         
         dock = QDockWidget("Ribbon", self)
         dock.setTitleBarWidget(QWidget())
@@ -113,7 +113,7 @@ class MainWindow(QMainWindow):
         """
         Creates document inspector tree.
         """
-        logging.info('Main Window - create doc inspector')
+        proteus.logger.info('Main Window - create doc inspector')
         
         dock = QDockWidget(self.tr("Document"))
         dock.setObjectName("QDockWidget Document")
@@ -148,7 +148,7 @@ class MainWindow(QMainWindow):
         """
         Creates and loads visualizers.
         """
-        logging.info('Main Window - create visualizer widget')
+        proteus.logger.info('Main Window - create visualizer widget')
         
         tab = QTabWidget()
         tab.setTabsClosable(True)
@@ -174,7 +174,7 @@ class MainWindow(QMainWindow):
         """
         Opens the preferences dialog.
         """
-        logging.info('Main Window - preferences')
+        proteus.logger.info('Main Window - preferences')
         
         dialog = PreferencesDialog(self)
         dialog.exec()
@@ -185,6 +185,6 @@ class MainWindow(QMainWindow):
 
         :param obj: The object to be cloned and inserted.
         """
-        logging.info('Main Window - add object')
+        proteus.logger.info('Main Window - add object')
         
         self.window_logic.add_object(obj)

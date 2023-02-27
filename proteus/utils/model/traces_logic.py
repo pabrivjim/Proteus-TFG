@@ -8,7 +8,7 @@
 from proteus.controllers.incoming_traces import IncomingTraces
 from proteus.utils.model.nodes_utils import get_node
 import proteus.view.widgets.traces as traces
-import logging
+import proteus
 from PyQt5.QtGui import (QIcon)
 from PyQt5.QtCore import (Qt)
 from PyQt5.QtWidgets import QListWidgetItem, QMessageBox
@@ -22,7 +22,7 @@ class TraceLogic():
     Class that contains the trace logic.
     """
     def __init__(self, parent) -> None:
-        logging.info('Init TraceLogic')
+        proteus.logger.info('Init TraceLogic')
         self.parent = parent
 
     @staticmethod
@@ -31,7 +31,7 @@ class TraceLogic():
         Method that execute the function that 
         opens the trace dialog.
         """
-        logging.info('TraceLogic - open')
+        proteus.logger.info('TraceLogic - open')
         d = traces.TraceFormDialog(parent)
         d.exec()
     
@@ -41,7 +41,7 @@ class TraceLogic():
         Method that delete traces of an object because the object
         which was traced is deleted.
         """
-        logging.info('TraceLogic - Delete outgoing traces')
+        proteus.logger.info('TraceLogic - Delete outgoing traces')
         for trace in traces:
             node = get_node(project,trace)
 
@@ -57,7 +57,7 @@ class TraceLogic():
         """
         Method that removes a trace of an object.
         """
-        logging.info('TraceLogic - remove')
+        proteus.logger.info('TraceLogic - remove')
         # We get the row of the selected item.
         selected_item_index = self.traces_widget.currentIndex().row()
 
@@ -75,7 +75,7 @@ class TraceLogic():
         """
         Method that add a trace to the object.
         """
-        logging.info('TraceLogic - add trace')
+        proteus.logger.info('TraceLogic - add trace')
         if("traces" in self.parent.parentWidget().updated_obj):
             traces = self.parent.parentWidget().updated_obj["traces"]
             for t in traces:

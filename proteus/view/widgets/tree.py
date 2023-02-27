@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (QTreeWidget, QFrame)
 from proteus.utils.model.tree_logic import TreeLogic
 from PyQt5.QtCore import (Qt)
 from PyQt5.QtWidgets import (QTreeWidget)
-import logging
+import proteus
 
 class DocumentInspector(QTreeWidget):
     """
@@ -20,7 +20,7 @@ class DocumentInspector(QTreeWidget):
     update = pyqtSignal(dict)
     
     def __init__(self, parent) -> None:
-        logging.info('Init DocumentInspector')
+        proteus.logger.info('Init DocumentInspector')
         super(DocumentInspector, self).__init__(parent)
         self.parent = parent
         self._draggedItem = None
@@ -47,20 +47,20 @@ class DocumentInspector(QTreeWidget):
         """
         Method that load document.
         """
-        logging.info('DocumentInspector - load document')
+        proteus.logger.info('DocumentInspector - load document')
         return self.tree_logic.load_document()
     
     def startDrag(self, supportedActions) -> None:
         """
         Event that detects the start drag action.
         """
-        logging.info('DocumentInspector - start drag')
+        proteus.logger.info('DocumentInspector - start drag')
         self.tree_logic.startDrag(supportedActions)
 
     def dropEvent(self, event):
         """
         Event that detects the drop action.
         """
-        logging.info('DocumentInspector - drop event')
+        proteus.logger.info('DocumentInspector - drop event')
         self.tree_logic.dropEvent(event)
 

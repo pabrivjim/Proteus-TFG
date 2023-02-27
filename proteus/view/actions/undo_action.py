@@ -11,7 +11,7 @@ from PyQt5.QtGui import QIcon, QKeySequence
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
 from proteus.view.widgets.ribbons.ribbon import Ribbon
-import logging
+import proteus
 
 
 class UndoAction(QUndoStack):
@@ -20,7 +20,7 @@ class UndoAction(QUndoStack):
     """
 
     def getAction(self, ribbon: Ribbon) -> QAction:
-        logging.info('UndoAction - get action')
+        proteus.logger.info('UndoAction - get action')
         """
         Method that create the action (QToolButton) create a new project.
         :returns: Undo Action

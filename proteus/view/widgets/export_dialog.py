@@ -7,7 +7,7 @@
 # ==========================================================================
 from PyQt5.QtWidgets import QDialog
 from PyQt5 import uic
-import logging
+import proteus
 
 class ExportDialog(QDialog):
     """
@@ -15,7 +15,7 @@ class ExportDialog(QDialog):
     """
 
     def __init__(self, parent):
-        logging.info('Init ProjectDialog')
+        proteus.logger.info('Init ProjectDialog')
         super().__init__(parent)
         uic.loadUi('proteus/resources/ui/export.ui', self)
         self.types.addItems(["PDF", "HTML"])

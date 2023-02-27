@@ -12,14 +12,14 @@ from PyQt5.QtWidgets import (QMainWindow, QDialog)
 import proteus.utils.config as config 
 from proteus.utils.loader import resource_path
 from PyQt5 import uic
-import logging
+import proteus
 
 class Preferences:
     """
     Class to load settings from registry.
     """
     def get_app_instance():
-        logging.info('Preferences - get app instance')
+        proteus.logger.info('Preferences - get app instance')
         return QCoreApplication.instance()
 
     @staticmethod
@@ -30,7 +30,7 @@ class Preferences:
         :param main: Main window.
         :param theme: Theme.
         """
-        logging.info('Preferences - load theme')
+        proteus.logger.info('Preferences - load theme')
         
         file = QFile(resource_path(f'themes/{theme}.qss'))
         file.open(QFile.ReadOnly | QFile.Text)
@@ -45,7 +45,7 @@ class Preferences:
         :param main: Main window.
         :param language: Language.
         """
-        logging.info('Preferences - load language')
+        proteus.logger.info('Preferences - load language')
         
         app = Preferences.get_app_instance()
         translation = "%s.qm" % language
@@ -61,7 +61,7 @@ class Preferences:
         :param main: Main Window.
         :return: QSettings class.
         """
-        logging.info('Preferences - load all')
+        proteus.logger.info('Preferences - load all')
         
         settings = QSettings("Proteus", "SettingsDesktop")
 
@@ -80,7 +80,7 @@ class PreferencesDialog(QDialog):
     """
 
     def __init__(self, parent):
-        logging.info('Init PreferencesDialog')
+        proteus.logger.info('Init PreferencesDialog')
         super(PreferencesDialog, self).__init__(parent)
         uic.loadUi("proteus/resources/ui/preferences.ui", self)
 
@@ -91,7 +91,7 @@ class PreferencesDialog(QDialog):
         """
         Method that load preferences from the settings.
         """
-        logging.info('PreferencesDialog - load preferences')
+        proteus.logger.info('PreferencesDialog - load preferences')
         
         settings = self.parent().settings
 
@@ -109,7 +109,7 @@ class PreferencesDialog(QDialog):
         """
         Method that update the preferences.
         """
-        logging.info('PreferencesDialog - update preferences')
+        proteus.logger.info('PreferencesDialog - update preferences')
         
         settings = self.parent().settings
 

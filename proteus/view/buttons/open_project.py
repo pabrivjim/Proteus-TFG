@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
-import logging
+import proteus
 
 class OpenProject():
     """
@@ -22,7 +22,7 @@ class OpenProject():
         :returns: Action of open project.
         :rtype: QToolButton
         """
-        logging.info('OpenProject Button - get button')
+        proteus.logger.info('OpenProject Button - get button')
         
         self.open_tb = QToolButton()
         self.open_tb.setObjectName("Open Project")

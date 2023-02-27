@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (QWidget, QTimeEdit, QLineEdit, QDateEdit, QComboBox
                              QCheckBox, QDoubleSpinBox, QListWidget, QSpinBox)
 from proteus.model.property import BooleanProperty, ClassListProperty, DateProperty, EnumProperty, FileProperty, FloatProperty, IntegerProperty, MarkdownProperty, Property, StringProperty, TimeProperty, UrlProperty
 import proteus.view.widgets.properties as properties
-import logging
+import proteus
 
 def string_widget(parent: QWidget, obj: StringProperty) -> QLineEdit:
     """
@@ -20,7 +20,7 @@ def string_widget(parent: QWidget, obj: StringProperty) -> QLineEdit:
     :param obj: Property dict.
     :return: QLineEdit widget.
     """
-    logging.info('widgets utils - string widget')
+    proteus.logger.info('widgets utils - string widget')
     
     w = QLineEdit(parent)
     w.setText(str(obj.value))
@@ -35,7 +35,7 @@ def time_widget(parent: QWidget, obj: TimeProperty) -> QTimeEdit:
     :param obj: Property dict.
     :return: QTimeEdit widget.
     """
-    logging.info('widgets utils - time widget')
+    proteus.logger.info('widgets utils - time widget')
     
     w = QTimeEdit(parent)
     time = QTime.fromString(str(obj.value))
@@ -51,7 +51,7 @@ def date_widget(parent: QWidget, obj: DateProperty) -> QDateEdit:
     :param obj: Property dict.
     :return: QDateEdit widget.
     """
-    logging.info('widgets utils - date widget')
+    proteus.logger.info('widgets utils - date widget')
     
     w = QDateEdit(parent)
     date = QDate.fromString(str(obj.value), "yyyy-MM-dd")
@@ -67,7 +67,7 @@ def enum_widget(parent: QWidget, obj: EnumProperty) -> QComboBox:
     :param obj: Property dict.
     :return: QDateEdit widget.
     """
-    logging.info('widgets utils - enum widget')
+    proteus.logger.info('widgets utils - enum widget')
     
     w = QComboBox(parent)
     w.addItems(list(obj.get_choices_as_set()))
@@ -84,7 +84,7 @@ def boolean_widget(parent: QWidget, obj: BooleanProperty) -> QCheckBox:
     :param obj: Property dict.
     :return: QCheckbox widget.
     """
-    logging.info('widgets utils - boolean widget')
+    proteus.logger.info('widgets utils - boolean widget')
     
     w = QCheckBox(parent)
     w.setChecked(bool(obj.value))
@@ -99,7 +99,7 @@ def number_widget(parent: QWidget, obj: IntegerProperty) -> QSpinBox:
     :param obj: Property dict.
     :return: QDoubleSpinBox widget.
     """
-    logging.info('widgets utils - number widget')
+    proteus.logger.info('widgets utils - number widget')
     
     w = QSpinBox(parent)
     if(obj.value is None or obj.value == "None"):
@@ -115,7 +115,7 @@ def real_widget(parent: QWidget, obj: FloatProperty) -> QDoubleSpinBox:
     :param obj: Property dict.
     :return: QDoubleSpinBox widget.
     """
-    logging.info('widgets utils - number widget')
+    proteus.logger.info('widgets utils - number widget')
     
     w = QDoubleSpinBox(parent)
     if(obj.value is None or obj.value == "None"):
@@ -136,7 +136,7 @@ def file_widget(parent: QWidget, obj: FileProperty) -> QLineEdit:
     :param obj: Property dict.
     :return: QLineEdit widget.
     """
-    logging.info('widgets utils - file widget')
+    proteus.logger.info('widgets utils - file widget')
     
     w = QLineEdit(parent)
     w.setText(str(obj.value))
@@ -150,7 +150,7 @@ def url_widget(parent: QWidget, obj: UrlProperty) -> QLineEdit:
     :param obj: Property dict.
     :return: QLineEdit widget.
     """
-    logging.info('widgets utils - url widget')
+    proteus.logger.info('widgets utils - url widget')
     
     w = QLineEdit(parent)
     w.setText(str(obj.value))
@@ -165,7 +165,7 @@ def class_list_widget(parent: QWidget, obj: ClassListProperty) -> QListWidget:
     :param obj: Property dict.
     :return: QListWidget widget.
     """
-    logging.info('widgets utils - class list widget')
+    proteus.logger.info('widgets utils - class list widget')
     
     w = QListWidget(parent)
     w.setSelectionMode(2)
@@ -197,7 +197,7 @@ def get_widget_for_property(object_property, parent=None):
     :param parent: parent widget.
     :return: property widget.
     """ 
-    logging.info('widgets utils - get widget for properties')
+    proteus.logger.info('widgets utils - get widget for properties')
 
     # ClassList property is not shown here 
     widgets = {

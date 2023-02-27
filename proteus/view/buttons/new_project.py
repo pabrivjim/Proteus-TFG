@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
-import logging
+import proteus
 
 class NewProject():
     """
@@ -22,7 +22,7 @@ class NewProject():
         :returns: Action of create a new project.
         :rtype: QToolButton
         """
-        logging.info('NewProject Button - get button')
+        proteus.logger.info('NewProject Button - get button')
         
         self.new_tb = QToolButton()
         self.new_tb.setObjectName("New Project")

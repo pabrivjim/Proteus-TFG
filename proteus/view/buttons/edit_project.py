@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
-import logging
+import proteus
 
 class EditProject():
     """
@@ -22,7 +22,7 @@ class EditProject():
         :returns: Action of edit project.
         :rtype: QToolButton
         """
-        logging.info('EditProject Button - get button')
+        proteus.logger.info('EditProject Button - get button')
         
         self.edit_tb = QToolButton()
         self.edit_tb.setObjectName("Edit Project")

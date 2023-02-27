@@ -17,7 +17,7 @@ from proteus.utils.model.properties_logic import PropertiesLogic
 from proteus.utils.i18n import trans
 import proteus.utils.model.traces_logic as traces
 from proteus.view.widgets.markdown import MarkdownWidget
-import logging
+import proteus
 
 class PropertyDialog(QDialog):
     """
@@ -25,7 +25,7 @@ class PropertyDialog(QDialog):
     """
 
     def __init__(self, parent: QWidget, obj: dict) -> None:
-        logging.info('Init PropertyDialog')
+        proteus.logger.info('Init PropertyDialog')
         super(PropertyDialog, self).__init__(parent)
         self.setWindowTitle(trans("edit properties"))
         self.properties_logic = PropertiesLogic(self)
@@ -42,7 +42,7 @@ class PropertyDialog(QDialog):
         """
         Method that loads the tab widget.
         """
-        logging.info('PropertyDialog - load tab widget')
+        proteus.logger.info('PropertyDialog - load tab widget')
         
         self.tab_widget = QTabWidget()
         widgets = self.properties_logic.load_widgets()
@@ -129,5 +129,5 @@ class PropertyDialog(QDialog):
         """
         Load traces in the tree widget.
         """
-        logging.info('PropertyDialog - load traces')
+        proteus.logger.info('PropertyDialog - load traces')
         self.properties_logic.load_traces()

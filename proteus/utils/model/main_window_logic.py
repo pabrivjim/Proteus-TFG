@@ -11,7 +11,7 @@ from PyQt5.QtCore import (Qt, QModelIndex)
 from proteus.model.archetype_proxys import ObjectArchetypeProxy
 from proteus.model.object import Object
 from proteus.utils.model.qundo_commands import CreateObject
-import logging
+import proteus
 
 class MainWindowLogic():
     """
@@ -19,7 +19,7 @@ class MainWindowLogic():
     """
 
     def __init__(self, parent) -> None:
-        logging.info('Init MainWindowLogic')
+        proteus.logger.info('Init MainWindowLogic')
         self.parent = parent
     
     def select_object(self, index: QModelIndex) -> None:
@@ -29,7 +29,7 @@ class MainWindowLogic():
 
         :param index: index of object in the QTreeWidget.
         """
-        logging.info('Main Window Logic - select object')
+        proteus.logger.info('Main Window Logic - select object')
         
         # item = self.parent.document_tree.itemFromIndex(index)
         # obj = item.data(0, Qt.UserRole)
@@ -63,7 +63,7 @@ class MainWindowLogic():
 
         :param obj: The object to be cloned and inserted.
         """
-        logging.info('Main Window Logic - add object')
+        proteus.logger.info('Main Window Logic - add object')
         
         if self.parent.selected_object:
             obj_clone = copy.copy(obj.get_object(self.parent.projectController.project))
@@ -77,7 +77,7 @@ class MainWindowLogic():
         """
         Adds an item to the combo box.
         """
-        logging.info('Main Window Logic - combo box add item')
+        proteus.logger.info('Main Window Logic - combo box add item')
         
         for document in self.parent.projectController.project.documents.values():
             name = document.get_property("name").value

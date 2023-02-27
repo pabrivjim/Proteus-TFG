@@ -14,7 +14,7 @@ from proteus.view.buttons import (open_project, new_project, save_project,
                           export_document)
 from .ribbon_tab_content import RibbonTabContent
 from proteus.utils.model.ribbons_logic import RibbonsLogic
-import logging
+import proteus
 
 class Ribbon:
     """
@@ -22,7 +22,7 @@ class Ribbon:
     """
 
     def __init__(self, parent: QWidget, tab_widget: QTabWidget):
-        logging.info('Init Ribbon')
+        proteus.logger.info('Init Ribbon')
         
         self.parent = parent
         self.tab_widget = tab_widget
@@ -41,7 +41,7 @@ class Ribbon:
         """
         Method that create buttons.
         """
-        logging.info('Ribbon - create buttons')
+        proteus.logger.info('Ribbon - create buttons')
         #Projects
         self.open_tb = open_project.OpenProject().getButton()
         self.new_tb = new_project.NewProject().getButton()
@@ -61,7 +61,7 @@ class Ribbon:
         """
         Method that connects the buttons to the actions.
         """
-        logging.info('Ribbon - connect buttons')
+        proteus.logger.info('Ribbon - connect buttons')
         # When Open Project Button is clicked, open the project dialog.
         self.open_tb.clicked.connect(self.parent.file.req_open_project)
 
@@ -86,7 +86,7 @@ class Ribbon:
         """
         Adds buttons to the tabs.
         """
-        logging.info('Ribbon - tabs add button')
+        proteus.logger.info('Ribbon - tabs add button')
         tab_content = self.add_tab(trans("project"))
         project_group = tab_content.add_group(trans("project"))
 
@@ -114,7 +114,7 @@ class Ribbon:
         :param name: Tab name.
         :return: Tab widget.
         """
-        logging.info('Ribbon - add tab')
+        proteus.logger.info('Ribbon - add tab')
         
         tab = RibbonTabContent()
         self.tab_widget.addTab(tab, name)

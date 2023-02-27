@@ -15,9 +15,6 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 from proteus.utils.config import Config, CONFIG_FOLDER, PARENT_FOLDER
 from proteus.view.main_window import MainWindow
-import logging
-from proteus.utils.config import LOGGING_FILE
-from importlib import reload
 
 #https://stackoverflow.com/questions/1551605/how-to-set-applications-taskbar-icon-in-windows-7/1552105#1552105
 import ctypes
@@ -54,16 +51,6 @@ if __name__ == '__main__':
     # runner=unittest.TextTestRunner(failfast=True)
     # runner.run(mySuit)
 
-    # https://stackoverflow.com/questions/31169540/python-logging-not-saving-to-file
-    reload(logging)
-    
-    # autodelete https://stackoverflow.com/questions/43947206/automatically-delete-old-python-log-files
-    logging.basicConfig(level=logging.DEBUG,
-    format='%(asctime)s %(levelname)s %(message)s',
-      filename=LOGGING_FILE,
-      filemode='w')
-    
-    logging.info('Init App')
     # If is set to True QThreads errors could appear
     debug = False
 

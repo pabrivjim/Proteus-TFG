@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QDialog
 from proteus.utils.model.project_dialog_logic import ProjectDialogLogic
 import proteus.utils.config as config
 from PyQt5 import uic
-import logging
+import proteus
 
 class ProjectDialog(QDialog):
     """
@@ -17,7 +17,7 @@ class ProjectDialog(QDialog):
     """
 
     def __init__(self, parent):
-        logging.info('Init ProjectDialog')
+        proteus.logger.info('Init ProjectDialog')
         super().__init__(parent)
         uic.loadUi('proteus/resources/ui/new.ui', self)
         self.project_logic = ProjectDialogLogic(self)

@@ -17,7 +17,7 @@ from proteus.model.project import Project
 import proteus.utils.persistence as persistence
 from proteus.utils.model.nodes_utils import (get_node, get_parent)
 from copy import deepcopy
-import logging
+import proteus
 
 class CreateObject(QUndoCommand):
     """
@@ -26,7 +26,7 @@ class CreateObject(QUndoCommand):
     """
 
     def __init__(self, project: Project, parent_obj: Object, obj: Object):
-        logging.info('Init CreateObject')
+        proteus.logger.info('Init CreateObject')
         super(CreateObject, self).__init__()
         self.obj = obj
         self.parent_obj = parent_obj
@@ -35,7 +35,7 @@ class CreateObject(QUndoCommand):
         self.project_state: ProteusState = deepcopy(project.state)
 
     def redo(self) -> None:
-        logging.info('CreateObject - redo')
+        proteus.logger.info('CreateObject - redo')
         """
         Inserts object to parent children list.
         Set object state to FRESH.
@@ -53,7 +53,7 @@ class CreateObject(QUndoCommand):
             dict.update(self.parent_obj.parent.children, updated_doc)
 
     def undo(self) -> None:
-        logging.info('CreateObject - undo')
+        proteus.logger.info('CreateObject - undo')
         """
         Removes object from parent children list.
         Removes object state.
@@ -77,7 +77,7 @@ def change_combo_box(app):
     This function changes the combo box of the document dialog.
     And updates the combobox with the new documents.
     """
-    logging.info('document dialog logic - change combo box')
+    proteus.logger.info('document dialog logic - change combo box')
     project = app.projectController.project
     app.document_combobox.clear()
     document: Object
@@ -97,7 +97,7 @@ class CreateDocument(QUndoCommand):
     """
 
     def __init__(self, project: Project, document: Object, app, index: int):
-        logging.info('Init CreateDocument')
+        proteus.logger.info('Init CreateDocument')
         super(CreateDocument, self).__init__()
         self.document = document
         self.app = app
@@ -106,7 +106,7 @@ class CreateDocument(QUndoCommand):
         self.project: Project = project
 
     def redo(self) -> None:
-        logging.info('CreateDocument - redo')
+        proteus.logger.info('CreateDocument - redo')
         """
         Inserts document to project documents list.
         Set object state to FRESH.
@@ -117,7 +117,7 @@ class CreateDocument(QUndoCommand):
         change_combo_box(self.app)
 
     def undo(self) -> None:
-        logging.info('CreateDocument - undo')
+        proteus.logger.info('CreateDocument - undo')
         """
         Removes document from project documents list.
         Removes object state.
@@ -136,7 +136,7 @@ class DeleteObject(QUndoCommand):
     """
 
     def __init__(self, project: Project, parent: Object, child_obj: Object):
-        logging.info('Init DeleteObject')
+        proteus.logger.info('Init DeleteObject')
         super(DeleteObject, self).__init__()
         self.project = project
         self.parent: Object = parent
@@ -146,7 +146,7 @@ class DeleteObject(QUndoCommand):
         self.project_state = deepcopy(project.state)
 
     def redo(self):
-        logging.info('DeleteObject - redo')
+        proteus.logger.info('DeleteObject - redo')
         """
         Removes node from parent children list.
         Set object state to DELETED.
@@ -158,7 +158,7 @@ class DeleteObject(QUndoCommand):
         self.project.state = ProteusState.DIRTY
 
     def undo(self):
-        logging.info('DeleteObject - undo')
+        proteus.logger.info('DeleteObject - undo')
         """
         Inserts node to parent children list.
         Set object state to previous state.
@@ -176,7 +176,7 @@ class DeleteDocument(QUndoCommand):
     """
 
     def __init__(self, project: Project, document: Object, combo_box: QComboBox, combo_box_index: int):
-        logging.info('Init DeleteDocument')
+        proteus.logger.info('Init DeleteDocument')
         super(DeleteDocument, self).__init__()
         self.document: Object = document
         self.project: Project = project
@@ -185,7 +185,7 @@ class DeleteDocument(QUndoCommand):
         self.old_document_state = deepcopy(document.state)
 
     def redo(self):
-        logging.info('DeleteDocument - redo')
+        proteus.logger.info('DeleteDocument - redo')
         """
         Deletes document from project documents list.
         Sets all objects in document to DELETED.
@@ -195,7 +195,7 @@ class DeleteDocument(QUndoCommand):
         self.combo_box.removeItem(self.combo_box_index)
 
     def undo(self):
-        logging.info('DeleteDocument - undo')
+        proteus.logger.info('DeleteDocument - undo')
         """
         Inserts document to project documents list.
         Sets all objects states to previous states.
@@ -212,7 +212,7 @@ class UpdateNode(QUndoCommand):
     """
 
     def __init__(self, project:Project, new_project:Project):
-        logging.info('Init UpdateNode')
+        proteus.logger.info('Init UpdateNode')
         super(UpdateNode, self).__init__()
         self.project = project
         self.back_up_project_properties = deepcopy(project.properties)
@@ -220,7 +220,7 @@ class UpdateNode(QUndoCommand):
         self.project_state = project.state
 
     def redo(self):
-        logging.info('UpdateNode - redo')
+        proteus.logger.info('UpdateNode - redo')
         """
         Update node dict attributes.
         Set object state to DIRTY.
@@ -239,7 +239,7 @@ class UpdateNode(QUndoCommand):
             self.project.properties = self.new_project.properties
 
     def undo(self):
-        logging.info('UpdateNode - undo')
+        proteus.logger.info('UpdateNode - undo')
         """
         Replace node attributes with old attributes.
         Set object state to previous state.
@@ -255,7 +255,7 @@ class MoveNode(QUndoCommand):
 
     def __init__(self, project, object_id, from_parent, from_row, to_parent,
                  to_row):
-        logging.info('Init MoveNode')
+        proteus.logger.info('Init MoveNode')
         super(MoveNode, self).__init__()
         self.obj = get_node(project, object_id)
         self.from_parent = get_node(project, from_parent)
@@ -264,7 +264,7 @@ class MoveNode(QUndoCommand):
         self.to_row = to_row
 
     def redo(self):
-        logging.info('MoveNode - redo')
+        proteus.logger.info('MoveNode - redo')
         """
         Removes node from old position and insert in the new one.
         """
@@ -272,7 +272,7 @@ class MoveNode(QUndoCommand):
         self.to_parent["children"].insert(self.to_row, self.obj)
 
     def undo(self):
-        logging.info('MoveNode - undo')
+        proteus.logger.info('MoveNode - undo')
         """
         Removes node from new position and insert back in old position.
         """

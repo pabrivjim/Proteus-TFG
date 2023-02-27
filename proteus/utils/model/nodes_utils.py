@@ -6,7 +6,7 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 import copy
-import logging
+import proteus
 import shortuuid
 
 def rename_children_ids_from_node(p: dict) -> dict:
@@ -16,7 +16,7 @@ def rename_children_ids_from_node(p: dict) -> dict:
     :param node: starting node.
     :return: node with children nodes changed.
     """
-    logging.info('nodes utils - rename children ids from node')
+    proteus.logger.info('nodes utils - rename children ids from node')
     
     for i in range(0, len(p["children"])):
         obj_clone = copy.copy(p["children"][i])
@@ -35,7 +35,7 @@ def find_node(node: dict, tg_id: str):
     :param tg_id: node id to be found.
     :return: node if found or otherwise None.
     """
-    logging.info('nodes utils - find node')
+    proteus.logger.info('nodes utils - find node')
     
     if node["id"] == tg_id: return node
     for child in node["children"]:
@@ -52,7 +52,7 @@ def get_node(p: dict, target_id: str):
     :param target_id: id of node to be found.
     :return: node if found otherwise None.
     """
-    logging.info('nodes utils - get node')
+    proteus.logger.info('nodes utils - get node')
     
     if p.get("id", None) == target_id: return p
     for document in p["documents"]:
@@ -68,7 +68,7 @@ def find_parent(node: dict, target_id: str):
     :param target_id: node id to be found.
     :return: parent node containing target_id.
     """
-    logging.info('nodes utils - find parent')
+    proteus.logger.info('nodes utils - find parent')
 
     for child in node["children"]:
         if child["id"] == target_id: return node
@@ -85,7 +85,7 @@ def get_parent(p, child_id):
     :param child_id: id of child.
     :return: parent node containing child_id.
     """
-    logging.info('nodes utils - get parent')
+    proteus.logger.info('nodes utils - get parent')
     
     for document in p["documents"]:
         n = find_parent(document, child_id)

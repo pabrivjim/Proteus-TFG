@@ -8,7 +8,7 @@
 from lxml import etree as ET
 from proteus.controllers.save_state_machine import SaveMachine
 import proteus.utils.config as config 
-import logging
+import proteus
 import proteus.controllers.file as file
 
 class ProjectDialogLogic():
@@ -16,7 +16,7 @@ class ProjectDialogLogic():
     Class that contains the logic of the project dialog.
     """
     def __init__(self, parent) -> None:
-        logging.info('Init ProjectDialogLogic')
+        proteus.logger.info('Init ProjectDialogLogic')
         self.parent = parent
     
     # OLD CODE to create a new prioject (we used this to create a project 
@@ -28,7 +28,7 @@ class ProjectDialogLogic():
 
     #     :param path: path of project archetype.
     #     """
-    #     logging.info('ProjectDialogLogic - create project')
+    #     proteus.logger.info('ProjectDialogLogic - create project')
     #     main_class = self.parent.parent().__class__
     #     project_title = self.parent.name.text()
     #     m = main_class(project_path=path, project_title=project_title)
@@ -40,7 +40,7 @@ class ProjectDialogLogic():
         Create a new project.
         :param path: path of project archetype.
         """
-        logging.info('ProjectDialogLogic - create project')
+        proteus.logger.info('ProjectDialogLogic - create project')
         selected_files = self.parent.parent().file.req_save_new_project(archetype)
         if selected_files:
             filename = selected_files[0]
@@ -57,7 +57,7 @@ class ProjectDialogLogic():
 
         :param archetype: archetype index.
         """
-        logging.info('ProjectDialogLogic - change archetype')
+        proteus.logger.info('ProjectDialogLogic - change archetype')
         
         project_path = f"{config.ARCHETYPES_FOLDER}/projects/{archetype}/proteus.xml"
         element = ET.parse(project_path).getroot()

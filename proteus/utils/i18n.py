@@ -1,7 +1,7 @@
 from os.path import join, dirname
 import yaml
 # from PyQt5.QtCore import QSettings
-import logging
+import proteus
 
 CACHED_TRANS = None
 CURRENT_FOLDER = dirname(dirname(__file__))
@@ -12,7 +12,7 @@ def get_trans_dict(lang: str) -> dict:
     """
     Method that gets the traduction from the i18n files.
     """
-    logging.info('i18n - get trans dict')
+    proteus.logger.info('i18n - get trans dict')
     global CACHED_TRANS
     if CACHED_TRANS is None:
         try:
@@ -28,7 +28,7 @@ def trans(key: str) -> str:
     """
     Method that translate a string using the i18n files.
     """
-    logging.info('i18n - trans')
+    proteus.logger.info('i18n - trans')
     # settings = QSettings("Proteus", "SettingsDesktop")
     language = "es"  # settings.value("language", "es")
     return get_trans_dict(language).get(key, key)

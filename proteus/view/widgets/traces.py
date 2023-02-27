@@ -14,7 +14,7 @@ import proteus.utils.persistence as persistance
 from proteus.utils.i18n import trans
 import proteus.utils.model.traces_logic as trl
 from proteus.utils.model.nodes_utils import get_node
-import logging
+import proteus
 
 class TraceFormDialog(QDialog):
     """
@@ -22,7 +22,7 @@ class TraceFormDialog(QDialog):
     """
 
     def __init__(self, parent=None):
-        logging.info('Init TraceFormDialog')
+        proteus.logger.info('Init TraceFormDialog')
         super(TraceFormDialog, self).__init__(parent)
         self.setWindowTitle("Add trace")
         self.trace_logic = trl.TraceLogic(self)

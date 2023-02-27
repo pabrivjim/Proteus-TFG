@@ -17,7 +17,7 @@ from proteus.model.object import Object
 
 from proteus.model.project import Project
 from ..config import Config
-import logging
+import proteus
 import os
 
 
@@ -31,7 +31,7 @@ def send_to_view(project, page, index=0):
     """
     Sends project data to view in JSON format.
     """
-    logging.info('visualizer - send to view')
+    proteus.logger.info('visualizer - send to view')
     
     message = {
         "action": "update",
@@ -48,7 +48,7 @@ def convert_markdown(elements):
     """
     Convert XSLT element to markdown.
     """
-    logging.info('visualizer - convert markdown')
+    proteus.logger.info('visualizer - convert markdown')
     
     try:
         return markdown.markdown(elements[0].text, extensions=['md_mermaid', 'extra', 'codehilite'])
@@ -66,7 +66,7 @@ class Visualizer(QWebEngineView):
     toHtmlFinished = pyqtSignal()
 
     def __init__(self):
-        logging.info('Init Visualizer')
+        proteus.logger.info('Init Visualizer')
         super(Visualizer, self).__init__()
         self.view = 0
 
@@ -87,7 +87,7 @@ class Visualizer(QWebEngineView):
 
         :param view: Current view index.
         """
-        logging.info('visualizer - set view')
+        proteus.logger.info('visualizer - set view')
         
         self.view = view
 
@@ -99,7 +99,7 @@ class Visualizer(QWebEngineView):
         :param project: project data.
         :param index: selected document index.
         """
-        logging.info('visualizer - load')
+        proteus.logger.info('visualizer - load')
 
         update_actions = {
             "html": self.update_html,
@@ -117,7 +117,7 @@ class Visualizer(QWebEngineView):
 
         :param id: Id of object to focus.
         """
-        logging.info('visualizer - focus')
+        proteus.logger.info('visualizer - focus')
         
         self.page().runJavaScript(f"""
             var object = document.getElementById('{id}');
@@ -131,7 +131,7 @@ class Visualizer(QWebEngineView):
         :param project: updated project dict.
         :param index: selected document index.
         """
-        logging.info('visualizer - update')
+        proteus.logger.info('visualizer - update')
         
         if project.documents:
             self.load(None, project, index)
@@ -145,7 +145,7 @@ class Visualizer(QWebEngineView):
         :param project: project data.
         :param index: current document index.
         """
-        logging.info('visualizer - update html')
+        proteus.logger.info('visualizer - update html')
         
         path = abspath(join(dirname(__file__), pardir,
                             views[self.view]["path"]))
@@ -162,7 +162,7 @@ class Visualizer(QWebEngineView):
         :param project: project data.
         :param index: current document index.
         """
-        logging.info('visualizer - update xslt')
+        proteus.logger.info('visualizer - update xslt')
         
         ns = etree.FunctionNamespace("https://proteus.us.es")
         ns.prefix = "proteus"
@@ -190,14 +190,14 @@ class Visualizer(QWebEngineView):
 
         :param save_path: file path.
         """
-        logging.info('visualizer - save pdf')
+        proteus.logger.info('visualizer - save pdf')
         
         self.page().printToPdf(save_path)
 
 
     #https://stackoverflow.com/questions/47067050/is-there-any-way-to-call-synchronously-the-method-tohtml-which-is-qwebenginepa
     def store_html(self, html):
-        logging.info('visualizer - store html')
+        proteus.logger.info('visualizer - store html')
         self.html = html
         self.toHtmlFinished.emit()
 
@@ -207,7 +207,7 @@ class Visualizer(QWebEngineView):
 
         :param save_path: file path.
         """
-        logging.info('visualizer - save html')
+        proteus.logger.info('visualizer - save html')
         
         current_page = self.page()
         current_page.toHtml(self.store_html)

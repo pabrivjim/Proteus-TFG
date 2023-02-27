@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
-import logging
+import proteus
 
 class SaveProject():
     """
@@ -22,7 +22,7 @@ class SaveProject():
         :returns: Action of save project.
         :rtype: QToolButton
         """
-        logging.info('SaveProject Button - get button')
+        proteus.logger.info('SaveProject Button - get button')
         
         self.save_tb = QToolButton()
         self.save_tb.setObjectName("Save Project")

@@ -12,7 +12,7 @@ from proteus.model.archetype_manager import ArchetypeManager
 from proteus.model.archetype_proxys import ObjectArchetypeProxy
 from proteus.utils.config import Config, CONFIG_FOLDER 
 from proteus.utils.i18n import trans
-import logging
+import proteus
 
 class RibbonsLogic():
     """
@@ -20,14 +20,14 @@ class RibbonsLogic():
     """
 
     def __init__(self, parent) -> None:
-        logging.info('Init RibbonsLogic')
+        proteus.logger.info('Init RibbonsLogic')
         self.parent = parent
     
     def set_archetypes(self):
         """
         Set archetypes to ribbon from object archetypes.
         """
-        logging.info('RibbonsLogic - set archetypes')
+        proteus.logger.info('RibbonsLogic - set archetypes')
         # Archetypes
         archetypes_groups = []
         print(ArchetypeManager.load_object_archetypes())
@@ -61,7 +61,7 @@ class RibbonsLogic():
         """
         Add tabs to ribbon and adds archetypes buttons.
         """
-        logging.info('RibbonsLogic - init tabs')
+        proteus.logger.info('RibbonsLogic - init tabs')
         tab_label = trans("archetypes")
         self.parent.buttons = {}
         actions = {}
