@@ -11,6 +11,7 @@ import shortuuid
 import lxml.etree as ET
 from PyQt5.QtWidgets import QComboBox
 from proteus.controllers.save_state_machine import States
+from proteus.model import PROTEUS_ANY
 from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
 from proteus.model.project import Project
@@ -296,28 +297,40 @@ class MoveNode(QUndoCommand):
     Command to move node in project tree.
     """
 
-    def __init__(self, project, object_id, from_parent, from_row, to_parent,
-                 to_row):
+    def __init__(self, obj: Object, from_parent: Object, to_parent:Object):
         proteus.logger.info('Init MoveNode')
         super(MoveNode, self).__init__()
-        self.obj = get_node(project, object_id)
-        self.from_parent = get_node(project, from_parent)
-        self.to_parent = get_node(project, to_parent)
-        self.from_row = from_row
-        self.to_row = to_row
+        self.something_changed = False
+        self.obj = obj
+        self.original_parent = from_parent
+        self.new_parent = to_parent
+        self.original_parent_state = deepcopy(from_parent.state)
+        self.new_parent_state = deepcopy(to_parent.state)
 
     def redo(self):
         proteus.logger.info('MoveNode - redo')
         """
         Removes node from old position and insert in the new one.
         """
-        self.from_parent["children"].remove(self.obj)
-        self.to_parent["children"].insert(self.to_row, self.obj)
+        if ((PROTEUS_ANY in self.new_parent.acceptedChildren) or
+            any(x in self.new_parent.acceptedChildren for x in self.obj.classes)):
+            self.something_changed = True
+            self.original_parent.state = ProteusState.DIRTY
+            self.new_parent.state = ProteusState.DIRTY
+            self.original_parent.children.pop(self.obj.id)
+            self.new_parent.children[self.obj.id] = self.obj
+            self.obj.parent = self.new_parent
+        else:
+            proteus.logger.warning("MoveNode - redo - Node not accepted by new parent")
 
     def undo(self):
         proteus.logger.info('MoveNode - undo')
         """
         Removes node from new position and insert back in old position.
         """
-        self.to_parent["children"].remove(self.obj)
-        self.from_parent["children"].insert(self.from_row, self.obj)
+        if(self.something_changed):
+            self.original_parent.state = self.original_parent_state
+            self.new_parent.state = self.new_parent_state
+            self.new_parent.children.pop(self.obj.id)
+            self.original_parent.children[self.obj.id] = self.obj
+            self.obj.parent = self.original_parent  

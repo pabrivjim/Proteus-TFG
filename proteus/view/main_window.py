@@ -8,7 +8,7 @@
 from PyQt5.QtCore import (Qt, pyqtSignal, pyqtSlot)
 from PyQt5.QtGui import (QIcon)
 from PyQt5.QtWidgets import (QMainWindow, QUndoStack, QDockWidget, QWidget,
-                             QTabWidget, QVBoxLayout, QComboBox, QMessageBox)
+                             QTabWidget, QVBoxLayout, QComboBox, QMessageBox, QStyle)
 
 from proteus.controllers import (FileController, ViewsController,
                          ProjectController)
@@ -115,7 +115,7 @@ class MainWindow(QMainWindow):
         """
         proteus.logger.info('Main Window - create doc inspector')
         
-        dock = QDockWidget(self.tr("Document"))
+        dock = QDockWidget("Document")
         dock.setObjectName("QDockWidget Document")
         layout = QVBoxLayout()
         layout.setObjectName("create_document_inspector BoxLayout")
