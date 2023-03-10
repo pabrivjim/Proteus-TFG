@@ -218,12 +218,12 @@ class Project(AbstractObject):
         It saves a project in the system.
         """
         print("Saving project...")
-
         # Extract project directory from project path
         project_directory : str = os.path.dirname(self.path)
         
         # Create path to objects repository
         objects_repository : str = f"{project_directory}/{OBJECTS_REPOSITORY}"
+        print(self.state)
 
         # If the Project is dead (Deleted/removed)
         if(self.state == ProteusState.DEAD):
@@ -249,6 +249,7 @@ class Project(AbstractObject):
         # For each document in the project
         documents_to_be_removed : list = []
         for document in self.documents.values():
+            print("Document: ", document.id, "  ", document.state)
             document_path = f"{objects_repository}/{document.id}.xml"
 
             # If the document is DEAD (Deleted)

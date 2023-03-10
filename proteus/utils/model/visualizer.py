@@ -173,16 +173,20 @@ class Visualizer(QWebEngineView):
         
         if(index == len(project.documents)):
             index = index-1
-        current_document: Object = list(project.documents.values())[index]
-        xml = current_document.generate_xml()
-        xml.tag = "document"
+        if(project.documents.values()):
+            current_document: Object = list(project.documents.values())[index]
+            xml = current_document.generate_xml()
+            xml.tag = "document"
 
-        dom = etree.fromstring(ET.tostring(xml).decode())
-        xslt = etree.parse(path)
-        transform = etree.XSLT(xslt)
-        new_dom = transform(dom)
+            dom = etree.fromstring(ET.tostring(xml).decode())
+            xslt = etree.parse(path)
+            transform = etree.XSLT(xslt)
+            new_dom = transform(dom)
 
-        super().setHtml(etree.tostring(new_dom).decode())
+            super().setHtml(etree.tostring(new_dom).decode())
+        else:
+            current_document = None
+        
 
     def save_pdf(self, save_path: str) -> None:
         """

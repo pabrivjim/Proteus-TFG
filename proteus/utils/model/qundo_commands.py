@@ -105,6 +105,7 @@ class CreateDocument(QUndoCommand):
         self.combo_box: QComboBox = app.document_combobox
         self.position = index
         self.project: Project = project
+        self.project_state: ProteusState = deepcopy(project.state)
 
     def redo(self) -> None:
         proteus.logger.info('CreateDocument - redo')
@@ -114,6 +115,7 @@ class CreateDocument(QUndoCommand):
         Set objects's children to FRESH.
         """
         self.document.state = ProteusState.FRESH
+        self.project.state = ProteusState.DIRTY
         self.project.documents[self.document.id] = self.document
         change_combo_box(self.app)
 
@@ -126,6 +128,7 @@ class CreateDocument(QUndoCommand):
         """
         #FIXME SET TO DEAD
         self.document.state = ProteusState.DEAD
+        self.project.state = self.project_state
         self.project.documents.pop(self.document.id)
         self.combo_box.removeItem(self.position)
 
@@ -184,6 +187,7 @@ class DeleteDocument(QUndoCommand):
         self.combo_box: QComboBox = combo_box
         self.combo_box_index: int = combo_box_index
         self.old_document_state = deepcopy(document.state)
+        self.old_project_state = deepcopy(project.state)
 
     def redo(self):
         proteus.logger.info('DeleteDocument - redo')
@@ -193,6 +197,7 @@ class DeleteDocument(QUndoCommand):
         """
         self.project.documents.pop(self.document.id)
         self.document.state = ProteusState.DEAD
+        self.project.state = ProteusState.DIRTY
         self.combo_box.removeItem(self.combo_box_index)
 
     def undo(self):
@@ -202,6 +207,7 @@ class DeleteDocument(QUndoCommand):
         Sets all objects states to previous states.
         """
         self.document.state= self.old_document_state
+        self.project.state = self.old_project_state
         self.project.documents[self.document.id] = self.document
         self.combo_box.addItem(self.document.get_property("name").value, self.document)
         
