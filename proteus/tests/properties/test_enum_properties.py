@@ -1,3 +1,6 @@
+"""
+Pytest file for PROTEUS enum properties.
+"""
 # ==========================================================================
 # File: test_enum_properties.py
 # Description: pytest file for PROTEUS enum properties

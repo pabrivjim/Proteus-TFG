@@ -1,6 +1,9 @@
+"""
+PROTEUS archetype proxy.
+"""
 # ==========================================================================
 # File: archetype_proxys.py
-# Description: PROTEUS project archetype proxy
+# Description: PROTEUS archetype proxy
 # Date: 07/10/2022
 # Version: 0.2
 # Author: Pablo Rivera Jiménez
@@ -16,13 +19,16 @@ import proteus.model.project as project
 
 # --------------------------------------------------------------------------
 # Class: ProjectArchetypeProxy
-# Description: Proxy class for managing PROTEUS archetypes
+# Description: Proxy class for managing PROTEUS project archetypes.
 # Date: 07/10/2022
 # Version: 0.1
 # Author: Pablo Rivera Jiménez
 # --------------------------------------------------------------------------
 
 class ProjectArchetypeProxy: 
+    """
+    Proxy class for managing PROTEUS project archetypes.
+    """
 
     # ----------------------------------------------------------------------
     # Method     : __init__
@@ -32,6 +38,11 @@ class ProjectArchetypeProxy:
     # Author     : Pablo Rivera Jiménez
     # ----------------------------------------------------------------------
     def __init__(self, data : dict):
+        """
+        It initializes a ProjectArchetypeProxy object.
+        :param data: Dictionary with the data of the project.
+        """
+
         self.path : str = data["path"]
         self.id : str = data["id"]
         self.name : str = data["name"]
@@ -49,7 +60,8 @@ class ProjectArchetypeProxy:
     def get_project(self) -> project.Project:
         """
         It returns an instance of a project.
-        :return: Project
+        :returns: Instance of a Project.
+        :rtype: project.Project
         """
         return project.Project(self.path)
 
@@ -63,8 +75,9 @@ class ProjectArchetypeProxy:
 # --------------------------------------------------------------------------
 
 class DocumentArchetypeProxy:
-
-
+    """
+    Proxy class for managing PROTEUS document archetypes.
+    """
     # ----------------------------------------------------------------------
     # Method     : __init__
     # Description: It initializes a DocumentArchetypeProxy object.
@@ -73,6 +86,10 @@ class DocumentArchetypeProxy:
     # Author     : Pablo Rivera Jiménez
     # ----------------------------------------------------------------------
     def __init__(self, data : dict):
+        """
+        It initializes a DocumentArchetypeProxy object.
+        :param data: Dictionary with the data of the document.
+        """
         self.path : str = data["path"]
         self.id : str = data["id"]
         self.name : str = data["name"]
@@ -83,7 +100,7 @@ class DocumentArchetypeProxy:
         self.acceptedChildren : str = data["acceptedChildren"]
         
     # ----------------------------------------------------------------------
-    # Method     : get_project
+    # Method     : get_document
     # Description: It returns an instance of a object.
     # Date       : 08/10/2022
     # Version    : 0.1
@@ -93,21 +110,24 @@ class DocumentArchetypeProxy:
         """
         It returns an instance of a object.
         :param project: Project where the object is located.
-        :return: Instance of a object.
+        :return: Instance of an object.
+        :rtype: object.Object
         """
         return object.Object(project, self.path)
 
 
 # --------------------------------------------------------------------------
 # Class: ObjectArchetypeProxy
-# Description: Proxy class for managing PROTEUS archetypes
+# Description: Proxy class for managing PROTEUS object archetypes
 # Date: 20/10/2022
 # Version: 0.1
 # Author: Pablo Rivera Jiménez
 # --------------------------------------------------------------------------
 
 class ObjectArchetypeProxy:
-
+    """
+    Proxy class for managing PROTEUS object archetypes.
+    """
 
     # ----------------------------------------------------------------------
     # Method     : __init__
@@ -117,6 +137,10 @@ class ObjectArchetypeProxy:
     # Author     : Pablo Rivera Jiménez
     # ----------------------------------------------------------------------
     def __init__(self, data : dict):
+        """
+        It initializes a ObjectArchetypeProxy object.
+        :param data: Dictionary with the data of the object.
+        """
         self.path : str = data["path"]
         self.id : str = data["id"]
         self.name : str = data["name"]
@@ -134,6 +158,7 @@ class ObjectArchetypeProxy:
         """
         It returns an instance of a object.
         :param project: Project where the object is located.
-        :return: Instance of a object.
+        :return: Instance of an object.
+        :rtype: object.Object
         """
         return object.Object(project, self.path)

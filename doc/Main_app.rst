@@ -1,7 +1,9 @@
 Main module
 ================
 
-.. automodule:: main
+.. automodule:: proteus.config
    :members:
+   :private-members:
+   :special-members: __init__
    :undoc-members:
    :show-inheritance:

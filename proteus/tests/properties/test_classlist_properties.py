@@ -1,6 +1,9 @@
+"""
+Pytest file for PROTEUS class list properties.
+"""
 # ==========================================================================
 # File: test_classlist_properties.py
-# Description: pytest file for PROTEUS clas list properties
+# Description: pytest file for PROTEUS class list properties
 # Date: 22/10/2022
 # Version: 0.1
 # Author: Amador Durán Toro

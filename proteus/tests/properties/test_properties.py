@@ -1,9 +1,13 @@
+"""
+Pytest file for PROTEUS properties (general).
+"""
 # ==========================================================================
 # File: test_properties.py
 # Description: pytest file for PROTEUS properties (general)
 # Date: 22/10/2022
 # Version: 0.2
 # Author: Amador Durán Toro
+#         Pablo Rivera Jiménez
 # ==========================================================================
 # Update: 22/10/2022 (Amador)
 # Description:

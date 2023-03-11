@@ -1,4 +1,4 @@
-Model
+Utils
 ========================
 
 .. automodule:: proteus.utils.html_converter

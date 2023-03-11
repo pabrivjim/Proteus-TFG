@@ -24,6 +24,11 @@ from proteus.app import ProteusApplication
 # --------------------------------------------------------------------------
 
 def main() -> int:
+    """
+    It runs the PROTEUS application. 
+    :return: the status of the application
+    :rtype: int
+    """
     print("="*40)
     print("PROTEUS application 0.1")
     print("="*40)

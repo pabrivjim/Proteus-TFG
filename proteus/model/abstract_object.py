@@ -1,3 +1,7 @@
+"""
+PROTEUS abstract class to be used as a superclass for both.
+"""
+
 # ==========================================================================
 # File: abstract_object.py
 # Description: a PROTEUS abstract class to be used as a superclass for both
@@ -5,6 +9,7 @@
 # Date: 15/09/2022
 # Version: 0.1
 # Author: Amador Durán Toro
+#         Pablo Rivera Jiménez  
 # ==========================================================================
 # Update: 26/09/2022 (Amador)
 # Description:
@@ -35,6 +40,11 @@ from proteus.model.property import Property, PropertyFactory
 class ProteusState(Enum):
     """
     Enumeration for abstract object's state.
+    An abstract object can be in one of the following states:
+    #. FRESH: New object, just cloned but not already saved
+    #. CLEAN: Loaded object, not modified
+    #. DIRTY: Loaded object, modified
+    #. DEAD: Loaded object, to be deleted
     """
 
     # TODO Is it necessary to add FRESH? When you clone project -> it saves -> CLEAN
@@ -59,16 +69,21 @@ class AbstractObject(ABC):
     """
     A PROTEUS abstract object is an abstraction of PROTEUS projects and
     objects. It contains all features which are common to both types of
-    PROTEUS objects, especially, their path to its XML file, its ID, and
-    its properties (and probably more in the future).
+    PROTEUS objects, especially:
+     
+    #. Path to its XML file
+    #. ID
+    #. State
+    #. Properties
+    #. (and probably more in the future)
     """
 
     # ----------------------------------------------------------------------
     # Method     : __init__
     # Description: It initializes a PROTEUS abstract project.
     # Date       : 26/09/2022
-    # Version    : 0.2 (path assert simplified)
-    # Author     : Amador Durán Toro
+    # Version    : 0.2 (State)
+    # Author     : Pablo Rivera Jiménez
     # ----------------------------------------------------------------------
 
     def __init__(self, path) -> None:
@@ -76,11 +91,8 @@ class AbstractObject(ABC):
         It initializes an abstract PROTEUS object.
 
         :param path: the path to the XML file containing the object's data.
+        :type path: str
         """
-
-        # # Check file exists at path 
-        # assert os.path.isfile(path), \
-        #     f"PROTEUS {(self.__class__.__name__).lower()} file {path} not found."
 
         # TODO: put all common code in Project and Object here     
 
@@ -216,7 +228,8 @@ class AbstractObject(ABC):
         It generates an XML element from an abstract object. It must be
         overriden in subclasses.
 
-        :return: ET.Element. The XML element
+        :returns: The XML element.
+        :rtype: ET.Element
         """
         
         # Check if instance is a Project or an Object
@@ -268,7 +281,8 @@ class AbstractObject(ABC):
         (Object and Project).
 
         :param parent_element: ET.Element. The parent element of the properties.
-        :return: ET.Element. The properties element.
+        :returns: The properties element.
+        :rtype: ET.Element
         """
 
         # Check parent element is not None

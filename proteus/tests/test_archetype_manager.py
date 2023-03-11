@@ -1,3 +1,6 @@
+"""
+Pytest file for the PROTEUS ArchetypeManager.
+"""
 # ==========================================================================
 # File: test_archetype_manager.py
 # Description: pytest file for the PROTEUS ArchetypeManager
@@ -33,7 +36,9 @@ test_project : Project = Project.load(app.base_directory / "tests" / "project")
 
 
 def test_project_archetype_manager():
-
+    """
+    Test the project archetype manager.
+    """
     # Get the number of projects in archetypes projects
     dir_path = str(app.archetypes_directory / "projects")
     number_of_projects = len(os.listdir(dir_path))
@@ -64,7 +69,9 @@ def test_project_archetype_manager():
             
             
 def test_document_archetype_manager():
-
+    """
+    Test the document archetype manager.
+    """
     # Get the number of documents in archetypes documents
     dir_path = str(app.archetypes_directory / "documents")
     number_of_documents = len(os.listdir(dir_path))
@@ -95,7 +102,9 @@ def test_document_archetype_manager():
         assert len([x for x in document_files if (x == "document.xml")]) == 1
 
 def test_clone_project():
-
+    """
+    Test the clone project function.
+    """
     # Get the archetypes projects and select the first one
     projects = ArchetypeManager.load_project_archetypes()
     project_to_be_cloned : ProjectArchetypeProxy = projects[0]

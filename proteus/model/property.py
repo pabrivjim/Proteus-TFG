@@ -1,3 +1,7 @@
+"""
+PROTEUS properties.
+"""
+
 # ==========================================================================
 # File: property.py
 # Description: PROTEUS properties
@@ -151,8 +155,9 @@ class Property(ABC):
         """
         It clones the property with a new value if it is not None.
         The new value must be provided as a string.
+
         :param new_value: new value for the property.
-        :return: a copy of the property with the new value.
+        :returnS: a copy of the property with the new value.
         """
         if new_value is None:
             return replace(self)
@@ -162,6 +167,9 @@ class Property(ABC):
     def generate_xml(self) -> ET._Element:
         """
         This template method generates the XML element for the property.
+
+        :returns: the XML element for the property.
+        :rtype: lxml.etree._Element
         """
         # element_tagname is a class attribute of each concrete subclass
         property_element : ET._Element = ET.Element(self.element_tagname)
@@ -206,6 +214,9 @@ class StringProperty(Property):
     def generate_xml_value(self, _:ET._Element = None) -> str | ET.CDATA:
         """
         It generates the value of the property for its XML element.
+
+        :returns: the value of the property for its XML element.
+        :rtype: str | lxml.etree.CDATA
         """
         return ET.CDATA(self.value)
 
@@ -262,6 +273,9 @@ class DateProperty(Property):
     def generate_xml_value(self, _:ET._Element = None) -> str | ET.CDATA:
         """
         It generates the value of the property for its XML element.
+
+        :returns: the value of the property for its XML element.
+        :rtype: str | lxml.etree.CDATA
         """
         return self.value.strftime(DATE_FORMAT)
 
@@ -302,6 +316,9 @@ class TimeProperty(Property):
     def generate_xml_value(self, _:ET._Element = None) -> str | ET.CDATA:
         """
         It generates the value of the property for its XML element.
+
+        :returns: the value of the property for its XML element.
+        :rtype: str | lxml.etree.CDATA
         """
         return self.value.strftime(TIME_FORMAT)
 
@@ -343,6 +360,9 @@ class IntegerProperty(Property):
     def generate_xml_value(self, _:ET._Element = None) -> str | ET.CDATA:
         """
         It generates the value of the property for its XML element.
+
+        :returns: the value of the property for its XML element.
+        :rtype: str | lxml.etree.CDATA
         """
         return str(self.value)
 
@@ -387,6 +407,9 @@ class FloatProperty(Property):
     def generate_xml_value(self, _:ET._Element = None) -> str | ET.CDATA:
         """
         It generates the value of the property for its XML element.
+
+        :returns: the value of the property for its XML element.
+        :rtype: str | lxml.etree.CDATA
         """
         return str(self.value)
 

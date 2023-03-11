@@ -1,3 +1,6 @@
+"""
+A PROTEUS object.
+"""
 # ==========================================================================
 # File: object.py
 # Description: a PROTEUS object
@@ -72,6 +75,12 @@ class Object(AbstractObject):
         """
         Static factory method for loading a PROTEUS object given a project
         and a short UUID.
+
+        :param project: Project object where the object is located.
+        :type project: Project
+        :param id: UUID of the project.
+        :type id: ProteusID
+        :return: Object object.
         """
         # TODO new param (parent:Project/Object) to set parent object
         # needed for some actions (move, delete, etc.)
@@ -114,6 +123,11 @@ class Object(AbstractObject):
     def __init__(self, project:Project, object_file_path: str) -> None:
         """
         It initializes and builds a PROTEUS object from an XML file.
+
+        :param project: Project object where the object is located.
+        :type project: Project
+        :param object_file_path: Path to the object's XML file.
+        :type object_file_path: str
         """
         # Initialize property dictionary in superclass
         # TODO: pass some arguments?
@@ -176,6 +190,9 @@ class Object(AbstractObject):
     def load_children(self, root : ET.Element) -> None:
         """
         It loads a PROTEUS object's children from an XML root element.
+
+        :param root: XML root element.
+        :type root: ET.Element
         """
 
         # Check root is not None
@@ -217,6 +234,9 @@ class Object(AbstractObject):
     def generate_xml(self) -> ET.Element:
         """
         It generates an XML element for the object.
+
+        :returns: XML element for the object.
+        :rtype: ET.Element
         """
         # Create <object> element and set ID
         object_element = ET.Element(OBJECT_TAG)
@@ -249,6 +269,7 @@ class Object(AbstractObject):
         """
         Function that clones an object in a new parent. This function doesn't save the object in the system
         but add it to the parent children so it will be saved when we save the project.
+        
         :param parent: Parent of the new object.
         :type parent: Union[Object,Project].
         """

@@ -1,9 +1,13 @@
+"""
+Pytest file for PROTEUS date properties.
+"""
 # ==========================================================================
 # File: test_date_properties.py
 # Description: pytest file for PROTEUS date properties
 # Date: 22/10/2022
 # Version: 0.2
-# Author: Amador Durán Toro
+# Author: Pablo Rivera Jiménez
+#         Amador Durán Toro
 # ==========================================================================
 # Update: 22/10/2022 (Amador)
 # Description:

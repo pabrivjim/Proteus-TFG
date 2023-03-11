@@ -1,3 +1,7 @@
+"""
+It initializes the config paths for PROTEUS application.
+"""
+
 # ==========================================================================
 # File: config.py
 # Description: the config paths for PROTEUS application
@@ -43,6 +47,9 @@ ICONS_DIRECTORY      : str = 'icons_directory'
 # --------------------------------------------------------------------------
 
 class Config:
+    """
+    Class for the Configuration PROTEUS application.
+    """
     def __init__(self):
         """
         It initializes the config paths for PROTEUS application.
@@ -64,6 +71,9 @@ class Config:
     def _create_config_parser(self) -> ConfigParser:
         """
         Private methdos that creates configuration parser and loads config file.
+
+        :returns: ConfigParser
+        :rtype: ConfigParser
         """
         
         assert Path(CONFIG_FILE).exists(), \
@@ -77,6 +87,8 @@ class Config:
     def check_application_directories(self) -> None:
         """
         It checks that essential PROTEUS directories exist.
+
+        :returns: None
         """
         proteus.logger.info("Checking PROTEUS directories...")
 

@@ -1,3 +1,6 @@
+"""
+Pytest file for the PROTEUS application directories.
+"""
 # ==========================================================================
 # File: test_directories.py
 # Description: pytest file for the PROTEUS application directories

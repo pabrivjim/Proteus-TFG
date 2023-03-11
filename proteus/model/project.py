@@ -1,3 +1,6 @@
+"""
+A PROTEUS project.
+"""
 # ==========================================================================
 # File: project.py
 # Description: a PROTEUS project
@@ -105,6 +108,7 @@ class Project(AbstractObject):
         It initializes and builds a PROTEUS project from an XML file.
         
         :param project_file_path: path to the project file.
+        :type project_file_path: str
         """
 
         # Initialize property dictionary in superclass
@@ -146,7 +150,9 @@ class Project(AbstractObject):
     def load_documents(self, root : ET.Element) -> None:
         """
         It loads a PROTEUS project's documents from an XML root element.
+
         :param root: XML root element.
+        :type root: ET.Element
         """
 
         # Check root is not None
@@ -185,7 +191,9 @@ class Project(AbstractObject):
     def generate_xml(self) -> ET.Element:
         """
         It generates an XML element for the project.
-        :return: an XML element for the project.
+
+        :returns: an XML element for the project.
+        :rtype: ET.Element
         """
         # Create <project> element and set ID
         project_element = ET.Element(PROJECT_TAG)

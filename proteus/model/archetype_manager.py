@@ -1,3 +1,7 @@
+"""
+Proteus - Archetype Manager
+"""
+
 # ==========================================================================
 # File: archetype_manager.py
 # Description: PROTEUS archetype manager
@@ -55,6 +59,12 @@ DOCUMENT_PROPERTIES_TO_SAVE = ["name", "description", "author", "date"]
 class ArchetypesType():
     """
     Enumeration for archetypes' types.
+    The values are the names of the subdirectories in the archetypes folder.
+
+    This values are:
+    #. projects
+    #. documents
+    #. objects
     """
     PROJECTS  = 'projects'
     DOCUMENTS = 'documents'
@@ -74,7 +84,6 @@ class ArchetypeManager:
     """
     An utility class for managing PROTEUS archetypes. It must provide a way
     to get the project, document, and object archetypes on demand.
-    TODO: in the future, it will also be responsible for adding new archetypes.
     """
 
     # ----------------------------------------------------------------------
@@ -88,8 +97,11 @@ class ArchetypeManager:
     @classmethod
     def load_object_archetypes( cls ) -> dict:
         """
-        Method that loads the object archetypes.
-        :return: A list of ObjectArchetypeProxy objects.
+        Method that loads the object archetypes. The reason why a dict with key value is retun,
+        where the key is the name of the subdir folder name, is because you need to know which object it is,
+        if you don't use a dict and if you use a list you would need to iterate through all its values.
+        :returns: A dict with the subdir name and the ObjectArchetypeProxy objects.
+        :rtype: dict[str, ObjectArchetypeProxy]
         """
         log.info('ArchetypeManager - load object archetypes')
         # Build archetypes directory name from archetype type
@@ -149,10 +161,11 @@ class ArchetypeManager:
     @classmethod
     def load_document_archetypes( cls ) -> dict:
         """
-        Method that loads the document archetypes.
-        :return: A dict of project file name and DocumentArchetypeProxy objects.
-        The reason Why we retun a dict with key value, where the key is the project file name, is because the
-        we need to know which document is, and if a dict is not use it, we have to iterate above the whole list.
+        Method that loads the document archetypes. The reason why a dict with key value is retun,
+        where the key is the name of the document folder, is because you need to know which document it is,
+        if you don't use a dict and if you use a list you would need to iterate through all its values.
+        :returns: A dict of document folder name and DocumentArchetypeProxy objects.
+        :rtype: dict[str, DocumentArchetypeProxy]
         """
         log.info('ArchetypeManager - load document archetypes')
         # Build archetypes directory name from archetype type
@@ -237,7 +250,8 @@ class ArchetypeManager:
     def load_project_archetypes( cls ) -> list:
         """
         Method that loads the project archetypes.
-        :return: A list of ProjectArchetypeProxy objects.
+        :returns: A list of ProjectArchetypeProxy objects.
+        :rtype: list[ProjectArchetypeProxy]
         """
         log.info('ArchetypeManager - load project archetypes')
         # Build archetypes directory name from archetype type (project)

@@ -1,3 +1,6 @@
+"""
+Test file for PROTEUS Time properties.
+"""
 # ==========================================================================
 # File: test_time_properties.py
 # Description: pytest file for PROTEUS time properties

@@ -1,3 +1,6 @@
+"""
+Pytest file for PROTEUS projects.
+"""
 # ==========================================================================
 # File: test_projects.py
 # Description: pytest file for PROTEUS projects

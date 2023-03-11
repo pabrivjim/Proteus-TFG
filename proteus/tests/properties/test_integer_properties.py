@@ -1,3 +1,6 @@
+"""
+Pytest file for PROTEUS Integer properties.
+"""
 # ==========================================================================
 # File: test_integer_properties.py
 # Description: pytest file for PROTEUS Integer properties

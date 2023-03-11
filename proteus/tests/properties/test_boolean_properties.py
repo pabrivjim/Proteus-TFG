@@ -1,3 +1,6 @@
+"""
+Pytest file for PROTEUS boolean properties.
+"""
 # ==========================================================================
 # File: test_boolean_properties.py
 # Description: pytest file for PROTEUS boolean properties

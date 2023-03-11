@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Model &#8212; Test Esquema 1.0.0 documentation</title>
+    <title>Utils &#8212; Test Esquema 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -33,119 +33,8 @@
 
           <div class="body" role="main">
             
-  <section id="module-proteus.utils.html_converter">
-<span id="model"></span><h1>Model<a class="headerlink" href="#module-proteus.utils.html_converter" title="Permalink to this heading">¶</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="proteus.utils.html_converter.HtmlConverter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.utils.html_converter.</span></span><span class="sig-name descname"><span class="pre">HtmlConverter</span></span><a class="headerlink" href="#proteus.utils.html_converter.HtmlConverter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clase que se encarga de agregar texto a HTML, parsearlo HTML
-mediante el uso de XSLT y borrar contenido añadido al XML.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.html_converter.HtmlConverter.addText">
-<span class="sig-name descname"><span class="pre">addText</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.html_converter.HtmlConverter.addText" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que inserta texto del XML en el fichero de mainDoc.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.html_converter.HtmlConverter.generateHtml">
-<span class="sig-name descname"><span class="pre">generateHtml</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.html_converter.HtmlConverter.generateHtml" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación: <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::generateHtml</span></code>.
-Operación que genera el HTMl a partir del XSLT
-y el fichero XML del Stack.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.html_converter.HtmlConverter.getET">
-<span class="sig-name descname"><span class="pre">getET</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;module</span> <span class="pre">'xml.etree.ElementTree'</span> <span class="pre">from</span> <span class="pre">'C:\\Users\\Pablo</span> <span class="pre">Rivera</span> <span class="pre">Jimenez\\AppData\\Local\\Programs\\Python\\Python310\\lib\\xml\\etree\\ElementTree.py'&gt;</span></span></span><a class="headerlink" href="#proteus.utils.html_converter.HtmlConverter.getET" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que devuelve el ElementTree.
-:returns: Arbol de mainDoc.
-:rtype: ElementTree (ET)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.html_converter.HtmlConverter.removeAll">
-<span class="sig-name descname"><span class="pre">removeAll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.html_converter.HtmlConverter.removeAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que borra todo el contenido del fichero.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.html_converter.HtmlConverter.removeRecentAdded">
-<span class="sig-name descname"><span class="pre">removeRecentAdded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.html_converter.HtmlConverter.removeRecentAdded" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que quita del fichero mainDOc el
-contenido añadido previamente.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.html_converter.HtmlConverter.setET">
-<span class="sig-name descname"><span class="pre">setET</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ET</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.html_converter.HtmlConverter.setET" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que modifica el ElementTree de mainDoc.</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.utils.qundo_commands"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.utils.qundo_commands.CommandDeleteAll">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.utils.qundo_commands.</span></span><span class="sig-name descname"><span class="pre">CommandDeleteAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HtmlConverter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_layout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.utils.qundo_commands.CommandDeleteAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la clase donde se realizan las operaciones de deshacer
-y rehacer a la hora de usar la accion <code class="xref py py-class docutils literal notranslate"><span class="pre">MainStacked::deleteAll</span></code>.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.qundo_commands.CommandDeleteAll.redo">
-<span class="sig-name descname"><span class="pre">redo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.qundo_commands.CommandDeleteAll.redo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que rehace la acción borrada.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.qundo_commands.CommandDeleteAll.undo">
-<span class="sig-name descname"><span class="pre">undo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.qundo_commands.CommandDeleteAll.undo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que deshace la acción borrada.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="proteus.utils.qundo_commands.CommandInsertText">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.utils.qundo_commands.</span></span><span class="sig-name descname"><span class="pre">CommandInsertText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HtmlConverter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_layout</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.utils.qundo_commands.CommandInsertText" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la clase donde se realizan las operaciones de deshacer
-y rehacer a la hora de usar la accion <code class="xref py py-class docutils literal notranslate"><span class="pre">MainStacked::insertText</span></code>.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.qundo_commands.CommandInsertText.redo">
-<span class="sig-name descname"><span class="pre">redo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.qundo_commands.CommandInsertText.redo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que rehace la acción deshecha.
-Llama a la funcion <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::addText</span></code>,
-para agregar el texto y generar un archivo XML.
-Después a la funcion <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::generateHtml</span></code>,
-para generar el HTML.
-Y finalmente a la función <code class="xref py py-class docutils literal notranslate"><span class="pre">MainFileView::reload</span></code>,
-para actualizar el contenido.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.qundo_commands.CommandInsertText.undo">
-<span class="sig-name descname"><span class="pre">undo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.utils.qundo_commands.CommandInsertText.undo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que deshace la acción hecha.
-Llama a la funcion <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::removeRecentAdded</span></code>,
-para borrar el contenido añadido en el XML.
-Después a la funcion <code class="xref py py-class docutils literal notranslate"><span class="pre">HtmlConverter::generateHtml</span></code>,
-para generar el HTML.
-Y finalmente a la función <code class="xref py py-class docutils literal notranslate"><span class="pre">MainFileView::reload</span></code>,
-para actualizar el contenido.</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.utils.translator"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.utils.translator.Translate">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.utils.translator.</span></span><span class="sig-name descname"><span class="pre">Translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.utils.translator.Translate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clase que se encarga de traducir todo el contenido de la aplicación
-dinámicamente.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.utils.translator.Translate.change_func">
-<span class="sig-name descname"><span class="pre">change_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.utils.translator.Translate.change_func" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cambia el idioma de la aplicación.</p>
-</dd></dl>
-
-</dd></dl>
-
+  <section id="utils">
+<h1>Utils<a class="headerlink" href="#utils" title="Permalink to this heading">¶</a></h1>
 </section>
 
 
@@ -168,9 +57,9 @@ dinámicamente.</p>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="module.html">PROTEUS</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Main_app.html">Main_app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.html">Main module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="View.html">View</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Utils</a></li>
 </ul>
 </li>
 </ul>

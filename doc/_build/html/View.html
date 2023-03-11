@@ -16,8 +16,8 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Model" href="Utils.html" />
-    <link rel="prev" title="Main_app module" href="Main_app.html" />
+    <link rel="next" title="Utils" href="Utils.html" />
+    <link rel="prev" title="Main module" href="Main_app.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -34,177 +34,8 @@
 
           <div class="body" role="main">
             
-  <section id="module-proteus.view.main_window">
-<span id="view"></span><h1>View<a class="headerlink" href="#module-proteus.view.main_window" title="Permalink to this heading">¶</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.main_window.</span></span><span class="sig-name descname"><span class="pre">MainStacked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la clase donde se encuentra la ventana principal de la aplicación.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked.changeEvent">
-<span class="sig-name descname"><span class="pre">changeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked.changeEvent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que detecta cuando el idioma ha sido cambiado</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked.connectActions">
-<span class="sig-name descname"><span class="pre">connectActions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked.connectActions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que conecta los elementos del desplegable con las acciones.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked.createActions">
-<span class="sig-name descname"><span class="pre">createActions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked.createActions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que crea las acciones del menú
-desplegable de la barra principal.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked.createMenuBar">
-<span class="sig-name descname"><span class="pre">createMenuBar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked.createMenuBar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que crea el menú desplegable de la barra principal
-y los elementos del desplegable con las acciones asociadas.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked.deleteAll">
-<span class="sig-name descname"><span class="pre">deleteAll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked.deleteAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que borra todo el contenido del fichero
-y lo añade a la pila de acciones.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked.inserText">
-<span class="sig-name descname"><span class="pre">inserText</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked.inserText" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que inserta texto (previamente definido)
-en la vista de <code class="xref py py-class docutils literal notranslate"><span class="pre">MainFileView</span></code>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked.retranslateUi">
-<span class="sig-name descname"><span class="pre">retranslateUi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked.retranslateUi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que actualiza el idioma a todos los elementos de la vista.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_window.MainStacked.translateApp">
-<span class="sig-name descname"><span class="pre">translateApp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainStacked.translateApp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que muestra la ventana de traducción
-definida en <code class="xref py py-class docutils literal notranslate"><span class="pre">Translate</span></code>.</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.view.main_structure"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.view.main_structure.CentralLayout">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.main_structure.</span></span><span class="sig-name descname"><span class="pre">CentralLayout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_converter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_structure.CentralLayout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la vista donde se muestra los ‘widgets’ de la interfaz de usuario.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_structure.CentralLayout.initUI">
-<span class="sig-name descname"><span class="pre">initUI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_structure.CentralLayout.initUI" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación de inicialización de la vista.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.main_structure.CentralLayout.treeStructure">
-<span class="sig-name descname"><span class="pre">treeStructure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QWidget</span></span></span><a class="headerlink" href="#proteus.view.main_structure.CentralLayout.treeStructure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que crea una estructura de árbol.
-:returns: El widget de la estructura de árbol.
-:rtype: QWidget</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.view.stacks.file_view"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.view.stacks.file_view.MainFileView">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.stacks.file_view.</span></span><span class="sig-name descname"><span class="pre">MainFileView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.stacks.file_view.MainFileView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la vista donde se encuentra el tercer widget de la lista.
-Representa un visualizador de HTML parseado usando XSLT y XML.
-La idea de este es crear un ejemplo mínimo reproducible.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.stacks.file_view.MainFileView.initUI">
-<span class="sig-name descname"><span class="pre">initUI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.stacks.file_view.MainFileView.initUI" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que inicializa el Widget.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.stacks.file_view.MainFileView.reload">
-<span class="sig-name descname"><span class="pre">reload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.stacks.file_view.MainFileView.reload" title="Permalink to this definition">¶</a></dt>
-<dd><p>Actualiza el contenido que se muestra en el widget.</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.view.actions.delete_action"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.view.actions.delete_action.DeleteAction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.actions.delete_action.</span></span><span class="sig-name descname"><span class="pre">DeleteAction</span></span><a class="headerlink" href="#proteus.view.actions.delete_action.DeleteAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la clase donde se encuentra la acción (QAction) de borrar.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.actions.delete_action.DeleteAction.getAction">
-<span class="sig-name descname"><span class="pre">getAction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QAction</span></span></span><a class="headerlink" href="#proteus.view.actions.delete_action.DeleteAction.getAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que crea la acción (QAction) de borrar.
-:returns: La acción de borrar.
-:rtype: QAction</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.view.actions.insert_action"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.view.actions.insert_action.InsertAction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.actions.insert_action.</span></span><span class="sig-name descname"><span class="pre">InsertAction</span></span><a class="headerlink" href="#proteus.view.actions.insert_action.InsertAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la clase donde se encuentra la acción (QAction) de insertar.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.actions.insert_action.InsertAction.getAction">
-<span class="sig-name descname"><span class="pre">getAction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QAction</span></span></span><a class="headerlink" href="#proteus.view.actions.insert_action.InsertAction.getAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que crea la acción (QAction) de insertar.
-:returns: La acción de insertar.
-:rtype: QAction</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.view.actions.redo_action"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.view.actions.redo_action.RedoAction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.actions.redo_action.</span></span><span class="sig-name descname"><span class="pre">RedoAction</span></span><a class="headerlink" href="#proteus.view.actions.redo_action.RedoAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la clase donde se encuentra la acción (QAction) de rehacer.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.actions.redo_action.RedoAction.getAction">
-<span class="sig-name descname"><span class="pre">getAction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QAction</span></span></span><a class="headerlink" href="#proteus.view.actions.redo_action.RedoAction.getAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que crea la acción (QAction) de rehacer.
-:returns: La acción de rehacer.
-:rtype: QAction</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.view.actions.translate_action"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.view.actions.translate_action.TranslateAction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.actions.translate_action.</span></span><span class="sig-name descname"><span class="pre">TranslateAction</span></span><a class="headerlink" href="#proteus.view.actions.translate_action.TranslateAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la clase donde se encuentra la acción (QAction) de traducir.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.actions.translate_action.TranslateAction.getAction">
-<span class="sig-name descname"><span class="pre">getAction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QAction</span></span></span><a class="headerlink" href="#proteus.view.actions.translate_action.TranslateAction.getAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que crea la acción (QAction) de traducir.
-:returns: La acción de traducir.
-:rtype: QAction</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-proteus.view.actions.undo_action"></span><dl class="py class">
-<dt class="sig sig-object py" id="proteus.view.actions.undo_action.UndoAction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.actions.undo_action.</span></span><span class="sig-name descname"><span class="pre">UndoAction</span></span><a class="headerlink" href="#proteus.view.actions.undo_action.UndoAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Esta es la clase donde se encuentra la acción (QAction) de deshacer.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.view.actions.undo_action.UndoAction.getAction">
-<span class="sig-name descname"><span class="pre">getAction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QAction</span></span></span><a class="headerlink" href="#proteus.view.actions.undo_action.UndoAction.getAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Operación que crea la acción (QAction) de deshacer.
-:returns: La acción de deshacer.
-:rtype: QAction</p>
-</dd></dl>
-
-</dd></dl>
-
+  <section id="view">
+<h1>View<a class="headerlink" href="#view" title="Permalink to this heading">¶</a></h1>
 </section>
 
 
@@ -227,9 +58,9 @@ La idea de este es crear un ejemplo mínimo reproducible.</p>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="module.html">PROTEUS</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Main_app.html">Main_app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.html">Main module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Utils.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Utils.html">Utils</a></li>
 </ul>
 </li>
 </ul>
@@ -239,8 +70,8 @@ La idea de este es crear un ejemplo mínimo reproducible.</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="module.html">PROTEUS</a><ul>
-      <li>Previous: <a href="Main_app.html" title="previous chapter">Main_app module</a></li>
-      <li>Next: <a href="Utils.html" title="next chapter">Model</a></li>
+      <li>Previous: <a href="Main_app.html" title="previous chapter">Main module</a></li>
+      <li>Next: <a href="Utils.html" title="next chapter">Utils</a></li>
   </ul></li>
   </ul></li>
 </ul>

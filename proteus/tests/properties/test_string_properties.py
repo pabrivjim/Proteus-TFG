@@ -1,9 +1,13 @@
+"""
+Pytest file for PROTEUS string and markdown properties.
+"""
 # ==========================================================================
 # File: test_string_properties.py
 # Description: pytest file for PROTEUS string and markdown properties
 # Date: 22/10/2022
 # Version: 0.2
 # Author: Amador Durán Toro
+#         Pablo Rivera Jiménez
 # ==========================================================================
 # Update: 22/10/2022 (Amador)
 # Description:

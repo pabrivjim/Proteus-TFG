@@ -1,3 +1,6 @@
+"""
+Pytest fixtures for testing PROTEUS properties.
+"""
 # ==========================================================================
 # File: property_fixtures.py
 # Description: pytest fixtures for testing PROTEUS properties

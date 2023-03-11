@@ -1,3 +1,6 @@
+"""
+This module contains the tests for the file property.
+"""
 # ==========================================================================
 # File: test_file_properties.py
 # Description: pytest file for PROTEUS file properties
