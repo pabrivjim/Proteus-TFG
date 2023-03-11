@@ -9,7 +9,7 @@ Proteus is developed in Python 3, specifically Python 3.10.2 and uses the packag
 ### Installation 📋
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the libraries.
 
-The set of packages or libraries can be found in the [requirements.txt](requirements.txt)  file.
+The set of packages or libraries can be found in the [requirements.txt](requirements.txt) file.
 
 To install them we recommend using the following command:
 

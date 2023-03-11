@@ -24,7 +24,7 @@ import shutil
 # other libraries imports
 import lxml.etree as ET
 
-import proteus.model.config as config
+import proteus.config as config
 
 # PROTEUS imports
 from proteus.model import PROPERTIES_TAG

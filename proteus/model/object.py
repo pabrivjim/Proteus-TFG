@@ -15,9 +15,6 @@
 # for using classes as return type hints in methods
 # (this will change in Python 3.11)
 from __future__ import annotations # it has to be the first import
-
-import pathlib
-from distutils.dir_util import copy_tree
 # standard library imports
 import shortuuid
 import os
@@ -284,35 +281,6 @@ class Object(AbstractObject):
         # Check if object has children
         if(new_object.children):
             rename_ids(new_object)
-        """    
-        object_assets_path = pathlib.Path(self.path).parent.parent / "assets"
-
-        #If the parent is a Project
-        
-        if (parent.__class__.__name__ == "Project"):
-
-            # We add the object to the documents list
-            parent.documents[new_object.id] = new_object
-
-            # And if the document has assets, then we copy them
-            if(object_assets_path.exists()):
-                parent_relative_path = pathlib.Path(parent.path)
-                parent_absolute_path = parent_relative_path.resolve()
-                parent_assets_path = parent_absolute_path.parent / "assets"
-                copy_tree(str(object_assets_path), str(parent_assets_path))
-        
-        # If the type is Object
-        elif (type(parent) is Object):
-            # We add to the parent's children the new object
-            parent.children[new_object.id] = new_object
-
-            # If the object has assets then we copy this assets
-            if(object_assets_path.exists()):
-                parent_relative_path = pathlib.Path(parent.project.path)
-                parent_absolute_path = parent_relative_path.resolve()
-                parent_assets_path = parent_absolute_path.parent / "assets"    
-                copy_tree(str(object_assets_path), str(parent_assets_path))
-        """
         # We set the state of the partent of the new object to DIRTY and the new object
         # state to FRESH
         parent.state = ProteusState.DIRTY
