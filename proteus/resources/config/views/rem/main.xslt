@@ -32,7 +32,7 @@
             class="h-12 my-5"
         />
         <!-- Title -->
-        <h1 class="text-3xl text-blue-900">
+        <h1 class="text-2xl text-blue-900">
             <xsl:value-of select="properties/string" />
         </h1>
         
@@ -45,11 +45,11 @@
         </dl>
 
         <!-- Table of contents -->
-        <h2 class="text-2xl text-blue-900 my-5">Table of contents</h2>
+        <h2 class="text-2xl text-blue-900 my-2 font-bold">Table of contents</h2>
         <ol>
             <xsl:for-each select="children/object"> 
-                <li class="underline text-blue-600">
-                    <a href="#{@id}" style="font-weight:bold;">
+                <li class="ml-3 text-lg underline text-blue-600">
+                    <a href="#{@id}" style="font-weight:bold; visited:text-blue-600">
                         <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
                     </a>
                     <xsl:if test="children/object">
@@ -66,7 +66,7 @@
                 </li>
             </xsl:for-each>
         </ol>
-        <hr />
+        <hr class="mt-3" />
 
         <!-- Document objects -->
         <xsl:for-each select="children/object">              

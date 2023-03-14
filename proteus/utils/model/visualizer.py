@@ -175,15 +175,24 @@ class Visualizer(QWebEngineView):
             index = index-1
         if(project.documents.values()):
             current_document: Object = list(project.documents.values())[index]
-            xml = current_document.generate_xml()
-            xml.tag = "document"
-
+            xml = current_document.generate_xml_to_XSLT()
+            print( ET.tostring(xml,
+                xml_declaration=True,
+                encoding='utf-8',
+                pretty_print=True).decode() )
             dom = etree.fromstring(ET.tostring(xml).decode())
-            xslt = etree.parse(path)
-            transform = etree.XSLT(xslt)
-            new_dom = transform(dom)
-
-            super().setHtml(etree.tostring(new_dom).decode())
+            
+            try:
+                #https://stackoverflow.com/questions/16698935/how-to-transform-an-xml-file-using-xslt-in-python
+                print( dom)
+                xslt = etree.parse(path)
+                transform = etree.XSLT(xslt)
+                new_dom = transform(dom)
+                print(new_dom)
+                super().setHtml(etree.tostring(new_dom).decode())
+            except Exception as e:
+                print(e)
+                print("ERROR")
         else:
             current_document = None
         

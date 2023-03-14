@@ -4,7 +4,16 @@
     <stringProperty name="name"><![CDATA[Empty paragraph]]></stringProperty>
     <floatProperty name="version">1.0</floatProperty>
 	  <dateProperty name="date">2022-10-10</dateProperty>
-    <markdownProperty name="comments" category="comments"><![CDATA[None]]></markdownProperty>
+    <markdownProperty name="comments" category="comments"><![CDATA[# Example 
+## Example of paragraph
+This is an example of a paragraph archetype.
+It shows the information and also __supports__ some markdown elements.
+
+Some of this Elements are:
+
+- list
+- *italic*
+- or __bold__]]></markdownProperty>
   </properties>
   <children />
   <traces />

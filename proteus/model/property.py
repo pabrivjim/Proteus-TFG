@@ -218,7 +218,7 @@ class StringProperty(Property):
         :returns: the value of the property for its XML element.
         :rtype: str | lxml.etree.CDATA
         """
-        return ET.CDATA(self.value)
+        return ET.CDATA(self.value.strip())
 
 # --------------------------------------------------------------------------
 # Class: MarkdownProperty

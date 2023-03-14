@@ -17,7 +17,8 @@ A PROTEUS object.
 
 # for using classes as return type hints in methods
 # (this will change in Python 3.11)
-from __future__ import annotations # it has to be the first import
+from __future__ import annotations
+import pathlib # it has to be the first import
 # standard library imports
 import shortuuid
 import os
@@ -256,6 +257,42 @@ class Object(AbstractObject):
             child_element.set('id', child.id)
 
         return object_element
+
+    def generate_xml_to_XSLT(self) -> ET.Element:
+        """
+        It generates an XML element for the object.
+
+        :returns: XML element for the object.
+        :rtype: ET.Element
+        """
+        # Create <object> element and set ID
+        object_element = ET.Element(DOCUMENT_TAG)
+        object_element.set('id', self.id)
+        object_element.set("classes", " ".join(self.classes))
+        object_element.set("acceptedChildren", " ".join(self.acceptedChildren))
+
+        # Create <properties> element
+        super().generate_xml_properties(object_element)
+
+        
+
+        # Create <child> subelements
+        def generate_xml_to_XSLT_children(self, children_object) -> ET.Element:
+            child: Object
+            for child in self.children.values():
+                child_element = ET.SubElement(children_object, OBJECT_TAG)
+                child_element.set('id', child.id)
+                child_element.set("classes", " ".join(child.classes))
+                child_element.set("acceptedChildren", " ".join(child.acceptedChildren))
+                child.generate_xml_properties(child_element)
+                if(child.children):
+                    # Create <children> element
+                    children_element = ET.SubElement(child_element, CHILDREN_TAG)
+                    generate_xml_to_XSLT_children(child, children_element)
+        # Create <children> element
+        children_element = ET.SubElement(object_element, CHILDREN_TAG)
+        generate_xml_to_XSLT_children(self, children_element)
+        return object_element
     
     # ----------------------------------------------------------------------
     # Method     : clone_object
@@ -269,7 +306,7 @@ class Object(AbstractObject):
         """
         Function that clones an object in a new parent. This function doesn't save the object in the system
         but add it to the parent children so it will be saved when we save the project.
-        
+
         :param parent: Parent of the new object.
         :type parent: Union[Object,Project].
         """

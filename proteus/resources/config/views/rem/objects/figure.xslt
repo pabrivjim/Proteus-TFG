@@ -6,7 +6,12 @@
   <xsl:output method="html" doctype-public="XSLT-compat" omit-xml-declaration="yes" encoding="UTF-8" indent="yes"/>
 
   <xsl:template name="figure" match="figure" mode="call-template">
-        <img src="file:///C:/test.jpg"/>
+    <div id="{@id}" contenteditable="false">
+      <xsl:variable name="image" select="properties/*[@name='url']"/>
+      <xsl:value-of select="$image" disable-output-escaping="yes"/>
+      <img src="$image"/>
+    </div>
+        
   </xsl:template>
 
 </xsl:stylesheet>
