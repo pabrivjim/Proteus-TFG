@@ -259,8 +259,11 @@ class Object(AbstractObject):
         return object_element
 
     def generate_xml_to_XSLT(self) -> ET.Element:
+        #https://stackoverflow.com/questions/75716034/xslt-call-external-template-and-from-path-load-xml-file
         """
-        It generates an XML element for the object.
+        It generates an XML element for the document. It's a must to create an special ET.Element for XSLT
+        because it's not possible to use document() function from the XSLT file using the path of the object file
+        due to the XSLT processor.
 
         :returns: XML element for the object.
         :rtype: ET.Element

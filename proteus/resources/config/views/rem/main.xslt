@@ -16,6 +16,7 @@
     <xsl:template match="/">
         <html>
             <head>
+                <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             </head>
             <body class="bg-white h-full">
@@ -28,11 +29,16 @@
 
     <xsl:template match="document">
         <img
+            src="https://www.uco.es/investigacion/proyectos/SEBASENet/images/Logo_US.png"
+            class="h-12 my-5"
+        />
+          <img
             src="https://www.informatica.us.es/docs/imagen-etsii/logo-ETSII-Color.png"
             class="h-12 my-5"
         />
+        
         <!-- Title -->
-        <h1 class="text-2xl text-blue-900">
+        <h1 class="text-2xl text-blue-900 roboto">
             <xsl:value-of select="properties/string" />
         </h1>
         

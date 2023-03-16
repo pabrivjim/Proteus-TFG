@@ -6,11 +6,11 @@
   <xsl:output method="html" doctype-public="XSLT-compat" omit-xml-declaration="yes" encoding="UTF-8" indent="yes"/>
 
   <xsl:template name="figure" match="figure" mode="call-template">
-    <div id="{@id}" contenteditable="false">
-      <xsl:variable name="image" select="properties/*[@name='url']"/>
-      <xsl:value-of select="$image" disable-output-escaping="yes"/>
-      <img src="$image"/>
-    </div>
+  <img
+            src="https://cooperacion.us.es/sites/default/files/GENERAL/US_VSSyC-OCD_color.png"
+            class="h-12 my-5"
+        />
+    
         
   </xsl:template>
 

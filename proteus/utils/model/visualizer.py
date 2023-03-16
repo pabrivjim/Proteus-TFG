@@ -8,15 +8,17 @@
 import json
 from os import pardir
 from os.path import abspath, dirname, join
+import pathlib
 from lxml import etree as ET
 import markdown
+from PyQt5 import QtWebEngineWidgets, QtWidgets, QtCore
 from PyQt5.QtCore import QUrl, pyqtSignal, QEventLoop
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from lxml import etree
 from proteus.model.object import Object
 
 from proteus.model.project import Project
-from ..config import Config
+from ..config import CONFIG_FOLDER, Config
 import proteus
 import os
 
@@ -51,9 +53,44 @@ def convert_markdown(elements):
     proteus.logger.info('visualizer - convert markdown')
     
     try:
-        return markdown.markdown(elements[0].text, extensions=['md_mermaid', 'extra', 'codehilite'])
-    except Exception:
+        print(markdown.markdown(elements[0].text))
+        return markdown.markdown(elements[0].text)
+    except Exception as e:
+        print("ERROR: ", e)
         return elements[0].text
+# https://stackoverflow.com/questions/51388443/css-doesnt-work-in-qwebengineview-sethtml with some changes
+def loadCSS(view: QWebEngineView, path, name, counter):
+    counter += 1
+    path = QtCore.QFile(path)
+    if not path.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text):
+        return
+    css = path.readAll().data().decode("utf-8").replace("\n", "").replace("\t", "")
+    print(css)
+    SCRIPT = """
+    (function() {
+    css = document.createElement('style');
+    css.type = 'text/css';
+    css.id = "%s";
+    document.head.appendChild(css);
+    css.innerText = `%s`;
+    })()
+    """ % (name, css)
+        
+    script = QtWebEngineWidgets.QWebEngineScript()
+    view.page().runJavaScript(SCRIPT, QtWebEngineWidgets.QWebEngineScript.ApplicationWorld)
+    script.setName(name)
+    script.setSourceCode(SCRIPT)
+    script.setInjectionPoint(QtWebEngineWidgets.QWebEngineScript.DocumentReady)
+    script.setRunsOnSubFrames(True)
+    script.setWorldId(QtWebEngineWidgets.QWebEngineScript.ApplicationWorld)
+    # We could just do it the first time, but is better if we "reload" it
+    # So we can change the css without restarting the app
+    if(not(view.page().scripts().contains(script))):
+        view.page().scripts().insert(script)
+    else:
+        view.page().scripts().remove(script)
+        view.page().scripts().insert(script)
+    return counter
 
 
 views = Config.load_views()
@@ -72,6 +109,11 @@ class Visualizer(QWebEngineView):
 
         # DEBUG INSPECTOR 
         self.inspector = QWebEngineView()
+        settings = self.inspector.settings()
+        settings.setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+        settings.setAttribute(QWebEngineSettings.PluginsEnabled, True)
+        settings.setAttribute(QWebEngineSettings.AutoLoadImages, True)
         self.inspector.setWindowTitle('Web Inspector')
         self.inspector.load(QUrl(DEBUG_URL))
     
@@ -149,6 +191,7 @@ class Visualizer(QWebEngineView):
         
         path = abspath(join(dirname(__file__), pardir,
                             views[self.view]["path"]))
+        
         super().load(QUrl.fromLocalFile(path))
 
         self.page().loadFinished.connect(lambda: send_to_view(project,
@@ -176,27 +219,23 @@ class Visualizer(QWebEngineView):
         if(project.documents.values()):
             current_document: Object = list(project.documents.values())[index]
             xml = current_document.generate_xml_to_XSLT()
-            print( ET.tostring(xml,
-                xml_declaration=True,
-                encoding='utf-8',
-                pretty_print=True).decode() )
-            dom = etree.fromstring(ET.tostring(xml).decode())
             
             try:
                 #https://stackoverflow.com/questions/16698935/how-to-transform-an-xml-file-using-xslt-in-python
-                print( dom)
                 xslt = etree.parse(path)
                 transform = etree.XSLT(xslt)
-                new_dom = transform(dom)
+                new_dom = transform(xml)
                 print(new_dom)
                 super().setHtml(etree.tostring(new_dom).decode())
+                css_stylesheet_path = pathlib.Path(f"{CONFIG_FOLDER}/views/rem/main_style.css").resolve()
+
+                loadCSS(super(), str(css_stylesheet_path), "script1", 0)
             except Exception as e:
                 print(e)
                 print("ERROR")
         else:
             current_document = None
         
-
     def save_pdf(self, save_path: str) -> None:
         """
         Saves view onto a pdf document.
@@ -227,5 +266,6 @@ class Visualizer(QWebEngineView):
         loop = QEventLoop()
         self.toHtmlFinished.connect(loop.quit)
         loop.exec_()
+        print
         with open(save_path, "w") as f:
             f.write(self.html)
