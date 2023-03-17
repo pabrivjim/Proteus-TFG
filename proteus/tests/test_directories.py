@@ -20,6 +20,8 @@ Pytest file for the PROTEUS application directories.
 from pathlib import Path
 from proteus.config import Config
 import pytest
+
+from proteus.tests import PATH
 # --------------------------------------------------------------------------
 # Tests
 # --------------------------------------------------------------------------
@@ -29,7 +31,7 @@ import pytest
 @pytest.fixture
 def base_path() -> Path:
     """Get directory of proteus.ini"""
-    return Path(__file__).parent.parent.parent
+    return PATH
 
 def test_application_directories(base_path: Path, monkeypatch: pytest.MonkeyPatch):
     """

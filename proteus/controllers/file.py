@@ -75,10 +75,11 @@ class FileController(Controller):
 
         if selected_files:
             filename = selected_files[0]
-            config.project_folder = filename
             self.load_project(filename)
             project_title = self.app.projectController.project.get_property("name").value
             self.app.setWindowTitle("Proteus - " + project_title)
+            
+            print(self.app.windowTitle(), "\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     
     def req_save_new_project(self, archetype) -> None:
         """ 
@@ -102,24 +103,11 @@ class FileController(Controller):
         """
 
         # If we have a project folder it means the project already exists.
-        if(config.project_folder != ""):
-            # self.save_project(config.project_folder)
-            project: Project = self.app.projectController.project
-            project.save_project()
-            self.app.ribbon.save_tb.setEnabled(False)
+        # self.save_project(config.project_folder)
+        project: Project = self.app.projectController.project
+        project.save_project()
+        self.app.ribbon.save_tb.setEnabled(False)
         
-        # If we don't have a project folder it means the project is new. This should NEVER
-        # happen because we always save the project when we load it. But just in case we want to
-        # make sure that the user doesnt
-        else:
-            selected_files = Dialog.request(
-                self.app, "Save file", "application/xml", "xml",
-                QFileDialog.AcceptSave, self.app.projectController.get_property("name").value)
-
-            if selected_files:
-                filename = selected_files[0]
-                self.save_project(filename)
-                self.app.ribbon.save_tb.setEnabled(False)
 
     def load_project(self, filename: str, project_title=None) -> None:
         if self.app.projectController.project:
@@ -150,7 +138,6 @@ class FileController(Controller):
 
     def save_project(self, filename: str) -> None:
         self.path = filename
-        config.project_folder = filename
         if not self.path and os.listdir(os.path.dirname(filename)):
             confirm = QMessageBox(self)
             confirm.setWindowTitle("Delete folder content?")

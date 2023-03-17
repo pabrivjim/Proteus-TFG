@@ -5,4 +5,6 @@
 # Version: 0.1
 # Author: Amador Durán Toro
 # ==========================================================================
+from pathlib import Path
 
+PATH = Path(__file__).parent.parent.parent

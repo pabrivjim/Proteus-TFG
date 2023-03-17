@@ -24,9 +24,6 @@ ARCHETYPES_FOLDER = join(abspath(join(PARENT_FOLDER, pardir)), 'archetypes')
 logging_file_name = str(datetime.now()).replace(":", "-")
 LOGGING_FILE = join(abspath(join(PARENT_FOLDER, pardir)), "tmp/"+ logging_file_name + ".log")
 
-# Variables to know where the opened project is stored in the system.
-# By default is empty
-project_folder = ""
 
 
 

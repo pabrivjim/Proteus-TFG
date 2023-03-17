@@ -6,10 +6,8 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from lxml import etree as ET
-from proteus.controllers.save_state_machine import SaveMachine
 import proteus.utils.config as config 
 import proteus
-import proteus.controllers.file as file
 
 class ProjectDialogLogic():
     """
@@ -18,22 +16,6 @@ class ProjectDialogLogic():
     def __init__(self, parent) -> None:
         proteus.logger.info('Init ProjectDialogLogic')
         self.parent = parent
-    
-    # OLD CODE to create a new prioject (we used this to create a project 
-    # from an archetype but it was loaded on memory and not saved)
-
-    # def create_project(self, path: str, archetype) -> None:
-    #     """
-    #     Open archetype project
-
-    #     :param path: path of project archetype.
-    #     """
-    #     proteus.logger.info('ProjectDialogLogic - create project')
-    #     main_class = self.parent.parent().__class__
-    #     project_title = self.parent.name.text()
-    #     m = main_class(project_path=path, project_title=project_title)
-    #     m.setWindowTitle("Proteus - " + project_title)
-    #     m.show()
 
     def create_project(self, path, archetype) -> None:
         """
@@ -44,7 +26,6 @@ class ProjectDialogLogic():
         selected_files = self.parent.parent().file.req_save_new_project(archetype)
         if selected_files:
             filename = selected_files[0]
-            config.project_folder = filename
             main_class = self.parent.parent().__class__
             project_title = self.parent.name.text()
             m = main_class(project_path=path, project_title=project_title, clean=True)
