@@ -20,7 +20,7 @@ from lxml import etree
 from proteus.model.object import Object
 
 from proteus.model.project import Project
-import proteus.config as proteus_config
+import proteus.config as config
 import proteus
 import os
 
@@ -229,7 +229,7 @@ class Visualizer(QWebEngineView):
                 new_dom = transform(xml)
                 print(new_dom)
                 super().setHtml(etree.tostring(new_dom).decode())
-                css_stylesheet_path = pathlib.Path(f"{proteus_config.Config().resources_directory}/views/rem/main_style.css").resolve()
+                css_stylesheet_path = pathlib.Path(f"{config.Config().resources_directory}/views/rem/main_style.css").resolve()
 
                 loadCSS(super(), str(css_stylesheet_path), "script1", 0)
             except Exception as e:

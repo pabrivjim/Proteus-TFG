@@ -5,15 +5,10 @@
 # Version: 1.0.0
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
-from PyQt5.QtGui import (QIcon)
 from proteus.model.object import Object
 from proteus.model.project import Project
 from proteus.model.property import Property
-from proteus.utils.model.nodes_utils import get_node
 from proteus.utils.model.qundo_commands import UpdateObject, UpdateProject
-import lxml.etree as ET
-import proteus.utils.config as config 
-from proteus.controllers.save_state_machine import SaveMachine
 from PyQt5.QtWidgets import (QWidget, QTreeWidgetItem, QVBoxLayout,
                              QLabel,QHBoxLayout)
 from proteus.utils.i18n import trans
@@ -64,7 +59,7 @@ class PropertiesLogic():
             command = UpdateProject(project_data, self.updated_item)
             self.parent.parentWidget().undoStack.push(command)
         else:    
-            command = UpdateObject(self.obj, self.updated_item)
+            command = UpdateObject(project_data, self.obj, self.updated_item)
             self.parent.parentWidget().undoStack.push(command)
 
         self.parent.close()

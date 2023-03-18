@@ -10,14 +10,11 @@ from os import listdir
 from os.path import isfile, join
 from lxml import etree as ET
 from proteus.model.archetype_manager import ArchetypeManager
-from proteus.model.archetype_proxys import DocumentArchetypeProxy
 from proteus.model.object import Object
 from proteus.model.project import Project
 from proteus.utils.model.qundo_commands import CreateDocument
-import proteus.utils.config as config 
 import proteus.utils.persistence as persistence
 import proteus
-from PyQt5.QtCore import Qt
 
 def load_objects(path):
     """

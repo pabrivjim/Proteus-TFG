@@ -6,17 +6,12 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from PyQt5.QtWidgets import QUndoCommand
-from proteus.controllers.save_state_machine import SaveMachine
-import shortuuid
 import lxml.etree as ET
 from PyQt5.QtWidgets import QComboBox
-from proteus.controllers.save_state_machine import States
 from proteus.model import PROTEUS_ANY
 from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
 from proteus.model.project import Project
-import proteus.utils.persistence as persistence
-from proteus.utils.model.nodes_utils import (get_node, get_parent)
 from copy import deepcopy
 import proteus
 
@@ -217,10 +212,12 @@ class UpdateObject(QUndoCommand):
     Command to update node attributes.
     """
 
-    def __init__(self, obj:Object, new_obj:Object):
+    def __init__(self, project: Project, obj:Object, new_obj:Object):
         proteus.logger.info('Init UpdateObject')
         super(UpdateObject, self).__init__()
         self.obj = obj
+        self.project = project
+        self.project_state = deepcopy(project.state)
         self.back_up_obj_properties = deepcopy(obj.properties)
         self.new_obj = new_obj
         self.obj_state = obj.state
@@ -243,6 +240,7 @@ class UpdateObject(QUndoCommand):
 
         if(obj_xml != new_obj_xml):
             self.obj.state = ProteusState.DIRTY
+            self.project.state = ProteusState.DIRTY
             self.obj.properties = self.new_obj.properties
 
     def undo(self):
@@ -252,6 +250,7 @@ class UpdateObject(QUndoCommand):
         Set object state to previous state.
         """
         self.obj.state = self.obj_state
+        self.project.state = self.project_state
         self.obj.properties = self.back_up_obj_properties
 
 
@@ -303,15 +302,17 @@ class MoveNode(QUndoCommand):
     Command to move node in project tree.
     """
 
-    def __init__(self, obj: Object, from_parent: Object, to_parent:Object):
+    def __init__(self, project: Project,  obj: Object, from_parent: Object, to_parent:Object):
         proteus.logger.info('Init MoveNode')
         super(MoveNode, self).__init__()
+        self.project = project
         self.something_changed = False
         self.obj = obj
         self.original_parent = from_parent
         self.new_parent = to_parent
         self.original_parent_state = deepcopy(from_parent.state)
         self.new_parent_state = deepcopy(to_parent.state)
+        self.project_state = deepcopy(project.state)
 
     def redo(self):
         proteus.logger.info('MoveNode - redo')
@@ -323,6 +324,7 @@ class MoveNode(QUndoCommand):
             self.something_changed = True
             self.original_parent.state = ProteusState.DIRTY
             self.new_parent.state = ProteusState.DIRTY
+            self.project.state = ProteusState.DIRTY
             self.original_parent.children.pop(self.obj.id)
             self.new_parent.children[self.obj.id] = self.obj
             self.obj.parent = self.new_parent
@@ -337,6 +339,7 @@ class MoveNode(QUndoCommand):
         if(self.something_changed):
             self.original_parent.state = self.original_parent_state
             self.new_parent.state = self.new_parent_state
+            self.project.state = self.project_state
             self.new_parent.children.pop(self.obj.id)
             self.original_parent.children[self.obj.id] = self.obj
             self.obj.parent = self.original_parent  

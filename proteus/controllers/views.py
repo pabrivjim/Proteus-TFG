@@ -12,8 +12,7 @@ from .base import Controller
 from .file import Dialog
 import proteus
 from os import listdir
-from os.path import join, dirname, abspath, isfile, exists
-from os import pardir
+from os.path import join, isfile, exists
 import proteus.config as config
 
 def load_views() -> list:

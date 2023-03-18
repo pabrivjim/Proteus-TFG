@@ -100,7 +100,10 @@ class TreeLogic():
             msg.exec_()
         
         
+        project: Project = self.parent.projectController.project
+        
         command = MoveNode(
+                project,
                 self._draggedItem.data(0, Qt.UserRole),
                 from_parent.data(0, Qt.UserRole),
                 to_parent.data(0, Qt.UserRole))

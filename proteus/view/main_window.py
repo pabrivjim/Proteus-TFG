@@ -14,10 +14,10 @@ from proteus.controllers import (FileController, ViewsController,
                          ProjectController)
 from PyQt5 import uic
 from proteus.controllers.views import load_views
-from proteus.controllers.save_state_machine import SaveMachine
+from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
 from proteus.utils.model.main_window_logic import MainWindowLogic
-import proteus.config as proteus_config
+import proteus.config as config
 from proteus.utils.i18n import trans
 from proteus.utils.model.visualizer import Visualizer
 from proteus.utils.model.preferences import Preferences, PreferencesDialog
@@ -36,8 +36,8 @@ class MainWindow(QMainWindow):
     def __init__(self, project_path=None, project_title=None, clean=False):
         proteus.logger.info('Init main window')
         super().__init__()
-        uic.loadUi(f"{proteus_config.Config().resources_directory}/ui/main.ui", self)
-        self.setWindowIcon(QIcon(f'{proteus_config.Config().resources_directory}/icons/proteus_logo.png'))
+        uic.loadUi(f"{config.Config().resources_directory}/ui/main.ui", self)
+        self.setWindowIcon(QIcon(f'{config.Config().resources_directory}/icons/proteus_logo.png'))
         self.window_logic = MainWindowLogic(self)
 
         # Controllers
@@ -72,7 +72,7 @@ class MainWindow(QMainWindow):
         # because the window title is changed to the pattern 
         # "Proteus - 'PROJECTNAME'"when the project is loaded.
         if (self.windowTitle().startswith('Proteus - ')):
-            if(not SaveMachine().all_states_clean()):
+            if(self.projectController.project.state != ProteusState.CLEAN):
                 close = QMessageBox.question(self,
                                             trans("QUIT"),
                                             trans("If you leave before saving, your changes will be lost."),

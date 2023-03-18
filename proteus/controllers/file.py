@@ -11,10 +11,7 @@ import pathlib
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget
 from proteus.model.archetype_manager import ArchetypeManager
 from proteus.model.archetype_proxys import ProjectArchetypeProxy
-from proteus.model.object import Object
 from proteus.model.project import Project
-import proteus.utils.config as config
-import proteus.utils.persistence as persistence
 from proteus.view.widgets.project_dialog import ProjectDialog
 from .base import Controller
 
