@@ -5,26 +5,20 @@
 # Version: 1.0.0
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
-import copy
+
 from functools import partial
-import shortuuid
 from PyQt5.QtCore import (Qt, QByteArray, QDataStream, QIODevice, QPoint,
                           QModelIndex)
 from PyQt5.QtGui import (QDrag, QIcon)
 from PyQt5.QtWidgets import (QTreeWidget, QMenu, QTreeWidgetItem, QMessageBox)
-from proteus.controllers.save_state_machine import SaveMachine
 from proteus.model import PROTEUS_ANY
 from proteus.model.object import Object
 from proteus.model.project import Project
-from proteus.utils.model.traces_logic import TraceLogic
-from .nodes_utils import rename_children_ids_from_node
 from .qundo_commands import CreateDocument
 from proteus.utils.model.qundo_commands import CreateObject
 from proteus.view.widgets.properties import PropertyDialog
 from proteus.utils.model.qundo_commands import DeleteObject, DeleteDocument, MoveNode
-import proteus.utils.config as config 
-from proteus.controllers.incoming_traces import IncomingTraces
-from proteus.view.widgets.traces import DeleteObjectWithTraces
+import proteus.config as config 
 import proteus
 
 class TreeLogic():
@@ -249,7 +243,7 @@ class TreeLogic():
         klass = obj_classes[len(obj_classes) - 1]
 
         child_item = QTreeWidgetItem(parent, [name])
-        child_item.setIcon(0, QIcon(f"{config.CONFIG_FOLDER}/assets/icons/{klass}.svg"))
+        child_item.setIcon(0, QIcon(f"{config.Config().resources_directory}/assets/icons/{klass}.svg"))
         child_item.setData(0, Qt.UserRole, child)
         child_item.setExpanded(True)
         return child_item

@@ -18,11 +18,10 @@ from pathlib import Path
 
 import proteus
 import sys
-from proteus.config import Config as ProteusConfig
+from proteus.config import Config
 from PyQt5.QtCore import (QTranslator, QSettings)
-from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication
-from proteus.utils.config import CONFIG_FOLDER, PARENT_FOLDER
+import proteus.config as config
 from proteus.view.main_window import MainWindow
 
 # --------------------------------------------------------------------------
@@ -38,7 +37,7 @@ class ProteusApplication:
         """
         It initializes the PROTEUS application.
         """
-        self.config : ProteusConfig = ProteusConfig()
+        self.config : Config = Config()
 
     def run(self) -> int:
         """
@@ -69,10 +68,8 @@ class ProteusApplication:
         language = settings.value("language", "en_EN")
         translation = f"{language}.qm"
         translator = QTranslator()
-        translator.load(translation, f"{CONFIG_FOLDER}/i18n/")
+        translator.load(translation, f"{config.Config().resources_directory}/i18n/")
         app.installTranslator(translator)
-
-        app.setWindowIcon(QIcon(f'{PARENT_FOLDER}/icons/proteus_logo.png'))
 
         main_window = MainWindow()
         main_window.resize(1024, 768)

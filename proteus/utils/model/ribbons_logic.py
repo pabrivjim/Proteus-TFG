@@ -10,7 +10,7 @@ from PyQt5.QtGui import (QIcon)
 from PyQt5.QtWidgets import (QToolButton)
 from proteus.model.archetype_manager import ArchetypeManager
 from proteus.model.archetype_proxys import ObjectArchetypeProxy
-from proteus.utils.config import CONFIG_FOLDER 
+import proteus.config as config
 from proteus.utils.i18n import trans
 import proteus
 
@@ -45,7 +45,7 @@ class RibbonsLogic():
             for archetype in group_archetypes:
                 archetype_id = archetype.id
                 archetype_type = trans(archetype.classes)
-                icon_path = f"{CONFIG_FOLDER}/assets/icons/{archetype.classes}.svg"
+                icon_path = f"{config.Config().resources_directory}/assets/icons/{archetype.classes}.svg"
                 tool_button = QToolButton()
                 tool_button.setText(archetype_type)
                 tool_button.setToolTip(archetype_type)

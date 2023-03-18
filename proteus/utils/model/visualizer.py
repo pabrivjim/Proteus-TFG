@@ -11,14 +11,16 @@ from os.path import abspath, dirname, join
 import pathlib
 from lxml import etree as ET
 import markdown
-from PyQt5 import QtWebEngineWidgets, QtWidgets, QtCore
+# import views.py
+from proteus.controllers.views import load_views
+from PyQt5 import QtWebEngineWidgets, QtCore
 from PyQt5.QtCore import QUrl, pyqtSignal, QEventLoop
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from lxml import etree
 from proteus.model.object import Object
 
 from proteus.model.project import Project
-from ..config import CONFIG_FOLDER, Config
+import proteus.config as proteus_config
 import proteus
 import os
 
@@ -93,7 +95,7 @@ def loadCSS(view: QWebEngineView, path, name, counter):
     return counter
 
 
-views = Config.load_views()
+views =  load_views()
 
 
 class Visualizer(QWebEngineView):
@@ -227,7 +229,7 @@ class Visualizer(QWebEngineView):
                 new_dom = transform(xml)
                 print(new_dom)
                 super().setHtml(etree.tostring(new_dom).decode())
-                css_stylesheet_path = pathlib.Path(f"{CONFIG_FOLDER}/views/rem/main_style.css").resolve()
+                css_stylesheet_path = pathlib.Path(f"{proteus_config.Config().resources_directory}/views/rem/main_style.css").resolve()
 
                 loadCSS(super(), str(css_stylesheet_path), "script1", 0)
             except Exception as e:

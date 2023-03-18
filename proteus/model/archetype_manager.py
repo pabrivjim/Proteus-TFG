@@ -247,11 +247,13 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_project_archetypes( cls ) -> list:
+    def load_project_archetypes( cls ) -> dict:
         """
-        Method that loads the project archetypes.
-        :returns: A list of ProjectArchetypeProxy objects.
-        :rtype: list[ProjectArchetypeProxy]
+        Method that loads the project archetypes. The reason why a dict with key value is retun,
+        where the key is the name of the project folder, is because you need to know which project it is,
+        if you don't use a dict and if you use a list you would need to iterate through all its values.
+        :returns: A dict of project folder name and ProjectArchetypeProxy objects.
+        :rtype: dict[str, ProjectArchetypeProxy]
         """
         log.info('ArchetypeManager - load project archetypes')
         # Build archetypes directory name from archetype type (project)
@@ -265,7 +267,7 @@ class ArchetypeManager:
         
         # Result as a list of pairs (path,name) <-- is that enough?
         # TODO: check the possibility of using proxy classes
-        result : list [ProjectArchetypeProxy] = []
+        result : dict[str, ProjectArchetypeProxy] = dict ()
 
         # For each subdirectory
         for subdir in subdirs:
@@ -284,10 +286,10 @@ class ArchetypeManager:
                 archetype_file_path = join(subdir_path, archetype_file)
                 
                 # We parse the path into lxml element
-                subdir : ET.Element = ET.parse(archetype_file_path)
+                file_subdir : ET.Element = ET.parse(archetype_file_path)
 
                 # We get the root
-                root = subdir.getroot()
+                root = file_subdir.getroot()
 
                 # Get the id
                 id : str = root.attrib["id"]
@@ -304,7 +306,7 @@ class ArchetypeManager:
                     property_name : str = property.name
                     if(property_name in PROJECT_PROPERTIES_TO_SAVE):
                         project_dicc[property_name] = property.value
-            result.append(ProjectArchetypeProxy(project_dicc))
+            result[subdir] = ProjectArchetypeProxy(project_dicc)
         return result
 
 

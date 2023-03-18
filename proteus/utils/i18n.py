@@ -2,10 +2,10 @@ from os.path import join, dirname
 import yaml
 # from PyQt5.QtCore import QSettings
 import proteus
+import proteus.config as config
 
 CACHED_TRANS = None
-CURRENT_FOLDER = dirname(dirname(__file__))
-CONFIG_FOLDER = join(CURRENT_FOLDER, 'resources/config')
+
 
 
 def get_trans_dict(lang: str) -> dict:
@@ -16,7 +16,7 @@ def get_trans_dict(lang: str) -> dict:
     global CACHED_TRANS
     if CACHED_TRANS is None:
         try:
-            with open(join(CONFIG_FOLDER, "i18n", lang) + ".yaml", encoding='utf8') as file:
+            with open(join(config.Config().resources_directory, "i18n", lang) + ".yaml", encoding='utf8') as file:
                 CACHED_TRANS = yaml.load(file, Loader=yaml.FullLoader)
         except (Exception,):
             CACHED_TRANS = {}

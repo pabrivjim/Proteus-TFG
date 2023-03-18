@@ -9,7 +9,7 @@ from os.path import normpath, expanduser
 from PyQt5.QtCore import (QCoreApplication, QFile, QSettings, QTextStream,
                           QTranslator)
 from PyQt5.QtWidgets import (QMainWindow, QDialog)
-import proteus.utils.config as config 
+import proteus.config as config
 from proteus.utils.loader import resource_path
 from PyQt5 import uic
 import proteus
@@ -50,7 +50,7 @@ class Preferences:
         app = Preferences.get_app_instance()
         translation = "%s.qm" % language
         translator = QTranslator()
-        translator.load(translation, f"{config.CONFIG_FOLDER}/i18n/")
+        translator.load(translation, f"{config.Config().resources_directory}/i18n/")
         app.installTranslator(translator)
 
     @staticmethod
@@ -82,7 +82,7 @@ class PreferencesDialog(QDialog):
     def __init__(self, parent):
         proteus.logger.info('Init PreferencesDialog')
         super(PreferencesDialog, self).__init__(parent)
-        uic.loadUi("proteus/resources/ui/preferences.ui", self)
+        uic.loadUi(f"{config.Config().resources_directory}/ui/preferences.ui", self)
 
         self.load_preferences()
         self.accepted.connect(self.update_preferences)

@@ -6,7 +6,7 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from lxml import etree as ET
-import proteus.utils.config as config 
+import proteus.config as config
 import proteus
 
 class ProjectDialogLogic():
@@ -40,7 +40,7 @@ class ProjectDialogLogic():
         """
         proteus.logger.info('ProjectDialogLogic - change archetype')
         
-        project_path = f"{config.ARCHETYPES_FOLDER}/projects/{archetype}/proteus.xml"
+        project_path = f"{config.Config().archetypes_directory}/projects/{archetype}/proteus.xml"
         element = ET.parse(project_path).getroot()
         # Load properties to get name FIXME
         project_properties = {}

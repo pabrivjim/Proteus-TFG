@@ -15,10 +15,9 @@ import os
 from proteus.controllers.save_state_machine import SaveMachine, set_all_states_clean
 from proteus.controllers.save_state_machine import States
 from proteus.controllers.incoming_traces import IncomingTraces
-from proteus.utils.model.nodes_utils import get_node
 from .converter import dict2xml, xml2dict
 import proteus
-import proteus.utils.config as config
+import proteus.config as config
 import shutil
 
 def load_objects(path: str, clean=False) -> dict:
@@ -185,7 +184,7 @@ def clone_project_archetype(filename: str, archetype: str) -> None:
     print("path: ",path)
 
     # Directory where is the archetype
-    archetype_dir = f"{config.ARCHETYPES_FOLDER}/projects/{archetype}"
+    archetype_dir = f"{config.Config().archetypes_directory}/projects/{archetype}"
 
     # Copy the archetype to the project directory
     original = archetype_dir + "/project.xml"

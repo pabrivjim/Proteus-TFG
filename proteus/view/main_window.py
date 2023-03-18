@@ -8,15 +8,16 @@
 from PyQt5.QtCore import (Qt, pyqtSignal, pyqtSlot)
 from PyQt5.QtGui import (QIcon)
 from PyQt5.QtWidgets import (QMainWindow, QUndoStack, QDockWidget, QWidget,
-                             QTabWidget, QVBoxLayout, QComboBox, QMessageBox, QStyle)
+                             QTabWidget, QVBoxLayout, QComboBox, QMessageBox)
 
 from proteus.controllers import (FileController, ViewsController,
                          ProjectController)
 from PyQt5 import uic
+from proteus.controllers.views import load_views
 from proteus.controllers.save_state_machine import SaveMachine
 from proteus.model.object import Object
 from proteus.utils.model.main_window_logic import MainWindowLogic
-from proteus.utils.config import Config, PARENT_FOLDER
+import proteus.config as proteus_config
 from proteus.utils.i18n import trans
 from proteus.utils.model.visualizer import Visualizer
 from proteus.utils.model.preferences import Preferences, PreferencesDialog
@@ -35,9 +36,8 @@ class MainWindow(QMainWindow):
     def __init__(self, project_path=None, project_title=None, clean=False):
         proteus.logger.info('Init main window')
         super().__init__()
-        uic.loadUi("proteus/resources/ui/main.ui", self)
-        
-        self.setWindowIcon(QIcon(f'{PARENT_FOLDER}/resources/icons/proteus_logo.png'))
+        uic.loadUi(f"{proteus_config.Config().resources_directory}/ui/main.ui", self)
+        self.setWindowIcon(QIcon(f'{proteus_config.Config().resources_directory}/icons/proteus_logo.png'))
         self.window_logic = MainWindowLogic(self)
 
         # Controllers
@@ -155,7 +155,7 @@ class MainWindow(QMainWindow):
         tab.setMovable(True)
 
         self.visualizers = []
-        self.views2 = Config.load_views()
+        self.views2 = load_views()
 
         for view in self.views2:
             visualizer = Visualizer()

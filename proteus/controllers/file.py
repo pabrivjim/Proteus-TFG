@@ -78,14 +78,14 @@ class FileController(Controller):
             self.load_project(filename)
             project_title = self.app.projectController.project.get_property("name").value
             self.app.setWindowTitle("Proteus - " + project_title)
-            
-            print(self.app.windowTitle(), "\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     
     def req_save_new_project(self, archetype) -> None:
         """ 
         Method that request path to save a new project.
         """
         projects = ArchetypeManager.load_project_archetypes()
+        print(projects)
+        print(archetype)
         archetype_proxy : ProjectArchetypeProxy = projects[archetype]
         selected_files = Dialog.request(
             self.app, "Save file", "application/xml", "xml",
@@ -116,7 +116,7 @@ class FileController(Controller):
         project: Project = Project.load(pathlib.Path(filename).parent)
         self.app.projectController.project = project
         self.app.create_dock_windows()
-
+        
         self.app.projectController.saved_command = self.app.undoStack.index()
         self.app.projectController.selected_document_index = 0
 

@@ -8,7 +8,7 @@
 from PyQt5.QtWidgets import QDialog
 from proteus.model.archetype_manager import ArchetypeManager
 from proteus.utils.model.document_dialog_logic import DocumentDialogLogic
-import proteus.utils.config as config
+import proteus.config as config
 from PyQt5 import uic
 import proteus
 
@@ -20,7 +20,7 @@ class DocumentDialog(QDialog):
     def __init__(self, parent):
         proteus.logger.info('Init DocumentDialog')
         super().__init__(parent)
-        uic.loadUi(f"{config.RESOURCES_FOLDER}/ui/new.ui", self)
+        uic.loadUi(f"{config.Config().resources_directory}/ui/new.ui", self)
         self.setWindowTitle("New document")
 
         # Get dict from project file name and DocumentArcheTypeProxy

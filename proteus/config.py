@@ -75,6 +75,8 @@ class Config:
         :returns: ConfigParser
         :rtype: ConfigParser
         """
+
+        print(Path.cwd())
         
         assert Path(CONFIG_FILE).exists(), \
             f"PROTEUS configuration file {CONFIG_FILE} does not exist! {Path(CONFIG_FILE).absolute()}"

@@ -12,9 +12,9 @@ import proteus
 from PyQt5.QtGui import (QIcon)
 from PyQt5.QtCore import (Qt)
 from PyQt5.QtWidgets import QListWidgetItem, QMessageBox
-import proteus.utils.config as config
+import proteus.config as config
 from proteus.utils.i18n import trans
-from os.path import join, dirname
+from os.path import join
 import yaml
 
 class TraceLogic():
@@ -116,7 +116,7 @@ class TraceLogic():
             item = QListWidgetItem(item_name)
             item.setData(Qt.UserRole, obj)
             item.setIcon(
-                QIcon(f"{config.CONFIG_FOLDER}/assets/icons/{klass}.svg"))
+                QIcon(f"{config.Config().resources_directory}/assets/icons/{klass}.svg"))
             self.parent.object_list_widget.addItem(item)
     
     @staticmethod
@@ -126,7 +126,7 @@ class TraceLogic():
         """
 
         #TODO archivo de configuración
-        with open(join(config.CONFIG_FOLDER, "traces/types") + ".yaml", encoding='utf8') as file:
+        with open(join(config.Config().resources_directory, "traces/types") + ".yaml", encoding='utf8') as file:
             types = yaml.load(file, Loader=yaml.FullLoader)
         return(types)
 

@@ -80,7 +80,6 @@ def test_time_properties(name, category, value, expected_value, new_value, expec
     """
     # Create property from XML element
     property_tag = TIME_PROPERTY_TAG
-    print("HERE")
     (property, name, category) = fixtures.create_property(property_tag, name, category, value)
 
     # Create a time from the expected_value string

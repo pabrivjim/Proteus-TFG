@@ -9,7 +9,7 @@ from PyQt5.QtCore import (Qt)
 from PyQt5.QtWidgets import (QVBoxLayout, QComboBox, QListWidget,
                              QDialogButtonBox, QLabel, QDialog)
 from PyQt5.QtGui import QIcon
-import proteus.utils.config as config
+import proteus.config as config
 import proteus.utils.persistence as persistance
 from proteus.utils.i18n import trans
 import proteus.utils.model.traces_logic as trl
@@ -90,4 +90,4 @@ class DeleteObjectWithTraces(QDialog):
         self.layout.addWidget(message)
         self.layout.addWidget(self.buttonBox)
         self.setLayout(self.layout)
-        self.setWindowIcon(QIcon(f'{config.PARENT_FOLDER}/resources/icons/warning.svg'))
+        self.setWindowIcon(QIcon(f'{config.Config().resources_directory}/icons/warning.svg'))
