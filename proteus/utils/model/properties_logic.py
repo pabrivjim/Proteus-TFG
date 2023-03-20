@@ -22,21 +22,8 @@ class PropertiesLogic():
     def __init__(self, parent) -> None:
         proteus.logger.info('Init PropertiesLogic')
         self.parent = parent
-        self.obj = self.parent.obj
-    
-    def load_traces(self) -> None:
-        """
-        Method that load the traces
-        """
-        proteus.logger.info('PropertiesLogic - load traces')
-        
-        self.traces_widget = self.parent.traces_widget
         self.updated_item: Object = self.parent.updated_obj
-        # print(self.parent)
-        # print(self.parent.parent().project.data)
-        self.traces_widget.clear()
-        self.traces_widget.setHeaderItem(QTreeWidgetItem(["Name", "Trace type"]))
-        
+        self.obj = self.parent.obj        
 
     def update_property(self, prop, value) -> None:
         """
@@ -44,7 +31,7 @@ class PropertiesLogic():
         """
         proteus.logger.info('PropertiesLogic - update property')
         app = self.parent.parentWidget()
-        new_prop = app.projectController.project.get_property(prop).clone(value)
+        new_prop : Property = app.projectController.project.get_property(prop).clone(value)
         self.updated_item.set_property(new_prop)
 
     def save_changes(self) -> None:
@@ -68,6 +55,7 @@ class PropertiesLogic():
         """
         Method that load the widgets.
         """
+        proteus.logger.info('PropertiesLogic - load widgets')
         categories = {}
         widgets = {}
         name: str
@@ -79,7 +67,7 @@ class PropertiesLogic():
                 categories[category][name] = prop
             else:
                 categories[category] = {name: prop}
-
+                
         for category, properties in categories.items():
             widget = QWidget()
             layout = QVBoxLayout()
@@ -101,5 +89,4 @@ class PropertiesLogic():
             layout.addStretch(1)
             widget.setLayout(layout)
             self.parent.tab_widget.addTab(widget, trans(category))
-        
         return widgets

@@ -15,7 +15,6 @@ from PyQt5.QtWidgets import (QWidget, QPushButton, QVBoxLayout,
                              QDialog)
 from proteus.utils.model.properties_logic import PropertiesLogic
 from proteus.utils.i18n import trans
-import proteus.utils.model.traces_logic as traces
 from proteus.view.widgets.markdown import MarkdownWidget
 import proteus
 
@@ -29,10 +28,8 @@ class PropertyDialog(QDialog):
         super(PropertyDialog, self).__init__(parent)
         self.setWindowTitle(trans("edit properties"))
         self.obj = obj
-        self.properties_logic = PropertiesLogic(self)
         self.updated_obj = copy.deepcopy(self.obj)
-        self.traces_widget = QTreeWidget()
-        self.traces_widget.currentItem()
+        self.properties_logic = PropertiesLogic(self)
         self.init_ui()
 
     def load_tab_widget(self) -> None:
@@ -65,30 +62,12 @@ class PropertyDialog(QDialog):
             elif hasattr(widgets[key], "textChanged"):
                 widgets[key].textChanged.connect(partial(self.properties_logic.update_property, key))
 
-        # Trace widget todo refactor
-        trace_widget = QWidget()
-        add_button = QPushButton("Add trace")
-        self.remove_button = QPushButton("Remove trace")
-
-        #BUG when open project
-        self.remove_button.setDisabled(True)
-        add_button.clicked.connect(lambda: traces.TraceLogic.open(self))
-        self.remove_button.clicked.connect(lambda: traces.TraceLogic.remove(self))
-
-        self.properties_logic.load_traces()
-
         layout = QVBoxLayout()
         button_widget = QWidget()
         button_layout = QHBoxLayout()
 
-        layout.addWidget(self.traces_widget)
         button_widget.setLayout(button_layout)
         layout.addWidget(button_widget)
-        button_layout.addWidget(add_button)
-        button_layout.addWidget(self.remove_button)
-        trace_widget.setLayout(layout)
-
-        self.tab_widget.addTab(trace_widget, trans("traces"))
 
         return self.tab_widget
 
@@ -121,10 +100,3 @@ class PropertyDialog(QDialog):
         layout.addWidget(vw)
 
         self.setLayout(layout)
-
-    def load_traces(self):
-        """
-        Load traces in the tree widget.
-        """
-        proteus.logger.info('PropertyDialog - load traces')
-        self.properties_logic.load_traces()

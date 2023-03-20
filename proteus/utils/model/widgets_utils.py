@@ -170,9 +170,6 @@ def class_list_widget(parent: QWidget, obj: ClassListProperty) -> QListWidget:
     w = QListWidget(parent)
     w.setSelectionMode(2)
     return w
-    
-# Variable to save the instance of the MarkdownWidgets
-_markdown_widgets = {}
 
 def markdown_widget(parent: QWidget, obj: MarkdownProperty):
     """
@@ -182,12 +179,7 @@ def markdown_widget(parent: QWidget, obj: MarkdownProperty):
     :param obj: Property dict.
     :return: MarkdownWidget widget.
     """
-    if (obj.name in _markdown_widgets):
-        return _markdown_widgets[obj.name]
-    else:
-        _markdown_widgets[obj.name] = properties.MarkdownWidget(parent, obj)
-        return _markdown_widgets[obj.name]
-# Todo refactor
+    return properties.MarkdownWidget(parent, obj)
 
 
 def get_widget_for_property(object_property, parent=None):

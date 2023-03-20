@@ -52,12 +52,6 @@ def xml2dict(element: ET.Element) -> dict:
         if prop.tag == "enumProperty":
             properties[name]["choices"] = prop.attrib.get("choices", "").split()
 
-    traces = []
-    if len(element.find("traces")) or element.find("traces") is not None:
-        # traces = [{"id": trace.attrib["id"],"name": trace.attrib["name"], "type": trace.attrib["type"], "klass": trace.attrib["klass"]} for trace in element.find("traces")]
-        traces = [{"id": trace.attrib["id"], "type": trace.attrib["type"]} for trace in element.find("traces")]
-
-
     children = []
     if len(element.find("children")) or element.find("children") is not None:
         children = [child.attrib["id"] for child in element.find("children")]
@@ -67,6 +61,5 @@ def xml2dict(element: ET.Element) -> dict:
         "classes": classes,
         "acceptedChildren": accepted_children,
         "properties": properties,
-        "traces": traces,
         "children": children
     }

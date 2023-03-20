@@ -23,7 +23,7 @@ import proteus
 
 class TreeLogic():
     """
-    Class that contains the trace logic.
+    Class that contains the tree logic.
     """
 
     def __init__(self, docInspector, parent, dragged) -> None:
