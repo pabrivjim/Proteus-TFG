@@ -16,36 +16,6 @@ from proteus.utils.model.qundo_commands import CreateDocument
 import proteus.utils.persistence as persistence
 import proteus
 
-def load_objects(path):
-    """
-    Method that loads the objects.
-    """
-    proteus.logger.info('document dialog logic - load objects')
-    res = {}
-    for obj in [f for f in listdir(path) if isfile(join(path, f))]:
-        
-        o = ET.parse(join(path, obj))
-        o = persistence.xml2dict(o.getroot())
-        res[o["id"]] = o
-    return res
-# TODO DELETE, IS IN CREATEDOCUMENT
-# def change_combo_box(app):
-#     """
-#     This function changes the combo box of the document dialog.
-#     And updates the combobox with the new documents.
-#     """
-#     proteus.logger.info('document dialog logic - change combo box')
-#     project = app.projectController.project
-#     app.document_combobox.clear()
-#     document: Object
-#     for document in project.documents.values():
-#         name = document.get_property("name").value
-#         app.document_combobox.addItem(name, document)
-#     app.document_combobox.currentIndexChanged.connect(
-#         lambda index: app.projectController.change_document_index(index=index))
-#     app.document_combobox.currentIndexChanged.connect(lambda index: app.projectController.change_document(document = app.document_combobox.itemData(index))) 
-#     app.document_combobox.setCurrentIndex(len(project.documents) - 1)
-
 class DocumentDialogLogic():
     """
     Class that contains the logic of the document dialog.
@@ -92,7 +62,6 @@ class DocumentDialogLogic():
         document_description = document[archetype].description
         app = self.parent.parentWidget()
         project: Project  = app.projectController.project
-        print(project.documents)
         self.parent.archetype_description.setText(document_description)
 
 

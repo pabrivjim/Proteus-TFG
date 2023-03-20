@@ -8,6 +8,7 @@
 from lxml import etree as ET
 import proteus.config as config
 import proteus
+from proteus.model.archetype_manager import ArchetypeManager
 
 class ProjectDialogLogic():
     """
@@ -39,21 +40,5 @@ class ProjectDialogLogic():
         :param archetype: archetype index.
         """
         proteus.logger.info('ProjectDialogLogic - change archetype')
-        
-        project_path = f"{config.Config().archetypes_directory}/projects/{archetype}/proteus.xml"
-        element = ET.parse(project_path).getroot()
-        # Load properties to get name FIXME
-        project_properties = {}
-        for prop in element.find("properties"):
-            name = prop.attrib["name"]
-            value = prop.text
-            project_properties[name] = {"type": prop.tag, "value": value}
-
-            if "category" in prop.attrib:
-                project_properties[name]["category"] = prop.attrib["category"]
-
-            if prop.tag == "enumProperty":
-                project_properties[name]["choices"] = prop.attrib.get("choices", "").split()
-
-        project_description = project_properties.get("description", {}).get("value", "")
+        project_description = ArchetypeManager.load_project_archetypes()[archetype].description
         self.parent.archetype_description.setText(project_description)
