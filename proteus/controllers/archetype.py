@@ -6,7 +6,7 @@ Proteus - Archetype Controller
 # Description: Contains the ArchetypeController which which calls the Archetype
 #              Manager, passing the Custom Folder and if there is any error
 #              then the normal archetype folder is passed instead as parameter.
-# Date: 
+# Date: 22/03/2023
 # Version: 1.0.0
 # Author: Pablo
 # ==========================================================================
@@ -34,13 +34,13 @@ class ArchetypeController(Controller):
         Get the object archetypes.
         """
         return self._get_archetypes(self._load_object_archetypes)
-    
+
     def get_document_archetypes(self) -> dict:
         """
         Get the document archetypes.
         """
         return self._get_archetypes(self._load_document_archetypes)
-    
+   
     def get_project_archetypes(self) -> dict:
         """
         Get the project archetypes.

@@ -17,7 +17,6 @@ It initializes the config paths for PROTEUS application.
 
 from pathlib import Path
 from configparser import ConfigParser
-import sys
 
 # --------------------------------------------------------------------------
 # Project specific imports
@@ -29,7 +28,7 @@ import proteus
 # Constant declarations for PROTEUS configuration file keys
 # --------------------------------------------------------------------------
 
-CONFIG_FILE          : str = 'proteus2.ini'
+CONFIG_FILE          : str = 'proteus.ini'
 DIRECTORIES          : str = 'directories'
 BASE_DIRECTORY       : str = 'base_directory'
 ARCHETYPES_DIRECTORY : str = 'archetypes_directory'
@@ -65,13 +64,13 @@ class Config:
         # Application configuration
         self.config : ConfigParser = self._create_config_parser()
         self.directories = self.config[DIRECTORIES]
-
+        
         # Application directories
         self.base_directory       : Path = Path.cwd() / self.directories[BASE_DIRECTORY]
         self.resources_directory  : Path = Path.cwd() / self.directories[RESOURCES_DIRECTORY]
         self.icons_directory      : Path = self.resources_directory / self.directories[ICONS_DIRECTORY]
         self.archetypes_directory : Path = Path.cwd() / self.directories[ARCHETYPES_DIRECTORY]
-        
+        self.archetypes_custom_directory : Path = None
         # Custom Archetypes directory
         if(ARCHETYPES_CUSTOM_DIRECTORY in self.directories):
             self.archetypes_custom_directory : Path = Path.cwd() / self.directories[ARCHETYPES_CUSTOM_DIRECTORY]

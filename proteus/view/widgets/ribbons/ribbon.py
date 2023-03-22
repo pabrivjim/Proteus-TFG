@@ -57,8 +57,7 @@ class Ribbon:
         self.redo_tb = QToolButton()
 
         # Settings
-        self.theme_tb = settings.Settings().getButton()
-        self.language_tb = QToolButton()
+        self.settings_tb = settings.Settings().getButton()
 
     
     def connect_buttons(self):
@@ -87,7 +86,7 @@ class Ribbon:
         self.delete_tb.clicked.connect(self.parent.projectController.remove_document)
 
         # When Change Theme Button is clicked, open the change theme dialog.
-        self.theme_tb.clicked.connect(self.parent.preferences)
+        self.settings_tb.clicked.connect(self.parent.preferences)
 
     def tabs_add_button(self):
         """
@@ -114,21 +113,14 @@ class Ribbon:
         edit_group.add_button(self.undo_tb)
         edit_group.add_button(self.redo_tb)
 
-        
         # Archetypes
         self.ribbons_logic = RibbonsLogic(self)
         self.ribbons_logic.set_archetypes()
-        settings = QSettings("Proteus", "SettingsDesktop")
-        print("ES VERDAD:")
-        print(settings.value(config.ERROR_ARCHETYPES_CUSTOM_DIR) == True)
-        if(settings.value(config.ERROR_ARCHETYPES_CUSTOM_DIR) == True):
-            print("")
 
         # Settings Tab
         tab_content = self.add_tab(trans("Settings"))
         settings_group = tab_content.add_group(trans("settings"))
-        settings_group.add_button(self.theme_tb)
-        settings_group.add_button(self.language_tb)
+        settings_group.add_button(self.settings_tb)
 
     def add_tab(self, name: str) -> RibbonTabContent:
         """

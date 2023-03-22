@@ -24,10 +24,10 @@ class Settings():
         """
         proteus.logger.info('ChangeTheme Button - get button')
         
-        self.create_tb = QToolButton()
-        self.create_tb.setObjectName("Settings")
-        self.create_tb.setText(trans("Settings"))
-        self.create_tb.setToolTip(trans("Change settings"))
-        self.create_tb.setEnabled(True)
-        self.create_tb.setIcon(QIcon(resource_path("icons/settings.png")))
-        return self.create_tb
+        self.settings_tb = QToolButton()
+        self.settings_tb.setObjectName("Settings")
+        self.settings_tb.setText(trans("Settings"))
+        self.settings_tb.setToolTip(trans("Change settings"))
+        self.settings_tb.setEnabled(True)
+        self.settings_tb.setIcon(QIcon(resource_path("icons/settings.png")))
+        return self.settings_tb

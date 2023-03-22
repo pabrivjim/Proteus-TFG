@@ -43,7 +43,7 @@ log = logging.getLogger(__name__)
 # parámetros pasados al comienzo de la aplicación.
 
 CUSTOM_ARCHETYPES_FOLDER = config.Config().archetypes_custom_directory
-ARCHETYPES_FOLDER = config.Config().archetypes_directory    
+ARCHETYPES_FOLDER = config.Config().archetypes_directory
 PROJECT_PROPERTIES_TO_SAVE = ["name", "description", "author", "date"]
 DOCUMENT_PROPERTIES_TO_SAVE = ["name", "description", "author", "date"]
 
