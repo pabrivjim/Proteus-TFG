@@ -6,7 +6,6 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from PyQt5.QtWidgets import QDialog
-from proteus.model.archetype_manager import ArchetypeManager
 from proteus.utils.model.document_dialog_logic import DocumentDialogLogic
 import proteus.config as config
 from PyQt5 import uic
@@ -24,12 +23,12 @@ class DocumentDialog(QDialog):
         self.setWindowTitle("New document")
 
         # Get dict from project file name and DocumentArcheTypeProxy
-        archetypes = ArchetypeManager.load_document_archetypes()
+        self.document_archetypes = parent.archetype_controller.get_document_archetypes()
 
         self.document_logic = DocumentDialogLogic(self)
         
         #Here we get the names of the project from the dict keys, and add it to the combobox
-        list_keys = list(archetypes.keys())
+        list_keys = list(self.document_archetypes.keys())
         self.document_logic.change_archetype(list_keys[0])
         self.archetypes.addItems(list_keys)
         

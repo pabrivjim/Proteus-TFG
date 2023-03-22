@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (QMainWindow, QUndoStack, QDockWidget, QWidget,
 from proteus.controllers import (FileController, ViewsController,
                          ProjectController)
 from PyQt5 import uic
+from proteus.controllers.archetype import ArchetypeController
 from proteus.controllers.views import load_views
 from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
@@ -44,6 +45,7 @@ class MainWindow(QMainWindow):
         self.projectController = ProjectController(self)
         self.file = FileController(self)
         self.views = ViewsController(self)
+        self.archetype_controller = ArchetypeController(self)
 
         self.ribbon = self.load_ribbon()
         self.settings = Preferences.load_all(self)
@@ -187,4 +189,4 @@ class MainWindow(QMainWindow):
         """
         proteus.logger.info('Main Window - add object')
         
-        self.window_logic.add_object(obj)
+        self.window_logic.add_object(obj) 

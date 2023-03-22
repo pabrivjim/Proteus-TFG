@@ -80,9 +80,7 @@ class FileController(Controller):
         """ 
         Method that request path to save a new project.
         """
-        projects = ArchetypeManager.load_project_archetypes()
-        print(projects)
-        print(archetype)
+        projects = self.app.archetype_controller.get_project_archetypes()
         archetype_proxy : ProjectArchetypeProxy = projects[archetype]
         selected_files = Dialog.request(
             self.app, "Save file", "application/xml", "xml",

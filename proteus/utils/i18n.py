@@ -1,6 +1,6 @@
 from os.path import join, dirname
 import yaml
-# from PyQt5.QtCore import QSettings
+from PyQt5.QtCore import QSettings
 import proteus
 import proteus.config as config
 
@@ -29,6 +29,8 @@ def trans(key: str) -> str:
     Method that translate a string using the i18n files.
     """
     proteus.logger.info('i18n - trans')
-    # settings = QSettings("Proteus", "SettingsDesktop")
-    language = "es"  # settings.value("language", "es")
+    settings = QSettings("Proteus", "SettingsDesktop")
+    language = settings.value("language", "es")
+    # print(test)
+    # language = "es"  # settings.value("language", "es")
     return get_trans_dict(language).get(key, key)

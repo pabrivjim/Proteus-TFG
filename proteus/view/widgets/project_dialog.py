@@ -6,7 +6,6 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from PyQt5.QtWidgets import QDialog
-from proteus.model.archetype_manager import ArchetypeManager
 from proteus.utils.model.project_dialog_logic import ProjectDialogLogic
 import proteus.config as config
 from PyQt5 import uic
@@ -21,13 +20,14 @@ class ProjectDialog(QDialog):
         proteus.logger.info('Init ProjectDialog')
         super().__init__(parent)
         uic.loadUi('proteus/resources/ui/new.ui', self)
+        self.project_archetypes = parent.archetype_controller.get_project_archetypes()
         self.project_logic = ProjectDialogLogic(self)
-        archetypes = list(ArchetypeManager.load_project_archetypes().keys())
-        self.project_logic.change_archetype(archetypes[0])
-        self.archetypes.addItems(archetypes)
+        archetypes_list = list(self.project_archetypes.keys())
+        self.project_logic.change_archetype(archetypes_list[0])
+        self.archetypes.addItems(archetypes_list)
         self.archetypes.currentIndexChanged.connect(
-            lambda: self.project_logic.change_archetype(archetypes[self.archetypes.currentIndex()]))
+            lambda: self.project_logic.change_archetype(archetypes_list[self.archetypes.currentIndex()]))
         archetype_dir = f"{config.Config().archetypes_directory}/projects/"
         self.buttonBox.accepted.connect(
-            lambda: self.project_logic.create_project(archetype_dir + archetypes[self.archetypes.currentIndex()] + "/project.xml", self.archetypes.currentText()))
+            lambda: self.project_logic.create_project(archetype_dir + archetypes_list[self.archetypes.currentIndex()] + "/project.xml", self.archetypes.currentText()))
 

@@ -16,7 +16,7 @@ class ExportDialog(QDialog):
     """
 
     def __init__(self, parent):
-        proteus.logger.info('Init ProjectDialog')
+        proteus.logger.info('Init ExportDialog')
         super().__init__(parent)
         uic.loadUi(f"{config.Config().resources_directory}/ui/export.ui", self)
         self.types.addItems(["PDF", "HTML"])

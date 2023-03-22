@@ -83,3 +83,4 @@ class ProjectController(Controller):
     def export_project(self):
         dialog = ExportDialog(self.app)
         dialog.exec()
+    

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project id="QSDQUqqQh8NrCdrSL3QYVA">
   <properties>
-    <stringProperty name="name" category="general"><![CDATA[Proyecto Proteus]]></stringProperty>
-    <floatProperty name="version">0.1</floatProperty>
+    <stringProperty name="name" category="general"><![CDATA[Test]]></stringProperty>
+    <floatProperty name="version" category="general">0.1</floatProperty>
     <urlProperty name="google" category="general"><![CDATA[https://google.com]]></urlProperty>
     <dateProperty name="date" category="general">2022-08-10</dateProperty>
     <stringProperty name="author" category="general"><![CDATA[Pablo Rivera]]></stringProperty>
@@ -17,5 +17,6 @@
   <documents>
     <document id="3fKhMAkcEe2C"/>
     <document id="3fKhMAkcEe2D"/>
+    <document id="6LkpACknx6aw"/>
   </documents>
 </project>

@@ -8,10 +8,13 @@
 from os.path import normpath, expanduser
 from PyQt5.QtCore import (QCoreApplication, QFile, QSettings, QTextStream,
                           QTranslator)
-from PyQt5.QtWidgets import (QMainWindow, QDialog)
+from PyQt5.QtWidgets import (QMainWindow, QDialog, QMessageBox)
 import proteus.config as config
+from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
 from PyQt5 import uic
+from PyQt5.QtWidgets import QFileDialog
+from configparser import ConfigParser
 import proteus
 
 class Preferences:
@@ -64,7 +67,6 @@ class Preferences:
         proteus.logger.info('Preferences - load all')
         
         settings = QSettings("Proteus", "SettingsDesktop")
-
         theme = settings.value("theme", "light")
         Preferences.load_theme(main, theme)
 
@@ -83,9 +85,28 @@ class PreferencesDialog(QDialog):
         proteus.logger.info('Init PreferencesDialog')
         super(PreferencesDialog, self).__init__(parent)
         uic.loadUi(f"{config.Config().resources_directory}/ui/preferences.ui", self)
-
+        self.setWindowTitle(trans("Preferences"))
         self.load_preferences()
         self.accepted.connect(self.update_preferences)
+        self.toolButtonArchetypesPath.clicked.connect(self.select_archetypes_path)
+
+    def select_archetypes_path(self):
+        settings = self.parent().settings
+        if(settings.value("config_folder") != None):
+            dir = QFileDialog.getExistingDirectory(None, "Open Directory", settings.value("config_folder"), QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
+        else:
+            dir = QFileDialog.getExistingDirectory(None, "Open Directory", normpath(expanduser("~/Documents/Proteus")), QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
+        if (dir!= ""):
+            settings.setValue("config_folder", dir)
+            self.configPath.setText(dir)
+
+        
+        filename = str(config.Config().config_file)
+        parser = ConfigParser()
+        parser.read(filename)
+        parser.set(config.DIRECTORIES, config.ARCHETYPES_CUSTOM_DIRECTORY, dir)
+        with open(filename, 'w') as configfile:
+            parser.write(configfile)
 
     def load_preferences(self) -> None:
         """
@@ -101,9 +122,9 @@ class PreferencesDialog(QDialog):
 
         language = settings.value("language", "en_EN")
         self.comboBoxLanguage.setCurrentText(language)
-
-        config_folder = settings.value("config_folder", normpath(expanduser("~/Documents/Proteus")))
-        self.configPath.setText(config_folder)
+        if(settings.value("config_folder") == None):
+            settings.setValue("config_folder", normpath(expanduser("~/Documents/Proteus")))
+        self.configPath.setText(settings.value("config_folder"))
 
     def update_preferences(self) -> None:
         """
@@ -112,11 +133,20 @@ class PreferencesDialog(QDialog):
         proteus.logger.info('PreferencesDialog - update preferences')
         
         settings = self.parent().settings
-
+        print(settings.value("language", "en_EN"))
         theme = "dark" if self.radioButtonColorDark.isChecked() else "light"
         settings.setValue("theme", theme)
         Preferences.load_theme(self.parent(), theme)
+        settings.setValue("config_folder", self.configPath.text())
 
         language = self.comboBoxLanguage.currentText()
+
+        if (settings.value("language", "en_EN") != language):
+            QMessageBox.about(self,
+                                            trans("Update language"),
+                                            trans("The language will be updated after restarting the application."))
         settings.setValue("language", language)
         Preferences.load_language(self.parent(), language)
+        
+
+

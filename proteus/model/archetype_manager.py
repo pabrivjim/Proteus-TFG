@@ -21,7 +21,7 @@ import shortuuid
 from enum import Enum, auto
 from os import listdir
 import os
-from os.path import join, dirname, abspath, isfile, isdir, exists
+from os.path import join, isfile, isdir
 from os import pardir
 import shutil
 
@@ -35,14 +35,15 @@ from proteus.model import PROPERTIES_TAG
 from proteus.model.archetype_proxys import DocumentArchetypeProxy, ObjectArchetypeProxy, ProjectArchetypeProxy
 from proteus.model.property import Property, PropertyFactory
 
+
 # logging configuration
 log = logging.getLogger(__name__)
 
 # TODO: estos directorios habrá que establecerlos por configuración o como
 # parámetros pasados al comienzo de la aplicación.
 
-
-ARCHETYPES_FOLDER = config.Config().archetypes_directory
+CUSTOM_ARCHETYPES_FOLDER = config.Config().archetypes_custom_directory
+ARCHETYPES_FOLDER = config.Config().archetypes_directory    
 PROJECT_PROPERTIES_TO_SAVE = ["name", "description", "author", "date"]
 DOCUMENT_PROPERTIES_TO_SAVE = ["name", "description", "author", "date"]
 
@@ -95,7 +96,7 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_object_archetypes( cls ) -> dict:
+    def load_object_archetypes( cls, folder =  ARCHETYPES_FOLDER) -> dict:
         """
         Method that loads the object archetypes. The reason why a dict with key value is retun,
         where the key is the name of the subdir folder name, is because you need to know which object it is,
@@ -105,7 +106,7 @@ class ArchetypeManager:
         """
         log.info('ArchetypeManager - load object archetypes')
         # Build archetypes directory name from archetype type
-        archetypes_dir : str = join(ARCHETYPES_FOLDER, ArchetypesType.OBJECTS)
+        archetypes_dir : str = join(folder, ArchetypesType.OBJECTS)
 
         # Scan all the subdirectories in the archetypes directory (one depth level only)
         # TODO: this means that ALL archetypes must be in one subdirectory, i.e., that
@@ -159,7 +160,7 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_document_archetypes( cls ) -> dict:
+    def load_document_archetypes( cls, folder =  ARCHETYPES_FOLDER ) -> dict:
         """
         Method that loads the document archetypes. The reason why a dict with key value is retun,
         where the key is the name of the document folder, is because you need to know which document it is,
@@ -169,7 +170,7 @@ class ArchetypeManager:
         """
         log.info('ArchetypeManager - load document archetypes')
         # Build archetypes directory name from archetype type
-        archetypes_dir : str = join(ARCHETYPES_FOLDER, ArchetypesType.DOCUMENTS)
+        archetypes_dir : str = join(folder, ArchetypesType.DOCUMENTS)
 
         # Scan all the subdirectories in the archetypes directory (one depth level only)
         # TODO: this means that ALL archetypes must be in one subdirectory, i.e., that
@@ -247,7 +248,7 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_project_archetypes( cls ) -> dict:
+    def load_project_archetypes( cls, folder =  ARCHETYPES_FOLDER ) -> dict:
         """
         Method that loads the project archetypes. The reason why a dict with key value is retun,
         where the key is the name of the project folder, is because you need to know which project it is,
@@ -257,7 +258,7 @@ class ArchetypeManager:
         """
         log.info('ArchetypeManager - load project archetypes')
         # Build archetypes directory name from archetype type (project)
-        archetypes_dir : str = join(ARCHETYPES_FOLDER, ArchetypesType.PROJECTS)
+        archetypes_dir : str = join(folder, ArchetypesType.PROJECTS)
 
         # Scan all the subdirectories in the archetypes directory (one depth level only)
         # TODO: this means that ALL archetypes must be in one subdirectory, i.e., that

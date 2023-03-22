@@ -6,13 +6,16 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from functools import partial
+import sys
 from PyQt5.QtWidgets import (QWidget, QTabWidget,
                              QToolButton)
+from proteus import config
 from proteus.utils.i18n import trans
 from proteus.view.buttons import (open_project, new_project, save_project,
                           edit_project, create_document, delete_document,
-                          export_document)
+                          export_document, settings)
 from .ribbon_tab_content import RibbonTabContent
+from PyQt5.QtCore import QSettings
 from proteus.utils.model.ribbons_logic import RibbonsLogic
 import proteus
 
@@ -32,10 +35,6 @@ class Ribbon:
         self.create_buttons()
         self.connect_buttons()
         self.tabs_add_button()
-
-        # Archetypes
-        self.ribbons_logic = RibbonsLogic(self)
-        self.ribbons_logic.set_archetypes()
     
     def create_buttons(self) -> None:
         """
@@ -56,6 +55,11 @@ class Ribbon:
         # Edition
         self.undo_tb = QToolButton()
         self.redo_tb = QToolButton()
+
+        # Settings
+        self.theme_tb = settings.Settings().getButton()
+        self.language_tb = QToolButton()
+
     
     def connect_buttons(self):
         """
@@ -82,15 +86,18 @@ class Ribbon:
         # When Delete Document Button is clicked, delete the document.
         self.delete_tb.clicked.connect(self.parent.projectController.remove_document)
 
+        # When Change Theme Button is clicked, open the change theme dialog.
+        self.theme_tb.clicked.connect(self.parent.preferences)
+
     def tabs_add_button(self):
         """
         Adds buttons to the tabs.
         """
         proteus.logger.info('Ribbon - tabs add button')
         tab_content = self.add_tab(trans("project"))
-        project_group = tab_content.add_group(trans("project"))
 
         # Project Tab
+        project_group = tab_content.add_group(trans("project"))
         project_group.add_button(self.open_tb)
         project_group.add_button(self.new_tb)
         project_group.add_button(self.save_tb)
@@ -107,6 +114,22 @@ class Ribbon:
         edit_group.add_button(self.undo_tb)
         edit_group.add_button(self.redo_tb)
 
+        
+        # Archetypes
+        self.ribbons_logic = RibbonsLogic(self)
+        self.ribbons_logic.set_archetypes()
+        settings = QSettings("Proteus", "SettingsDesktop")
+        print("ES VERDAD:")
+        print(settings.value(config.ERROR_ARCHETYPES_CUSTOM_DIR) == True)
+        if(settings.value(config.ERROR_ARCHETYPES_CUSTOM_DIR) == True):
+            print("")
+
+        # Settings Tab
+        tab_content = self.add_tab(trans("Settings"))
+        settings_group = tab_content.add_group(trans("settings"))
+        settings_group.add_button(self.theme_tb)
+        settings_group.add_button(self.language_tb)
+
     def add_tab(self, name: str) -> RibbonTabContent:
         """
         Adds a tab to the ribbon menu.
@@ -115,7 +138,6 @@ class Ribbon:
         :return: Tab widget.
         """
         proteus.logger.info('Ribbon - add tab')
-        
         tab = RibbonTabContent()
         self.tab_widget.addTab(tab, name)
         return tab

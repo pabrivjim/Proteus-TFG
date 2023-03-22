@@ -5,10 +5,7 @@
 # Version: 1.0.0
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
-from lxml import etree as ET
-import proteus.config as config
 import proteus
-from proteus.model.archetype_manager import ArchetypeManager
 
 class ProjectDialogLogic():
     """
@@ -40,5 +37,5 @@ class ProjectDialogLogic():
         :param archetype: archetype index.
         """
         proteus.logger.info('ProjectDialogLogic - change archetype')
-        project_description = ArchetypeManager.load_project_archetypes()[archetype].description
+        project_description = self.parent.parent().archetype_controller.get_project_archetypes()[archetype].description
         self.parent.archetype_description.setText(project_description)

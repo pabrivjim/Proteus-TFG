@@ -17,6 +17,7 @@ It initializes the config paths for PROTEUS application.
 
 from pathlib import Path
 from configparser import ConfigParser
+import sys
 
 # --------------------------------------------------------------------------
 # Project specific imports
@@ -28,12 +29,18 @@ import proteus
 # Constant declarations for PROTEUS configuration file keys
 # --------------------------------------------------------------------------
 
-CONFIG_FILE          : str = 'proteus.ini'
+CONFIG_FILE          : str = 'proteus2.ini'
 DIRECTORIES          : str = 'directories'
 BASE_DIRECTORY       : str = 'base_directory'
 ARCHETYPES_DIRECTORY : str = 'archetypes_directory'
 RESOURCES_DIRECTORY  : str = 'resources_directory'
 ICONS_DIRECTORY      : str = 'icons_directory'
+ARCHETYPES_CUSTOM_DIRECTORY : str = 'archetypes_custom_dir'
+
+# --------------------------------------------------------------------------
+# Constant declarations for QSettings for QApplication
+# --------------------------------------------------------------------------
+ERROR_ARCHETYPES_CUSTOM_DIR = "error_archetypes_custom_directory"
 
 # --------------------------------------------------------------------------
 # Class: Config
@@ -64,6 +71,10 @@ class Config:
         self.resources_directory  : Path = Path.cwd() / self.directories[RESOURCES_DIRECTORY]
         self.icons_directory      : Path = self.resources_directory / self.directories[ICONS_DIRECTORY]
         self.archetypes_directory : Path = Path.cwd() / self.directories[ARCHETYPES_DIRECTORY]
+        
+        # Custom Archetypes directory
+        if(ARCHETYPES_CUSTOM_DIRECTORY in self.directories):
+            self.archetypes_custom_directory : Path = Path.cwd() / self.directories[ARCHETYPES_CUSTOM_DIRECTORY]
 
         # Check application directories
         self.check_application_directories()
@@ -80,7 +91,7 @@ class Config:
         
         assert Path(CONFIG_FILE).exists(), \
             f"PROTEUS configuration file {CONFIG_FILE} does not exist! {Path(CONFIG_FILE).absolute()}"
-
+        self.config_file = Path(CONFIG_FILE).absolute()
         config_parser : ConfigParser = ConfigParser()
         config_parser.read(CONFIG_FILE)
 

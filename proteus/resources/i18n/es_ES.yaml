@@ -11,6 +11,9 @@ version: Version
 info: Información
 text: Texto
 edit properties: Editar propiedades
+Settings: Ajustes
+Update language: Actualizar idioma
+The language will be updated after restarting the application.: El idioma se actualizará después de reiniciar la aplicación.
 project: Proyecto
 open: Abrir
 open project: Abrir proyecto

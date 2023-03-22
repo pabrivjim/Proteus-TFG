@@ -6,14 +6,9 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 import shortuuid
-from os import listdir
-from os.path import isfile, join
-from lxml import etree as ET
-from proteus.model.archetype_manager import ArchetypeManager
 from proteus.model.object import Object
 from proteus.model.project import Project
 from proteus.utils.model.qundo_commands import CreateDocument
-import proteus.utils.persistence as persistence
 import proteus
 
 class DocumentDialogLogic():
@@ -34,7 +29,7 @@ class DocumentDialogLogic():
         """
         proteus.logger.info('DocumentDialogLogic - create document')
         
-        documents = ArchetypeManager.load_document_archetypes()
+        documents = self.parent.document_archetypes
 
         app = self.parent.parentWidget()
         project: Project  = app.projectController.project
@@ -47,7 +42,6 @@ class DocumentDialogLogic():
         
         command = CreateDocument(project, document, app, len(project.documents))
         app.undoStack.push(command)
-        # Change combobox
         
 
     def change_archetype(self, archetype: int) -> None:
@@ -58,7 +52,7 @@ class DocumentDialogLogic():
         """
         proteus.logger.info('DocumentDialogLogic - change archetype')
         
-        document = ArchetypeManager.load_document_archetypes()
+        document = self.parent.document_archetypes
         document_description = document[archetype].description
         app = self.parent.parentWidget()
         project: Project  = app.projectController.project

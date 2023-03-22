@@ -8,7 +8,6 @@
 from functools import partial
 from PyQt5.QtGui import (QIcon)
 from PyQt5.QtWidgets import (QToolButton)
-from proteus.model.archetype_manager import ArchetypeManager
 from proteus.model.archetype_proxys import ObjectArchetypeProxy
 import proteus.config as config
 from proteus.utils.i18n import trans
@@ -28,7 +27,7 @@ class RibbonsLogic():
         Set archetypes to ribbon from object archetypes.
         """
         proteus.logger.info('RibbonsLogic - set archetypes')
-        self.init_tabs(ArchetypeManager.load_object_archetypes())
+        self.init_tabs(self.parent.parent.archetype_controller.get_object_archetypes())
 
     def init_tabs(self, content: dict) -> None:
         """

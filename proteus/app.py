@@ -19,9 +19,7 @@ from pathlib import Path
 import proteus
 import sys
 from proteus.config import Config
-from PyQt5.QtCore import (QTranslator, QSettings)
 from PyQt5.QtWidgets import QApplication
-import proteus.config as config
 from proteus.view.main_window import MainWindow
 
 # --------------------------------------------------------------------------
@@ -63,13 +61,6 @@ class ProteusApplication:
         print(sys.argv)
         app = QApplication(sys.argv)
 
-        # Set language
-        settings = QSettings("Proteus", "SettingsDesktop")
-        language = settings.value("language", "en_EN")
-        translation = f"{language}.qm"
-        translator = QTranslator()
-        translator.load(translation, f"{config.Config().resources_directory}/i18n/")
-        app.installTranslator(translator)
 
         main_window = MainWindow()
         main_window.resize(1024, 768)
