@@ -1,4 +1,11 @@
-from os.path import join, dirname
+# ==========================================================================
+# File: i18n.py
+# Description: Translator.
+# Date: 04/07/22
+# Version: 1.0.0
+# Author: Pablo Rivera Jiménez
+# ==========================================================================
+from os.path import join
 import yaml
 from PyQt5.QtCore import QSettings
 import proteus

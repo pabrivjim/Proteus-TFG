@@ -1,5 +1,5 @@
 # ==========================================================================
-# File: project_dialog_logic.py
+# File: document_dialog_logic.py
 # Description: File where is located the document dialog logic.
 # Date: 06/07/22
 # Version: 1.0.0
@@ -19,7 +19,6 @@ class DocumentDialogLogic():
     def __init__(self, parent) -> None:
         proteus.logger.info('Init DocumentDialogLogic')
         self.parent = parent
-    
 
     def create_document(self, archetype: str) -> None:
         """
@@ -38,8 +37,8 @@ class DocumentDialogLogic():
         
         document: Object = documents[archetype].get_document(project)
         document.id = id
+
         #TODO reassign id to children
-        
         command = CreateDocument(project, document, app, len(project.documents))
         app.undoStack.push(command)
         
@@ -54,8 +53,6 @@ class DocumentDialogLogic():
         
         document = self.parent.document_archetypes
         document_description = document[archetype].description
-        app = self.parent.parentWidget()
-        project: Project  = app.projectController.project
         self.parent.archetype_description.setText(document_description)
 
 

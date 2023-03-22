@@ -1,21 +1,21 @@
-body{
-  /*https://www.ferysu.com/que-fuente-tipografica-utilizar-mi-tesis-doctoral/*/
+body {
+  /* https://www.ferysu.com/que-fuente-tipografica-utilizar-mi-tesis-doctoral/*/
   font-family: "Times New Roman", Times, serif;
 }
-h1{
+h1 {
   font-size: 1.25rem;
 }
-h2{
+h2 {
   font-size: 1.125rem;
 }
-ul{
+ul {
   margin-left: 2rem; 
   list-style-type: disc;
 }
-ol{
+ol {
   margin-left: 2rem; 
   list-style-type: decimal;
 }
-.roboto{
+.roboto {
   font-family: 'Roboto', sans-serif;
 }

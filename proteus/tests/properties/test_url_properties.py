@@ -45,22 +45,22 @@ import proteus.tests.properties.fixtures as fixtures
 
 @pytest.mark.parametrize('name',      [str(), 'test name'     ])
 @pytest.mark.parametrize('category',  [str(), 'test category' ])
-@pytest.mark.parametrize('value, is_valid_value',     
+@pytest.mark.parametrize('value, is_valid_value',
     [
         ('https://www.google.com', True),
         ('http://www.google.com', True),
         ('www.google.com', False),
-        ('not an URL', False),        
+        ('not an URL', False),
         (7.5, False),
         (str(), False)
     ]
 )
-@pytest.mark.parametrize('new_value, is_valid_new_value', 
+@pytest.mark.parametrize('new_value, is_valid_new_value',
     [
         ('https://www.google.com', True),
         ('http://www.google.com', True),
         ('www.google.com', False),
-        ('not an URL', False),        
+        ('not an URL', False),
         (7.5, False),
         (str(), False)
     ]
@@ -68,7 +68,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_url_properties(name, category, value, is_valid_value, new_value, is_valid_new_value):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of url properties.
     """
     # Create property from XML element
@@ -76,10 +76,10 @@ def test_url_properties(name, category, value, is_valid_value, new_value, is_val
     (property, name, category) = fixtures.create_property(property_tag, name, category, value)
 
     # Check property
-    assert(property.name     == name          )
-    assert(property.category == category      )
-    assert(property.value    == str(value)    )
-    assert(property.is_valid == is_valid_value)    
+    assert(property.name == name)
+    assert(property.category == category)
+    assert(property.value == str(value))
+    assert(property.is_valid == is_valid_value)
     assert(
         ET.tostring(property.generate_xml()).decode() ==
         f'<{property_tag} name="{name}" category="{category}"><![CDATA[{value}]]></{property_tag}>'
@@ -89,18 +89,18 @@ def test_url_properties(name, category, value, is_valid_value, new_value, is_val
     cloned_property = property.clone()
 
     # Check cloned property
-    assert(cloned_property.name     == property.name    )
+    assert(cloned_property.name == property.name)
     assert(cloned_property.category == property.category)
-    assert(cloned_property.value    == property.value   )
-    assert(cloned_property.is_valid == is_valid_value   )
+    assert(cloned_property.value == property.value)
+    assert(cloned_property.is_valid == is_valid_value)
 
     # Clone the property changing value
     evolved_property = property.clone(new_value)
 
     # Check cloned property
-    assert(evolved_property.name     == name              )
-    assert(evolved_property.value    == str(new_value)    )
-    assert(evolved_property.category == category          )
+    assert(evolved_property.name == name)
+    assert(evolved_property.value == str(new_value))
+    assert(evolved_property.category == category)
     assert(evolved_property.is_valid == is_valid_new_value)
     assert(
         ET.tostring(evolved_property.generate_xml()).decode() ==

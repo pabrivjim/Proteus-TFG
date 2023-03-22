@@ -2,8 +2,8 @@
 Pytest file for PROTEUS objects.
 """
 # ==========================================================================
-# File: test_projects.py
-# Description: pytest file for PROTEUS projects
+# File: test_object.py
+# Description: pytest file for PROTEUS objects
 # Date: 15/10/2022
 # Version: 0.1
 # Author: Pablo Rivera Jiménez
@@ -16,9 +16,6 @@ Pytest file for PROTEUS objects.
 # --------------------------------------------------------------------------
 # Third-party library imports
 # --------------------------------------------------------------------------
-
-import copy
-import os
 import pathlib
 import pytest
 import lxml.etree as ET
@@ -39,14 +36,14 @@ from proteus.model.project import Project
 
 def test_objects(path):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of string and markdown properties.
     """
 
     # Load project
     test_project : Project = Project.load(path)
     test_object : Object = Object.load(test_project, "3fKhMAkcEe2C")
-    
+
     # Parser to avoid conflicts with CDATA
     parser = ET.XMLParser(strip_cdata=False)
     element = ET.parse( test_object.path, parser = parser)
@@ -82,7 +79,7 @@ def test_objects(path):
     test_object.state = ProteusState.FRESH
     assert (test_object.state == ProteusState.FRESH)
     test_object.state = ProteusState.CLEAN
-    
+
     # Check if generate xml, generates properly the xml
     xml = (ET.tostring(element,
             xml_declaration=True,

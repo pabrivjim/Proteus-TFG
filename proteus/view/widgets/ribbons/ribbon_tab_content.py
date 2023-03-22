@@ -1,6 +1,6 @@
 # ==========================================================================
 # File: ribbon_tab_content.py
-# Description: File where is located the view related to 
+# Description: File where is located the view related to
 #              the tab content.
 # Date: 30/06/22
 # Version: 1.0.0
@@ -29,7 +29,7 @@ class RibbonTabContent(QWidget):
         :return: Button group.
         """
         proteus.logger.info('RibbonTabContent - add group')
-        
+
         button_group = RibbonButtonGroup(title)
         self.ribbonHorizontalLayout.addWidget(button_group)
         return button_group

@@ -26,8 +26,6 @@ import lxml.etree as ET
 # --------------------------------------------------------------------------
 # Project specific imports
 # --------------------------------------------------------------------------
-
-from proteus.model import NAME_TAG, CATEGORY_TAG
 from proteus.model.abstract_object import ProteusState
 from proteus.model.archetype_manager import ArchetypeManager
 from proteus.model.project import Project
@@ -41,14 +39,12 @@ from proteus.model.property import Property
 
 def test_projects(path):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of string and markdown properties.
     """
-    print("PATH: ", path)
     # New path where we want to clone the archetype
     new_cloned_project_path = pathlib.Path.cwd().parent / "new_cloned_project"
 
-    
     # If dir already exists, then we remove it
     if(new_cloned_project_path.resolve().exists()):
         shutil.rmtree(new_cloned_project_path)
@@ -111,7 +107,7 @@ def test_projects(path):
 
     # Get the number of children before setting to DEAD
     number_of_children = len(os.listdir(new_cloned_project_path / "objects"))
-    
+
     # Set all children to DEAD 
     for doc in test_project.documents.values():
         number_of_children -= 1

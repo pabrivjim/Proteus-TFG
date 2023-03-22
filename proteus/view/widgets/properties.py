@@ -9,9 +9,8 @@ import copy
 from functools import partial
 from PyQt5.QtGui import (QImage, QPixmap)
 from PyQt5.QtCore import (Qt)
-from PyQt5.QtWidgets import (QWidget, QPushButton, QVBoxLayout,
-                             QComboBox, QCheckBox, QDialogButtonBox, QLabel,
-                             QTreeWidget, QTabWidget, QHBoxLayout,
+from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QComboBox, QCheckBox,
+                             QDialogButtonBox, QLabel, QTabWidget, QHBoxLayout,
                              QDialog)
 from proteus.utils.model.properties_logic import PropertiesLogic
 from proteus.utils.i18n import trans
@@ -37,7 +36,6 @@ class PropertyDialog(QDialog):
         Method that loads the tab widget.
         """
         proteus.logger.info('PropertyDialog - load tab widget')
-        
         self.tab_widget = QTabWidget()
         widgets = self.properties_logic.load_widgets()
         

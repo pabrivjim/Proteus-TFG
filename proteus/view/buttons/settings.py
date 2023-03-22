@@ -23,7 +23,6 @@ class Settings():
         :rtype: QToolButton
         """
         proteus.logger.info('ChangeTheme Button - get button')
-        
         self.settings_tb = QToolButton()
         self.settings_tb.setObjectName("Settings")
         self.settings_tb.setText(trans("Settings"))

@@ -1,6 +1,6 @@
 # ==========================================================================
 # File: ribbon_button_group.py
-# Description: File where is located the view related to 
+# Description: File where is located the view related to
 #              the ribbon button group.
 # Date: 30/06/22
 # Version: 1.0.0
@@ -30,7 +30,6 @@ class RibbonButtonGroup(QWidget):
         :param button: Button to add.
         """
         proteus.logger.info('RibbonButtonGroup - add button')
-        
         button.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         button.setMinimumSize(48, 48)
         button.setMaximumWidth(48)

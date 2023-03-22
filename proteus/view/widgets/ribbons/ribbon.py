@@ -5,17 +5,13 @@
 # Version: 1.0.0
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
-from functools import partial
-import sys
 from PyQt5.QtWidgets import (QWidget, QTabWidget,
                              QToolButton)
-from proteus import config
 from proteus.utils.i18n import trans
 from proteus.view.buttons import (open_project, new_project, save_project,
                           edit_project, create_document, delete_document,
                           export_document, settings)
 from .ribbon_tab_content import RibbonTabContent
-from PyQt5.QtCore import QSettings
 from proteus.utils.model.ribbons_logic import RibbonsLogic
 import proteus
 
@@ -26,7 +22,6 @@ class Ribbon:
 
     def __init__(self, parent: QWidget, tab_widget: QTabWidget):
         proteus.logger.info('Init Ribbon')
-        
         self.parent = parent
         self.tab_widget = tab_widget
         self.buttons = {}

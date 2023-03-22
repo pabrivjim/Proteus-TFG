@@ -22,17 +22,17 @@ def test_pyqt(qtbot):
     window = MainWindow()
     # qtbotbis = QtBot(window)
     # Create the GUI widget
-    
-    window.show()   
+
+    window.show()
     assert window.windowTitle() == ('Proteus')
 
-    default_ribbon_project_buttons(window)    
-    default_ribbon_document_buttons(window)    
+    default_ribbon_project_buttons(window)
+    default_ribbon_document_buttons(window)
     default_ribbon_qundostack_buttons(window)
     archetype_objects_buttons(window)
     recreate_req_open_project_without_dialog(window)
     # qtbotbis.mouseClick(window.ribbon.open_tb, QtCore.Qt.LeftButton, delay=1)
-    
+
 def default_ribbon_project_buttons(window: MainWindow):
     assert window.ribbon.open_tb.text() == "Abrir"
     assert window.ribbon.new_tb.text() == "Nuevo"
@@ -49,7 +49,7 @@ def default_ribbon_project_buttons(window: MainWindow):
     assert window.ribbon.save_tb.isEnabled() == False
     assert window.ribbon.edit_tb.isEnabled() == False
 
-def default_ribbon_document_buttons(window: MainWindow):    
+def default_ribbon_document_buttons(window: MainWindow):
     assert window.ribbon.create_tb.text() == "Crear"
     assert window.ribbon.delete_tb.text() == "Eliminar"
     assert window.ribbon.export_tb.text() == "Exportar"
@@ -62,8 +62,7 @@ def default_ribbon_document_buttons(window: MainWindow):
     assert window.ribbon.delete_tb.isEnabled() == False
     assert window.ribbon.export_tb.isEnabled() == False
 
-
-def default_ribbon_qundostack_buttons(window: MainWindow):    
+def default_ribbon_qundostack_buttons(window: MainWindow):
     assert window.ribbon.undo_tb.text() == "Deshacer"
     assert window.ribbon.redo_tb.text() == "Rehacer"
 
@@ -71,7 +70,6 @@ def default_ribbon_qundostack_buttons(window: MainWindow):
     assert window.ribbon.redo_tb.isEnabled() == False
 
 def archetype_objects_buttons(window: MainWindow):
-
     #We get all the archetypes buttons
     buttons = window.ribbon.buttons
 

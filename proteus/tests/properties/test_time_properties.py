@@ -75,7 +75,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_time_properties(name, category, value, expected_value, new_value, expected_new_value):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of time properties.
     """
     # Create property from XML element
@@ -93,11 +93,11 @@ def test_time_properties(name, category, value, expected_value, new_value, expec
     # https://stackoverflow.com/questions/43305577/python-calculate-the-difference-between-two-datetime-time-objects
     delta = \
         datetime.datetime.combine(datetime.date.today(), property.value) - \
-        datetime.datetime.combine(datetime.date.today(), expected_value_as_time)        
-    
+        datetime.datetime.combine(datetime.date.today(), expected_value_as_time)
+
     # Check property
     assert(property.name == name)
-    assert(property.category == category)    
+    assert(property.category == category)
     assert(delta.total_seconds() < epsilon_seconds)
 
     # To avoid fail because of potentional difference in seconds, we just check
@@ -119,18 +119,18 @@ def test_time_properties(name, category, value, expected_value, new_value, expec
     # Check cloned property
     assert(cloned_property.name == property.name)
     assert(cloned_property.category == property.category)
-    assert(delta.total_seconds() < epsilon_seconds)    
+    assert(delta.total_seconds() < epsilon_seconds)
 
     # Clone the property changing value
     evolved_property = property.clone(str(new_value))
 
-    # Create a time from the expected_new_value string    
+    # Create a time from the expected_new_value string
     expected_new_value_as_time = datetime.datetime.strptime(expected_new_value, TIME_FORMAT).time()
 
     # To calculate the difference between two times, they have to be converted into datetime
     delta = \
         datetime.datetime.combine(datetime.date.today(), evolved_property.value) - \
-        datetime.datetime.combine(datetime.date.today(), expected_new_value_as_time)        
+        datetime.datetime.combine(datetime.date.today(), expected_new_value_as_time)
 
     # Check cloned property
     assert(evolved_property.name == name)
@@ -143,4 +143,3 @@ def test_time_properties(name, category, value, expected_value, new_value, expec
         ET.tostring(evolved_property.generate_xml()).decode() ==
         f'<{property_tag} name="{name}" category="{category}">{evolved_property.value.strftime(TIME_FORMAT)}</{property_tag}>'
     )
-

@@ -5,11 +5,9 @@
 # Version: 1.0.0
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
-from PyQt5.QtCore import (Qt,pyqtSignal)
+from PyQt5.QtCore import (Qt, pyqtSignal)
 from PyQt5.QtWidgets import (QTreeWidget, QFrame)
 from proteus.utils.model.tree_logic import TreeLogic
-from PyQt5.QtCore import (Qt)
-from PyQt5.QtWidgets import (QTreeWidget)
 import proteus
 
 class DocumentInspector(QTreeWidget):
@@ -25,7 +23,6 @@ class DocumentInspector(QTreeWidget):
         self.parent = parent
         self._draggedItem = None
         self.tree_logic = TreeLogic(self, self.parent, self._draggedItem)
-        
 
         # Load and context menu
         self.tree_logic.load_document()
