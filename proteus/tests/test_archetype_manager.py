@@ -48,7 +48,7 @@ def test_project_archetype_manager():
     assert len(projects) == number_of_projects
 
     # Check if the project is a ProjectArchetypeProxy and has all the attributes
-    for project_arch in projects:
+    for _, project_arch in projects.items():
         assert all(x for x in [isinstance(project_arch, ProjectArchetypeProxy),
                                project_arch.path, project_arch.id, project_arch.name, project_arch.description,
                                project_arch.author, project_arch.date])
@@ -81,8 +81,7 @@ def test_document_archetype_manager():
     assert len(documents) == number_of_documents
 
     # Check if the document is a DocumentArchetypeProxy and has all the attributes
-    for _, document_arch_value in documents.items():
-        document_arch = document_arch_value
+    for _, document_arch in documents.items():
         assert all(x for x in [isinstance(document_arch, DocumentArchetypeProxy),
                                document_arch.path, document_arch.id, document_arch.name, document_arch.description,
                                document_arch.author, document_arch.date, document_arch.classes, document_arch.acceptedChildren])
@@ -107,7 +106,8 @@ def test_clone_project():
     """
     # Get the archetypes projects and select the first one
     projects = ArchetypeManager.load_project_archetypes()
-    project_to_be_cloned : ProjectArchetypeProxy = projects[0]
+    project_archetype_name: str =  list(projects.keys())[0]
+    project_to_be_cloned : ProjectArchetypeProxy = projects[project_archetype_name]
 
     # New path where we want to clone the archetype
     new_cloned_project_path = pathlib.Path.cwd().parent / "new_cloned_project"

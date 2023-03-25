@@ -14,6 +14,7 @@ import os
 from lxml import etree as ET
 from proteus import config
 from proteus.tests import PATH
+from proteus.utils.i18n import trans
 from proteus.view.main_window import MainWindow
 #python -m pytest .\proteus\tests\pyqt\test_pyqt.py
 def test_pyqt(qtbot):
@@ -34,10 +35,10 @@ def test_pyqt(qtbot):
     # qtbotbis.mouseClick(window.ribbon.open_tb, QtCore.Qt.LeftButton, delay=1)
 
 def default_ribbon_project_buttons(window: MainWindow):
-    assert window.ribbon.open_tb.text() == "Abrir"
-    assert window.ribbon.new_tb.text() == "Nuevo"
-    assert window.ribbon.save_tb.text() == "Guardar"
-    assert window.ribbon.edit_tb.text() == "Editar"
+    assert window.ribbon.open_tb.text() == trans("open")
+    assert window.ribbon.new_tb.text() == trans("new")
+    assert window.ribbon.save_tb.text() == trans("save")
+    assert window.ribbon.edit_tb.text() == trans("edit")
 
     assert window.ribbon.open_tb.objectName() == "Open Project"
     assert window.ribbon.new_tb.objectName() == "New Project"
@@ -50,9 +51,9 @@ def default_ribbon_project_buttons(window: MainWindow):
     assert window.ribbon.edit_tb.isEnabled() == False
 
 def default_ribbon_document_buttons(window: MainWindow):
-    assert window.ribbon.create_tb.text() == "Crear"
-    assert window.ribbon.delete_tb.text() == "Eliminar"
-    assert window.ribbon.export_tb.text() == "Exportar"
+    assert window.ribbon.create_tb.text() == trans("create")
+    assert window.ribbon.delete_tb.text() == trans("delete")
+    assert window.ribbon.export_tb.text() == trans("export")
 
     assert window.ribbon.create_tb.objectName() == "Create Document"
     assert window.ribbon.delete_tb.objectName() == "Delete Document"
@@ -63,8 +64,8 @@ def default_ribbon_document_buttons(window: MainWindow):
     assert window.ribbon.export_tb.isEnabled() == False
 
 def default_ribbon_qundostack_buttons(window: MainWindow):
-    assert window.ribbon.undo_tb.text() == "Deshacer"
-    assert window.ribbon.redo_tb.text() == "Rehacer"
+    assert window.ribbon.undo_tb.text() == trans("undo")
+    assert window.ribbon.redo_tb.text() == trans("redo")
 
     assert window.ribbon.undo_tb.isEnabled() == False
     assert window.ribbon.redo_tb.isEnabled() == False

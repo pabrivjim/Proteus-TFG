@@ -6,7 +6,7 @@
   <xsl:output method="html" doctype-public="XSLT-compat" omit-xml-declaration="yes" encoding="UTF-8" indent="yes"/>
 
 <xsl:template name="section" match="section" mode="call-template">
-    <h2 id="{@id}" class="text-2xl text-blue-900 mt-3" contenteditable="false">
+    <h2 id="{@id}" class="text-2xl dl mt-3 title" contenteditable="false">
         <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
     </h2>
 </xsl:template>

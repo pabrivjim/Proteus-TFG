@@ -32,7 +32,7 @@ from proteus.model.project import Project
 # Object tests
 # --------------------------------------------------------------------------
 
-@pytest.mark.parametrize('path', [pathlib.Path.cwd()])
+@pytest.mark.parametrize('path', [pathlib.Path.cwd() / "proteus" / "tests" / "project"])
 
 def test_objects(path):
     """

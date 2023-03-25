@@ -19,7 +19,7 @@
                 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             </head>
-            <body class="bg-white h-full">
+            <body class="body h-full">
                 <div class="mx-auto max-w-[210mm] w-full md:w-1/2 p-10 print:m-0 print:w-full">
                     <xsl:apply-templates />    
                 </div>
@@ -38,20 +38,20 @@
         />
         
         <!-- Title -->
-        <h1 class="text-2xl text-blue-900 roboto">
+        <h1 class="text-2xl roboto">
             <xsl:value-of select="properties/string" />
         </h1>
         
         <!-- Document properties -->
-        <dl class="py-3 text-gray-800">
+        <dl class="py-3 dl">
             <xsl:for-each select="properties/*">
                 <dt class="font-bold capitalize"><xsl:value-of select="@name"/>:</dt>
-                    <dd><xsl:value-of select="."/></dd>
+                    <dd class=""><xsl:value-of select="."/></dd>
             </xsl:for-each>
         </dl>
 
         <!-- Table of contents -->
-        <h2 class="text-2xl text-blue-900 my-2 font-bold">Table of contents</h2>
+        <h2 class="title text-2xl dl my-2 font-bold">Table of contents</h2>
         <ol>
             <xsl:for-each select="children/object"> 
                 <li class="ml-3 text-lg underline text-blue-600">
@@ -84,7 +84,9 @@
     <xsl:template name="child">
         <xsl:call-template name="object"/>
         <xsl:for-each select="children/object">
-            <xsl:call-template name="child"/>
+            <div class="ml-2">
+                <xsl:call-template name="child"/>
+            </div>
         </xsl:for-each>
     </xsl:template>
 

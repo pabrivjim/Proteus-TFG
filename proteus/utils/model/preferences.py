@@ -1,3 +1,4 @@
+"""Module to load preferences."""
 # ==========================================================================
 # File: preferences.py
 # Description: Utils to load preferences.
@@ -6,6 +7,7 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from os.path import normpath, expanduser
+import pathlib
 from PyQt5.QtCore import (QCoreApplication, QFile, QSettings, QTextStream,
                           QTranslator)
 from PyQt5.QtWidgets import (QMainWindow, QDialog, QMessageBox)
@@ -16,6 +18,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QFileDialog
 from configparser import ConfigParser
 import proteus
+from proteus.utils.model.visualizer import loadCSS
 
 class Preferences:
     """
@@ -28,7 +31,7 @@ class Preferences:
     @staticmethod
     def load_theme(main: QMainWindow, theme: str) -> None:
         """
-        load_theme
+        Method that load the theme.
 
         :param main: Main window.
         :param theme: Theme.
@@ -43,7 +46,7 @@ class Preferences:
     @staticmethod
     def load_language(main: QMainWindow, language: str) -> None:
         """
-        load_language
+        Method that load the language.
 
         :param main: Main window.
         :param language: Language.
@@ -91,6 +94,10 @@ class PreferencesDialog(QDialog):
         self.toolButtonArchetypesPath.clicked.connect(self.select_archetypes_path)
 
     def select_archetypes_path(self):
+        """
+        Method that select the path of the archetypes, save it in the settings and in the config file,
+        as well as in the input path field.
+        """
         settings = self.parent().settings
         if(settings.value("config_folder") != None):
             dir = QFileDialog.getExistingDirectory(None, "Open Directory", settings.value("config_folder"), QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
@@ -133,9 +140,17 @@ class PreferencesDialog(QDialog):
         proteus.logger.info('PreferencesDialog - update preferences')
         
         settings = self.parent().settings
-        print(settings.value("language", "en_EN"))
         theme = "dark" if self.radioButtonColorDark.isChecked() else "light"
         settings.setValue("theme", theme)
+
+        # When we update the system theme, we need to update the theme of the
+        # view that shows the documentation.
+        css_stylesheet_path = pathlib.Path(f"{config.Config().resources_directory}/views/rem/{settings.value('theme')}.css").resolve()
+        for view in self.parent().visualizers:
+            loadCSS(view, str(css_stylesheet_path), "script1", 0)
+
+        # When we update the system theme, we need to update the theme of the
+        # application.
         Preferences.load_theme(self.parent(), theme)
         settings.setValue("config_folder", self.configPath.text())
 

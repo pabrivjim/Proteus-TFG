@@ -9,16 +9,14 @@ import json
 from os import pardir
 from os.path import abspath, dirname, join
 import pathlib
-from lxml import etree as ET
 import markdown
-# import views.py
+from PyQt5.QtCore import QSettings
 from proteus.controllers.views import load_views
 from PyQt5 import QtWebEngineWidgets, QtCore
 from PyQt5.QtCore import QUrl, pyqtSignal, QEventLoop
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from lxml import etree
 from proteus.model.object import Object
-
 from proteus.model.project import Project
 import proteus.config as config
 import proteus
@@ -87,11 +85,12 @@ def loadCSS(view: QWebEngineView, path, name, counter):
     script.setWorldId(QtWebEngineWidgets.QWebEngineScript.ApplicationWorld)
     # We could just do it the first time, but is better if we "reload" it
     # So we can change the css without restarting the app
-    if(not(view.page().scripts().contains(script))):
+    if(view.page().scripts().count()==0):
         view.page().scripts().insert(script)
     else:
-        view.page().scripts().remove(script)
+        view.page().scripts().clear()
         view.page().scripts().insert(script)
+        view.reload()
     return counter
 
 
@@ -227,10 +226,11 @@ class Visualizer(QWebEngineView):
                 xslt = etree.parse(path)
                 transform = etree.XSLT(xslt)
                 new_dom = transform(xml)
-                print(new_dom)
                 super().setHtml(etree.tostring(new_dom).decode())
-                css_stylesheet_path = pathlib.Path(f"{config.Config().resources_directory}/views/rem/main_style.css").resolve()
 
+                # Use the CSS template according to the APP theme
+                settings = QSettings("Proteus", "SettingsDesktop")
+                css_stylesheet_path = pathlib.Path(f"{config.Config().resources_directory}/views/rem/{settings.value('theme')}.css").resolve()
                 loadCSS(super(), str(css_stylesheet_path), "script1", 0)
             except Exception as e:
                 print(e)
