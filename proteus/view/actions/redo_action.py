@@ -19,12 +19,12 @@ class RedoAction(QUndoStack):
     """
 
     def getAction(self, ribbon: Ribbon) -> QAction:
-        proteus.logger.info('RedoAction - get action')
         """
         Method that create the action (QToolButton) create a new project.
         :returns: Redo Action
         :rtype: QAction
         """
+        proteus.logger.info('RedoAction - get action')
         redoStack = self.parent()
         redo_action = redoStack.createRedoAction(self, trans("redo"))
         redo_action.setShortcut(QKeySequence.Redo)

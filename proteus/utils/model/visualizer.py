@@ -1,9 +1,12 @@
+"""
+File where is located the visualizers.
+"""
 # ==========================================================================
 # File: visualizer.py
 # Description: File where is located the visualizers.
-# Date: 
-# Version: 1.0.0
-# Author: Gamaza
+# Date: 10/01/23
+# Version: 1.2.0
+# Author: Pablo Rivera Jiménez
 # ==========================================================================
 import json
 from os import pardir
@@ -23,7 +26,7 @@ import proteus
 import os
 
 
-# DEBUG INSPECTOR 
+# DEBUG INSPECTOR
 DEBUG_PORT = '5588'
 DEBUG_URL = 'http://127.0.0.1:%s' % DEBUG_PORT
 os.environ['QTWEBENGINE_REMOTE_DEBUGGING'] = DEBUG_PORT
@@ -34,7 +37,7 @@ def send_to_view(project, page, index=0):
     Sends project data to view in JSON format.
     """
     proteus.logger.info('visualizer - send to view')
-    
+
     message = {
         "action": "update",
         "content": {
@@ -268,6 +271,5 @@ class Visualizer(QWebEngineView):
         loop = QEventLoop()
         self.toHtmlFinished.connect(loop.quit)
         loop.exec_()
-        print
         with open(save_path, "w") as f:
             f.write(self.html)

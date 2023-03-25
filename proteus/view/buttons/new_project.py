@@ -23,7 +23,7 @@ class NewProject():
         :rtype: QToolButton
         """
         proteus.logger.info('NewProject Button - get button')
-        
+
         self.new_tb = QToolButton()
         self.new_tb.setObjectName("New Project")
         self.new_tb.setText(trans("new"))

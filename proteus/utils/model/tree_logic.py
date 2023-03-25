@@ -18,7 +18,7 @@ from .qundo_commands import CreateDocument
 from proteus.utils.model.qundo_commands import CreateObject
 from proteus.view.widgets.properties import PropertyDialog
 from proteus.utils.model.qundo_commands import DeleteObject, DeleteDocument, MoveNode
-import proteus.config as config 
+import proteus.config as config
 import proteus
 
 class TreeLogic():
@@ -31,7 +31,7 @@ class TreeLogic():
         self._draggedItem = dragged
         self.parent = parent
         self.docInspector = docInspector
-        
+
     def mimeTypes(self) -> list:
         """
         Returns mimetypes.
@@ -75,7 +75,7 @@ class TreeLogic():
         # Get previous position
         from_parent = self._draggedItem.parent()
         # from_row = from_parent.indexOfChild(self._draggedItem)
-        
+
         # Exec Drop  
         event.setDropAction(Qt.MoveAction)
         QTreeWidget.dropEvent(self.docInspector, event)
@@ -314,7 +314,7 @@ class TreeLogic():
             print(proteus_item.id, "   ", proteus_item.get_property("name").value)
             item.parent().removeChild(item)
             command = DeleteObject(self.parent.projectController.project, parent_obj, proteus_item)
-            self.parent.undoStack.push(command)    
+            self.parent.undoStack.push(command)
         else:
             command = DeleteDocument(self.parent.projectController.project, proteus_item,
                                      self.parent.document_combobox, self.parent.projectController.selected_document_index)

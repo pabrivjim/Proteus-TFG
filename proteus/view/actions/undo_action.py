@@ -20,12 +20,12 @@ class UndoAction(QUndoStack):
     """
 
     def getAction(self, ribbon: Ribbon) -> QAction:
-        proteus.logger.info('UndoAction - get action')
         """
         Method that create the action (QToolButton) create a new project.
         :returns: Undo Action
         :rtype: QAction
         """
+        proteus.logger.info('UndoAction - get action')
         undoStack = self.parent()
         undo_action = undoStack.createUndoAction(self, trans("undo"))
         undo_action.setShortcut(QKeySequence.Undo)

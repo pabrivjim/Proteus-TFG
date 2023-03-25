@@ -23,7 +23,7 @@ class ExportDocument():
         :rtype: QToolButton
         """
         proteus.logger.info('CreateDocument Button - get button')
-        
+
         self.export_tb = QToolButton()
         self.export_tb.setObjectName("Export Document")
         self.export_tb.setText(trans("export"))

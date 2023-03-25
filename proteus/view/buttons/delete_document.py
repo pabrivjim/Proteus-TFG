@@ -23,7 +23,7 @@ class DeleteDocument():
         :rtype: QToolButton
         """
         proteus.logger.info('DeleteDocument Button - get button')
-        
+
         self.delete_tb = QToolButton()
         self.delete_tb.setObjectName("Delete Document")
         self.delete_tb.setText(trans("delete"))

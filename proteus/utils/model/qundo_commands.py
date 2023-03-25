@@ -31,12 +31,12 @@ class CreateObject(QUndoCommand):
         self.project_state: ProteusState = deepcopy(project.state)
 
     def redo(self) -> None:
-        proteus.logger.info('CreateObject - redo')
         """
         Inserts object to parent children list.
         Set object state to FRESH.
         Set parent's object to DIRTY.
         """
+        proteus.logger.info('CreateObject - redo')
         self.obj.state = ProteusState.FRESH
         self.obj.parent = self.parent_obj
         self.parent_obj.state = ProteusState.DIRTY
@@ -51,12 +51,12 @@ class CreateObject(QUndoCommand):
             dict.update(self.parent_obj.parent.children, updated_doc)
 
     def undo(self) -> None:
-        proteus.logger.info('CreateObject - undo')
         """
         Removes object from parent children list.
         Removes object state.
         Set parent's state to previous state.
         """
+        proteus.logger.info('CreateObject - undo')
         self.obj.state = ProteusState.DEAD
         self.parent_obj.state = self.parent_obj_state
         self.parent_obj.children.pop(self.obj.id)
@@ -67,8 +67,6 @@ class CreateObject(QUndoCommand):
             dict.update(self.parent_obj.parent.documents, updated_doc)
         else:
             dict.update(self.parent_obj.parent.children, updated_doc)
-            
-
 
 def change_combo_box(app):
     """
@@ -88,12 +86,10 @@ def change_combo_box(app):
     app.document_combobox.setCurrentIndex(len(project.documents) - 1)
 
 
-
 class CreateDocument(QUndoCommand):
-    """ 
+    """
     Command to create project documents.
     """
-
     def __init__(self, project: Project, document: Object, app, index: int):
         proteus.logger.info('Init CreateDocument')
         super(CreateDocument, self).__init__()
@@ -129,8 +125,6 @@ class CreateDocument(QUndoCommand):
         self.project.state = self.project_state
         self.project.documents.pop(self.document.id)
         self.combo_box.removeItem(self.position)
-
-
 
 class DeleteObject(QUndoCommand):
     """
@@ -345,4 +339,4 @@ class MoveNode(QUndoCommand):
             self.project.state = self.project_state
             self.new_parent.children.pop(self.obj.id)
             self.original_parent.children[self.obj.id] = self.obj
-            self.obj.parent = self.original_parent  
+            self.obj.parent = self.original_parent

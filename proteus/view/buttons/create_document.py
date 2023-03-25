@@ -23,7 +23,7 @@ class CreateDocument():
         :rtype: QToolButton
         """
         proteus.logger.info('CreateDocument Button - get button')
-        
+
         self.create_tb = QToolButton()
         self.create_tb.setObjectName("Create Document")
         self.create_tb.setText(trans("create"))

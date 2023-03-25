@@ -23,7 +23,7 @@ class EditProject():
         :rtype: QToolButton
         """
         proteus.logger.info('EditProject Button - get button')
-        
+
         self.edit_tb = QToolButton()
         self.edit_tb.setObjectName("Edit Project")
         self.edit_tb.setText(trans("edit"))

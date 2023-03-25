@@ -23,7 +23,7 @@ class OpenProject():
         :rtype: QToolButton
         """
         proteus.logger.info('OpenProject Button - get button')
-        
+
         self.open_tb = QToolButton()
         self.open_tb.setObjectName("Open Project")
         self.open_tb.setText(trans("open"))

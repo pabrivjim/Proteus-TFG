@@ -24,7 +24,6 @@ Pytest fixtures for testing PROTEUS properties.
 # Third-party library imports
 # --------------------------------------------------------------------------
 
-import pytest
 import lxml.etree as ET
 
 # --------------------------------------------------------------------------
@@ -48,7 +47,7 @@ from proteus.model.property import \
 def create_property(property_tag, name, category, value, choices = None) -> tuple[Property,str,str]:
     """
     It creates a PROTEUS property using the tag, name, category and value
-    passed as arguments. It returns a tuple containing the new property, 
+    passed as arguments. It returns a tuple containing the new property,
     the name, and the category values, which are set to default in case
     they were not set.
     """
@@ -78,7 +77,7 @@ def create_property(property_tag, name, category, value, choices = None) -> tupl
     for class_name in str(value).split():
         class_element = ET.SubElement(property_element, CLASS_TAG)
         class_element.text = class_name
-  
+
     # Create property from XML element
     property = PropertyFactory.create(property_element)
 

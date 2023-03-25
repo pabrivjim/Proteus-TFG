@@ -38,7 +38,7 @@ class PropertyDialog(QDialog):
         proteus.logger.info('PropertyDialog - load tab widget')
         self.tab_widget = QTabWidget()
         widgets = self.properties_logic.load_widgets()
-        
+
         # Todo refactor
         # Because there could be different MarkdownWidgets instances, we need to add each so the app
         # knows which one is the actual one.

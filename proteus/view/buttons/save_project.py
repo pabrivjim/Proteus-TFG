@@ -23,7 +23,7 @@ class SaveProject():
         :rtype: QToolButton
         """
         proteus.logger.info('SaveProject Button - get button')
-        
+
         self.save_tb = QToolButton()
         self.save_tb.setObjectName("Save Project")
         self.save_tb.setText(trans("save"))

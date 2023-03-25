@@ -12,7 +12,7 @@ import proteus
 
 class ExportDialog(QDialog):
     """
-    Dialog to select and clone project archetype.   
+    Dialog to select and clone project archetype.
     """
     def __init__(self, parent):
         proteus.logger.info('Init ExportDialog')
