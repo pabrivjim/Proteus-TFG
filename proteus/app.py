@@ -61,7 +61,6 @@ class ProteusApplication:
         print(sys.argv)
         app = QApplication(sys.argv)
 
-
         main_window = MainWindow()
         main_window.resize(1024, 768)
         main_window.show()
