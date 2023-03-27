@@ -93,7 +93,7 @@ def loadCSS(view: QWebEngineView, path, name, counter):
     else:
         view.page().scripts().clear()
         view.page().scripts().insert(script)
-        view.reload()
+        
     return counter
 
 

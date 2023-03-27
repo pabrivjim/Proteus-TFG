@@ -17,11 +17,11 @@ from proteus.controllers.archetype import ArchetypeController
 from proteus.controllers.views import load_views
 from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
-from proteus.utils.model.main_window_logic import MainWindowLogic
+from proteus.utils.widgets_logic.main_window_logic import MainWindowLogic
 import proteus.config as config
 from proteus.utils.i18n import trans
-from proteus.utils.model.visualizer import Visualizer
-from proteus.utils.model.preferences import Preferences, PreferencesDialog
+from proteus.view.visualizer import Visualizer
+from proteus.utils.preferences import Preferences, PreferencesDialog
 from proteus.view.widgets.ribbons.ribbon import Ribbon
 from proteus.view.widgets.tree import DocumentInspector
 from proteus.view.actions.undo_action import UndoAction

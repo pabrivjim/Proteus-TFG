@@ -8,11 +8,11 @@
 from proteus.model.object import Object
 from proteus.model.project import Project
 from proteus.model.property import Property
-from proteus.utils.model.qundo_commands import UpdateObject, UpdateProject
+from proteus.utils.widgets_logic.qundo_commands import UpdateObject, UpdateProject
 from PyQt5.QtWidgets import (QWidget, QTreeWidgetItem, QVBoxLayout,
                              QLabel,QHBoxLayout)
 from proteus.utils.i18n import trans
-import proteus.utils.model.widgets_utils as widgets_utils
+import proteus.utils.widgets_utils as widgets_utils
 import proteus
 
 class PropertiesLogic():

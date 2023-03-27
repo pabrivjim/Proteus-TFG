@@ -8,9 +8,9 @@
 from PyQt5.QtCore import (QTime, QDate)
 from PyQt5.QtWidgets import (QWidget, QTimeEdit, QLineEdit, QDateEdit, QComboBox,
                              QCheckBox, QDoubleSpinBox, QListWidget, QSpinBox)
-from proteus.model.property import (BooleanProperty, ClassListProperty, 
-                                    DateProperty, EnumProperty, FileProperty, 
-                                    FloatProperty, IntegerProperty, MarkdownProperty, 
+from proteus.model.property import (BooleanProperty, ClassListProperty,
+                                    DateProperty, EnumProperty, FileProperty,
+                                    FloatProperty, IntegerProperty, MarkdownProperty,
                                     StringProperty, TimeProperty, UrlProperty)
 import proteus.view.widgets.properties as properties
 import proteus
@@ -198,6 +198,7 @@ def get_widget_for_property(object_property, parent=None):
     widgets = {
         MarkdownProperty.element_tagname: markdown_widget,
         StringProperty.element_tagname: string_widget,
+       
         FloatProperty.element_tagname: real_widget,
         IntegerProperty.element_tagname: number_widget,
         UrlProperty.element_tagname: url_widget,

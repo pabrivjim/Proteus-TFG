@@ -12,7 +12,7 @@ from proteus.view.buttons import (open_project, new_project, save_project,
                           edit_project, create_document, delete_document,
                           export_document, settings)
 from .ribbon_tab_content import RibbonTabContent
-from proteus.utils.model.ribbons_logic import RibbonsLogic
+from proteus.utils.widgets_logic.ribbons_logic import RibbonsLogic
 import proteus
 
 class Ribbon:

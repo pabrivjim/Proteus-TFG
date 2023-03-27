@@ -10,7 +10,7 @@ import shortuuid
 from PyQt5.QtCore import (Qt, QModelIndex)
 from proteus.model.archetype_proxys import ObjectArchetypeProxy
 from proteus.model.object import Object
-from proteus.utils.model.qundo_commands import CreateObject
+from proteus.utils.widgets_logic.qundo_commands import CreateObject
 import proteus
 
 class MainWindowLogic():

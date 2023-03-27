@@ -18,7 +18,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QFileDialog
 from configparser import ConfigParser
 import proteus
-from proteus.utils.model.visualizer import loadCSS
+from proteus.view.visualizer import loadCSS
 
 class Preferences:
     """
@@ -37,7 +37,7 @@ class Preferences:
         :param theme: Theme.
         """
         proteus.logger.info('Preferences - load theme')
-        
+        print("LOAD THEME")
         file = QFile(resource_path(f'themes/{theme}.qss'))
         file.open(QFile.ReadOnly | QFile.Text)
         stream = QTextStream(file)
@@ -143,11 +143,13 @@ class PreferencesDialog(QDialog):
         theme = "dark" if self.radioButtonColorDark.isChecked() else "light"
         settings.setValue("theme", theme)
 
-        # When we update the system theme, we need to update the theme of the
-        # view that shows the documentation.
-        css_stylesheet_path = pathlib.Path(f"{config.Config().resources_directory}/views/rem/{settings.value('theme')}.css").resolve()
-        for view in self.parent().visualizers:
-            loadCSS(view, str(css_stylesheet_path), "script1", 0)
+        # Check if visualizers is already created. This are only created when we open a project
+        if(hasattr(self.parent(), "visualizers")):
+            # When we update the system theme, we need to update the theme of the
+            # view that shows the documentation.
+            css_stylesheet_path = pathlib.Path(f"{config.Config().resources_directory}/views/rem/{settings.value('theme')}.css").resolve()
+            for view in self.parent().visualizers:
+                loadCSS(view, str(css_stylesheet_path), "script1", 0)
 
         # When we update the system theme, we need to update the theme of the
         # application.

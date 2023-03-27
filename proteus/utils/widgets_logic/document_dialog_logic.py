@@ -8,7 +8,7 @@
 import shortuuid
 from proteus.model.object import Object
 from proteus.model.project import Project
-from proteus.utils.model.qundo_commands import CreateDocument
+from proteus.utils.widgets_logic.qundo_commands import CreateDocument
 import proteus
 
 class DocumentDialogLogic():

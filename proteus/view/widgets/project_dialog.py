@@ -6,7 +6,7 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from PyQt5.QtWidgets import QDialog
-from proteus.utils.model.project_dialog_logic import ProjectDialogLogic
+from proteus.utils.widgets_logic.project_dialog_logic import ProjectDialogLogic
 import proteus.config as config
 from PyQt5 import uic
 import proteus

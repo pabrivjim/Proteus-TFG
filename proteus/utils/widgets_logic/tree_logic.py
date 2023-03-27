@@ -15,9 +15,9 @@ from proteus.model import PROTEUS_ANY
 from proteus.model.object import Object
 from proteus.model.project import Project
 from .qundo_commands import CreateDocument
-from proteus.utils.model.qundo_commands import CreateObject
+from proteus.utils.widgets_logic.qundo_commands import CreateObject
 from proteus.view.widgets.properties import PropertyDialog
-from proteus.utils.model.qundo_commands import DeleteObject, DeleteDocument, MoveNode
+from proteus.utils.widgets_logic.qundo_commands import DeleteObject, DeleteDocument, MoveNode
 import proteus.config as config
 import proteus
 

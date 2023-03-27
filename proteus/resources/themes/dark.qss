@@ -6,8 +6,8 @@ QWidget {
 QMainWindow {
     background-color: #283238;
 }
-
 QToolButton { border: none; }
+
 
 QMainWindow::separator {
     width: 1px;
@@ -35,7 +35,7 @@ QTabBar::tab {
     margin-top: 0px;
 }
 
-QTabBar::tab:!selected {
+QTabBar::tab:not(:selected) {
     background-color: #283238;
     border-bottom: 1px solid #999999;
 }

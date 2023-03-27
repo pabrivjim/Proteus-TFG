@@ -7,7 +7,7 @@
 # ==========================================================================
 from PyQt5.QtCore import (Qt, pyqtSignal)
 from PyQt5.QtWidgets import (QTreeWidget, QFrame)
-from proteus.utils.model.tree_logic import TreeLogic
+from proteus.utils.widgets_logic.tree_logic import TreeLogic
 import proteus
 
 class DocumentInspector(QTreeWidget):
