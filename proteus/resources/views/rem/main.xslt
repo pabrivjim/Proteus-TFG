@@ -9,6 +9,7 @@
 
     <!-- Object templates -->
     <xsl:include href="objects/figure.xslt" />
+    <xsl:include href="objects/actor.xslt" />
     <xsl:include href="objects/paragraph.xslt" />
     <xsl:include href="objects/section.xslt" />
     <xsl:include href="objects/default.xslt" />
@@ -51,19 +52,35 @@
         </dl>
 
         <!-- Table of contents -->
-        <h2 class="title text-2xl dl my-2 font-bold">Table of contents</h2>
+        <h2 class="title text-2xl dl my-2 font-bold">
+            <xsl:value-of name="pStringTableOfContents" select="proteus:trans('Table of contents')" disable-output-escaping="yes"/>
+        </h2>
         <ol>
             <xsl:for-each select="children/object"> 
                 <li class="ml-3 text-lg underline text-blue-600">
                     <a href="#{@id}" style="font-weight:bold; visited:text-blue-600">
-                        <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
+                        <xsl:choose>
+                            <xsl:when test="properties/*[@name='identifier']">
+                                <xsl:value-of select="concat(properties/*[@name='name'], ': ', properties/*[@name='identifier'])" disable-output-escaping="yes"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </a>
                     <xsl:if test="children/object">
                         <ol>
                             <xsl:for-each select="children/object"> 
                                 <li class="ml-5 underline text-blue-600">
                                     <a href="#{@id}">
-                                        <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
+                                        <xsl:choose>
+                                            <xsl:when test="properties/*[@name='identifier']">
+                                                <xsl:value-of select="concat(properties/*[@name='name'], ': ', properties/*[@name='identifier'])" disable-output-escaping="yes"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
                                     </a>
                                 </li>
                             </xsl:for-each>
@@ -100,6 +117,9 @@
             <xsl:when test="$class = 'paragraph'">
                 <xsl:call-template name="paragraph"/>
             </xsl:when>
+            <xsl:when test="$class = 'actor'">
+                <xsl:call-template name="actor"/>
+            </xsl:when>
             <xsl:when test="$class = 'figure'">
                 <xsl:call-template name="figure"/>
             </xsl:when>
@@ -107,8 +127,43 @@
                 <xsl:call-template name="default"/>
             </xsl:otherwise>
         </xsl:choose>
-        
     </xsl:template>
+
+<xsl:template name="proteus_table">
+    <xsl:param name="version"/>
+    <xsl:param name="description"/>
+    <xsl:param name="comments"/>
+    <tr>
+      <th class="capitalize align-top">
+        <xsl:value-of name="pStringVersion" select="concat(proteus:trans('Version'), ':')" disable-output-escaping="yes"/>
+      </th>
+      <td class="pl-5">
+        <ul>
+          <li><xsl:value-of select="$version"/></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th class="capitalize align-top">
+        <xsl:value-of name="pStringDescription" select="concat(proteus:trans('Description'), ':')" disable-output-escaping="yes"/>
+      </th>
+      <td class="pl-5">
+        <ul>
+          <li><xsl:value-of select="$description"/></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th class="capitalize align-top">
+        <xsl:value-of name="pStringComments" select="concat(proteus:trans('Comments'), ':')" disable-output-escaping="yes"/>
+      </th>
+      <td class="pl-5">
+        <ul>
+          <li><xsl:value-of select="$comments"/></li>
+        </ul>
+      </td>
+    </tr>
+  </xsl:template>
 
 
 </xsl:stylesheet>

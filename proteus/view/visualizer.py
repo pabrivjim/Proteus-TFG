@@ -25,6 +25,8 @@ import proteus.config as config
 import proteus
 import os
 
+from proteus.utils.i18n import trans
+
 
 # DEBUG INSPECTOR
 DEBUG_PORT = '5588'
@@ -56,11 +58,12 @@ def convert_markdown(elements):
     proteus.logger.info('visualizer - convert markdown')
     
     try:
-        print(markdown.markdown(elements[0].text))
         return markdown.markdown(elements[0].text)
     except Exception as e:
         print("ERROR: ", e)
         return elements[0].text
+
+
 # https://stackoverflow.com/questions/51388443/css-doesnt-work-in-qwebengineview-sethtml with some changes
 def loadCSS(view: QWebEngineView, path, name, counter):
     counter += 1
@@ -213,7 +216,12 @@ class Visualizer(QWebEngineView):
         
         ns = etree.FunctionNamespace("https://proteus.us.es")
         ns.prefix = "proteus"
+
+        # Functions to use in XSLT.
+        # Markdown Function translate from markdown to html.
+        # Trans Function translate from English to Spanish and viceverse.
         ns['markdown'] = lambda context, content: convert_markdown(content)
+        ns['trans'] = lambda context, content: trans(content)
 
         path = abspath(join(dirname(__file__), pardir,
                             views[self.view]["path"]))
