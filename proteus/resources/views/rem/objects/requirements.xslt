@@ -4,9 +4,12 @@
   xmlns:msxsl="urn:schemas-microsoft-com:xslt"
   xmlns:proteus="https://proteus.us.es" exclude-result-prefixes="exslt msxsl">
   <xsl:output method="html" doctype-public="XSLT-compat" omit-xml-declaration="yes" encoding="UTF-8" indent="yes"/>
-  <xsl:template match="actor" name="actor">
+  <xsl:template match="requirements" name="requirements">
+  <!-- <xsl:param name="@classes"/> -->
+  <!-- We want the format as #### -->
+  <!-- <xsl:value-of select="format-number($i, '0000')"/> -->
     <div class="border-4 border-blue-300 my-5">
-      <h5 class="bg-blue-200 p-1">
+      <h5 class="bg-blue-200 p-1 {@classes}">
         <span class="secno">
           <xsl:value-of select="properties/*[@name='identifier']"/>
         </span>
@@ -20,6 +23,14 @@
             </xsl:with-param>
             <xsl:with-param name="description">
                 <xsl:value-of select="properties/*[@name='description']"/>
+            </xsl:with-param>
+
+            <!-- We add the precondition because Use of case have them. -->
+            <xsl:with-param name="precondition">
+                <xsl:value-of select="properties/*[@name='precondition']"/>
+            </xsl:with-param>
+            <xsl:with-param name="postcondition">
+                <xsl:value-of select="properties/*[@name='postcondition']"/>
             </xsl:with-param>
             <xsl:with-param name="comments">
                 <xsl:value-of select="properties/*[@name='comments']"/>

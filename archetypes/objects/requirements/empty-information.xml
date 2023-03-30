@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object id="empty-information" classes="informationRequirement" acceptedChildren=":Proteus-none">
+  <properties>
+    <stringProperty name="identifier"><![CDATA[IRQ-0001]]></stringProperty>
+    <stringProperty name="name"><![CDATA[Information Requirement]]></stringProperty>
+    <floatProperty name="version">1.0</floatProperty>
+    <dateProperty name="date">2022-10-10</dateProperty>
+    <markdownProperty name="description" category="detail"><![CDATA[The system shall store the information corresponding to...]]></markdownProperty>
+    <markdownProperty name="comments" category="comments"><![CDATA[None]]></markdownProperty>
+  </properties>
+  <children />
+  <traces />
+</object>

@@ -9,11 +9,11 @@
 
     <!-- Object templates -->
     <xsl:include href="objects/figure.xslt" />
-    <xsl:include href="objects/actor.xslt" />
+    <xsl:include href="objects/requirements.xslt" />
     <xsl:include href="objects/paragraph.xslt" />
     <xsl:include href="objects/section.xslt" />
     <xsl:include href="objects/default.xslt" />
-    
+
     <xsl:template match="/">
         <html>
             <head>
@@ -59,28 +59,14 @@
             <xsl:for-each select="children/object"> 
                 <li class="ml-3 text-lg underline text-blue-600">
                     <a href="#{@id}" style="font-weight:bold; visited:text-blue-600">
-                        <xsl:choose>
-                            <xsl:when test="properties/*[@name='identifier']">
-                                <xsl:value-of select="concat(properties/*[@name='name'], ': ', properties/*[@name='identifier'])" disable-output-escaping="yes"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:call-template name="table_of_contents"/>
                     </a>
                     <xsl:if test="children/object">
                         <ol>
                             <xsl:for-each select="children/object"> 
                                 <li class="ml-5 underline text-blue-600">
                                     <a href="#{@id}">
-                                        <xsl:choose>
-                                            <xsl:when test="properties/*[@name='identifier']">
-                                                <xsl:value-of select="concat(properties/*[@name='name'], ': ', properties/*[@name='identifier'])" disable-output-escaping="yes"/>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
+                                        <xsl:call-template name="table_of_contents"/>
                                     </a>
                                 </li>
                             </xsl:for-each>
@@ -97,6 +83,17 @@
         </xsl:for-each>
 
     </xsl:template>
+
+    <xsl:template name="table_of_contents">
+        <xsl:choose>
+            <xsl:when test="properties/*[@name='identifier']">
+                <xsl:value-of select="concat(properties/*[@name='name'], ': ', properties/*[@name='identifier'])" disable-output-escaping="yes"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="properties/*[@name='name']" disable-output-escaping="yes"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     
     <xsl:template name="child">
         <xsl:call-template name="object"/>
@@ -109,6 +106,8 @@
 
     
     <xsl:template name="object">
+        <!-- List of the classes that should use the requirements template -->
+        <xsl:variable name="requirements">|actor|useCase|objective|informationRequirement|functionalRequirement|constraintRequirement|nonFunctionalRequirement|</xsl:variable>
         <xsl:variable name="class" select="@classes"/>
         <xsl:choose>
             <xsl:when test="$class = 'section'">
@@ -117,8 +116,8 @@
             <xsl:when test="$class = 'paragraph'">
                 <xsl:call-template name="paragraph"/>
             </xsl:when>
-            <xsl:when test="$class = 'actor'">
-                <xsl:call-template name="actor"/>
+            <xsl:when test="contains($requirements,$class)">
+                <xsl:call-template name="requirements"/>
             </xsl:when>
             <xsl:when test="$class = 'figure'">
                 <xsl:call-template name="figure"/>
@@ -133,6 +132,8 @@
     <xsl:param name="version"/>
     <xsl:param name="description"/>
     <xsl:param name="comments"/>
+    <xsl:param name="precondition"/>
+    <xsl:param name="postcondition"/>
     <tr>
       <th class="capitalize align-top">
         <xsl:value-of name="pStringVersion" select="concat(proteus:trans('Version'), ':')" disable-output-escaping="yes"/>
@@ -153,8 +154,33 @@
         </ul>
       </td>
     </tr>
+    
+    <!-- If the object is a use case, the precondition and postcondition are shown. -->
+    <xsl:if test="@classes = 'useCase'">
+        <tr>
+            <th class="capitalize align-top">
+                <xsl:value-of name="pStringPrecondition" select="concat(proteus:trans('Precondition'), ':')" disable-output-escaping="yes"/>
+            </th>
+            <td class="pl-5">
+                <ul>
+                <li><xsl:value-of select="$precondition"/></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th class="capitalize align-top">
+                <xsl:value-of name="pStringPostcondition" select="concat(proteus:trans('Postcondition'), ':')" disable-output-escaping="yes"/>
+            </th>
+            <td class="pl-5">
+                <ul>
+                <li><xsl:value-of select="$postcondition"/></li>
+                </ul>
+            </td>
+        </tr>  
+    </xsl:if>
     <tr>
-      <th class="capitalize align-top">
+      <th class="
+      capitalize align-top">
         <xsl:value-of name="pStringComments" select="concat(proteus:trans('Comments'), ':')" disable-output-escaping="yes"/>
       </th>
       <td class="pl-5">
