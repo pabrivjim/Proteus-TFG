@@ -16,8 +16,10 @@ import markdown
 from PyQt5.QtCore import QSettings
 from proteus.controllers.views import load_views
 from PyQt5 import QtWebEngineWidgets, QtCore
-from PyQt5.QtCore import QUrl, pyqtSignal, QEventLoop
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
+from PyQt5.QtGui import QKeyEvent
+from PyQt5.QtCore import QUrl, pyqtSignal, QEventLoop, Qt
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings, QWebEnginePage
+from PyQt5.QtWidgets import QShortcut, QInputDialog, QMessageBox
 from lxml import etree
 from proteus.model.object import Object
 from proteus.model.project import Project
@@ -122,10 +124,50 @@ class Visualizer(QWebEngineView):
         settings.setAttribute(QWebEngineSettings.PluginsEnabled, True)
         settings.setAttribute(QWebEngineSettings.AutoLoadImages, True)
         self.inspector.setWindowTitle('Web Inspector')
+
+        # Shortcut for search for text
+        self.shortcut = QShortcut(Qt.CTRL + Qt.Key_F, self)
+        self.shortcut.activated.connect(self.show_search_dialog)
+
+        # Install an event filter to capture key press events
+        super().installEventFilter(self)
+        
+        # DEBUG INSPECTOR
         self.inspector.load(QUrl(DEBUG_URL))
-    
+
+    def eventFilter(self, obj, event):
+        """
+        If the user presses the Escape key, clear the search text.
+        """
+        if event.type() == QKeyEvent.ShortcutOverride and event.key() == Qt.Key_Escape:
+            super().findText("")
+            return True
+
+        return super().eventFilter(obj, event)
+        
+    def show_search_dialog(self):
+        """
+        Show the search dialog and search for the text entered by the user.
+        """
+
+        def on_find_text_finished(result):
+            """
+            If the text is not found, show a message box.
+            """
+            if not result:
+                QMessageBox.information(self, "Search Results", "No matches found.")
+        
+        text, ok = QInputDialog.getText(self, "Search", "Enter text to search:")
+
+        if ok:
+            flags = QWebEnginePage.FindFlags(0)
+            super().findText(text, flags, on_find_text_finished)
+
     # DEBUG INSPECTOR 
     def handleLoaded(self, ok):
+        """
+        Handle inspector loaded
+        """
         if ok:
             self.page().setDevToolsPage(self.inspector.page())
             self.inspector.show()

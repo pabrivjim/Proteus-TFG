@@ -36,7 +36,6 @@ def trans(key: str) -> str:
     Method that translate a string using the i18n files.
     """
     proteus.logger.info('i18n - trans')
-    print("KEY: ", key)
     settings = QSettings("Proteus", "SettingsDesktop")
     language = settings.value("language", "es")
     # print(test)
