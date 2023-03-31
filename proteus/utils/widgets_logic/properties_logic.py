@@ -30,8 +30,8 @@ class PropertiesLogic():
         Method that updates the properties of the object.
         """
         proteus.logger.info('PropertiesLogic - update property')
-        app = self.parent.parentWidget()
-        new_prop : Property = app.projectController.project.get_property(prop).clone(value)
+
+        new_prop : Property = self.obj.get_property(prop).clone(value)
         self.updated_item.set_property(new_prop)
 
     def save_changes(self) -> None:
