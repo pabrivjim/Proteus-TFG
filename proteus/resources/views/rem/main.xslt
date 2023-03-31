@@ -45,8 +45,8 @@
         
         <!-- Document properties -->
         <dl class="py-3 dl">
-            <xsl:for-each select="properties/*">
-                <dt class="font-bold capitalize"><xsl:value-of select="@name"/>:</dt>
+            <xsl:for-each    select="properties/*">
+                <dt class="font-bold capitalize"><xsl:value-of select="proteus:trans(string(@name))"/>:</dt>
                     <dd class=""><xsl:value-of select="."/></dd>
             </xsl:for-each>
         </dl>
@@ -132,8 +132,11 @@
     <xsl:param name="version"/>
     <xsl:param name="description"/>
     <xsl:param name="comments"/>
-    <xsl:param name="precondition"/>
-    <xsl:param name="postcondition"/>
+    <xsl:param name="preCondition"/>
+    <xsl:param name="postCondition"/>
+    <xsl:param name="stability"/>
+    <xsl:param name="developmentState"/>
+    <xsl:param name="urgency"/>
     <tr>
       <th class="capitalize align-top">
         <xsl:value-of name="pStringVersion" select="concat(proteus:trans('Version'), ':')" disable-output-escaping="yes"/>
@@ -154,26 +157,63 @@
         </ul>
       </td>
     </tr>
-    
-    <!-- If the object is a use case, the precondition and postcondition are shown. -->
-    <xsl:if test="@classes = 'useCase'">
+    <xsl:if test="not(@classes = 'actor')">
+        <xsl:if test="not($stability = 'PD')">
         <tr>
             <th class="capitalize align-top">
-                <xsl:value-of name="pStringPrecondition" select="concat(proteus:trans('Precondition'), ':')" disable-output-escaping="yes"/>
+                <xsl:value-of name="pStringStability" select="concat(proteus:trans('stability'), ':')" disable-output-escaping="yes"/>
             </th>
             <td class="pl-5">
                 <ul>
-                <li><xsl:value-of select="$precondition"/></li>
+                <li><xsl:value-of select="$stability"/></li>
+                </ul>
+            </td>
+        </tr>
+        </xsl:if>
+        <xsl:if test="not($developmentState = 'PD')">
+        <tr>
+            <th class="capitalize align-top">
+                <xsl:value-of name="pStringDevelopmentState" select="concat(proteus:trans('developmentState'), ':')" disable-output-escaping="yes"/>
+            </th>
+            <td class="pl-5">
+                <ul>
+                <li><xsl:value-of select="$developmentState"/></li>
+                </ul>
+            </td>
+        </tr>  
+        </xsl:if>
+        <xsl:if test="not($urgency = 'PD')">
+        <tr>
+            <th class="capitalize align-top">
+                <xsl:value-of name="pStringUrgency" select="concat(proteus:trans('urgency'), ':')" disable-output-escaping="yes"/>
+            </th>
+            <td class="pl-5">
+                <ul>
+                <li><xsl:value-of select="$urgency"/></li>
+                </ul>
+            </td>
+        </tr>  
+        </xsl:if>
+    </xsl:if>
+    <!-- If the object is a use case, the preCondition and postCondition are shown. -->
+    <xsl:if test="@classes = 'useCase'">
+        <tr>
+            <th class="capitalize align-top">
+                <xsl:value-of name="pStringPrecondition" select="concat(proteus:trans('preCondition'), ':')" disable-output-escaping="yes"/>
+            </th>
+            <td class="pl-5">
+                <ul>
+                <li><xsl:value-of select="$preCondition"/></li>
                 </ul>
             </td>
         </tr>
         <tr>
             <th class="capitalize align-top">
-                <xsl:value-of name="pStringPostcondition" select="concat(proteus:trans('Postcondition'), ':')" disable-output-escaping="yes"/>
+                <xsl:value-of name="pStringPostcondition" select="concat(proteus:trans('postCondition'), ':')" disable-output-escaping="yes"/>
             </th>
             <td class="pl-5">
                 <ul>
-                <li><xsl:value-of select="$postcondition"/></li>
+                <li><xsl:value-of select="$postCondition"/></li>
                 </ul>
             </td>
         </tr>  

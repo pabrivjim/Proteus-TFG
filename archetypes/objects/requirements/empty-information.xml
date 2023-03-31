@@ -5,6 +5,9 @@
     <stringProperty name="name"><![CDATA[Information Requirement]]></stringProperty>
     <floatProperty name="version">1.0</floatProperty>
     <dateProperty name="date">2022-10-10</dateProperty>
+    <enumProperty name="stability" category="priority" choices="PD low medium high">PD</enumProperty>
+    <enumProperty name="developmentState" category="priority" choices="PD developing finished">PD</enumProperty>
+    <enumProperty name="urgency" category="priority" choices="PD low medium high">PD</enumProperty>
     <markdownProperty name="description" category="detail"><![CDATA[The system shall store the information corresponding to...]]></markdownProperty>
     <markdownProperty name="comments" category="comments"><![CDATA[None]]></markdownProperty>
   </properties>

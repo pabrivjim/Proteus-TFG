@@ -25,12 +25,21 @@
                 <xsl:value-of select="properties/*[@name='description']"/>
             </xsl:with-param>
 
-            <!-- We add the precondition because Use of case have them. -->
-            <xsl:with-param name="precondition">
-                <xsl:value-of select="properties/*[@name='precondition']"/>
+            <!-- We add the preCondition because Use of case have them. -->
+            <xsl:with-param name="preCondition">
+                <xsl:value-of select="properties/*[@name='preCondition']"/>
             </xsl:with-param>
-            <xsl:with-param name="postcondition">
-                <xsl:value-of select="properties/*[@name='postcondition']"/>
+            <xsl:with-param name="stability">
+                <xsl:value-of select="properties/*[@name='stability']"/>
+            </xsl:with-param>
+            <xsl:with-param name="developmentState">
+                <xsl:value-of select="properties/*[@name='developmentState']"/>
+            </xsl:with-param>
+            <xsl:with-param name="urgency">
+                <xsl:value-of select="properties/*[@name='urgency']"/>
+            </xsl:with-param>
+            <xsl:with-param name="postCondition">
+                <xsl:value-of select="properties/*[@name='postCondition']"/>
             </xsl:with-param>
             <xsl:with-param name="comments">
                 <xsl:value-of select="properties/*[@name='comments']"/>

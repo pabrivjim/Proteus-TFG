@@ -7,7 +7,11 @@ estilo: Estilo
 contenido: Contenido
 traces: Trazas
 name: Nombre
-version: Version
+version: Versión
+author: Autor
+date: Fecha
+description: Descripción
+comments: Comentarios
 info: Información
 text: Texto
 edit properties: Editar propiedades
@@ -57,9 +61,15 @@ Sorry!: Lo sentimos!
 You can't add traces to this object.: No se pueden agregar trazas a este objeto.
 If you delete this item, the following traces will be discarted: Si borras este objeto, las siguientes trazas serán descartadas
 Traces will be lost even if you undo your changes!: Las trazas se perderán incluso si deshaces los cambios!
+Name: Nombre
 Version: Versión
 Author: Autor
 Date: Fecha
 Description: Descripción
 Comments: Comentarios
 Table of contents: Tabla de contenidos
+low: Bajo
+medium: Medio
+high: Alto
+PreCondition: PreCondición
+PostCondition: PostCondición
