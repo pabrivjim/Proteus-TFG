@@ -81,7 +81,8 @@ class ViewsController(Controller):
 
     def focus_object(self, object_id: str):
         """
-        Focuses object in visualizers.
+        Focuses object in visualizers. This method is called from the tree view.
+        It is used to scroll to the object in the visualizer.
 
         :param object_id. Id of the object to focus.
         """

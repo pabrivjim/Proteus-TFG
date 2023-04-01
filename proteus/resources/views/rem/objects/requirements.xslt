@@ -8,7 +8,7 @@
   <!-- <xsl:param name="@classes"/> -->
   <!-- We want the format as #### -->
   <!-- <xsl:value-of select="format-number($i, '0000')"/> -->
-    <div class="border-4 border-blue-300 my-5">
+    <div id="{@id}" class="border-4 border-blue-300 my-5">
       <h5 class="bg-blue-200 p-1 {@classes}">
         <span class="secno">
           <xsl:value-of select="properties/*[@name='identifier']"/>

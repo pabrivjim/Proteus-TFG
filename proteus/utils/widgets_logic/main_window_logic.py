@@ -40,8 +40,6 @@ class MainWindowLogic():
             if b_type == "archetype":
                 # Check if :Proteus-any or archetype class in acceptedChildren
                 accepted = {":Proteus-any", button} & set(obj.acceptedChildren)
-                print(accepted)
-                print(button)
                 tb.setEnabled(bool(accepted))
 
 
@@ -56,8 +54,6 @@ class MainWindowLogic():
         if self.parent.selected_object:
             obj_clone = copy.copy(obj.get_object(self.parent.projectController.project))
             obj_clone.id = str(shortuuid.random(length=12))
-            print("Selected Object: ", self.parent.selected_object.get_property("name").value)
-            print("Object to add: ", obj_clone.get_property("name").value)
             command = CreateObject(self.parent.projectController.project, self.parent.selected_object,
                                    obj_clone)
 

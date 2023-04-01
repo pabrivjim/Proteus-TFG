@@ -9,6 +9,7 @@
   <img
             src="https://cooperacion.us.es/sites/default/files/GENERAL/US_VSSyC-OCD_color.png"
             class="h-12 my-5"
+            id="{@id}"
         />
     
         

@@ -204,7 +204,7 @@ class Visualizer(QWebEngineView):
 
     def focus(self, id: str) -> None:
         """
-        Focus an object in html document.
+        Focus an object in html document. Automatically scrolls to object.
 
         :param id: Id of object to focus.
         """
