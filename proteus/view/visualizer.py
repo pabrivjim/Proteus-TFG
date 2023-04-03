@@ -24,6 +24,14 @@ from lxml import etree
 from proteus.model.object import Object
 from proteus.model.project import Project
 import proteus.config as config
+import cv2
+from PIL import Image
+import urllib.request
+import numpy as np
+from PyQt5.QtCore import QUrl
+from PyQt5.QtGui import QImage
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtCore import QBuffer
 import proteus
 import os
 
@@ -52,6 +60,32 @@ def send_to_view(project, page, index=0):
     data = json.dumps(message)
     page.runJavaScript(f"handleMessage({data})")
 
+def convert_black_white(image_url: str) -> str:
+    """
+    Convert image to black and white.
+    """
+    proteus.logger.info('visualizer - convert black white')
+    
+    # Read the image from the URL
+    req = urllib.request.urlopen(image_url)
+    arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
+    img = cv2.imdecode(arr, -1)
+
+    # Apply the desired filter. In this case, black and white
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)[1]
+
+    # Convert the image to a Image from pillow library
+    pil_img = Image.fromarray(img)
+    buffer = QBuffer()
+
+    # Save in buffer the image
+    buffer.open(QBuffer.ReadWrite)
+    pil_img.save(buffer, format="PNG")
+    qba = buffer.data()
+    
+    # Return the image in base64
+    return f"data:image/png;base64,{qba.toBase64().data().decode()}"
 
 def convert_markdown(elements):
     """
@@ -264,6 +298,7 @@ class Visualizer(QWebEngineView):
         # Trans Function translate from English to Spanish and viceverse.
         ns['markdown'] = lambda context, content: convert_markdown(content)
         ns['trans'] = lambda context, content: trans(content)
+        ns['black'] = lambda context, content: convert_black_white(content)
 
         path = abspath(join(dirname(__file__), pardir,
                             views[self.view]["path"]))

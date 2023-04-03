@@ -2,6 +2,8 @@
 <object id="us-logo-url" classes="figure" acceptedChildren=":Proteus-none">
   <properties>
     <stringProperty name="name"><![CDATA[University of Seville logo]]></stringProperty>
+    <enumProperty name="position" choices="left center right">left</enumProperty>
+    <enumProperty name="filter" choices="original black">black</enumProperty>
     <floatProperty name="version">1.0</floatProperty>
 	  <dateProperty name="date">2022-10-10</dateProperty>
 		<urlProperty name="url"><![CDATA[https://www.us.es/sites/default/files/2019-05/marca-US-principal.jpg]]></urlProperty>
