@@ -6,7 +6,7 @@ Pytest file for the PROTEUS frontend (PyQt5) with Pytest-qt.
 # Description: pytest file for the PROTEUS frontend with Pytest-qt
 # Date: 17/03/2023
 # Version: 0.1
-# Author: Pablo Rivera Jiménez 
+# Author: Pablo Rivera Jiménez
 # ==========================================================================
 from pathlib import Path
 import pathlib

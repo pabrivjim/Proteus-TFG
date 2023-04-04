@@ -95,10 +95,10 @@ class DocumentArchetypeProxy:
         self.name : str = data["name"]
         self.description : str = data["description"]
         self.author : str = data["author"]
-        self.date : datetime = data["date"] 
+        self.date : datetime = data["date"]
         self.classes : str = data["classes"]
         self.acceptedChildren : str = data["acceptedChildren"]
-        
+
     # ----------------------------------------------------------------------
     # Method     : get_document
     # Description: It returns an instance of a object.

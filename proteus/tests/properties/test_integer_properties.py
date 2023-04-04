@@ -66,7 +66,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_integer_properties(name, category, value, expected_value, new_value, expected_new_value):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of Integer properties.
     """
     # Create property from XML element
@@ -76,7 +76,7 @@ def test_integer_properties(name, category, value, expected_value, new_value, ex
     # Check property
     assert(property.name == name)
     assert(property.category == category)
-    assert(property.value == expected_value)    
+    assert(property.value == expected_value)
     assert(
         ET.tostring(property.generate_xml()).decode() ==
         f'<{property_tag} name="{name}" category="{category}">{expected_value}</{property_tag}>'
@@ -88,7 +88,7 @@ def test_integer_properties(name, category, value, expected_value, new_value, ex
     # Check cloned property
     assert(cloned_property.name == property.name)
     assert(cloned_property.category == property.category)
-    assert(cloned_property.value == property.value)    
+    assert(cloned_property.value == property.value)
 
     # Clone the property changing value
     evolved_property = property.clone(new_value)
@@ -96,7 +96,7 @@ def test_integer_properties(name, category, value, expected_value, new_value, ex
     # Check cloned property
     assert(evolved_property.name == name)
     assert(evolved_property.category == category)
-    assert(evolved_property.value == expected_new_value)    
+    assert(evolved_property.value == expected_new_value)
     assert(
         ET.tostring(evolved_property.generate_xml()).decode() ==
         f'<{property_tag} name="{name}" category="{category}">{expected_new_value}</{property_tag}>'

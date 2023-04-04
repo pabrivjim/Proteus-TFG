@@ -29,7 +29,7 @@ import lxml.etree as ET
 # Project specific imports
 # --------------------------------------------------------------------------
 
-from proteus.model.property import STRING_PROPERTY_TAG, MARKDOWN_PROPERTY_TAG         
+from proteus.model.property import STRING_PROPERTY_TAG, MARKDOWN_PROPERTY_TAG
 
 # --------------------------------------------------------------------------
 # Test specific imports
@@ -49,7 +49,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_string_and_markdown_properties(property_tag, name, category, value, new_value):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of string and markdown properties.
     """
     # Create property from XML element

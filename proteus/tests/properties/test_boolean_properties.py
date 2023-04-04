@@ -60,7 +60,7 @@ import proteus.tests.properties.fixtures as fixtures
     ]
 )
 @pytest.mark.parametrize('new_value, expected_new_value, expected_new_xml_value',
-    [   
+    [
         ('false', False, 'false'),
         ('true', True, 'true'),
         ('True', True, 'true'),
@@ -74,7 +74,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_boolean_properties(name, category, value, expected_value, expected_xml_value, new_value, expected_new_value, expected_new_xml_value):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of boolean properties.
     """
     # Create property from XML element
@@ -83,7 +83,7 @@ def test_boolean_properties(name, category, value, expected_value, expected_xml_
 
     # Check property
     assert(property.name == name)
-    assert(property.category == category)    
+    assert(property.category == category)
     assert(property.value == expected_value)
     assert(
         ET.tostring(property.generate_xml()).decode() ==
@@ -104,7 +104,7 @@ def test_boolean_properties(name, category, value, expected_value, expected_xml_
     # Check cloned property
     assert(evolved_property.name == name)
     assert(evolved_property.category == category)
-    assert(evolved_property.value == expected_new_value)    
+    assert(evolved_property.value == expected_new_value)
     assert(
         ET.tostring(evolved_property.generate_xml()).decode() ==
         f'<{property_tag} name="{name}" category="{category}">{expected_new_xml_value}</{property_tag}>'

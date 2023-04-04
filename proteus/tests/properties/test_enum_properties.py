@@ -58,7 +58,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_enum_properties(name, category, value, choices, expected_value, expected_choices, new_value):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of enum properties.
     """
     # Create property from XML element
@@ -108,7 +108,7 @@ def test_enum_properties(name, category, value, choices, expected_value, expecte
     elif new_value not in property.get_choices_as_set():
         expected_value = property.choices.split()[0]
         expected_choices = property.choices
-    # value, choices, value in choices        
+    # value, choices, value in choices
     else:
         expected_value = new_value
         expected_choices = property.choices
@@ -116,7 +116,7 @@ def test_enum_properties(name, category, value, choices, expected_value, expecte
     # Check cloned property
     assert(evolved_property.name     == name            )
     assert(evolved_property.category == category        )
-    assert(evolved_property.value    == expected_value  )    
+    assert(evolved_property.value    == expected_value  )
     assert(evolved_property.choices  == expected_choices)
     if evolved_property.value:
         assert(evolved_property.value in evolved_property.get_choices_as_set())

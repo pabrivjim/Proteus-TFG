@@ -27,7 +27,7 @@ class DocumentDialogLogic():
         :param archetype: archetype index.
         """
         proteus.logger.info('DocumentDialogLogic - create document')
-        
+
         documents = self.parent.document_archetypes
 
         app = self.parent.parentWidget()

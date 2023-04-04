@@ -63,10 +63,10 @@ def test_wrong_property_tag(property_tag, name, category, value):
     assert(property is None)
 
 
-@pytest.mark.parametrize('name, name_expected', 
+@pytest.mark.parametrize('name, name_expected',
     [(str(), DEFAULT_NAME), ('test_name', 'test_name')])
 
-@pytest.mark.parametrize('category, category_expected', 
+@pytest.mark.parametrize('category, category_expected',
     [(str(), DEFAULT_CATEGORY), ('test_category', 'test_category')])
 
 def test_property_name_and_category(name, name_expected, category, category_expected):

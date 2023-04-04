@@ -23,7 +23,6 @@ class ProjectDialogLogic():
         proteus.logger.info('ProjectDialogLogic - create project')
         selected_files = self.parent.parent().file.req_save_new_project(archetype)
         if selected_files:
-            filename = selected_files[0]
             main_class = self.parent.parent().__class__
             project_title = self.parent.name.text()
             m = main_class(project_path=path, project_title=project_title, clean=True)

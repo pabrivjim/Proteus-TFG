@@ -45,7 +45,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 @pytest.mark.parametrize('name',         [str(), 'test name'     ])
 @pytest.mark.parametrize('category',     [str(), 'test category' ])
-@pytest.mark.parametrize('value, is_file_expected',        
+@pytest.mark.parametrize('value, is_file_expected',
     [
         (__file__, True),
         (pathlib.Path.cwd(), False),
@@ -53,7 +53,7 @@ import proteus.tests.properties.fixtures as fixtures
         (str(), False)
     ]
 )
-@pytest.mark.parametrize('new_value, is_file_new_expected',    
+@pytest.mark.parametrize('new_value, is_file_new_expected',
     [
         (__file__, True),
         (pathlib.Path.cwd().resolve().parent, False),
@@ -64,9 +64,9 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_file_properties(name, category, value, is_file_expected, new_value, is_file_new_expected):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of file properties.
-    """  
+    """
     # Create property from XML element
     property_tag = FILE_PROPERTY_TAG
     (property, name, category) = fixtures.create_property(property_tag, name, category, value)

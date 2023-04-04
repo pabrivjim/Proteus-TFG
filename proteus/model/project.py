@@ -21,7 +21,6 @@ from __future__ import annotations # it has to be the first import
 
 # standard library imports
 import os
-from os.path import join
 import pathlib
 import shutil
 import logging
@@ -30,7 +29,6 @@ import lxml.etree as ET
 # local imports (starting from root)
 from proteus.model import DOCUMENT_TAG, DOCUMENTS_TAG, OBJECTS_REPOSITORY, PROJECT_TAG, ProteusID, PROJECT_FILE_NAME
 from proteus.model.abstract_object import AbstractObject, ProteusState
-import proteus.model.archetype_manager as archetypes
 #if 'proteus.model.object' in sys.modules:
 #    from proteus.model.object import Object
 from proteus.model.object import Object
@@ -71,7 +69,7 @@ class Project(AbstractObject):
     def load(path: str) -> Project:
         """
         Static factory method for loading a PROTEUS project from a given path.
-        
+
         :param path: path to the project file.
         :return: a PROTEUS project.
         """
@@ -228,7 +226,6 @@ class Project(AbstractObject):
         
         # Create path to objects repository
         objects_repository : str = f"{project_directory}/{OBJECTS_REPOSITORY}"
-        print(self.state)
 
         # If the Project is dead (Deleted/removed)
         if(self.state == ProteusState.DEAD):
@@ -300,7 +297,7 @@ class Project(AbstractObject):
                         if(child.children):
                             save_children(child)
                 save_children(document)
-        
+
         # PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso:
         for i in documents_to_be_removed:
             self.documents.pop(i) 

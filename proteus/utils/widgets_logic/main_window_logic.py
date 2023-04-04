@@ -21,7 +21,7 @@ class MainWindowLogic():
     def __init__(self, parent) -> None:
         proteus.logger.info('Init MainWindowLogic')
         self.parent = parent
-    
+
     def select_object(self, index: QModelIndex) -> None:
         """
         Updates selected object, focus object and enables accepted archetypes
@@ -36,7 +36,7 @@ class MainWindowLogic():
         self.parent.views.focus_object(item.data(0, Qt.UserRole).id)
         self.parent.selected_object: Object = item.data(0, Qt.UserRole)
         for button in self.parent.ribbon.buttons:
-            tb, b, b_type = self.parent.ribbon.buttons[button]
+            tb, _, b_type = self.parent.ribbon.buttons[button]
             if b_type == "archetype":
                 # Check if :Proteus-any or archetype class in acceptedChildren
                 accepted = {":Proteus-any", button} & set(obj.acceptedChildren)

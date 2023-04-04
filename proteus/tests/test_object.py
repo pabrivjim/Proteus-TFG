@@ -59,7 +59,7 @@ def test_objects(path):
     for child in children:
         children_list.append(child.attrib["id"] )
 
-    # Check that Object contains all the children of the xml    
+    # Check that Object contains all the children of the xml
     assert(all(child in test_object.children.keys()  for child in children_list))
 
     # Check that all their children the proper parent

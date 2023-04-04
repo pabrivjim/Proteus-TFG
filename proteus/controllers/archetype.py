@@ -74,7 +74,7 @@ class ArchetypeController(Controller):
         Private method to load the document archetypes.
         """
         return ArchetypeManager.load_document_archetypes(folder)
-    
+
     def _load_project_archetypes(self, folder) -> dict:
         """
         Private method to load the project archetypes.

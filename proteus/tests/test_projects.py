@@ -70,7 +70,6 @@ def test_projects(path):
         assert(document.id == id)
 
     # Compare xml
-    
     # Parser to avoid conflicts with CDATA
     parser = ET.XMLParser(strip_cdata=False)
     proteusET = ET.parse(new_cloned_project_path / "proteus.xml", parser = parser)
@@ -108,7 +107,7 @@ def test_projects(path):
     # Get the number of children before setting to DEAD
     number_of_children = len(os.listdir(new_cloned_project_path / "objects"))
 
-    # Set all children to DEAD 
+    # Set all children to DEAD
     for doc in test_project.documents.values():
         number_of_children -= 1
         assert(doc.parent == test_project)

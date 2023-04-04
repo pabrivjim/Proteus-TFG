@@ -41,7 +41,7 @@ import proteus.tests.properties.fixtures as fixtures
 @pytest.mark.parametrize('value, expected_value, expected_value_as_list',
     [
         (str(),     str(),     []                  ),
-        ('A',       'A',       ['A']               ), 
+        ('A',       'A',       ['A']               ),
         ('A B C D', 'A B C D', ['A', 'B', 'C', 'D'])
     ]
 )
@@ -55,7 +55,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_classlist_properties(name, category, value, expected_value, expected_value_as_list, new_value, new_expected_value, new_expected_value_as_list):
     """
-    It tests creation, cloning, and evolution (cloning with a new value) 
+    It tests creation, cloning, and evolution (cloning with a new value)
     of classlist properties.
     """
     # Create property from XML element
@@ -69,7 +69,7 @@ def test_classlist_properties(name, category, value, expected_value, expected_va
     assert(property.category == category                      )
     assert(property.value    == expected_value                )
     assert(property.get_class_list() == expected_value_as_list)
-    
+
     #We get the values parsed as <class>value</class><class>value</class>...
     expected_values_parsed = ""
     for class_value in expected_value_as_list:
@@ -95,7 +95,7 @@ def test_classlist_properties(name, category, value, expected_value, expected_va
     # Check cloned property
     assert(evolved_property.name     == property.name     )
     assert(evolved_property.category == property.category )
-    assert(evolved_property.value    == new_expected_value  )    
+    assert(evolved_property.value    == new_expected_value)
     assert(evolved_property.get_class_list() == new_expected_value_as_list)
 
     #We get the values parsed as <class>value</class><class>value</class>...

@@ -52,7 +52,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 @pytest.mark.parametrize('name',         [str(), 'test name'     ])
 @pytest.mark.parametrize('category',     [str(), 'test category' ])
-@pytest.mark.parametrize('value, expected_value', 
+@pytest.mark.parametrize('value, expected_value',
     [
         ('20:10:02', '20:10:02'),
         (str(),        datetime.datetime.now().time().strftime(TIME_FORMAT)),
@@ -135,7 +135,7 @@ def test_time_properties(name, category, value, expected_value, new_value, expec
     # Check cloned property
     assert(evolved_property.name == name)
     assert(evolved_property.category == category)
-    assert(delta.total_seconds() < epsilon_seconds)  
+    assert(delta.total_seconds() < epsilon_seconds)
 
     # To avoid fail because of potentional difference in seconds, we just check
     # that the property value is correctly generated in XML.

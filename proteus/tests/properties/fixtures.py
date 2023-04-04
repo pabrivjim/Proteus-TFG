@@ -8,11 +8,11 @@ Pytest fixtures for testing PROTEUS properties.
 # Version: 0.1
 # Author: Amador Durán Toro
 # ==========================================================================
-# About pytest fixtures: 
+# About pytest fixtures:
 # https://docs.pytest.org/en/7.1.x/explanation/fixtures.html#about-fixtures
 #
-# Pytest fixtures are called automatically from function tests. For the 
-# moment, the "fixtures" in this module are not actually pytest fixtures but 
+# Pytest fixtures are called automatically from function tests. For the
+# moment, the "fixtures" in this module are not actually pytest fixtures but
 # repeated code extracted as functions.
 # ==========================================================================
 

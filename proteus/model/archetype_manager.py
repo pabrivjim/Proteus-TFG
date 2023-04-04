@@ -17,12 +17,9 @@ Proteus - Archetype Manager
 
 # standard library imports
 import logging
-import shortuuid
-from enum import Enum, auto
 from os import listdir
 import os
 from os.path import join, isfile, isdir
-from os import pardir
 import shutil
 
 # other libraries imports
@@ -33,7 +30,7 @@ import proteus.config as config
 # PROTEUS imports
 from proteus.model import PROPERTIES_TAG
 from proteus.model.archetype_proxys import DocumentArchetypeProxy, ObjectArchetypeProxy, ProjectArchetypeProxy
-from proteus.model.property import Property, PropertyFactory
+from proteus.model.property import PropertyFactory
 
 
 # logging configuration
@@ -113,7 +110,7 @@ class ArchetypeManager:
         #       no archetypes are supposed to be in the root directory, AND that only one
         #       level of subdirectories is allowed.
         subdirs : list[str] = [f for f in listdir(archetypes_dir) if isdir(join(archetypes_dir, f))]
-        
+
         # Result as a list of pairs (path,name) <-- is that enough?
         result : dict[str, list] = dict ()
 
@@ -177,7 +174,7 @@ class ArchetypeManager:
         #       no archetypes are supposed to be in the root directory, AND that only one
         #       level of subdirectories is allowed.
         subdirs : list[str] = [f for f in listdir(archetypes_dir) if isdir(join(archetypes_dir, f))]
-        
+
         # Result as a list of pairs (path,name) <-- is that enough?
         # TODO: check the possibility of using proxy classes
         result : dict[str, DocumentArchetypeProxy] = dict ()
@@ -265,7 +262,7 @@ class ArchetypeManager:
         #       no archetypes are supposed to be in the root directory, AND that only one
         #       level of subdirectories is allowed.
         subdirs : list[str] = [f for f in listdir(archetypes_dir) if isdir(join(archetypes_dir, f))]
-        
+
         # Result as a list of pairs (path,name) <-- is that enough?
         # TODO: check the possibility of using proxy classes
         result : dict[str, ProjectArchetypeProxy] = dict ()

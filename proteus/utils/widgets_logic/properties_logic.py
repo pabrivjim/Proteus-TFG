@@ -9,8 +9,7 @@ from proteus.model.object import Object
 from proteus.model.project import Project
 from proteus.model.property import Property
 from proteus.utils.widgets_logic.qundo_commands import UpdateObject, UpdateProject
-from PyQt5.QtWidgets import (QWidget, QTreeWidgetItem, QVBoxLayout,
-                             QLabel,QHBoxLayout)
+from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QLabel,QHBoxLayout)
 from proteus.utils.i18n import trans
 import proteus.utils.widgets_utils as widgets_utils
 import proteus
@@ -23,7 +22,7 @@ class PropertiesLogic():
         proteus.logger.info('Init PropertiesLogic')
         self.parent = parent
         self.updated_item: Object = self.parent.updated_obj
-        self.obj = self.parent.obj        
+        self.obj = self.parent.obj
 
     def update_property(self, prop, value) -> None:
         """
@@ -45,7 +44,7 @@ class PropertiesLogic():
         if(isinstance(self.updated_item, Project)):
             command = UpdateProject(project_data, self.updated_item)
             self.parent.parentWidget().undoStack.push(command)
-        else:    
+        else:
             command = UpdateObject(project_data, self.obj, self.updated_item)
             self.parent.parentWidget().undoStack.push(command)
 

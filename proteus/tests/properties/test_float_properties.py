@@ -66,7 +66,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_float_properties(name, category, value, expected_value, new_value, expected_new_value):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of float properties.
     """
     # Create property from XML element
@@ -75,7 +75,7 @@ def test_float_properties(name, category, value, expected_value, new_value, expe
 
     # Check property
     assert(property.name == name)
-    assert(property.category == category)    
+    assert(property.category == category)
     assert(property.value == expected_value)
     assert(
         ET.tostring(property.generate_xml()).decode() ==
@@ -87,7 +87,7 @@ def test_float_properties(name, category, value, expected_value, new_value, expe
 
     # Check cloned property
     assert(cloned_property.name == property.name)
-    assert(cloned_property.category == property.category)    
+    assert(cloned_property.category == property.category)
     assert(cloned_property.value == property.value)
 
     # Clone the property changing value
@@ -95,7 +95,7 @@ def test_float_properties(name, category, value, expected_value, new_value, expe
 
     # Check cloned property
     assert(evolved_property.name == name)
-    assert(evolved_property.category == category)    
+    assert(evolved_property.category == category)
     assert(evolved_property.value == expected_new_value)
     assert(
         ET.tostring(evolved_property.generate_xml()).decode() ==

@@ -28,9 +28,6 @@ import cv2
 from PIL import Image
 import urllib.request
 import numpy as np
-from PyQt5.QtCore import QUrl
-from PyQt5.QtGui import QImage
-from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QBuffer
 import proteus
 import os
@@ -65,7 +62,7 @@ def convert_black_white(image_url: str) -> str:
     Convert image to black and white.
     """
     proteus.logger.info('visualizer - convert black white')
-    
+
     # Read the image from the URL
     req = urllib.request.urlopen(image_url)
     arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
@@ -151,7 +148,7 @@ class Visualizer(QWebEngineView):
         super(Visualizer, self).__init__()
         self.view = 0
 
-        # DEBUG INSPECTOR 
+        # DEBUG INSPECTOR
         self.inspector = QWebEngineView()
         settings = self.inspector.settings()
         settings.setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)

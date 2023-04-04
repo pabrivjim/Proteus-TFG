@@ -45,7 +45,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 @pytest.mark.parametrize('name',         [str(), 'test name'     ])
 @pytest.mark.parametrize('category',     [str(), 'test category' ])
-@pytest.mark.parametrize('value, expected_value', 
+@pytest.mark.parametrize('value, expected_value',
     [
         ('2022-01-01', '2022-01-01'),
         (str(),        datetime.date.today().strftime(DATE_FORMAT)),
@@ -64,7 +64,7 @@ import proteus.tests.properties.fixtures as fixtures
 
 def test_date_properties(name, category, value, expected_value, new_value, expected_new_value):
     """
-    It tests creation, update, and evolution (cloning with a new value) 
+    It tests creation, update, and evolution (cloning with a new value)
     of date properties.
     """
     # Create property from XML element
@@ -73,7 +73,7 @@ def test_date_properties(name, category, value, expected_value, new_value, expec
 
     # Check property
     assert(property.name == name)
-    assert(property.category == category)    
+    assert(property.category == category)
     assert(property.value == datetime.datetime.strptime(expected_value, DATE_FORMAT).date())
     assert(
         ET.tostring(property.generate_xml()).decode() ==
@@ -87,13 +87,13 @@ def test_date_properties(name, category, value, expected_value, new_value, expec
     assert(cloned_property.name == property.name)
     assert(cloned_property.category == property.category)
     assert(cloned_property.value == property.value)
-    
+
     # Clone the property changing value
     evolved_property = property.clone(str(new_value))
 
     # Check cloned property
     assert(evolved_property.name == name)
-    assert(evolved_property.category == category)    
+    assert(evolved_property.category == category)
     assert(evolved_property.value == datetime.datetime.strptime(expected_new_value, DATE_FORMAT).date())
     assert(
         ET.tostring(evolved_property.generate_xml()).decode() ==

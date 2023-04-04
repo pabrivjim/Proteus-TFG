@@ -66,7 +66,7 @@ from pathlib import Path
 from functools import reduce
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, replace
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 
 # --------------------------------------------------------------------------
 # Third-party library imports
@@ -116,7 +116,7 @@ TIME_FORMAT             = str('%H:%M:%S')
 # --------------------------------------------------------------------------
 # About using __post_init__: 
 # https://stackoverflow.com/questions/60179799/python-dataclass-whats-a-pythonic-way-to-validate-initialization-arguments
-# Dataclasses have a replace(object, value=new_value) function which returns 
+# Dataclasses have a replace(object, value=new_value) function which returns
 # a copy of an object with a new value (similar to attr.evolve()).
 # https://stackoverflow.com/questions/56402694/how-to-evolve-a-dataclass-in-python
 # --------------------------------------------------------------------------
@@ -133,9 +133,9 @@ class Property(ABC):
 
     def __post_init__(self) -> None:
         """
-        It validates name and category of an abstract PROTEUS property. 
+        It validates name and category of an abstract PROTEUS property.
         Value is converted into a string (just in case) and validated in subclasses.
-        """      
+        """
         # Name validation
         if not self.name:
             proteus.logger.warning(f"PROTEUS properties must have a '{NAME_TAG}' attribute -> assigning '{DEFAULT_NAME}' as name")
@@ -161,7 +161,7 @@ class Property(ABC):
         """
         if new_value is None:
             return replace(self)
-        
+
         return replace(self, value=str(new_value))
 
     def generate_xml(self) -> ET._Element:
@@ -257,7 +257,7 @@ class DateProperty(Property):
         """
         It validates the date passed as a string.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # Value validation
@@ -611,7 +611,7 @@ class EnumProperty(Property):
 
     def get_choices_as_set(self) -> set[str]:
         """
-        It generates a set of strings from the space-separated 
+        It generates a set of strings from the space-separated
         string with the enumerated choices.
         :return: set of strings with the enumerated choices.
         """
@@ -654,7 +654,7 @@ class ClassListProperty(Property):
 
     def get_class_list(self) -> list[str]:
         """
-        It generates a list of strings from the space-separated 
+        It generates a list of strings from the space-separated
         string with the class names.
         :return: list of strings with the class names.
         """
@@ -698,7 +698,7 @@ class PropertyFactory:
         EnumProperty.element_tagname      : EnumProperty,
         FileProperty.element_tagname      : FileProperty,
         UrlProperty.element_tagname       : UrlProperty,
-        ClassListProperty.element_tagname : ClassListProperty    
+        ClassListProperty.element_tagname : ClassListProperty
     }
 
     @classmethod

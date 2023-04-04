@@ -103,7 +103,6 @@ class Object(AbstractObject):
 
         # Complete path to object file
         object_file_path = f"{objects_repository}/{id}.xml"
-        
 
         # # Check if object file exists
         assert os.path.isfile(object_file_path), \

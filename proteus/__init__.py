@@ -23,7 +23,7 @@ PROTEUS_LOGGING_FORMAT = str('%(name)s:%(filename)s [%(levelname)s] -> %(message
 # Logger configuration
 # --------------------------------------------------------------------------
 
-# logging levels =     
+# logging levels =
 #   NOTSET=0
 #   DEBUG=10
 #   INFO=20
@@ -33,8 +33,8 @@ PROTEUS_LOGGING_FORMAT = str('%(name)s:%(filename)s [%(levelname)s] -> %(message
 
 logging.basicConfig(
     #filename=PROTEUS_LOGGER_NAME+'.log',
-    #filemode='a',    
-    level=logging.DEBUG, 
+    #filemode='a',
+    level=logging.DEBUG,
     format=PROTEUS_LOGGING_FORMAT
 )
 

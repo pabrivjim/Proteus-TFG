@@ -1,9 +1,10 @@
 # ==========================================================================
 # File: project.py
 # Description: Contains the logic related to project data.
-# Date: 
+# Date:
 # Version: 1.0.0
 # Author: Gamaza
+#         Pablo Rivera Jiménez
 # ==========================================================================
 
 from proteus.model.object import Object
@@ -43,11 +44,10 @@ class ProjectController(Controller):
         """
         Changes document.
         """
-        print("Change document index")
         self.selected_document_index = index
         self.app.document_tree.load_document()
         self.app.views.update_views()
-    
+
     def change_document(self, document) -> None:
         """
         Changes document.
@@ -60,7 +60,7 @@ class ProjectController(Controller):
         Removes document.
         """
         if self.project.documents:
-            command = DeleteDocument(self.project, self.project.documents[self.selected_document.id], 
+            command = DeleteDocument(self.project, self.project.documents[self.selected_document.id],
                                      self.app.document_combobox, self.selected_document_index)
             self.app.undoStack.push(command)
             
