@@ -75,7 +75,8 @@ def convert_black_white(image_url: str) -> str:
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)[1]
 
-    # Convert the image to a Image from pillow library
+    # Convert the image to a Image from pillow library.
+    # It seems that using QByteArray or QImage is not working.
     pil_img = Image.fromarray(img)
     buffer = QBuffer()
 

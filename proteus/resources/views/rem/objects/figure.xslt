@@ -38,13 +38,13 @@
     <xsl:choose>
       <xsl:when test="properties/*[@name='filter']='black'">
         <img
-                src="{proteus:black('https://cooperacion.us.es/sites/default/files/GENERAL/US_VSSyC-OCD_color.png')}"
+                src="{proteus:black(string(properties/*[@name='url']))}"
                 class="h-12 my-5"
                 id="{@id}"/>
       </xsl:when>
       <xsl:otherwise>
         <img
-                src="https://cooperacion.us.es/sites/default/files/GENERAL/US_VSSyC-OCD_color.png"
+                src="string(properties/*[@name='url'])"
                 class="h-12 my-5"
                 id="{@id}"/> 
 
