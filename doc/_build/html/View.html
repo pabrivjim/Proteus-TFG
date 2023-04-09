@@ -34,8 +34,95 @@
 
           <div class="body" role="main">
             
-  <section id="view">
-<h1>View<a class="headerlink" href="#view" title="Permalink to this heading">¶</a></h1>
+  <section id="module-proteus.view.main_window">
+<span id="view"></span><h1>View<a class="headerlink" href="#module-proteus.view.main_window" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="proteus.view.main_window.MainWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.main_window.</span></span><span class="sig-name descname"><span class="pre">MainWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main window class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.main_window.MainWindow.add_object">
+<span class="sig-name descname"><span class="pre">add_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.main_window.MainWindow.add_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a child to the selected object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> – The object to be cloned and inserted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.main_window.MainWindow.closeEvent">
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.main_window.MainWindow.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects the close window event and shows a warning message box,
+if the project is not saved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.main_window.MainWindow.create_dock_windows">
+<span class="sig-name descname"><span class="pre">create_dock_windows</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.main_window.MainWindow.create_dock_windows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates dock windows.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.main_window.MainWindow.create_document_inspector">
+<span class="sig-name descname"><span class="pre">create_document_inspector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.main_window.MainWindow.create_document_inspector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates document inspector tree.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.main_window.MainWindow.create_visualizer_widget">
+<span class="sig-name descname"><span class="pre">create_visualizer_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.main_window.MainWindow.create_visualizer_widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and loads visualizers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.main_window.MainWindow.load_ribbon">
+<span class="sig-name descname"><span class="pre">load_ribbon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Ribbon</span></span></span><a class="headerlink" href="#proteus.view.main_window.MainWindow.load_ribbon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads ribbon menu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ribbon widget.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.main_window.MainWindow.preferences">
+<span class="sig-name descname"><span class="pre">preferences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.main_window.MainWindow.preferences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens the preferences dialog.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-proteus.view.actions.redo_action"></span><dl class="py class">
+<dt class="sig sig-object py" id="proteus.view.actions.redo_action.RedoAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.actions.redo_action.</span></span><span class="sig-name descname"><span class="pre">RedoAction</span></span><a class="headerlink" href="#proteus.view.actions.redo_action.RedoAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class where is located the action (QAction) of redo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.actions.redo_action.RedoAction.getAction">
+<span class="sig-name descname"><span class="pre">getAction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ribbon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Ribbon</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QAction</span></span></span><a class="headerlink" href="#proteus.view.actions.redo_action.RedoAction.getAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that create the action (QToolButton) create a new project.
+:returns: Redo Action
+:rtype: QAction</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-proteus.view.actions.undo_action"></span><dl class="py class">
+<dt class="sig sig-object py" id="proteus.view.actions.undo_action.UndoAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.actions.undo_action.</span></span><span class="sig-name descname"><span class="pre">UndoAction</span></span><a class="headerlink" href="#proteus.view.actions.undo_action.UndoAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class where is located the action (QAction) of undo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.actions.undo_action.UndoAction.getAction">
+<span class="sig-name descname"><span class="pre">getAction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ribbon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Ribbon</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QAction</span></span></span><a class="headerlink" href="#proteus.view.actions.undo_action.UndoAction.getAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that create the action (QToolButton) create a new project.
+:returns: Undo Action
+:rtype: QAction</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -61,6 +148,8 @@
 <li class="toctree-l2"><a class="reference internal" href="Main_app.html">Main module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Controllers.html">Controllers</a></li>
 </ul>
 </li>
 </ul>

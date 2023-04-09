@@ -1,3 +1,6 @@
+"""
+File where the entry point for the PROTEUS application is defined.
+"""
 # ==========================================================================
 # File: __main__.py
 # Description: File where the entry point for the PROTEUS application is defined

@@ -17,8 +17,8 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Test Esquema'
-copyright = '2022, Pablo R.'
+project = 'Proteus'
+copyright = '2023, Pablo R.'
 author = 'Pablo R.'
 
 # The full version, including alpha/beta/rc tags
@@ -52,3 +52,8 @@ html_theme = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+#By default, Sphinx ignores modules whose name starts with a double underscore (__), 
+# as they are considered private modules. However, with this variable set to True,
+# we tell Sphinx to include these modules in the documentation.
+napoleon_include_private_with_doc = True

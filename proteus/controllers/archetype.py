@@ -22,9 +22,9 @@ settings = QSettings("Proteus", "SettingsDesktop")
 # Template Method Pattern
 class ArchetypeController(Controller):
     """
-    Class which which calls the Archetype Manager, passing the Custom Folder
-    and if there is any error then the normal archetype folder is passed instead
-    as parameter.
+    Class that implements the Template Method Pattern which calls the Archetype Manager,
+    passing the Custom Folder and if there is any error then the normal archetype folder
+    is passed instead as parameter.
     """
     def __init__(self, *args, **kwargs):
         super(ArchetypeController, self).__init__(*args, **kwargs)

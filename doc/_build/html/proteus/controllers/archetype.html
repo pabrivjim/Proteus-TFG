@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Controllers Archetype Module &#8212; Proteus 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Controllers Base Module" href="base.html" />
+    <link rel="prev" title="Controllers Package" href="index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-proteus.controllers.archetype">
+<span id="controllers-archetype-module"></span><h1>Controllers Archetype Module<a class="headerlink" href="#module-proteus.controllers.archetype" title="Permalink to this heading">¶</a></h1>
+<p>Proteus - Archetype Controller</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="proteus.controllers.archetype.ArchetypeController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.controllers.archetype.</span></span><span class="sig-name descname"><span class="pre">ArchetypeController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.controllers.archetype.ArchetypeController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that implements the Template Method Pattern which calls the Archetype Manager,
+passing the Custom Folder and if there is any error then the normal archetype folder
+is passed instead as parameter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.archetype.ArchetypeController._get_archetypes">
+<span class="sig-name descname"><span class="pre">_get_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loader_func</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.controllers.archetype.ArchetypeController._get_archetypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the archetypes using the loader function passed as parameter and
+if there is any error in the custom archetype folder,
+then the normal archetype folder is passed instead as parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.archetype.ArchetypeController._load_document_archetypes">
+<span class="sig-name descname"><span class="pre">_load_document_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.controllers.archetype.ArchetypeController._load_document_archetypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Private method to load the document archetypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.archetype.ArchetypeController._load_object_archetypes">
+<span class="sig-name descname"><span class="pre">_load_object_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.controllers.archetype.ArchetypeController._load_object_archetypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Private method to load the object archetypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.archetype.ArchetypeController._load_project_archetypes">
+<span class="sig-name descname"><span class="pre">_load_project_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.controllers.archetype.ArchetypeController._load_project_archetypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Private method to load the project archetypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.archetype.ArchetypeController.get_document_archetypes">
+<span class="sig-name descname"><span class="pre">get_document_archetypes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.controllers.archetype.ArchetypeController.get_document_archetypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the document archetypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.archetype.ArchetypeController.get_object_archetypes">
+<span class="sig-name descname"><span class="pre">get_object_archetypes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.controllers.archetype.ArchetypeController.get_object_archetypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the object archetypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.archetype.ArchetypeController.get_project_archetypes">
+<span class="sig-name descname"><span class="pre">get_project_archetypes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.controllers.archetype.ArchetypeController.get_project_archetypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the project archetypes.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Proteus</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../module.html">PROTEUS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main_app.html">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../view.html">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model/index.html">Model Package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Controllers Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html">Tests Package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../../module.html">PROTEUS</a><ul>
+  <li><a href="index.html">Controllers Package</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Controllers Package</a></li>
+      <li>Next: <a href="base.html" title="next chapter">Controllers Base Module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Pablo R..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/proteus/controllers/archetype.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

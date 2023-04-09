@@ -1,10 +1,26 @@
 Model
 ========================
 
-.. automodule:: model.HtmlConverter
+.. automodule:: proteus.model.abstract_object
    :members:
    :private-members:
 
-.. automodule:: model.QUndoCommands
+.. automodule:: proteus.model.archetype_manager
+   :members:
+   :private-members:
+   
+.. automodule:: proteus.model.archetype_proxys
+   :members:
+   :private-members:
+
+.. automodule:: proteus.model.object
+   :members:
+   :private-members:
+
+.. automodule:: proteus.model.project
+   :members:
+   :private-members:
+
+.. automodule:: proteus.model.property
    :members:
    :private-members:

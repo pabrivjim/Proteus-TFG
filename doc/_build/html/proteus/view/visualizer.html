@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>View Visualizer Module &#8212; Proteus 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="View Main Window Module" href="main_window.html" />
+    <link rel="prev" title="Utils Package" href="index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-proteus.view.visualizer">
+<span id="view-visualizer-module"></span><h1>View Visualizer Module<a class="headerlink" href="#module-proteus.view.visualizer" title="Permalink to this heading">¶</a></h1>
+<p>File where is located the visualizers.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.view.visualizer.</span></span><span class="sig-name descname"><span class="pre">Visualizer</span></span><a class="headerlink" href="#proteus.view.visualizer.Visualizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to render and visualizing views.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.eventFilter">
+<span class="sig-name descname"><span class="pre">eventFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.eventFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the user presses the Escape key, clear the search text.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.focus">
+<span class="sig-name descname"><span class="pre">focus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.focus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Focus an object in html document. Automatically scrolls to object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> – Id of object to focus.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.handleLoaded">
+<span class="sig-name descname"><span class="pre">handleLoaded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ok</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.handleLoaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle inspector loaded</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../model/project.html#proteus.model.project.Project" title="proteus.model.project.Project"><span class="pre">Project</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiles current view and set html to QWebEngineView.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>view</strong> – view to load.</p></li>
+<li><p><strong>project</strong> – project data.</p></li>
+<li><p><strong>index</strong> – selected document index.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.save_html">
+<span class="sig-name descname"><span class="pre">save_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.save_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves view onto a html document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>save_path</strong> – file path.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.save_pdf">
+<span class="sig-name descname"><span class="pre">save_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.save_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves view onto a pdf document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>save_path</strong> – file path.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.setView">
+<span class="sig-name descname"><span class="pre">setView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.setView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets current view.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>view</strong> – Current view index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.show_search_dialog">
+<span class="sig-name descname"><span class="pre">show_search_dialog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.show_search_dialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the search dialog and search for the text entered by the user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates view on project changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project</strong> – updated project dict.</p></li>
+<li><p><strong>index</strong> – selected document index.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.update_html">
+<span class="sig-name descname"><span class="pre">update_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.update_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send project data to html view.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project</strong> – project data.</p></li>
+<li><p><strong>index</strong> – current document index.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.view.visualizer.Visualizer.update_xslt">
+<span class="sig-name descname"><span class="pre">update_xslt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../model/project.html#proteus.model.project.Project" title="proteus.model.project.Project"><span class="pre">Project</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.view.visualizer.Visualizer.update_xslt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiles XSLT view and set updated html to page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project</strong> – project data.</p></li>
+<li><p><strong>index</strong> – current document index.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.view.visualizer.convert_black_white">
+<span class="sig-prename descclassname"><span class="pre">proteus.view.visualizer.</span></span><span class="sig-name descname"><span class="pre">convert_black_white</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#proteus.view.visualizer.convert_black_white" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert image to black and white.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.view.visualizer.convert_markdown">
+<span class="sig-prename descclassname"><span class="pre">proteus.view.visualizer.</span></span><span class="sig-name descname"><span class="pre">convert_markdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elements</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.visualizer.convert_markdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert XSLT element to markdown.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.view.visualizer.send_to_view">
+<span class="sig-prename descclassname"><span class="pre">proteus.view.visualizer.</span></span><span class="sig-name descname"><span class="pre">send_to_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.view.visualizer.send_to_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends project data to view in JSON format.</p>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Proteus</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../module.html">PROTEUS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main_app.html">Main module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Utils Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils/index.html">Utils Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model/index.html">Model Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../controllers/index.html">Controllers Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html">Tests Package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../../module.html">PROTEUS</a><ul>
+  <li><a href="index.html">Utils Package</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Utils Package</a></li>
+      <li>Next: <a href="main_window.html" title="next chapter">View Main Window Module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Pablo R..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/proteus/view/visualizer.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

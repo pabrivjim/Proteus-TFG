@@ -334,7 +334,6 @@ class Visualizer(QWebEngineView):
         
         self.page().printToPdf(save_path)
 
-
     #https://stackoverflow.com/questions/47067050/is-there-any-way-to-call-synchronously-the-method-tohtml-which-is-qwebenginepa
     def store_html(self, html):
         proteus.logger.info('visualizer - store html')

@@ -5,9 +5,10 @@ View
    :members:
    :private-members:
 
-.. automodule:: proteus.view.main_structure
+.. automodule:: proteus.view.visualizer
    :members:
    :private-members:
+
 
 .. automodule:: proteus.view.stacks.file_view
    :members:

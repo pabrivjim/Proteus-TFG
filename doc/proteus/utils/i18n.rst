@@ -1,0 +1,6 @@
+Utils i18n Module
+=================================
+
+.. automodule:: proteus.utils.i18n
+   :members:
+   :private-members:

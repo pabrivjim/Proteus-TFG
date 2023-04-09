@@ -23,6 +23,7 @@ from configparser import ConfigParser
 # --------------------------------------------------------------------------
 
 import proteus
+import os
 
 # --------------------------------------------------------------------------
 # Constant declarations for PROTEUS configuration file keys
@@ -60,6 +61,9 @@ class Config:
         """
         It initializes the config paths for PROTEUS application.
         """
+        # This is line is needed when we want to run sphinx, otherwise it will fail
+        # due to problems with the working directory.
+        # os.chdir("C:/Users/Pablo Rivera Jimenez/Desktop/PROTEUS/Proteus TFG")
 
         # Application configuration
         self.config : ConfigParser = self._create_config_parser()
@@ -89,7 +93,7 @@ class Config:
         print(Path.cwd())
         
         assert Path(CONFIG_FILE).exists(), \
-            f"PROTEUS configuration file {CONFIG_FILE} does not exist! {Path(CONFIG_FILE).absolute()}"
+            f"PROTEUS configuration file {CONFIG_FILE} does not exist! {Path(CONFIG_FILE).absolute()} cwd: {Path.cwd()}"
         self.config_file = Path(CONFIG_FILE).absolute()
         config_parser : ConfigParser = ConfigParser()
         config_parser.read(CONFIG_FILE)

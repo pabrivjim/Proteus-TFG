@@ -105,6 +105,17 @@ class FileController(Controller):
         
 
     def load_project(self, filename: str, project_title=None) -> None:
+        """
+        Method that loads a project. If the project is already loaded, it will
+        open a new instance of Proteus. If the project is not loaded, it will
+        load the project and create the dock windows. It sets the corresponding buttons to
+        enabled and the project title if it is not None. 
+
+        :param filename: Path to the project file.
+        :type filename: str
+        :param project_title: Title of the project.
+        :return: None 
+        """
         if self.app.projectController.project:
             return self.app.__class__(path=filename).show()
         # Load...
@@ -119,10 +130,6 @@ class FileController(Controller):
         self.app.ribbon.create_tb.setEnabled(True)
         self.app.ribbon.delete_tb.setEnabled(True)
         self.app.ribbon.export_tb.setEnabled(True)
-
-        # BUG 'MainWindow' object has no attribute 'visualizers'
-        # Try to add it at the top
-        # self.app.create_dock_windows()
 
         #If the file is new and we have a title, we will set it
         if project_title:
