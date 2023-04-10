@@ -60,7 +60,7 @@ class ArchetypesType():
     The values are the names of the subdirectories in the archetypes folder.
 
     This values are:
-    
+
     - projects
     - documents
     - objects
@@ -252,7 +252,7 @@ class ArchetypeManager:
         Method that loads the project archetypes. The reason why a dict with key value is retun,
         where the key is the name of the project folder, is because you need to know which project it is,
         if you don't use a dict and if you use a list you would need to iterate through all its values.
-        
+
         :returns: A dict of project folder name and ProjectArchetypeProxy objects.
         :rtype: dict[str, ProjectArchetypeProxy]
         """
@@ -327,10 +327,10 @@ class ArchetypeManager:
         :param filename: Path where we want to save the project.
         :param archetype: Archetype type.
         """
-        
+
         # Directory where we save the project
         path = os.path.realpath(filename_path_to_save)
-        
+
         # Directory where is the archetype
         archetype_dir = os.path.dirname(archetype_path)
 
@@ -338,7 +338,7 @@ class ArchetypeManager:
         original = archetype_path
         target = path
         shutil.copy(original, target)
-        
+
         # In case there is no directory, create it
         if "assets" not in os.listdir(path):
             shutil.copytree(join(archetype_dir, "assets"), join(path, "assets"))
@@ -346,5 +346,5 @@ class ArchetypeManager:
         # Copy the objects file from the archetypes directory into the project directory
         source_dir = join(archetype_dir, "objects")
         destination_dir = join(path, "objects")
-        
+
         shutil.copytree(source_dir, destination_dir)

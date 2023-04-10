@@ -19,7 +19,7 @@ class DeleteDocument():
     def getButton(self) -> QToolButton:
         """
         Method that creates the action (QToolButton) of delete a doc.
-        
+
         :returns: Action of delete an existent doc.
         :rtype: QToolButton
         """

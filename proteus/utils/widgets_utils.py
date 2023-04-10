@@ -198,7 +198,7 @@ def get_widget_for_property(object_property, parent=None):
     # ClassList property is not shown here
     widgets = {
         MarkdownProperty.element_tagname: markdown_widget,
-        StringProperty.element_tagname: string_widget,       
+        StringProperty.element_tagname: string_widget,
         FloatProperty.element_tagname: real_widget,
         IntegerProperty.element_tagname: number_widget,
         UrlProperty.element_tagname: url_widget,

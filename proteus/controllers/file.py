@@ -112,7 +112,7 @@ class FileController(Controller):
         :param filename: Path to the project file.
         :type filename: str
         :param project_title: Title of the project.
-        :return: None 
+        :return: None
         """
         if self.app.projectController.project:
             return self.app.__class__(path=filename).show()

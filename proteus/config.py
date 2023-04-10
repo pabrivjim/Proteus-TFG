@@ -23,7 +23,6 @@ from configparser import ConfigParser
 # --------------------------------------------------------------------------
 
 import proteus
-import os
 
 # --------------------------------------------------------------------------
 # Constant declarations for PROTEUS configuration file keys
@@ -63,13 +62,14 @@ class Config:
         """
         # This is line is needed when we want to run sphinx, otherwise it will fail
         # due to problems with the working directory.
+        # import os
         # _proteus_tfg_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        # os.chdir(_proteus_tfg_path)	
+        # os.chdir(_proteus_tfg_path)
 
         # Application configuration
         self.config : ConfigParser = self._create_config_parser()
         self.directories = self.config[DIRECTORIES]
-        
+
         # Application directories
         self.base_directory       : Path = Path.cwd() / self.directories[BASE_DIRECTORY]
         self.resources_directory  : Path = Path.cwd() / self.directories[RESOURCES_DIRECTORY]
@@ -92,7 +92,7 @@ class Config:
         """
 
         print(Path.cwd())
-        
+
         assert Path(CONFIG_FILE).exists(), \
             f"PROTEUS configuration file {CONFIG_FILE} does not exist! {Path(CONFIG_FILE).absolute()} cwd: {Path.cwd()}"
         self.config_file = Path(CONFIG_FILE).absolute()
@@ -129,7 +129,7 @@ class Config:
 
         proteus.logger.info("  Archetypes directory OK")
 
-        
+
         # Check if projects archetypes exists
         assert (self.archetypes_directory / "projects").is_dir(), \
             f"PROTEUS archetypes projects directory '{self.archetypes_directory / 'projects'}' does not exist!"

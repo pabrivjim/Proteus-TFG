@@ -19,7 +19,7 @@ class ExportDocument():
     def getButton(self) -> QToolButton:
         """
         Method that creates the action (QToolButton) of export a doc.
-        
+
         :returns: Action of export a doc.
         :rtype: QToolButton
         """

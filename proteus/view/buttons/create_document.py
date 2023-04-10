@@ -19,7 +19,7 @@ class CreateDocument():
     def getButton(self) -> QToolButton:
         """
         Method that creates the action (QToolButton) of create a new doc.
-        
+
         :returns: Action of create a new doc.
         :rtype: QToolButton
         """

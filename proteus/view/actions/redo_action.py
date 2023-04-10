@@ -21,7 +21,7 @@ class RedoAction(QUndoStack):
     def getAction(self, ribbon: Ribbon) -> QAction:
         """
         Method that create the action (QToolButton) create a new project.
-        
+
         :returns: Redo Action
         :rtype: QAction
         """

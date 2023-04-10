@@ -19,7 +19,7 @@ class SaveProject():
     def getButton(self) -> QToolButton:
         """
         Method that creates the action (QToolButton) of save project.
-        
+
         :returns: Action of save project.
         :rtype: QToolButton
         """
