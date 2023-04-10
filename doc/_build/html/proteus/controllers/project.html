@@ -1,78 +1,132 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
-    <title>Controllers Project Module &#8212; Proteus 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controllers Project Module &mdash; Proteus 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Controllers Views Module" href="view.html" />
-    <link rel="prev" title="Controllers File Module" href="file.html" />
-   
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="Controllers File Module" href="file.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
+          
+          <a href="../../index.html" class="icon icon-home">
+            Proteus
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../module.html">PROTEUS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main_app.html">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../view/index.html">View Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils/index.html">Utils Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model/index.html">Model Package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Controllers Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="archetype.html">Controllers Archetype Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="base.html">Controllers Base Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.html">Controllers File Module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Controllers Project Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="view.html">Controllers Views Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html">Tests Package</a></li>
+</ul>
+</li>
+</ul>
 
-          <div class="body" role="main">
-            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Proteus</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../module.html">PROTEUS</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Controllers Package</a></li>
+      <li class="breadcrumb-item active">Controllers Project Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/proteus/controllers/project.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="module-proteus.controllers.project">
-<span id="controllers-project-module"></span><h1>Controllers Project Module<a class="headerlink" href="#module-proteus.controllers.project" title="Permalink to this heading">¶</a></h1>
+<span id="controllers-project-module"></span><h1>Controllers Project Module<a class="headerlink" href="#module-proteus.controllers.project" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="proteus.controllers.project.ProjectController">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.controllers.project.</span></span><span class="sig-name descname"><span class="pre">ProjectController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.controllers.project.ProjectController" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.controllers.project.</span></span><span class="sig-name descname"><span class="pre">ProjectController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.controllers.project.ProjectController" title="Permalink to this definition"></a></dt>
 <dd><p>Project controller class where the calls to the logic
 of the project and documents actions are located.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="proteus.controllers.project.ProjectController.change_document">
-<span class="sig-name descname"><span class="pre">change_document</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.change_document" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">change_document</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.change_document" title="Permalink to this definition"></a></dt>
 <dd><p>Changes document.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="proteus.controllers.project.ProjectController.change_document_index">
-<span class="sig-name descname"><span class="pre">change_document_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.change_document_index" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">change_document_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.change_document_index" title="Permalink to this definition"></a></dt>
 <dd><p>Changes document.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="proteus.controllers.project.ProjectController.create_document">
-<span class="sig-name descname"><span class="pre">create_document</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.create_document" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">create_document</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.create_document" title="Permalink to this definition"></a></dt>
 <dd><p>Creates document</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="proteus.controllers.project.ProjectController.edit_project">
-<span class="sig-name descname"><span class="pre">edit_project</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.controllers.project.ProjectController.edit_project" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">edit_project</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.controllers.project.ProjectController.edit_project" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="proteus.controllers.project.ProjectController.remove_document">
-<span class="sig-name descname"><span class="pre">remove_document</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.remove_document" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">remove_document</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.remove_document" title="Permalink to this definition"></a></dt>
 <dd><p>Removes document.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="proteus.controllers.project.ProjectController.update_document">
-<span class="sig-name descname"><span class="pre">update_document</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.update_document" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update_document</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.project.ProjectController.update_document" title="Permalink to this definition"></a></dt>
 <dd><p>Updates document.</p>
 </dd></dl>
 
@@ -81,84 +135,34 @@ of the project and documents actions are located.</p>
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file.html" class="btn btn-neutral float-left" title="Controllers File Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="view.html" class="btn btn-neutral float-right" title="Controllers Views Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Pablo R..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">Proteus</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../module.html">PROTEUS</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../main_app.html">Main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../view.html">View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../model/index.html">Model Package</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Controllers Package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tests/index.html">Tests Package</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../../module.html">PROTEUS</a><ul>
-  <li><a href="index.html">Controllers Package</a><ul>
-      <li>Previous: <a href="file.html" title="previous chapter">Controllers File Module</a></li>
-      <li>Next: <a href="view.html" title="next chapter">Controllers Views Module</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2023, Pablo R..
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="../../_sources/proteus/controllers/project.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

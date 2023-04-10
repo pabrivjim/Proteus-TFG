@@ -63,8 +63,7 @@ class ProjectController(Controller):
             command = DeleteDocument(self.project, self.project.documents[self.selected_document.id],
                                      self.app.document_combobox, self.selected_document_index)
             self.app.undoStack.push(command)
-            
-            
+
 
     def create_document(self) -> None:
         """

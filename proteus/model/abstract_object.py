@@ -41,10 +41,11 @@ class ProteusState(Enum):
     """
     Enumeration for abstract object's state.
     An abstract object can be in one of the following states:
-    #. FRESH: New object, just cloned but not already saved
-    #. CLEAN: Loaded object, not modified
-    #. DIRTY: Loaded object, modified
-    #. DEAD: Loaded object, to be deleted
+
+    - FRESH: New object, just cloned but not already saved
+    - CLEAN: Loaded object, not modified
+    - DIRTY: Loaded object, modified
+    - DEAD: Loaded object, to be deleted
     """
 
     # TODO Is it necessary to add FRESH? When you clone project -> it saves -> CLEAN
@@ -94,7 +95,7 @@ class AbstractObject(ABC):
         :type path: str
         """
 
-        # TODO: put all common code in Project and Object here     
+        # TODO: put all common code in Project and Object here
 
         # path to XML file (to be initialized in other methods?)
         self.path : str = path

@@ -63,7 +63,8 @@ class Config:
         """
         # This is line is needed when we want to run sphinx, otherwise it will fail
         # due to problems with the working directory.
-        # os.chdir("C:/Users/Pablo Rivera Jimenez/Desktop/PROTEUS/Proteus TFG")
+        # _proteus_tfg_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # os.chdir(_proteus_tfg_path)	
 
         # Application configuration
         self.config : ConfigParser = self._create_config_parser()

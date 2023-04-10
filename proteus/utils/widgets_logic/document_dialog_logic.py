@@ -41,7 +41,6 @@ class DocumentDialogLogic():
         #TODO reassign id to children
         command = CreateDocument(project, document, app, len(project.documents))
         app.undoStack.push(command)
-        
 
     def change_archetype(self, archetype: int) -> None:
         """

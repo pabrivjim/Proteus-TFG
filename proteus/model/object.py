@@ -276,8 +276,6 @@ class Object(AbstractObject):
         # Create <properties> element
         super().generate_xml_properties(object_element)
 
-        
-
         # Create <child> subelements
         def generate_xml_to_XSLT_children(self, children_object) -> ET.Element:
             child: Object

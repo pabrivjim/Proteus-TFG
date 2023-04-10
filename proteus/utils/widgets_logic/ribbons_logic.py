@@ -59,5 +59,3 @@ class RibbonsLogic():
         for key in self.parent.buttons:
             tb, _, _ = self.parent.buttons[key]
             tb.clicked.connect(actions[key])
-    
-

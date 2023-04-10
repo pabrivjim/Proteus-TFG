@@ -40,6 +40,7 @@ class ProjectArchetypeProxy:
     def __init__(self, data : dict):
         """
         It initializes a ProjectArchetypeProxy object.
+
         :param data: Dictionary with the data of the project.
         """
 
@@ -60,6 +61,7 @@ class ProjectArchetypeProxy:
     def get_project(self) -> project.Project:
         """
         It returns an instance of a project.
+
         :returns: Instance of a Project.
         :rtype: project.Project
         """
@@ -88,6 +90,7 @@ class DocumentArchetypeProxy:
     def __init__(self, data : dict):
         """
         It initializes a DocumentArchetypeProxy object.
+
         :param data: Dictionary with the data of the document.
         """
         self.path : str = data["path"]
@@ -109,6 +112,7 @@ class DocumentArchetypeProxy:
     def get_document(self, project: project.Project) -> object.Object:
         """
         It returns an instance of a object.
+
         :param project: Project where the object is located.
         :return: Instance of an object.
         :rtype: object.Object
@@ -139,6 +143,7 @@ class ObjectArchetypeProxy:
     def __init__(self, data : dict):
         """
         It initializes a ObjectArchetypeProxy object.
+
         :param data: Dictionary with the data of the object.
         """
         self.path : str = data["path"]
@@ -157,6 +162,7 @@ class ObjectArchetypeProxy:
     def get_object(self, project: project.Project) -> object.Object:
         """
         It returns an instance of a object.
+
         :param project: Project where the object is located.
         :return: Instance of an object.
         :rtype: object.Object

@@ -19,6 +19,7 @@ class EditProject():
     def getButton(self) -> QToolButton:
         """
         Method that creates the action (QToolButton) of edit project.
+        
         :returns: Action of edit project.
         :rtype: QToolButton
         """

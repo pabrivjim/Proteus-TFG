@@ -19,6 +19,7 @@ class Settings():
     def getButton(self) -> QToolButton:
         """
         Method that creates the action (QToolButton) of settings.
+        
         :returns: Action of settings.
         :rtype: QToolButton
         """

@@ -47,7 +47,6 @@ class Dialog:
         if dialog.exec() != QFileDialog.Accepted:
             return
         return dialog.selectedFiles()
-        
 
 
 class FileController(Controller):
@@ -102,14 +101,13 @@ class FileController(Controller):
         project: Project = self.app.projectController.project
         project.save_project()
         self.app.ribbon.save_tb.setEnabled(False)
-        
 
     def load_project(self, filename: str, project_title=None) -> None:
         """
         Method that loads a project. If the project is already loaded, it will
         open a new instance of Proteus. If the project is not loaded, it will
         load the project and create the dock windows. It sets the corresponding buttons to
-        enabled and the project title if it is not None. 
+        enabled and the project title if it is not None.
 
         :param filename: Path to the project file.
         :type filename: str

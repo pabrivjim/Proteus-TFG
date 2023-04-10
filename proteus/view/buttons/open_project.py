@@ -19,6 +19,7 @@ class OpenProject():
     def getButton(self) -> QToolButton:
         """
         Method that creates the action (QToolButton) of open project.
+        
         :returns: Action of open project.
         :rtype: QToolButton
         """

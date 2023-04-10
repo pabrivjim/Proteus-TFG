@@ -108,7 +108,6 @@ class TreeLogic():
                 from_parent.data(0, Qt.UserRole),
                 to_parent.data(0, Qt.UserRole))
         self.parent.undoStack.push(command)
-            
 
     def fillItem(self, inItem, outItem):
         """
@@ -206,7 +205,6 @@ class TreeLogic():
             current_document: Object = list_documents[self.parent.projectController.selected_document_index]
             return self.loadData(current_document)
         self.parent.ribbon.delete_tb.setEnabled(False)
-        
 
     def loadData(self, doc: Object, root=None) -> None:
         """
@@ -229,7 +227,6 @@ class TreeLogic():
         for child in children:
             child_item = self.add_child(root, child)
             self.loadData(child, root=child_item)
-        
 
     def add_child(self, parent: Object, child: Object) -> QTreeWidgetItem:
         """

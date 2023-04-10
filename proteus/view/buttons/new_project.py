@@ -19,6 +19,7 @@ class NewProject():
     def getButton(self) -> QToolButton:
         """
         Method that creates the action (QToolButton) of create a new project.
+        
         :returns: Action of create a new project.
         :rtype: QToolButton
         """

@@ -1,179 +1,210 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
-    <title>Model Archetype Manager Module &#8212; Proteus 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Archetype Manager Module &mdash; Proteus 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Model Archetype Proxys Module" href="archetype_proxys.html" />
-    <link rel="prev" title="Model Abstract Object Module" href="abstract_object.html" />
-   
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="Model Abstract Object Module" href="abstract_object.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
-
-          <div class="body" role="main">
-            
-  <section id="module-proteus.model.archetype_manager">
-<span id="model-archetype-manager-module"></span><h1>Model Archetype Manager Module<a class="headerlink" href="#module-proteus.model.archetype_manager" title="Permalink to this heading">¶</a></h1>
-<p>Proteus - Archetype Manager</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.model.archetype_manager.</span></span><span class="sig-name descname"><span class="pre">ArchetypeManager</span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager" title="Permalink to this definition">¶</a></dt>
-<dd><p>An utility class for managing PROTEUS archetypes. It must provide a way
-to get the project, document, and object archetypes on demand.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager.clone_project">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clone_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archetype_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_path_to_save</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager.clone_project" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method that creates a new project from an archetype.
-:param filename: Path where we want to save the project.
-:param archetype: Archetype type.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager.load_document_archetypes">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_document_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">WindowsPath('C:/Users/Pablo</span> <span class="pre">Rivera</span> <span class="pre">Jimenez/Desktop/PROTEUS/Proteus</span> <span class="pre">TFG/archetypes')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager.load_document_archetypes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method that loads the document archetypes. The reason why a dict with key value is retun,
-where the key is the name of the document folder, is because you need to know which document it is,
-if you don’t use a dict and if you use a list you would need to iterate through all its values.
-:returns: A dict of document folder name and DocumentArchetypeProxy objects.
-:rtype: dict[str, DocumentArchetypeProxy]</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager.load_object_archetypes">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_object_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">WindowsPath('C:/Users/Pablo</span> <span class="pre">Rivera</span> <span class="pre">Jimenez/Desktop/PROTEUS/Proteus</span> <span class="pre">TFG/archetypes')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager.load_object_archetypes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method that loads the object archetypes. The reason why a dict with key value is retun,
-where the key is the name of the subdir folder name, is because you need to know which object it is,
-if you don’t use a dict and if you use a list you would need to iterate through all its values.
-:returns: A dict with the subdir name and the ObjectArchetypeProxy objects.
-:rtype: dict[str, ObjectArchetypeProxy]</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager.load_project_archetypes">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_project_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">WindowsPath('C:/Users/Pablo</span> <span class="pre">Rivera</span> <span class="pre">Jimenez/Desktop/PROTEUS/Proteus</span> <span class="pre">TFG/archetypes')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager.load_project_archetypes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method that loads the project archetypes. The reason why a dict with key value is retun,
-where the key is the name of the project folder, is because you need to know which project it is,
-if you don’t use a dict and if you use a list you would need to iterate through all its values.
-:returns: A dict of project folder name and ProjectArchetypeProxy objects.
-:rtype: dict[str, ProjectArchetypeProxy]</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypesType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.model.archetype_manager.</span></span><span class="sig-name descname"><span class="pre">ArchetypesType</span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypesType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Enumeration for archetypes’ types.
-The values are the names of the subdirectories in the archetypes folder.</p>
-<p>This values are:
-#. projects
-#. documents
-#. objects</p>
-</dd></dl>
-
-</section>
-
-
-          </div>
           
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">Proteus</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+          <a href="../../index.html" class="icon icon-home">
+            Proteus
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../module.html">PROTEUS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../main_app.html">Main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../view.html">View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utils</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Model Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../view/index.html">View Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils/index.html">Utils Package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Model Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="abstract_object.html">Model Abstract Object Module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Model Archetype Manager Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="archetype_proxys.html">Model Archetype Proxys Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="object.html">Model Object Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="project.html">Model Project Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="property.html">Model Property Module</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../controllers/index.html">Controllers Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tests/index.html">Tests Package</a></li>
 </ul>
 </li>
 </ul>
 
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../../module.html">PROTEUS</a><ul>
-  <li><a href="index.html">Model Package</a><ul>
-      <li>Previous: <a href="abstract_object.html" title="previous chapter">Model Abstract Object Module</a></li>
-      <li>Next: <a href="archetype_proxys.html" title="next chapter">Model Archetype Proxys Module</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2023, Pablo R..
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="../../_sources/proteus/model/archetype_manager.rst.txt"
-          rel="nofollow">Page source</a>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Proteus</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../module.html">PROTEUS</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Model Package</a></li>
+      <li class="breadcrumb-item active">Model Archetype Manager Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/proteus/model/archetype_manager.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-proteus.model.archetype_manager">
+<span id="model-archetype-manager-module"></span><h1>Model Archetype Manager Module<a class="headerlink" href="#module-proteus.model.archetype_manager" title="Permalink to this heading"></a></h1>
+<p>Proteus - Archetype Manager</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.model.archetype_manager.</span></span><span class="sig-name descname"><span class="pre">ArchetypeManager</span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager" title="Permalink to this definition"></a></dt>
+<dd><p>An utility class for managing PROTEUS archetypes. It must provide a way
+to get the project, document, and object archetypes on demand.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager.clone_project">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clone_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archetype_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_path_to_save</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager.clone_project" title="Permalink to this definition"></a></dt>
+<dd><p>Method that creates a new project from an archetype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Path where we want to save the project.</p></li>
+<li><p><strong>archetype</strong> – Archetype type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager.load_document_archetypes">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_document_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ARCHETYPES_FOLDER</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager.load_document_archetypes" title="Permalink to this definition"></a></dt>
+<dd><p>Method that loads the document archetypes. The reason why a dict with key value is retun,
+where the key is the name of the document folder, is because you need to know which document it is,
+if you don’t use a dict and if you use a list you would need to iterate through all its values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dict of document folder name and DocumentArchetypeProxy objects.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[str, <a class="reference internal" href="archetype_proxys.html#proteus.model.archetype_proxys.DocumentArchetypeProxy" title="proteus.model.archetype_proxys.DocumentArchetypeProxy">DocumentArchetypeProxy</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager.load_object_archetypes">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_object_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ARCHETYPES_FOLDER</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager.load_object_archetypes" title="Permalink to this definition"></a></dt>
+<dd><p>Method that loads the object archetypes. The reason why a dict with key value is retun,
+where the key is the name of the subdir folder name, is because you need to know which object it is,
+if you don’t use a dict and if you use a list you would need to iterate through all its values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dict with the subdir name and the ObjectArchetypeProxy objects.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[str, <a class="reference internal" href="archetype_proxys.html#proteus.model.archetype_proxys.ObjectArchetypeProxy" title="proteus.model.archetype_proxys.ObjectArchetypeProxy">ObjectArchetypeProxy</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypeManager.load_project_archetypes">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_project_archetypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ARCHETYPES_FOLDER</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypeManager.load_project_archetypes" title="Permalink to this definition"></a></dt>
+<dd><p>Method that loads the project archetypes. The reason why a dict with key value is retun,
+where the key is the name of the project folder, is because you need to know which project it is,
+if you don’t use a dict and if you use a list you would need to iterate through all its values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dict of project folder name and ProjectArchetypeProxy objects.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[str, <a class="reference internal" href="archetype_proxys.html#proteus.model.archetype_proxys.ProjectArchetypeProxy" title="proteus.model.archetype_proxys.ProjectArchetypeProxy">ProjectArchetypeProxy</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="proteus.model.archetype_manager.ArchetypesType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.model.archetype_manager.</span></span><span class="sig-name descname"><span class="pre">ArchetypesType</span></span><a class="headerlink" href="#proteus.model.archetype_manager.ArchetypesType" title="Permalink to this definition"></a></dt>
+<dd><p>Enumeration for archetypes’ types.
+The values are the names of the subdirectories in the archetypes folder.</p>
+<p>This values are:</p>
+<ul class="simple">
+<li><p>projects</p></li>
+<li><p>documents</p></li>
+<li><p>objects</p></li>
+</ul>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="abstract_object.html" class="btn btn-neutral float-left" title="Model Abstract Object Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="archetype_proxys.html" class="btn btn-neutral float-right" title="Model Archetype Proxys Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
-    
+  <hr/>
 
-    
-  </body>
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Pablo R..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

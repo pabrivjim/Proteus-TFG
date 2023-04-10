@@ -45,8 +45,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
-html_theme = 'alabaster'
+# pip install sphinx sphinx_rtd_theme 
+# alabaster is another possilibity
+html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -57,3 +58,14 @@ html_static_path = ['_static']
 # as they are considered private modules. However, with this variable set to True,
 # we tell Sphinx to include these modules in the documentation.
 napoleon_include_private_with_doc = True
+
+# If we want to show just the name of the class and not the full path we can use the following:
+# add_module_names = False
+
+# This will make sure that the names of the default values, such as Global Variables will
+# be preserved in the documentation. This mean that if we have a variable that contains a
+# string with the absolute path of a file, this won't be shown, just the name of the variable.
+autodoc_preserve_defaults = True
+
+# TODO After generating the documentation with make, I have to change the css a:visited{color:#9b59b6}
+# to a:visited{color:#2980b9} 

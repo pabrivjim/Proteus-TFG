@@ -164,6 +164,3 @@ class PreferencesDialog(QDialog):
                                             trans("The language will be updated after restarting the application."))
         settings.setValue("language", language)
         Preferences.load_language(self.parent(), language)
-        
-
-

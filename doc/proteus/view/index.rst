@@ -1,4 +1,4 @@
-Utils Package
+View Package
 ===========================
 
 .. toctree::

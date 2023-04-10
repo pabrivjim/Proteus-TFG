@@ -60,9 +60,10 @@ class ArchetypesType():
     The values are the names of the subdirectories in the archetypes folder.
 
     This values are:
-    #. projects
-    #. documents
-    #. objects
+    
+    - projects
+    - documents
+    - objects
     """
     PROJECTS  = 'projects'
     DOCUMENTS = 'documents'
@@ -93,11 +94,12 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_object_archetypes( cls, folder =  ARCHETYPES_FOLDER) -> dict:
+    def load_object_archetypes( cls, folder = ARCHETYPES_FOLDER) -> dict:
         """
         Method that loads the object archetypes. The reason why a dict with key value is retun,
         where the key is the name of the subdir folder name, is because you need to know which object it is,
         if you don't use a dict and if you use a list you would need to iterate through all its values.
+
         :returns: A dict with the subdir name and the ObjectArchetypeProxy objects.
         :rtype: dict[str, ObjectArchetypeProxy]
         """
@@ -157,11 +159,12 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_document_archetypes( cls, folder =  ARCHETYPES_FOLDER ) -> dict:
+    def load_document_archetypes( cls, folder = ARCHETYPES_FOLDER ) -> dict:
         """
         Method that loads the document archetypes. The reason why a dict with key value is retun,
         where the key is the name of the document folder, is because you need to know which document it is,
         if you don't use a dict and if you use a list you would need to iterate through all its values.
+
         :returns: A dict of document folder name and DocumentArchetypeProxy objects.
         :rtype: dict[str, DocumentArchetypeProxy]
         """
@@ -216,7 +219,6 @@ class ArchetypeManager:
 
                     # We get the properties and save the id & path
                     properties_element : ET.Element = root_document.find(PROPERTIES_TAG)
-                    
 
                     # TODO en caso de que queramos usar el mismo documento varias veces, tenemos que cambiarle el id ?
                     document_dicc["id"] = id
@@ -245,11 +247,12 @@ class ArchetypeManager:
     # ----------------------------------------------------------------------
 
     @classmethod
-    def load_project_archetypes( cls, folder =  ARCHETYPES_FOLDER ) -> dict:
+    def load_project_archetypes( cls, folder = ARCHETYPES_FOLDER ) -> dict:
         """
         Method that loads the project archetypes. The reason why a dict with key value is retun,
         where the key is the name of the project folder, is because you need to know which project it is,
         if you don't use a dict and if you use a list you would need to iterate through all its values.
+        
         :returns: A dict of project folder name and ProjectArchetypeProxy objects.
         :rtype: dict[str, ProjectArchetypeProxy]
         """
@@ -320,6 +323,7 @@ class ArchetypeManager:
     def clone_project(archetype_path: str, filename_path_to_save: str):
         """
         Method that creates a new project from an archetype.
+
         :param filename: Path where we want to save the project.
         :param archetype: Archetype type.
         """

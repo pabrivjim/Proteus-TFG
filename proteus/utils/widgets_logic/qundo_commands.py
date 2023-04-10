@@ -202,7 +202,6 @@ class DeleteDocument(QUndoCommand):
         self.project.state = self.old_project_state
         self.project.documents[self.document.id] = self.document
         self.combo_box.addItem(self.document.get_property("name").value, self.document)
-        
 
 class UpdateObject(QUndoCommand):
     """

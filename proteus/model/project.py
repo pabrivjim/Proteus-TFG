@@ -301,6 +301,3 @@ class Project(AbstractObject):
         # PermissionError: [WinError 32] El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso:
         for i in documents_to_be_removed:
             self.documents.pop(i) 
-        
-
-    
