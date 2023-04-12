@@ -18,6 +18,10 @@ from proteus.utils.i18n import trans
 from proteus.view.main_window import MainWindow
 #python -m pytest .\proteus\tests\pyqt\test_pyqt.py
 def test_pyqt(qtbot):
+    """
+    Test the main window of the PROTEUS frontend. This method calls all the
+    methods that test the different parts of the main window.
+    """
     os.chdir(PATH)
 
     window = MainWindow()
@@ -35,6 +39,10 @@ def test_pyqt(qtbot):
     # qtbotbis.mouseClick(window.ribbon.open_tb, QtCore.Qt.LeftButton, delay=1)
 
 def default_ribbon_project_buttons(window: MainWindow):
+    """
+    Test the default buttons of the project ribbon.
+    It also checks that the buttons are enabled and disabled correctly.
+    """
     assert window.ribbon.open_tb.text() == trans("open")
     assert window.ribbon.new_tb.text() == trans("new")
     assert window.ribbon.save_tb.text() == trans("save")
@@ -51,6 +59,10 @@ def default_ribbon_project_buttons(window: MainWindow):
     assert window.ribbon.edit_tb.isEnabled() == False
 
 def default_ribbon_document_buttons(window: MainWindow):
+    """
+    Test the default buttons of the document ribbon.
+    It also checks that the buttons are enabled and disabled correctly.
+    """
     assert window.ribbon.create_tb.text() == trans("create")
     assert window.ribbon.delete_tb.text() == trans("delete")
     assert window.ribbon.export_tb.text() == trans("export")
@@ -64,6 +76,10 @@ def default_ribbon_document_buttons(window: MainWindow):
     assert window.ribbon.export_tb.isEnabled() == False
 
 def default_ribbon_qundostack_buttons(window: MainWindow):
+    """
+    Test the default buttons of the undo/redo ribbon.
+    It also checks that the buttons are enabled and disabled correctly.
+    """
     assert window.ribbon.undo_tb.text() == trans("undo")
     assert window.ribbon.redo_tb.text() == trans("redo")
 
@@ -71,6 +87,10 @@ def default_ribbon_qundostack_buttons(window: MainWindow):
     assert window.ribbon.redo_tb.isEnabled() == False
 
 def archetype_objects_buttons(window: MainWindow):
+    """
+    Test the buttons of the objects archetypes.
+    It checks that the buttons are created correctly.
+    """
     #We get all the archetypes buttons
     buttons = window.ribbon.buttons
 
@@ -86,6 +106,12 @@ def archetype_objects_buttons(window: MainWindow):
             assert id in buttons
 
 def recreate_req_open_project_without_dialog(window: MainWindow):
+    """
+    Test the open project button without the fileDialog.
+    It only loads the project and skip the QDialog select part as it's something
+    that is not possible to test with pytest-qt, because it's related to System File Explorer.
+    It checks that the title of the window is correct.
+    """
     path_to_project = str(pathlib.Path().cwd() / "proteus" / "tests" / "project" / "proteux.xml")
     file_controller = window.file
     file_controller.load_project(path_to_project)
