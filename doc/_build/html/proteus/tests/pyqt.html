@@ -45,6 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../module.html">PROTEUS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../structure.html">Proteus Directory Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../main_app.html">Main module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../view/index.html">View Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils/index.html">Utils Package</a></li>
@@ -92,6 +93,50 @@
   <section id="module-proteus.tests.pyqt.test_pyqt">
 <span id="test-pyqt-interface-module"></span><h1>Test PyQt Interface Module<a class="headerlink" href="#module-proteus.tests.pyqt.test_pyqt" title="Permalink to this heading"></a></h1>
 <p>Pytest file for the PROTEUS frontend (PyQt5) with Pytest-qt.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.tests.pyqt.test_pyqt.archetype_objects_buttons">
+<span class="sig-prename descclassname"><span class="pre">proteus.tests.pyqt.test_pyqt.</span></span><span class="sig-name descname"><span class="pre">archetype_objects_buttons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../view/main_window.html#proteus.view.main_window.MainWindow" title="proteus.view.main_window.MainWindow"><span class="pre">MainWindow</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.tests.pyqt.test_pyqt.archetype_objects_buttons" title="Permalink to this definition"></a></dt>
+<dd><p>Test the buttons of the objects archetypes.
+It checks that the buttons are created correctly.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.tests.pyqt.test_pyqt.default_ribbon_document_buttons">
+<span class="sig-prename descclassname"><span class="pre">proteus.tests.pyqt.test_pyqt.</span></span><span class="sig-name descname"><span class="pre">default_ribbon_document_buttons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../view/main_window.html#proteus.view.main_window.MainWindow" title="proteus.view.main_window.MainWindow"><span class="pre">MainWindow</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.tests.pyqt.test_pyqt.default_ribbon_document_buttons" title="Permalink to this definition"></a></dt>
+<dd><p>Test the default buttons of the document ribbon.
+It also checks that the buttons are enabled and disabled correctly.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.tests.pyqt.test_pyqt.default_ribbon_project_buttons">
+<span class="sig-prename descclassname"><span class="pre">proteus.tests.pyqt.test_pyqt.</span></span><span class="sig-name descname"><span class="pre">default_ribbon_project_buttons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../view/main_window.html#proteus.view.main_window.MainWindow" title="proteus.view.main_window.MainWindow"><span class="pre">MainWindow</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.tests.pyqt.test_pyqt.default_ribbon_project_buttons" title="Permalink to this definition"></a></dt>
+<dd><p>Test the default buttons of the project ribbon.
+It also checks that the buttons are enabled and disabled correctly.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.tests.pyqt.test_pyqt.default_ribbon_qundostack_buttons">
+<span class="sig-prename descclassname"><span class="pre">proteus.tests.pyqt.test_pyqt.</span></span><span class="sig-name descname"><span class="pre">default_ribbon_qundostack_buttons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../view/main_window.html#proteus.view.main_window.MainWindow" title="proteus.view.main_window.MainWindow"><span class="pre">MainWindow</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.tests.pyqt.test_pyqt.default_ribbon_qundostack_buttons" title="Permalink to this definition"></a></dt>
+<dd><p>Test the default buttons of the undo/redo ribbon.
+It also checks that the buttons are enabled and disabled correctly.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.tests.pyqt.test_pyqt.recreate_req_open_project_without_dialog">
+<span class="sig-prename descclassname"><span class="pre">proteus.tests.pyqt.test_pyqt.</span></span><span class="sig-name descname"><span class="pre">recreate_req_open_project_without_dialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../view/main_window.html#proteus.view.main_window.MainWindow" title="proteus.view.main_window.MainWindow"><span class="pre">MainWindow</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.tests.pyqt.test_pyqt.recreate_req_open_project_without_dialog" title="Permalink to this definition"></a></dt>
+<dd><p>Test the open project button without the fileDialog.
+It only loads the project and skip the QDialog select part as it’s something
+that is not possible to test with pytest-qt, because it’s related to System File Explorer.
+It checks that the title of the window is correct.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="proteus.tests.pyqt.test_pyqt.test_pyqt">
+<span class="sig-prename descclassname"><span class="pre">proteus.tests.pyqt.test_pyqt.</span></span><span class="sig-name descname"><span class="pre">test_pyqt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qtbot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.tests.pyqt.test_pyqt.test_pyqt" title="Permalink to this definition"></a></dt>
+<dd><p>Test the main window of the PROTEUS frontend. This method calls all the
+methods that test the different parts of the main window.</p>
+</dd></dl>
+
 </section>
 
 

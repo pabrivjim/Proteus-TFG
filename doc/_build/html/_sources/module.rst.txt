@@ -4,6 +4,7 @@ PROTEUS
 .. toctree::
    :maxdepth: 4
 
+   proteus/structure
    proteus/main_app
    proteus/view/index
    proteus/utils/index

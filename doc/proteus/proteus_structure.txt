@@ -1,0 +1,122 @@
+|-- README.md
+|-- archetypes
+|  |-- documents
+|  |  `-- ...
+|  |-- objects
+|  |  `-- ...
+|  `-- projects
+|     `-- ...
+|-- doc
+|  `-- ...
+|-- proteus
+|  |-- __init__.py
+|  |-- __main__.py
+|  |-- app.py
+|  |-- config.py
+|  |-- controllers
+|  |  |-- __init__.py
+|  |  |-- archetype.py
+|  |  |-- base.py
+|  |  |-- file.py
+|  |  |-- project.py
+|  |  `-- views.py
+|  |-- model
+|  |  |-- __init__.py
+|  |  |-- abstract_object.py
+|  |  |-- archetype_manager.py
+|  |  |-- archetype_proxys.py
+|  |  |-- object.py
+|  |  |-- project.py
+|  |  `-- property.py
+|  |-- resources
+|  |  |-- assets
+|  |  |  `-- ...
+|  |  |-- config
+|  |  |  `-- ...
+|  |  |-- i18n
+|  |  |  `-- ...
+|  |  |-- icons
+|  |  |  `-- ...
+|  |  |-- themes
+|  |  |  `-- ...
+|  |  |-- ui
+|  |  |  `-- ...
+|  |  `-- views
+|  |     `-- ...
+|  |-- tests
+|  |  |-- __init__.py
+|  |  |-- new_cloned_project
+|  |  |  |-- assets
+|  |  |  |-- objects
+|  |  |  `-- proteus.xml
+|  |  |-- project
+|  |  |  |-- assets
+|  |  |  |-- objects
+|  |  |  |  |-- 3fKhMAkcEe2C.xml
+|  |  |  |  |-- 3fKhMAkcEe2D.xml
+|  |  |  |  `-- 64xM8FLyxtaE.xml
+|  |  |  `-- proteus.xml
+|  |  |-- properties
+|  |  |  |-- __init__.py
+|  |  |  |-- fixtures.py
+|  |  |  |-- test_boolean_properties.py
+|  |  |  |-- test_classlist_properties.py
+|  |  |  |-- test_date_properties.py
+|  |  |  |-- test_enum_properties.py
+|  |  |  |-- test_file_properties.py
+|  |  |  |-- test_float_properties.py
+|  |  |  |-- test_integer_properties.py
+|  |  |  |-- test_properties.py
+|  |  |  |-- test_string_properties.py
+|  |  |  |-- test_time_properties.py
+|  |  |  `-- test_url_properties.py
+|  |  |-- pyqt
+|  |  |  |-- __init__.py
+|  |  |  `-- test_pyqt.py
+|  |  |-- test_archetype_manager.py
+|  |  |-- test_directories.py
+|  |  |-- test_objects.py
+|  |  `-- test_projects.py
+|  |-- utils
+|  |  |-- __init__.py
+|  |  |-- i18n.py
+|  |  |-- loader.py
+|  |  |-- preferences.py
+|  |  |-- widgets_logic
+|  |  |  |-- document_dialog_logic.py
+|  |  |  |-- main_window_logic.py
+|  |  |  |-- project_dialog_logic.py
+|  |  |  |-- properties_logic.py
+|  |  |  |-- qundo_commands.py
+|  |  |  |-- ribbons_logic.py
+|  |  |  `-- tree_logic.py
+|  |  `-- widgets_utils.py
+|  `-- view
+|     |-- actions
+|     |  |-- redo_action.py
+|     |  `-- undo_action.py
+|     |-- buttons
+|     |  |-- create_document.py
+|     |  |-- delete_document.py
+|     |  |-- edit_project.py
+|     |  |-- export_document.py
+|     |  |-- new_project.py
+|     |  |-- open_project.py
+|     |  |-- save_project.py
+|     |  `-- settings.py
+|     |-- main_window.py
+|     |-- visualizer.py
+|     `-- widgets
+|        |-- __init__.py
+|        |-- document_dialog.py
+|        |-- export_dialog.py
+|        |-- markdown.py
+|        |-- project_dialog.py
+|        |-- properties.py
+|        |-- ribbons
+|        |  |-- ribbon.py
+|        |  |-- ribbon_button_group.py
+|        |  `-- ribbon_tab_content.py
+|        `-- tree.py
+|-- proteus.ini
+|-- requirements.txt
