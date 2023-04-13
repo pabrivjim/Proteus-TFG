@@ -35,6 +35,7 @@ ARCHETYPES_DIRECTORY : str = 'archetypes_directory'
 RESOURCES_DIRECTORY  : str = 'resources_directory'
 ICONS_DIRECTORY      : str = 'icons_directory'
 ARCHETYPES_CUSTOM_DIRECTORY : str = 'archetypes_custom_dir'
+XSLT_CUSTOM_FILE: str = 'xslt_custom_file'
 
 # --------------------------------------------------------------------------
 # Constant declarations for QSettings for QApplication
@@ -76,9 +77,14 @@ class Config:
         self.icons_directory      : Path = self.resources_directory / self.directories[ICONS_DIRECTORY]
         self.archetypes_directory : Path = Path.cwd() / self.directories[ARCHETYPES_DIRECTORY]
         self.archetypes_custom_directory : Path = None
+        self.xslt_custom_file : Path = None
         # Custom Archetypes directory
         if(ARCHETYPES_CUSTOM_DIRECTORY in self.directories):
             self.archetypes_custom_directory : Path = Path.cwd() / self.directories[ARCHETYPES_CUSTOM_DIRECTORY]
+
+        # Custom XSLT directory
+        if(XSLT_CUSTOM_FILE in self.directories):
+            self.xslt_custom_file : Path = Path.cwd() / self.directories[XSLT_CUSTOM_FILE]
 
         # Check application directories
         self.check_application_directories()
@@ -90,8 +96,7 @@ class Config:
         :returns: ConfigParser
         :rtype: ConfigParser
         """
-
-        print(Path.cwd())
+        proteus.logger.info("Creating PROTEUS configuration parser")
 
         assert Path(CONFIG_FILE).exists(), \
             f"PROTEUS configuration file {CONFIG_FILE} does not exist! {Path(CONFIG_FILE).absolute()} cwd: {Path.cwd()}"

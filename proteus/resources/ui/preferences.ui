@@ -86,7 +86,7 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="PathLineEdit" name="configPath">
+            <widget class="PathLineEdit" name="archetypeConfigPath">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;GnuCOBOL compiler path (complete path or executable name if correct path is defined in PATH).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
@@ -104,14 +104,45 @@
            </item>
           </layout>
          </item>
-         <item row="6" column="1">
+         <item row="3" column="1">
+          <widget class="QLabel" name="xslt_label_path">
+           <property name="text">
+            <string>XSLT folder:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout_1">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="PathLineEdit" name="xsltConfigPath">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;GnuCOBOL compiler path (complete path or executable name if correct path is defined in PATH).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="statusTip">
+              <string>Full path to the GnuCOBOL compiler.</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="toolButtonXSLTPath">
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="8" column="1">
           <widget class="QLabel" name="label_language">
            <property name="text">
             <string>Language:</string>
            </property>
           </widget>
          </item>
-         <item row="7" column="1">
+         <item row="9" column="1">
           <widget class="QComboBox" name="comboBoxLanguage">
            <item>
             <property name="text">
