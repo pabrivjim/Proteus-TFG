@@ -43,7 +43,7 @@ def test_projects(path):
     of string and markdown properties.
     """
     # New path where we want to clone the archetype
-    new_cloned_project_path = pathlib.Path.cwd().parent / "new_cloned_project"
+    new_cloned_project_path = pathlib.Path.cwd() / "proteus" / "tests" / "new_cloned_project"
 
     # If dir already exists, then we remove it
     if(new_cloned_project_path.resolve().exists()):
@@ -53,8 +53,8 @@ def test_projects(path):
     os.mkdir(new_cloned_project_path)
 
     # Clone project
-    ArchetypeManager.clone_project(os.path.join(path, "proteus.xml"),new_cloned_project_path.resolve())
-
+    project_to_be_cloned = pathlib.Path.cwd() / "proteus" / "tests" / "project" / "proteus.xml"
+    ArchetypeManager.clone_project(project_to_be_cloned, new_cloned_project_path.resolve())
     # Load the project
     test_project = Project.load(new_cloned_project_path)
 

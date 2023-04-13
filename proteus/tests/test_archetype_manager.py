@@ -110,8 +110,7 @@ def test_clone_project():
     project_to_be_cloned : ProjectArchetypeProxy = projects[project_archetype_name]
 
     # New path where we want to clone the archetype
-    new_cloned_project_path = pathlib.Path.cwd().parent / "new_cloned_project"
-
+    new_cloned_project_path = pathlib.Path.cwd() / "proteus" / "tests" / "new_cloned_project"
     # If dir already exists, then we remove it
     if(new_cloned_project_path.resolve().exists()):
         shutil.rmtree(new_cloned_project_path)

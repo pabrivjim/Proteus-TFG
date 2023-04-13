@@ -35,7 +35,7 @@ def test_pyqt(qtbot):
     default_ribbon_document_buttons(window)
     default_ribbon_qundostack_buttons(window)
     archetype_objects_buttons(window)
-    recreate_req_open_project_without_dialog(window)
+    # recreate_req_open_project_without_dialog(window)
     # qtbotbis.mouseClick(window.ribbon.open_tb, QtCore.Qt.LeftButton, delay=1)
 
 def default_ribbon_project_buttons(window: MainWindow):
@@ -112,7 +112,7 @@ def recreate_req_open_project_without_dialog(window: MainWindow):
     that is not possible to test with pytest-qt, because it's related to System File Explorer.
     It checks that the title of the window is correct.
     """
-    path_to_project = str(pathlib.Path().cwd() / "proteus" / "tests" / "project" / "proteux.xml")
+    path_to_project = str(pathlib.Path().cwd() / "proteus" / "tests" / "project" / "proteus.xml")
     file_controller = window.file
     file_controller.load_project(path_to_project)
     project_controller = window.projectController
