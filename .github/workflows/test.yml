@@ -1,0 +1,34 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.2
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: pytest
+
+    - name: Generate coverage report
+      run: coverage xml
+
+    - name: Upload coverage report to Codacy
+      uses: codacy/codacy-coverage-reporter@v1
+      with:
+        projectToken: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        coverageReport: coverage.xml
