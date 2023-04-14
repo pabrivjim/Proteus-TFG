@@ -101,12 +101,12 @@ class CreateDocument(QUndoCommand):
         self.project_state: ProteusState = deepcopy(project.state)
 
     def redo(self) -> None:
-        proteus.logger.info('CreateDocument - redo')
         """
         Inserts document to project documents list.
         Set object state to FRESH.
         Set objects's children to FRESH.
         """
+        proteus.logger.info('CreateDocument - redo')
         self.document.state = ProteusState.FRESH
         self.project.state = ProteusState.DIRTY
         self.project.documents[self.document.id] = self.document
@@ -114,12 +114,12 @@ class CreateDocument(QUndoCommand):
         change_combo_box(self.app)
 
     def undo(self) -> None:
-        proteus.logger.info('CreateDocument - undo')
         """
         Removes document from project documents list.
         Removes object state.
         Removes object's children states.
         """
+        proteus.logger.info('CreateDocument - undo')
         #FIXME SET TO DEAD
         self.document.state = ProteusState.DEAD
         self.project.state = self.project_state
@@ -142,24 +142,24 @@ class DeleteObject(QUndoCommand):
         self.project_state = deepcopy(project.state)
 
     def redo(self):
-        proteus.logger.info('DeleteObject - redo')
         """
         Removes node from parent children list.
         Set object state to DELETED.
         Set parent's object to DIRTY.
         """
+        proteus.logger.info('DeleteObject - redo')
         self.obj.state = ProteusState.DEAD
         self.parent.children.pop(self.obj.id)	
         self.parent.state = ProteusState.DIRTY
         self.project.state = ProteusState.DIRTY
 
     def undo(self):
-        proteus.logger.info('DeleteObject - undo')
         """
         Inserts node to parent children list.
         Set object state to previous state.
         Set parent's state to previous state.
         """
+        proteus.logger.info('DeleteObject - undo')
         self.obj.state = self.obj_state
         self.parent.state = self.parent_state
         self.project.state = self.project_state
@@ -182,22 +182,22 @@ class DeleteDocument(QUndoCommand):
         self.old_project_state = deepcopy(project.state)
 
     def redo(self):
-        proteus.logger.info('DeleteDocument - redo')
         """
         Deletes document from project documents list.
         Sets all objects in document to DELETED.
         """
+        proteus.logger.info('DeleteDocument - redo')
         self.project.documents.pop(self.document.id)
         self.document.state = ProteusState.DEAD
         self.project.state = ProteusState.DIRTY
         self.combo_box.removeItem(self.combo_box_index)
 
     def undo(self):
-        proteus.logger.info('DeleteDocument - undo')
         """
         Inserts document to project documents list.
         Sets all objects states to previous states.
         """
+        proteus.logger.info('DeleteDocument - undo')
         self.document.state= self.old_document_state
         self.project.state = self.old_project_state
         self.project.documents[self.document.id] = self.document
@@ -219,11 +219,11 @@ class UpdateObject(QUndoCommand):
         self.obj_state = obj.state
 
     def redo(self):
-        proteus.logger.info('UpdateObject - redo')
         """
         Update node dict attributes.
         Set object state to DIRTY.
         """
+        proteus.logger.info('UpdateObject - redo')
         obj_xml = (ET.tostring(self.obj.generate_xml(),
                     xml_declaration=True,
                     encoding='utf-8',
@@ -240,11 +240,11 @@ class UpdateObject(QUndoCommand):
             self.obj.properties = self.new_obj.properties
 
     def undo(self):
-        proteus.logger.info('UpdateObject - undo')
         """
         Replace node attributes with old attributes.
         Set object state to previous state.
         """
+        proteus.logger.info('UpdateObject - undo')
         self.obj.state = self.obj_state
         self.project.state = self.project_state
         self.obj.properties = self.back_up_obj_properties
@@ -265,11 +265,11 @@ class UpdateProject(QUndoCommand):
         self.project_state = project.state
 
     def redo(self):
-        proteus.logger.info('UpdateProject - redo')
         """
         Update node dict attributes.
         Set object state to DIRTY.
         """
+        proteus.logger.info('UpdateProject - redo')
         project_xml = (ET.tostring(self.project.generate_xml(),
                     xml_declaration=True,
                     encoding='utf-8',
@@ -284,11 +284,11 @@ class UpdateProject(QUndoCommand):
             self.project.properties = self.new_project.properties
 
     def undo(self):
-        proteus.logger.info('UpdateProject - undo')
         """
         Replace node attributes with old attributes.
         Set object state to previous state.
         """
+        proteus.logger.info('UpdateProject - undo')
         self.project.state = self.project_state
         self.project.properties = self.back_up_project_properties
 
@@ -311,10 +311,10 @@ class MoveNode(QUndoCommand):
         self.project_state = deepcopy(project.state)
 
     def redo(self):
-        proteus.logger.info('MoveNode - redo')
         """
         Removes node from old position and insert in the new one.
         """
+        proteus.logger.info('MoveNode - redo')
         if ((PROTEUS_ANY in self.new_parent.acceptedChildren) or
             any(x in self.new_parent.acceptedChildren for x in self.obj.classes)):
             self.something_changed = True
@@ -328,10 +328,10 @@ class MoveNode(QUndoCommand):
             proteus.logger.warning("MoveNode - redo - Node not accepted by new parent")
 
     def undo(self):
-        proteus.logger.info('MoveNode - undo')
         """
         Removes node from new position and insert back in old position.
         """
+        proteus.logger.info('MoveNode - undo')
         if(self.something_changed):
             self.original_parent.state = self.original_parent_state
             self.new_parent.state = self.new_parent_state
