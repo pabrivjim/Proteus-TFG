@@ -49,13 +49,11 @@ class TreeLogic():
         :param supportedActions:
         """
         proteus.logger.info('TreeLogic - start drag')
-        
+        print("START DRAG")
         drag = QDrag(self.docInspector)
         mimedata = self.docInspector.model().mimeData(self.docInspector.selectedIndexes())
 
         encoded = QByteArray()
-        stream = QDataStream(encoded, QIODevice.WriteOnly)
-        self.encodeData(self.docInspector.selectedItems(), stream)
         mimedata.setData(self.docInspector.mimetype, encoded)
 
         # change
@@ -137,55 +135,6 @@ class TreeLogic():
             ch = itFrom.child(ix)
             self.fillItem(ch, it)
             self.fillItems(ch, it)
-
-    def encodeData(self, items, stream):
-        """
-        Encodes data.
-
-        :param items:
-        :param stream:
-        """
-        proteus.logger.info('TreeLogic - encode data')
-        
-        stream.writeInt32(len(items))
-        for item in items:
-            p = item
-            rows = []
-            while p is not None:
-                rows.append(self.docInspector.indexFromItem(p).row())
-                p = p.parent()
-            stream.writeInt32(len(rows))
-            for row in reversed(rows):
-                stream.writeInt32(row)
-        return stream
-
-    def decodeData(self, encoded, tree):
-        """
-        Decodes data.
-
-        :param encoded:
-        :param tree:
-        """
-        proteus.logger.info('TreeLogic - decode data')
-        
-        items = []
-        rows = []
-        stream = QDataStream(encoded, QIODevice.ReadOnly)
-        while not stream.atEnd():
-            nItems = stream.readInt32()
-            for i in range(nItems):
-                path = stream.readInt32()
-                row = []
-                for j in range(path):
-                    row.append(stream.readInt32())
-                rows.append(row)
-
-        for row in rows:
-            it = tree.topLevelItem(row[0])
-            for ix in row[1:]:
-                it = it.child(ix)
-            items.append(it)
-        return items
 
     def load_document(self) -> None:
         """
