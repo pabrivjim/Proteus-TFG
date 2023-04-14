@@ -7,8 +7,7 @@
 # ==========================================================================
 
 from functools import partial
-from PyQt5.QtCore import (Qt, QByteArray, QDataStream, QIODevice, QPoint,
-                          QModelIndex)
+from PyQt5.QtCore import (Qt, QByteArray, QPoint, QModelIndex)
 from PyQt5.QtGui import (QDrag, QIcon)
 from PyQt5.QtWidgets import (QTreeWidget, QMenu, QTreeWidgetItem, QMessageBox)
 from proteus.model import PROTEUS_ANY
@@ -72,40 +71,42 @@ class TreeLogic():
         
         # Get previous position
         from_parent = self._draggedItem.parent()
-        # from_row = from_parent.indexOfChild(self._draggedItem)
-
-        # Exec Drop  
-        event.setDropAction(Qt.MoveAction)
-        QTreeWidget.dropEvent(self.docInspector, event)
-        
         # Get new position
         to_parent = self._draggedItem.parent()
-        # to_row = to_parent.indexOfChild(self._draggedItem)
-        new_parent: Object = to_parent.data(0, Qt.UserRole)
-        dragged_object: Object = self._draggedItem.data(0, Qt.UserRole)
 
-        # If the new parent doesn't havent all the types or the new parent doesnt accept any of the classes
-        # that the dragged object has, then we don't do anything and we warn the user.
-        if (not((PROTEUS_ANY in new_parent.acceptedChildren) or
-            any(x in new_parent.acceptedChildren for x in dragged_object.classes))):
-            proteus.logging.warning('TreeLogic - drop event - Not accepted children')
+        if(to_parent is None):
+            event.ignore()
+        else:
+            # Exec Drop  
+            event.setDropAction(Qt.MoveAction)
+            QTreeWidget.dropEvent(self.docInspector, event)
+            
+            new_parent: Object = to_parent.data(0, Qt.UserRole)
+            dragged_object: Object = self._draggedItem.data(0, Qt.UserRole)
 
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Warning)
-            msg.setText(f"'{new_parent.get_property('name').value}' doesn't accept '{dragged_object.get_property('name').value}' as a child")
-            msg.setDetailedText(f"{new_parent.get_property('name').value} accepted children (classes): {new_parent.acceptedChildren}\n{dragged_object.get_property('name').value} classes: {dragged_object.classes}")
-            msg.setWindowTitle("Not accepted children")
-            msg.exec_()
-        
-        
-        project: Project = self.parent.projectController.project
-        
-        command = MoveNode(
-                project,
-                self._draggedItem.data(0, Qt.UserRole),
-                from_parent.data(0, Qt.UserRole),
-                to_parent.data(0, Qt.UserRole))
-        self.parent.undoStack.push(command)
+            # If the new parent doesn't havent all the types or the new parent doesnt accept any of the classes
+            # that the dragged object has, then we don't do anything and we warn the user.
+            if (not((PROTEUS_ANY in new_parent.acceptedChildren) or
+                any(x in new_parent.acceptedChildren for x in dragged_object.classes))):
+                proteus.logging.warning('TreeLogic - drop event - Not accepted children')
+
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setText(f"'{new_parent.get_property('name').value}' doesn't accept '{dragged_object.get_property('name').value}' as a child")
+                msg.setDetailedText(f"{new_parent.get_property('name').value} accepted children (classes): {new_parent.acceptedChildren}\n{dragged_object.get_property('name').value} classes: {dragged_object.classes}")
+                msg.setWindowTitle("Not accepted children")
+                msg.exec_()
+            
+            
+            project: Project = self.parent.projectController.project
+            
+            command = MoveNode(
+                    project,
+                    self._draggedItem.data(0, Qt.UserRole),
+                    from_parent.data(0, Qt.UserRole),
+                    to_parent.data(0, Qt.UserRole))
+            self.parent.undoStack.push(command)
+
 
     def fillItem(self, inItem, outItem):
         """
