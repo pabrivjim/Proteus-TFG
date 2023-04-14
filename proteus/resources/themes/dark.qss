@@ -6,19 +6,17 @@ QWidget {
 QMainWindow {
     background-color: #283238;
 }
-QToolButton { border: none; }
-
-
-QMainWindow::separator {
-    width: 1px;
-    border: none;
-}
 
 QDockWidget::title {
     border: 0;
     border-bottom: 1px solid #1F272C;
     padding-top: 8px;
     padding-bottom: 8px;
+}
+
+QMainWindow::separator {
+    width: 1px;
+    border: none;
 }
 
 QTabWidget::pane {
@@ -28,14 +26,11 @@ QTabWidget::pane {
 }
 
 QTabBar::tab {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 5px 15px 5px 15px;
     margin-top: 0px;
 }
 
-QTabBar::tab:not(:selected) {
+QTabBar::tab:!selected {
     background-color: #283238;
     border-bottom: 1px solid #999999;
 }
@@ -53,5 +48,46 @@ QTabBar::tab:hover {
 }
 
 QTabBar::tab:selected:hover {
-    background-color: #1F272C;
+    background-color: #666666;
+}
+
+QTreeWidget {
+    background-color: #283238;
+    border-bottom: 1px solid #666666;
+}
+
+QTreeView::item {
+    padding: 2.5px;
+}
+
+QPushButton {
+    border: 1px solid #666666;
+    border-radius: 3px;
+    background-color: #283238;
+    padding: 5px 10px;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #666666;
+}
+
+QPushButton:pressed {
+    background-color: #999999;
+}
+
+QLineEdit, QTimeEdit, QDateEdit, QComboBox, QComboBox > *, QSpinBox, QDoubleSpinBox, QTextEdit {
+    border: 1px solid #666666;
+    border-radius: 3px;
+    padding: 2.5px;
+    background-color: #31383d;
+}
+
+QLineEdit:focus, QTimeEdit:focus, QDateEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus, QTextEdit:focus, QComboBox > *:focus {
+    border: 1px solid #FFFFFF;
+}
+
+QCheckBox {
+    border: 1px solid #666666;
+    border-radius: 3px;
 }
