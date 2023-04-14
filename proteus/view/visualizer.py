@@ -297,7 +297,11 @@ class Visualizer(QWebEngineView):
         ns['markdown'] = lambda context, content: convert_markdown(content)
         ns['trans'] = lambda context, content: trans(content)
         ns['black'] = lambda context, content: convert_black_white(content)
-
+        print("File: ", __file__)
+        print("Dir: ", dirname(__file__))
+        print("Pardir: ", pardir)
+        print("Path: ", views[self.view]["path"])
+        
         path = abspath(join(dirname(__file__), pardir,
                             views[self.view]["path"]))
         

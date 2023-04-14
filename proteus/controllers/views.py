@@ -18,18 +18,38 @@ import proteus.config as config
 def load_views() -> list:
     """
     Method that loads the views.
+        """
+    proteus.logger.info('Config - load views')
+    views_dir = join(config.Config().resources_directory, "views")
+    views = [f for f in listdir(views_dir) if not isfile(join(views_dir, f))]
+    # Todo refactor
+    res = []
+    # for view in views:
+    #     if exists(join(views_dir, view, "index.html")):
+    #         res.append({"type": "html", "path": join(views_dir, view, "index.html")})
+    #     else:
+    #         res.append({"type": "xslt", "path": join(views_dir, view, "main.xslt")})
+    # return res
+
+def load_views() -> list:
+    """
+    Method that loads the views.
     """
     proteus.logger.info('Config - load views')
     views_dir = join(config.Config().resources_directory, "views")
     views = [f for f in listdir(views_dir) if not isfile(join(views_dir, f))]
     res = []
-    
     for view in views:
         try:
-            file = config.Config().xslt_custom_file
-            res.append({"type": "xslt", "path": file})
+            if (config.Config().xslt_custom_file != None):
+                proteus.logger.error(f'Config - load views - custom')
+                file = config.Config().xslt_custom_file
+                res.append({"type": "xslt", "path": file})
+            else:
+                proteus.logger.error(f'Config - load views - default')
+                res.append({"type": "xslt", "path": join(views_dir, view, "main.xslt")})
         except Exception as e:
-            proteus.logger.error(f'Config - load views - {e}')
+            proteus.logger.error(f'Config - load views - error: {e}')
             res.append({"type": "xslt", "path": join(views_dir, view, "main.xslt")})
     return res
 

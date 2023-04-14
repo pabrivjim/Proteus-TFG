@@ -72,6 +72,7 @@ class FileController(Controller):
         if selected_files:
             filename = selected_files[0]
             self.load_project(filename)
+            print("FILENAME: ", filename)
             project_title = self.app.projectController.project.get_property("name").value
             self.app.setWindowTitle("Proteus - " + project_title)
     

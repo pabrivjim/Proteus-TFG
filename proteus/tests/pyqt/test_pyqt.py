@@ -35,7 +35,7 @@ def test_pyqt(qtbot):
     default_ribbon_document_buttons(window)
     default_ribbon_qundostack_buttons(window)
     archetype_objects_buttons(window)
-    # recreate_req_open_project_without_dialog(window)
+    recreate_req_open_project_without_dialog(window)
     # qtbotbis.mouseClick(window.ribbon.open_tb, QtCore.Qt.LeftButton, delay=1)
 
 def default_ribbon_project_buttons(window: MainWindow):
