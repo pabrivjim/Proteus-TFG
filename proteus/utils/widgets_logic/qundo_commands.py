@@ -46,8 +46,6 @@ class CreateObject(QUndoCommand):
         if(isinstance(self.parent_obj.parent, Project)):
             dict.update(self.parent_obj.parent.documents, updated_doc)
         else:
-            print("HERE")
-            print(self.parent_obj.parent.get_property("name").value)
             dict.update(self.parent_obj.parent.children, updated_doc)
 
     def undo(self) -> None:

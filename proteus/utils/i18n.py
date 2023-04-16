@@ -38,6 +38,5 @@ def trans(key: str) -> str:
     proteus.logger.info('i18n - trans')
     settings = QSettings("Proteus", "SettingsDesktop")
     language = settings.value("language", "es")
-    # print(test)
     # language = "es"  # settings.value("language", "es")
     return get_trans_dict(language).get(key, key)

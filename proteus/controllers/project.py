@@ -52,7 +52,6 @@ class ProjectController(Controller):
         """
         Changes document.
         """
-        print("Change document")
         self.selected_document = document
 
     def remove_document(self) -> None:

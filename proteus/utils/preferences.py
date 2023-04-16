@@ -37,7 +37,6 @@ class Preferences:
         :param theme: Theme.
         """
         proteus.logger.info('Preferences - load theme')
-        print("LOAD THEME")
         file = QFile(resource_path(f'themes/{theme}.qss'))
         file.open(QFile.ReadOnly | QFile.Text)
         stream = QTextStream(file)

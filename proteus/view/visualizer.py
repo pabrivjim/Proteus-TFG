@@ -94,7 +94,6 @@ def convert_markdown(elements):
     try:
         return markdown.markdown(elements[0].text)
     except Exception as e:
-        print("ERROR: ", e)
         return elements[0].text
 
 
@@ -105,7 +104,6 @@ def loadCSS(view: QWebEngineView, path, name, counter):
     if not path.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text):
         return
     css = path.readAll().data().decode("utf-8").replace("\n", "").replace("\t", "")
-    print(css)
     SCRIPT = """
     (function() {
     css = document.createElement('style');
@@ -297,11 +295,7 @@ class Visualizer(QWebEngineView):
         ns['markdown'] = lambda context, content: convert_markdown(content)
         ns['trans'] = lambda context, content: trans(content)
         ns['black'] = lambda context, content: convert_black_white(content)
-        print("File: ", __file__)
-        print("Dir: ", dirname(__file__))
-        print("Pardir: ", pardir)
-        print("Path: ", views[self.view]["path"])
-        
+
         path = abspath(join(dirname(__file__), pardir,
                             views[self.view]["path"]))
         
@@ -323,8 +317,7 @@ class Visualizer(QWebEngineView):
                 css_stylesheet_path = pathlib.Path(f"{config.Config().resources_directory}/views/rem/{settings.value('theme')}.css").resolve()
                 loadCSS(super(), str(css_stylesheet_path), "script1", 0)
             except Exception as e:
-                print(e)
-                print("ERROR")
+                proteus.logger.error(f'visualizer - update_xslt - {e}')
         else:
             current_document = None
         

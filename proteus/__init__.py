@@ -11,13 +11,33 @@
 # --------------------------------------------------------------------------
 
 import logging
-
+from pathlib import Path
+from datetime import datetime
 # --------------------------------------------------------------------------
 # Constant declarations for PROTEUS logger name
 # --------------------------------------------------------------------------
 
 PROTEUS_LOGGER_NAME    = str('proteus')
 PROTEUS_LOGGING_FORMAT = str('%(name)s:%(filename)s [%(levelname)s] -> %(message)s')
+
+# --------------------------------------------------------------------------
+# Get the parent of the parent of this file (.../PROTEUS TFG) and the path to
+# the temporary file where the loggings will be saved.
+# --------------------------------------------------------------------------
+tmp_folder = Path(__file__).parent.parent.absolute() / 'tmp'
+
+# --------------------------------------------------------------------------
+# Create tmp directory if it does not exist
+# --------------------------------------------------------------------------
+
+Path(tmp_folder).mkdir(parents=True, exist_ok=True)
+
+# --------------------------------------------------------------------------
+# Create each logging file with the current date and time
+# --------------------------------------------------------------------------
+
+logging_file_name = str(datetime.now()).replace(":", "-")
+logging_file_path = tmp_folder / (logging_file_name + '.log')
 
 # --------------------------------------------------------------------------
 # Logger configuration
@@ -32,8 +52,8 @@ PROTEUS_LOGGING_FORMAT = str('%(name)s:%(filename)s [%(levelname)s] -> %(message
 #   CRITICAL=50
 
 logging.basicConfig(
-    #filename=PROTEUS_LOGGER_NAME+'.log',
-    #filemode='a',
+    filename=logging_file_path,
+    filemode='w',
     level=logging.DEBUG,
     format=PROTEUS_LOGGING_FORMAT
 )

@@ -394,7 +394,6 @@ class FloatProperty(Property):
         try:
             # self.value = float(self.value) cannot be used when frozen=True
             # https://stackoverflow.com/questions/53756788/how-to-set-the-value-of-dataclass-field-in-post-init-when-frozen-true
-            print("float: ", self.value)
             if(isinstance(self.value, str) and "," in self.value):
                 object.__setattr__(self, 'value', float(self.value.replace(",", ".")))
             else:

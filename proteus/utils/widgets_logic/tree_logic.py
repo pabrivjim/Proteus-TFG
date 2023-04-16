@@ -48,7 +48,6 @@ class TreeLogic():
         :param supportedActions:
         """
         proteus.logger.info('TreeLogic - start drag')
-        print("START DRAG")
         drag = QDrag(self.docInspector)
         mimedata = self.docInspector.model().mimeData(self.docInspector.selectedIndexes())
 
@@ -142,8 +141,7 @@ class TreeLogic():
         Method that load the document from the project.
         """
         proteus.logger.info('TreeLogic - load document')
-        
-        print("Loading doc")
+
         self.docInspector.clear()
         documents: dict = self.parent.projectController.project.documents
 
@@ -257,8 +255,6 @@ class TreeLogic():
         proteus_item: Object = item.data(0, Qt.UserRole)
         if item.parent():
             parent_obj: Object = item.parent().data(0, Qt.UserRole)
-            print(parent_obj.id, "   ", parent_obj.get_property("name").value)
-            print(proteus_item.id, "   ", proteus_item.get_property("name").value)
             item.parent().removeChild(item)
             command = DeleteObject(self.parent.projectController.project, parent_obj, proteus_item)
             self.parent.undoStack.push(command)
