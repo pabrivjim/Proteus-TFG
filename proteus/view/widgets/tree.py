@@ -16,7 +16,7 @@ class DocumentInspector(QTreeWidget):
     """
     mimetype = "application/x-tree-view"
     update = pyqtSignal(dict)
-    
+
     def __init__(self, parent) -> None:
         proteus.logger.info('Init DocumentInspector')
         super(DocumentInspector, self).__init__(parent)

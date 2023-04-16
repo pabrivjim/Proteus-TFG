@@ -31,7 +31,6 @@ import numpy as np
 from PyQt5.QtCore import QBuffer
 import proteus
 import os
-
 from proteus.utils.i18n import trans
 
 
@@ -81,7 +80,7 @@ def convert_black_white(image_url: str) -> str:
     buffer.open(QBuffer.ReadWrite)
     pil_img.save(buffer, format="PNG")
     qba = buffer.data()
-    
+
     # Return the image in base64
     return f"data:image/png;base64,{qba.toBase64().data().decode()}"
 
@@ -161,7 +160,7 @@ class Visualizer(QWebEngineView):
 
         # Install an event filter to capture key press events
         super().installEventFilter(self)
-        
+
         # DEBUG INSPECTOR
         self.inspector.load(QUrl(DEBUG_URL))
 
@@ -186,7 +185,7 @@ class Visualizer(QWebEngineView):
             """
             if not result:
                 QMessageBox.information(self, "Search Results", "No matches found.")
-        
+
         text, ok = QInputDialog.getText(self, "Search", "Enter text to search:")
 
         if ok:
@@ -209,7 +208,7 @@ class Visualizer(QWebEngineView):
         :param view: Current view index.
         """
         proteus.logger.info('visualizer - set view')
-        
+
         self.view = view
 
     def load(self, view: str, project: Project, index: int):
@@ -239,7 +238,7 @@ class Visualizer(QWebEngineView):
         :param id: Id of object to focus.
         """
         proteus.logger.info('visualizer - focus')
-        
+
         self.page().runJavaScript(f"""
             var object = document.getElementById('{id}');
             if (object) object.scrollIntoView();
@@ -253,7 +252,7 @@ class Visualizer(QWebEngineView):
         :param index: selected document index.
         """
         proteus.logger.info('visualizer - update')
-        
+
         if project.documents:
             self.load(None, project, index)
         else:
@@ -267,10 +266,10 @@ class Visualizer(QWebEngineView):
         :param index: current document index.
         """
         proteus.logger.info('visualizer - update html')
-        
+
         path = abspath(join(dirname(__file__), pardir,
                             views[self.view]["path"]))
-        
+
         super().load(QUrl.fromLocalFile(path))
 
         self.page().loadFinished.connect(lambda: send_to_view(project,
@@ -285,7 +284,7 @@ class Visualizer(QWebEngineView):
         :param index: current document index.
         """
         proteus.logger.info('visualizer - update xslt')
-        
+
         ns = etree.FunctionNamespace("https://proteus.us.es")
         ns.prefix = "proteus"
 
@@ -298,7 +297,7 @@ class Visualizer(QWebEngineView):
 
         path = abspath(join(dirname(__file__), pardir,
                             views[self.view]["path"]))
-        
+
         if(index == len(project.documents)):
             index = index-1
         if(project.documents.values()):
@@ -328,7 +327,7 @@ class Visualizer(QWebEngineView):
         :param save_path: file path.
         """
         proteus.logger.info('visualizer - save pdf')
-        
+
         self.page().printToPdf(save_path)
 
     #https://stackoverflow.com/questions/47067050/is-there-any-way-to-call-synchronously-the-method-tohtml-which-is-qwebenginepa
@@ -344,7 +343,7 @@ class Visualizer(QWebEngineView):
         :param save_path: file path.
         """
         proteus.logger.info('visualizer - save html')
-        
+
         current_page = self.page()
         current_page.toHtml(self.store_html)
         loop = QEventLoop()

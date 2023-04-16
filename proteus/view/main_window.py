@@ -71,7 +71,7 @@ class MainWindow(QMainWindow):
         if the project is not saved.
         """
         # We check if the Title starts with "Proteus - ". The reason is
-        # because the window title is changed to the pattern 
+        # because the window title is changed to the pattern
         # "Proteus - 'PROJECTNAME'"when the project is loaded.
         if (self.windowTitle().startswith('Proteus - ')):
             if(self.projectController.project.state != ProteusState.CLEAN):
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
         :return: ribbon widget.
         """
         proteus.logger.info('Main Window - load ribbon')
-        
+
         dock = QDockWidget("Ribbon", self)
         dock.setTitleBarWidget(QWidget())
 
@@ -116,7 +116,7 @@ class MainWindow(QMainWindow):
         Creates document inspector tree.
         """
         proteus.logger.info('Main Window - create doc inspector')
-        
+
         dock = QDockWidget("Document")
         dock.setObjectName("QDockWidget Document")
         layout = QVBoxLayout()
@@ -132,7 +132,7 @@ class MainWindow(QMainWindow):
         self.window_logic.combo_box_add_item()
         self.projectController.change_document_index(index=0)
         self.projectController.change_document(document = self.document_combobox.itemData(0))
-        
+
         # Signals so the combobox update automatically when change from one to another doc
         self.document_combobox.currentIndexChanged.connect(lambda index: self.projectController.change_document_index(index=index))
         self.document_combobox.currentIndexChanged.connect(lambda index: self.projectController.change_document(document = self.document_combobox.itemData(index)))
@@ -151,7 +151,7 @@ class MainWindow(QMainWindow):
         Creates and loads visualizers.
         """
         proteus.logger.info('Main Window - create visualizer widget')
-        
+
         tab = QTabWidget()
         tab.setTabsClosable(True)
         tab.setMovable(True)
@@ -177,7 +177,7 @@ class MainWindow(QMainWindow):
         Opens the preferences dialog.
         """
         proteus.logger.info('Main Window - preferences')
-        
+
         dialog = PreferencesDialog(self)
         dialog.exec()
 
@@ -188,5 +188,5 @@ class MainWindow(QMainWindow):
         :param obj: The object to be cloned and inserted.
         """
         proteus.logger.info('Main Window - add object')
-        
-        self.window_logic.add_object(obj) 
+
+        self.window_logic.add_object(obj)

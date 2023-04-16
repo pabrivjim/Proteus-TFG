@@ -50,7 +50,7 @@ class MainWindowLogic():
         :param obj: The object to be cloned and inserted.
         """
         proteus.logger.info('Main Window Logic - add object')
-        
+
         if self.parent.selected_object:
             obj_clone = copy.copy(obj.get_object(self.parent.projectController.project))
             obj_clone.id = str(shortuuid.random(length=12))
@@ -58,13 +58,13 @@ class MainWindowLogic():
                                    obj_clone)
 
             self.parent.undoStack.push(command)
-        
+
     def combo_box_add_item(self):
         """
         Adds an item to the combo box.
         """
         proteus.logger.info('Main Window Logic - combo box add item')
-        
+
         for document in self.parent.projectController.project.documents.values():
             name = document.get_property("name").value
             self.parent.document_combobox.addItem(name, document)

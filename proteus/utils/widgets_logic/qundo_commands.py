@@ -80,7 +80,7 @@ def change_combo_box(app):
         app.document_combobox.addItem(name, document)
     app.document_combobox.currentIndexChanged.connect(
         lambda index: app.projectController.change_document_index(index=index))
-    app.document_combobox.currentIndexChanged.connect(lambda index: app.projectController.change_document(document = app.document_combobox.itemData(index))) 
+    app.document_combobox.currentIndexChanged.connect(lambda index: app.projectController.change_document(document = app.document_combobox.itemData(index)))
     app.document_combobox.setCurrentIndex(len(project.documents) - 1)
 
 

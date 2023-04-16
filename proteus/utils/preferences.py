@@ -37,6 +37,7 @@ class Preferences:
         :param theme: Theme.
         """
         proteus.logger.info('Preferences - load theme')
+
         file = QFile(resource_path(f'themes/{theme}.qss'))
         file.open(QFile.ReadOnly | QFile.Text)
         stream = QTextStream(file)
@@ -51,7 +52,7 @@ class Preferences:
         :param language: Language.
         """
         proteus.logger.info('Preferences - load language')
-        
+
         app = Preferences.get_app_instance()
         translation = "%s.qm" % language
         translator = QTranslator()
@@ -67,7 +68,7 @@ class Preferences:
         :return: QSettings class.
         """
         proteus.logger.info('Preferences - load all')
-        
+
         settings = QSettings("Proteus", "SettingsDesktop")
         theme = settings.value("theme", "light")
         Preferences.load_theme(main, theme)
@@ -101,6 +102,8 @@ class PreferencesDialog(QDialog):
         Method that select the path of the XSLT directory, save it in the settings with the name xslt_custom_folder,
         as well as in the input path field.
         """
+        proteus.logger.info('PreferencesDialog - select xslt path')
+
         settings = self.parent().settings
         if(settings.value("xslt_custom_file") != None):
             xslt_main_file, _ = QFileDialog.getOpenFileName(None, "Open XSLT File", settings.value("xslt_custom_folder"), "XSLT files (*.xslt)")
@@ -137,7 +140,7 @@ class PreferencesDialog(QDialog):
         Method that load preferences from the settings.
         """
         proteus.logger.info('PreferencesDialog - load preferences')
-        
+
         settings = self.parent().settings
 
         theme = settings.value("theme", "light")
@@ -148,7 +151,7 @@ class PreferencesDialog(QDialog):
         self.comboBoxLanguage.setCurrentText(language)
         if(settings.value("archetype_custom_folder") == None):
             settings.setValue("archetype_custom_folder", normpath(expanduser("~/Documents/Proteus")))
-        
+
         self.xsltConfigPath.setText(settings.value("xslt_custom_file"))
         self.archetypeConfigPath.setText(settings.value("archetype_custom_folder"))
 
@@ -163,7 +166,7 @@ class PreferencesDialog(QDialog):
         if( settings.value("archetype_custom_folder") != self.archetypeConfigPath.text()):
             self.was_archetypes_path_changed = True
             settings.setValue("archetype_custom_folder", self.archetypeConfigPath.text())
-        
+
         # If the archetype custom path was changed, we need to update the config file
         if(self.was_archetypes_path_changed):
             # If the path was changed, we need to update the config file
@@ -181,7 +184,7 @@ class PreferencesDialog(QDialog):
         if( settings.value("xslt_custom_file") != self.xsltConfigPath.text()):
             self.was_xslt_path_changed = True
             settings.setValue("xslt_custom_file", self.xsltConfigPath.text())
-        
+
         # If the archetype custom path was changed, we need to update the config file
         if(self.was_xslt_path_changed):
             # If the path was changed, we need to update the config file

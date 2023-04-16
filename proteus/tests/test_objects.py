@@ -2,7 +2,7 @@
 Pytest file for PROTEUS objects.
 """
 # ==========================================================================
-# File: test_object.py
+# File: test_objects.py
 # Description: pytest file for PROTEUS objects
 # Date: 15/10/2022
 # Version: 0.1
@@ -67,7 +67,7 @@ def test_objects(path):
         for child in object.children.values():
             assert(child.parent == object)
             check_parent(child)
-    
+
     check_parent(test_object)
 
     # Check if states changes properly

@@ -25,7 +25,7 @@ import proteus.model.project as project
 # Author: Pablo Rivera Jiménez
 # --------------------------------------------------------------------------
 
-class ProjectArchetypeProxy: 
+class ProjectArchetypeProxy:
     """
     Proxy class for managing PROTEUS project archetypes.
     """

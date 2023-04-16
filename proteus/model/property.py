@@ -114,7 +114,7 @@ TIME_FORMAT             = str('%H:%M:%S')
 # Version: 0.3
 # Author: Amador Durán Toro
 # --------------------------------------------------------------------------
-# About using __post_init__: 
+# About using __post_init__:
 # https://stackoverflow.com/questions/60179799/python-dataclass-whats-a-pythonic-way-to-validate-initialization-arguments
 # Dataclasses have a replace(object, value=new_value) function which returns
 # a copy of an object with a new value (similar to attr.evolve()).
@@ -208,7 +208,7 @@ class StringProperty(Property):
         """
         Superclass turns value into a string, there is nothing to validate.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
     def generate_xml_value(self, _:ET._Element = None) -> str | ET.CDATA:
@@ -236,7 +236,7 @@ class MarkdownProperty(StringProperty):
     """
     # XML element tag name for this class of property (class attribute)
     element_tagname : ClassVar[str] = MARKDOWN_PROPERTY_TAG
-    
+
 # --------------------------------------------------------------------------
 # Class: DateProperty
 # Description: Dataclass for PROTEUS date properties (YYYY-MM-DD)
@@ -300,7 +300,7 @@ class TimeProperty(Property):
         """
         It validates the time passed as a string.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # Value validation
@@ -342,7 +342,7 @@ class IntegerProperty(Property):
         """
         It validates the integer passed as a string.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # Value validation
@@ -387,7 +387,7 @@ class FloatProperty(Property):
         """
         It validates the float passed as a string.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # Value validation
@@ -433,7 +433,7 @@ class BooleanProperty(Property):
         """
         It validates the boolean passed as a string.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # Value validation
@@ -476,7 +476,7 @@ class FileProperty(Property):
         """
         It validates the file path passed as a string.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # Value validation
@@ -519,7 +519,7 @@ class UrlProperty(Property):
         """
         It validates the URL passed as a string.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # Value validation
@@ -563,7 +563,7 @@ class EnumProperty(Property):
         """
         It validates that the value is one of the choices and that the choices are not empty.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # Parse choices set
@@ -646,7 +646,7 @@ class ClassListProperty(Property):
         """
         It validates the list of space-separated PROTEUS class names.
         """
-        # Superclass validation        
+        # Superclass validation
         super().__post_init__()
 
         # TODO: how can we check whether class names are valid at this moment?

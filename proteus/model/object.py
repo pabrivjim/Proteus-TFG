@@ -136,7 +136,7 @@ class Object(AbstractObject):
         # Check project object
         assert project is not None, \
             f"Invalide project object for {object_file_path}"
-        
+
         if(not os.path.isfile(object_file_path)):
             self.state = ProteusState.FRESH
 

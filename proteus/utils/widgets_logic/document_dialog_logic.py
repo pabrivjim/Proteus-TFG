@@ -34,7 +34,7 @@ class DocumentDialogLogic():
         project: Project  = app.projectController.project
         id: str = str(shortuuid.random(length=12))
         documents[archetype].id = id
-        
+
         document: Object = documents[archetype].get_document(project)
         document.id = id
 
@@ -49,9 +49,7 @@ class DocumentDialogLogic():
         :param archetype: archetype index.
         """
         proteus.logger.info('DocumentDialogLogic - change archetype')
-        
+
         document = self.parent.document_archetypes
         document_description = document[archetype].description
         self.parent.archetype_description.setText(document_description)
-
-

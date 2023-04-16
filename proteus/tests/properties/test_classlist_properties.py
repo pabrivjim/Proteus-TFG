@@ -74,7 +74,7 @@ def test_classlist_properties(name, category, value, expected_value, expected_va
     expected_values_parsed = ""
     for class_value in expected_value_as_list:
         expected_values_parsed += "<" + child_property_tag + ">" + class_value + "</" + child_property_tag + ">"
-    
+
     assert(
         ET.tostring(property.generate_xml()).decode() ==
         f'<{property_tag} name="{name}" category="{category}">{expected_values_parsed}</{property_tag}>'

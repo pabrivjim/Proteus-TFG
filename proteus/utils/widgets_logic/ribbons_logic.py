@@ -1,5 +1,5 @@
 # ==========================================================================
-# File: ribons_logic.py
+# File: ribbons_logic.py
 # Description: File where is located de logic of Ribbons.
 # Date: 30/06/22
 # Version: 1.0.0
@@ -21,7 +21,7 @@ class RibbonsLogic():
     def __init__(self, parent) -> None:
         proteus.logger.info('Init RibbonsLogic')
         self.parent = parent
-    
+
     def set_archetypes(self):
         """
         Set archetypes to ribbon from object archetypes.

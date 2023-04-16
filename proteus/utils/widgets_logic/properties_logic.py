@@ -38,7 +38,7 @@ class PropertiesLogic():
         Method that saves the changes of the properties in the project.
         """
         proteus.logger.info('PropertiesLogic - save changes')
-        
+
         app = self.parent.parentWidget()
         project_data = app.projectController.project
         if(isinstance(self.updated_item, Project)):

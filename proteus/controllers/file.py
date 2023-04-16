@@ -33,7 +33,7 @@ class Dialog:
         #We set the default name for the file that is going to be saved
         dialog.selectFile(default_file_name)
 
-        #Type of mode (if we are going to save (QFileDialog.AcceptSave) 
+        #Type of mode (if we are going to save (QFileDialog.AcceptSave)
         #or open (QFileDialog.AcceptOpen))
         dialog.setAcceptMode(accept_mode)
 
@@ -120,7 +120,7 @@ class FileController(Controller):
         project: Project = Project.load(pathlib.Path(filename).parent)
         self.app.projectController.project = project
         self.app.create_dock_windows()
-        
+
         self.app.projectController.saved_command = self.app.undoStack.index()
         self.app.projectController.selected_document_index = 0
 

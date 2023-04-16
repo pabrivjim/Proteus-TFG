@@ -73,7 +73,7 @@ def test_projects(path):
     # Parser to avoid conflicts with CDATA
     parser = ET.XMLParser(strip_cdata=False)
     proteusET = ET.parse(new_cloned_project_path / "proteus.xml", parser = parser)
-    
+
     generated_xml = (ET.tostring(test_project.generate_xml(),
                     xml_declaration=True,
                     encoding='utf-8',
@@ -83,12 +83,12 @@ def test_projects(path):
                     xml_declaration=True,
                     encoding='utf-8',
                     pretty_print=True).decode())
-    
+
     assert(generated_xml == xml)
 
     # Compare Path
     assert pathlib.Path(test_project.path).resolve() == (new_cloned_project_path / "proteus.xml")
-    
+
     # Test ProteusState
     assert (test_project.state == ProteusState.CLEAN)
     test_project.state = ProteusState.DEAD
@@ -125,7 +125,7 @@ def test_projects(path):
         doc.state = ProteusState.DEAD
         if(doc.children):
             number_of_children = children_from_docs(doc, number_of_children)
-    
+
     # We save the project and check that the property we set before is saved.
     test_project.save_project()
     test_project2 = Project.load(new_cloned_project_path)

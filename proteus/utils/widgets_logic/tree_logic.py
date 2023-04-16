@@ -36,7 +36,7 @@ class TreeLogic():
         Returns mimetypes.
         """
         proteus.logger.info('TreeLogic - mimeTypes')
-        
+
         mimetypes = QTreeWidget.mimeTypes(self.docInspector)
         mimetypes.append(self.docInspector.mimetype)
         return mimetypes
@@ -67,7 +67,7 @@ class TreeLogic():
         :param event:
         """
         proteus.logger.info('TreeLogic - drop event')
-        
+
         # Get previous position
         from_parent = self._draggedItem.parent()
         # Get new position
@@ -76,7 +76,7 @@ class TreeLogic():
         if(to_parent is None):
             event.ignore()
         else:
-            # Exec Drop  
+            # Exec Drop
             event.setDropAction(Qt.MoveAction)
             QTreeWidget.dropEvent(self.docInspector, event)
             
@@ -95,17 +95,15 @@ class TreeLogic():
                 msg.setDetailedText(f"{new_parent.get_property('name').value} accepted children (classes): {new_parent.acceptedChildren}\n{dragged_object.get_property('name').value} classes: {dragged_object.classes}")
                 msg.setWindowTitle("Not accepted children")
                 msg.exec_()
-            
-            
+
             project: Project = self.parent.projectController.project
-            
+
             command = MoveNode(
                     project,
                     self._draggedItem.data(0, Qt.UserRole),
                     from_parent.data(0, Qt.UserRole),
                     to_parent.data(0, Qt.UserRole))
             self.parent.undoStack.push(command)
-
 
     def fillItem(self, inItem, outItem):
         """
@@ -115,7 +113,7 @@ class TreeLogic():
         :param outItem:
         """
         proteus.logger.info('TreeLogic - fill item')
-        
+
         for col in range(inItem.columnCount()):
             for key in range(Qt.UserRole):
                 role = Qt.ItemDataRole(key)
@@ -129,7 +127,7 @@ class TreeLogic():
         :param itTo:
         """
         proteus.logger.info('TreeLogic - fill items')
-        
+
         for ix in range(itFrom.childCount()):
             it = QTreeWidgetItem(itTo)
             ch = itFrom.child(ix)
@@ -162,7 +160,7 @@ class TreeLogic():
         :param root:
         """
         proteus.logger.info('TreeLogic - load data')
-        
+
         if not root:
             name = doc.get_property("name").value or "Untitled"
 
@@ -185,7 +183,7 @@ class TreeLogic():
         :return: Child item.
         """
         proteus.logger.info('TreeLogic - add child')
-        
+
         name = child.get_property("name").value or "Untitled"
         obj_classes = child.classes
         klass = obj_classes[len(obj_classes) - 1]
@@ -204,7 +202,7 @@ class TreeLogic():
         :param root:
         """
         proteus.logger.info('TreeLogic - transverse')
-        
+
         if not model:
             model = self.docInspector.itemAt(0, 0)
             root = model.data(0, Qt.UserRole)
@@ -226,7 +224,7 @@ class TreeLogic():
         :param position: right-click position.
         """
         proteus.logger.info('TreeLogic - open menu')
-        
+
         mdlIdx = self.docInspector.indexAt(position)
         if not mdlIdx.isValid():
             return
@@ -239,7 +237,7 @@ class TreeLogic():
 
         act_del = right_click_menu.addAction(self.docInspector.tr(f"Delete {txt}"))
         act_del.triggered.connect(partial(self.delete_item, item))
-        
+
         act_clone = right_click_menu.addAction(self.docInspector.tr(f"Clone {txt}"))
         act_clone.triggered.connect(partial(self.clone_item, item))
 
@@ -252,6 +250,7 @@ class TreeLogic():
         :param item: Item to remove from the tree.
         """
         proteus.logger.info('TreeLogic - delete item')
+
         proteus_item: Object = item.data(0, Qt.UserRole)
         if item.parent():
             parent_obj: Object = item.parent().data(0, Qt.UserRole)
@@ -263,7 +262,6 @@ class TreeLogic():
                                      self.parent.document_combobox, self.parent.projectController.selected_document_index)
             self.parent.undoStack.push(command)
 
-
     def edit_item(self, index: QModelIndex) -> None:
         """
         Updates item.
@@ -271,7 +269,7 @@ class TreeLogic():
         :param index: Index of the item to edit.
         """
         proteus.logger.info('TreeLogic - edit item')
-        
+
         item = self.docInspector.itemFromIndex(index)
         obj = item.data(0, Qt.UserRole)
         dialog = PropertyDialog(self.parent, obj)

@@ -9,7 +9,7 @@ PROTEUS abstract class to be used as a superclass for both.
 # Date: 15/09/2022
 # Version: 0.1
 # Author: Amador Durán Toro
-#         Pablo Rivera Jiménez  
+#         Pablo Rivera Jiménez
 # ==========================================================================
 # Update: 26/09/2022 (Amador)
 # Description:
@@ -232,7 +232,7 @@ class AbstractObject(ABC):
         :returns: The XML element.
         :rtype: ET.Element
         """
-        
+
         # Check if instance is a Project or an Object
         if (self.class_name == "Project"):
             # Create <project> element and set ID
@@ -241,7 +241,7 @@ class AbstractObject(ABC):
         elif(self.class_name == "Object"):
             # Create <object> element and set ID
             element : ET.Element = ET.Element(OBJECT_TAG)
-        
+
         # Set element the id
         element.set('id', self.id)
 

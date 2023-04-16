@@ -75,13 +75,13 @@ def test_property_name_and_category(name, name_expected, category, category_expe
     without name and category.
     """
     property_element = ET.Element(STRING_PROPERTY_TAG)
- 
+
     if name:
         property_element.set(NAME_TAG, name)
-    
+
     if category:
         property_element.set(CATEGORY_TAG, category)
-    
+
     property_element.text = 'test text'
 
     property = PropertyFactory.create(property_element)
