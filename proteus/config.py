@@ -154,4 +154,3 @@ class Config:
             f"PROTEUS archetypes objects directory '{self.archetypes_directory / 'objects'}' does not exist!"
 
         proteus.logger.info("  Archetypes objects directory OK")
-        

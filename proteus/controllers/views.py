@@ -1,7 +1,7 @@
 # ==========================================================================
 # File: views.py
 # Description: Contains the logic related to views and visualizer.
-# Date: 
+# Date:
 # Version: 1.0.0
 # Author: Gamaza
 # ==========================================================================
@@ -12,24 +12,8 @@ from .base import Controller
 from .file import Dialog
 import proteus
 from os import listdir
-from os.path import join, isfile, exists
+from os.path import join, isfile
 import proteus.config as config
-
-def load_views() -> list:
-    """
-    Method that loads the views.
-        """
-    proteus.logger.info('Config - load views')
-    views_dir = join(config.Config().resources_directory, "views")
-    views = [f for f in listdir(views_dir) if not isfile(join(views_dir, f))]
-    # Todo refactor
-    res = []
-    # for view in views:
-    #     if exists(join(views_dir, view, "index.html")):
-    #         res.append({"type": "html", "path": join(views_dir, view, "index.html")})
-    #     else:
-    #         res.append({"type": "xslt", "path": join(views_dir, view, "main.xslt")})
-    # return res
 
 def load_views() -> list:
     """

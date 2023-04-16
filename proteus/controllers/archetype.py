@@ -40,7 +40,7 @@ class ArchetypeController(Controller):
         Get the document archetypes.
         """
         return self._get_archetypes(self._load_document_archetypes)
-   
+
     def get_project_archetypes(self) -> dict:
         """
         Get the project archetypes.
