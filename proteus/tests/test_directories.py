@@ -17,8 +17,9 @@ Pytest file for the PROTEUS application directories.
 # --------------------------------------------------------------------------
 # Project specific imports
 # --------------------------------------------------------------------------
+from configparser import ConfigParser
 from pathlib import Path
-from proteus.config import Config
+from proteus.config import ARCHETYPES_CUSTOM_DIRECTORY, DIRECTORIES, XSLT_CUSTOM_FILE, Config
 import pytest
 
 from proteus.tests import PATH
@@ -42,3 +43,22 @@ def test_application_directories(base_path: Path, monkeypatch: pytest.MonkeyPatc
     assert app.resources_directory.is_dir()
     assert app.icons_directory.is_dir()
     assert app.archetypes_directory.is_dir()
+
+    # Check the custom directories
+    filename = str(app.config_file)
+    parser = ConfigParser()
+    parser.read(filename)
+
+    # If the XSLT_CUSTOM_FILE exists, then the path of the XSLT_CUSTOM_FILE must be the same as the one in the config file
+    # Otherwise, the XSLT_CUSTOM_FILE must not exist in the config file
+    if (app.xslt_custom_file != None):
+        assert str(parser[DIRECTORIES][XSLT_CUSTOM_FILE]) == str(app.xslt_custom_file)
+    else:
+        assert parser.has_option(DIRECTORIES, XSLT_CUSTOM_FILE) == False
+
+    # If the ARCHETYPES_CUSTOM_DIRECTORY exists, then the path of the ARCHETYPES_CUSTOM_DIRECTORY must be the same as the one in the config file
+    # Otherwise, the ARCHETYPES_CUSTOM_DIRECTORY must not exist in the config file
+    if (app.archetypes_custom_directory != None):
+        assert str(parser[DIRECTORIES][ARCHETYPES_CUSTOM_DIRECTORY]) == str(app.archetypes_custom_directory)
+    else:
+        assert parser.has_option(DIRECTORIES, ARCHETYPES_CUSTOM_DIRECTORY) == False

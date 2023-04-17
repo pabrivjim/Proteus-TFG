@@ -24,7 +24,7 @@ import shutil
 
 from proteus.config import Config
 from proteus.model.archetype_manager import ArchetypeManager
-from proteus.model.archetype_proxys import DocumentArchetypeProxy, ProjectArchetypeProxy
+from proteus.model.archetype_proxys import DocumentArchetypeProxy, ObjectArchetypeProxy, ProjectArchetypeProxy
 from proteus.model.object import Object
 from proteus.model.project import Project
 
@@ -99,6 +99,38 @@ def test_document_archetype_manager():
 
         # Check if the document archetype has a document.xml file
         assert len([x for x in document_files if (x == "document.xml")]) == 1
+
+def test_object_archetype_manager():
+    """
+    Test the document archetype manager.
+    """
+    # Get the number of objects in archetypes objects
+    dir_path = str(app.archetypes_directory / "objects")
+    number_of_type_of_objects = len(os.listdir(dir_path))
+
+    # Check if load object function return all the objects
+    objects = ArchetypeManager.load_object_archetypes()
+    assert len(objects) == number_of_type_of_objects
+
+
+    # Check if the object is a ObjectArchetypeProxy and has all the attributes
+    for _, object_arch_list in objects.items():
+        object_arch: ObjectArchetypeProxy
+        for object_arch in object_arch_list:
+            assert all(x for x in [isinstance(object_arch, ObjectArchetypeProxy),
+                                object_arch.path, object_arch.id, object_arch.name, object_arch.classes,
+                                object_arch.acceptedChildren])
+            
+            # Check we can get an instance of the Object.
+            object = object_arch.get_object(test_project)
+            assert isinstance(object, Object)
+
+            # Get each object type folder and their files
+            object_dir = os.path.dirname(object_arch.path)
+            object_files = [file for file in os.listdir(object_dir)]
+
+            # Check if all the files inside each object type folder are .xml files
+            assert len([x for x in object_files if (x.endswith(".xml")) ]) == len(object_files)
 
 def test_clone_project():
     """
