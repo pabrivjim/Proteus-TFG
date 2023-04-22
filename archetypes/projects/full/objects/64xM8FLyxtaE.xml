@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<object id="64xM8FLyxtaE" classes="requisito-producto caso-de-uso" acceptedChildren="paso-caso-de-uso">
+<object id="64xM8FLyxtaE" classes="requisito-producto useCase" acceptedChildren=":Proteus-none">
     <properties>
         <stringProperty name="name"><![CDATA[Registrar pedido]]></stringProperty>
         <floatProperty name="version">1.0</floatProperty>

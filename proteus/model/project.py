@@ -49,7 +49,7 @@ class Project(AbstractObject):
     A PROTEUS project is a 'proteus.xml' file inside a directory with 'objects'
     and 'assets' directories. The 'proteus.xml' must describe the projects
     properties and the short UUIDs of their documents (which are PROTEUS objects
-    of with class tag ':Proteus-Document'.
+    of with class tag ':Proteus-Document').
 
     A PROTEUS project can only be created by cloning another existing project,
     usually an archetype project.

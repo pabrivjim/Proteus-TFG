@@ -70,17 +70,33 @@ class TreeLogic():
 
         # Get previous position
         from_parent = self._draggedItem.parent()
-        # Get new position
-        to_parent = self._draggedItem.parent()
+        from_row = from_parent.indexOfChild(self._draggedItem)
+        
 
-        if(to_parent is None):
-            event.ignore()
-        else:
-            # Exec Drop
+        # Exec Drop  
+        if(from_parent is not None):
             event.setDropAction(Qt.MoveAction)
             QTreeWidget.dropEvent(self.docInspector, event)
+
+            try: 
+                # Get new position
+                to_parent = self._draggedItem.parent()
+                to_row = to_parent.indexOfChild(self._draggedItem)
+                new_parent: Object = to_parent.data(0, Qt.UserRole)
+            except:
+                print("HERE")
+                project: Project = self.parent.projectController.project
+
+                command = MoveNode(
+                        project,
+                        self._draggedItem.data(0, Qt.UserRole),
+                        from_parent.data(0, Qt.UserRole),
+                        from_parent.data(0, Qt.UserRole),
+                        from_row,
+                        to_row)
+                self.parent.undoStack.push(command)
+                return
             
-            new_parent: Object = to_parent.data(0, Qt.UserRole)
             dragged_object: Object = self._draggedItem.data(0, Qt.UserRole)
 
             # If the new parent doesn't havent all the types or the new parent doesnt accept any of the classes
@@ -96,13 +112,16 @@ class TreeLogic():
                 msg.setWindowTitle("Not accepted children")
                 msg.exec_()
 
+
             project: Project = self.parent.projectController.project
 
             command = MoveNode(
                     project,
                     self._draggedItem.data(0, Qt.UserRole),
                     from_parent.data(0, Qt.UserRole),
-                    to_parent.data(0, Qt.UserRole))
+                    to_parent.data(0, Qt.UserRole),
+                    from_row,
+                    to_row)
             self.parent.undoStack.push(command)
 
     def fillItem(self, inItem, outItem):

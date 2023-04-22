@@ -296,7 +296,7 @@ class MoveNode(QUndoCommand):
     Command to move node in project tree.
     """
 
-    def __init__(self, project: Project,  obj: Object, from_parent: Object, to_parent:Object):
+    def __init__(self, project: Project,  obj: Object, from_parent: Object, to_parent:Object, from_row: int, to_row: int):
         proteus.logger.info('Init MoveNode')
         super(MoveNode, self).__init__()
         self.project = project
@@ -304,6 +304,8 @@ class MoveNode(QUndoCommand):
         self.obj = obj
         self.original_parent = from_parent
         self.new_parent = to_parent
+        self.from_row = from_row
+        self.to_row = to_row
         self.original_parent_state = deepcopy(from_parent.state)
         self.new_parent_state = deepcopy(to_parent.state)
         self.project_state = deepcopy(project.state)
@@ -320,7 +322,10 @@ class MoveNode(QUndoCommand):
             self.new_parent.state = ProteusState.DIRTY
             self.project.state = ProteusState.DIRTY
             self.original_parent.children.pop(self.obj.id)
-            self.new_parent.children[self.obj.id] = self.obj
+            my_list = list(self.new_parent.children.items())
+            new_tuple = (self.obj.id, self.obj)
+            my_list.insert(self.to_row, new_tuple)
+            self.new_parent.children = dict(my_list)
             self.obj.parent = self.new_parent
         else:
             proteus.logger.warning("MoveNode - redo - Node not accepted by new parent")
@@ -335,5 +340,8 @@ class MoveNode(QUndoCommand):
             self.new_parent.state = self.new_parent_state
             self.project.state = self.project_state
             self.new_parent.children.pop(self.obj.id)
-            self.original_parent.children[self.obj.id] = self.obj
+            my_list = list(self.original_parent.children.items())
+            new_tuple = (self.obj.id, self.obj)
+            my_list.insert(self.to_row, new_tuple)
+            self.original_parent.children = dict(my_list)
             self.obj.parent = self.original_parent
