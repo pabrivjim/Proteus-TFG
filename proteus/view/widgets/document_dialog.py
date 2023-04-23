@@ -6,6 +6,7 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from PyQt5.QtWidgets import QDialog
+from proteus.utils.i18n import trans
 from proteus.utils.widgets_logic.document_dialog_logic import DocumentDialogLogic
 import proteus.config as config
 from PyQt5 import uic
@@ -20,6 +21,13 @@ class DocumentDialog(QDialog):
         proteus.logger.info('Init DocumentDialog')
         super().__init__(parent)
         uic.loadUi(f"{config.Config().resources_directory}/ui/new.ui", self)
+
+        # Here we get the text like ("Name", "Description", etc) and translate them
+        self.setWindowTitle(trans(self.windowTitle()))
+        self.description_label.setText(trans(self.description_label.text()))
+        self.name_label.setText(trans(self.name_label.text()))
+        self.project_label.setText(trans(self.project_label.text()))
+
         self.setWindowTitle("New document")
 
         # Get dict from project file name and DocumentArcheTypeProxy

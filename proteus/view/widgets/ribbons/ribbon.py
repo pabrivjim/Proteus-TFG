@@ -114,7 +114,7 @@ class Ribbon:
 
         # Settings Tab
         tab_content = self.add_tab(trans("Settings"))
-        settings_group = tab_content.add_group(trans("settings"))
+        settings_group = tab_content.add_group(trans("Preferences"))
         settings_group.add_button(self.settings_tb)
 
     def add_tab(self, name: str) -> RibbonTabContent:

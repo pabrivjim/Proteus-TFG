@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (QTreeWidget, QMenu, QTreeWidgetItem, QMessageBox)
 from proteus.model import PROTEUS_ANY
 from proteus.model.object import Object
 from proteus.model.project import Project
+from proteus.utils.i18n import trans
 from .qundo_commands import CreateDocument
 from proteus.utils.widgets_logic.qundo_commands import CreateObject
 from proteus.view.widgets.properties import PropertyDialog
@@ -93,7 +94,7 @@ class TreeLogic():
                         from_parent.data(0, Qt.UserRole),
                         from_parent.data(0, Qt.UserRole),
                         from_row,
-                        to_row)
+                        from_row)
                 self.parent.undoStack.push(command)
                 return
             
@@ -207,7 +208,7 @@ class TreeLogic():
         obj_classes = child.classes
         klass = obj_classes[len(obj_classes) - 1]
 
-        child_item = QTreeWidgetItem(parent, [name])
+        child_item = QTreeWidgetItem(parent, [trans(klass)])
         child_item.setIcon(0, QIcon(f"{config.Config().resources_directory}/assets/icons/{klass}.svg"))
         child_item.setData(0, Qt.UserRole, child)
         child_item.setExpanded(True)

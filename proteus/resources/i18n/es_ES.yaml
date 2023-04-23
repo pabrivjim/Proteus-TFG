@@ -1,12 +1,14 @@
 visualizer: Vista
-general: General
+general: general
+Project Archetype: Arquetipo de proyecto
+General: General
 comments: Comentarios
 details: Detalles
 detail: Detalles
 estilo: Estilo
 contenido: Contenido
 traces: Trazas
-name: Nombre
+name: nombre
 version: Versión
 author: Autor
 date: Fecha
@@ -16,18 +18,23 @@ info: Información
 text: Texto
 edit properties: Editar propiedades
 Settings: Ajustes
+Preferences: Preferencias
+Requirements: Requisitos
 Update language: Actualizar idioma
 The language will be updated after restarting the application.: El idioma se actualizará después de reiniciar la aplicación.
 project: Proyecto
 open: Abrir
 open project: Abrir proyecto
 new: Nuevo
-new project: Nuevo proyecto
+new project: nuevo proyecto
+New project: Nuevo proyecto
 save: Guardar
 save project: Guardar proyecto
 edit: Editar
 edit project properties: Editar propiedades del proyecto
-document: Documento
+document: documento
+Document: Documento
+Documents: Documentos
 create: Crear
 new document from archetype: Nuevo documento de arquetipo
 delete: Eliminar
@@ -44,7 +51,7 @@ constraintRequirement: Requisito de restricción
 functionalRequirement: Requisito functional
 informationRequirement: Requisito de informacion
 meeting: Reunion
-nonFunctionalRequirement: Requisito no functionalRequirement
+nonFunctionalRequirement: Requisito no functional
 objective: Objetivo
 organization: Organización
 stakeholder: Stakeholder
@@ -73,3 +80,8 @@ medium: Medio
 high: Alto
 PreCondition: PreCondición
 PostCondition: PostCondición
+Style: Estilo
+Main: Principal
+Archetypes directory:: "Directorio de arquetipos:"
+XSLT directory:: "Directorio XSLT:"
+Application style: Estilo de la aplicación

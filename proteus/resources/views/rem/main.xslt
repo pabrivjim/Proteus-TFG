@@ -29,10 +29,6 @@
     </xsl:template>
 
     <xsl:template match="document">
-        <img
-            src="https://www.uco.es/investigacion/proyectos/SEBASENet/images/Logo_US.png"
-            class="h-12 my-5"
-        />
           <img
             src="https://www.informatica.us.es/docs/imagen-etsii/logo-ETSII-Color.png"
             class="h-12 my-5"

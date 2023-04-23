@@ -38,8 +38,12 @@ class RibbonsLogic():
         self.parent.buttons = {}
         actions = {}
         tab_content = self.parent.add_tab(tab_label)
-        for group_name, group_archetypes  in content.items():            
-            button_group = tab_content.add_group(group_name)
+        for group_name, group_archetypes  in content.items():
+            try:            
+                button_group = tab_content.add_group(trans(group_name.capitalize()))
+            except Exception as e:
+                proteus.logger.error(f"Error adding group {group_name} to ribbon: {e}")
+                button_group = tab_content.add_group(trans(group_name))
             archetype: ObjectArchetypeProxy
             for archetype in group_archetypes:
                 archetype_id = archetype.id

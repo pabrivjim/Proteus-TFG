@@ -76,7 +76,7 @@
          <item row="1" column="1">
           <widget class="QLabel" name="label_path">
            <property name="text">
-            <string>Archetypes folder:</string>
+            <string>Archetypes directory:</string>
            </property>
           </widget>
          </item>
@@ -107,7 +107,7 @@
          <item row="3" column="1">
           <widget class="QLabel" name="xslt_label_path">
            <property name="text">
-            <string>XSLT folder:</string>
+            <string>XSLT directory:</string>
            </property>
           </widget>
          </item>

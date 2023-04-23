@@ -117,7 +117,15 @@ class MainWindow(QMainWindow):
         """
         proteus.logger.info('Main Window - create doc inspector')
 
-        dock = QDockWidget("Document")
+        dock = QDockWidget(trans("Documents"))
+        font = dock.font()
+        font.setPointSize(7)
+        font.setBold(True)
+        dock.setFont(font)
+
+        dock.setFeatures(dock.features() ^ QDockWidget.DockWidgetClosable)
+
+
         dock.setObjectName("QDockWidget Document")
         layout = QVBoxLayout()
         layout.setObjectName("create_document_inspector BoxLayout")
@@ -153,7 +161,6 @@ class MainWindow(QMainWindow):
         proteus.logger.info('Main Window - create visualizer widget')
 
         tab = QTabWidget()
-        tab.setTabsClosable(True)
         tab.setMovable(True)
 
         self.visualizers = []
@@ -167,7 +174,7 @@ class MainWindow(QMainWindow):
             self.visualizers.append(visualizer)
 
         for visualizer in self.visualizers:
-            tab.addTab(visualizer, f"{trans('visualizer')} {self.visualizers.index(visualizer)}")
+            tab.addTab(visualizer, f"{trans('Document')}")
 
         self.setCentralWidget(tab)
 
