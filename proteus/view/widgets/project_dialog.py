@@ -21,7 +21,7 @@ class ProjectDialog(QDialog):
         proteus.logger.info('Init ProjectDialog')
         super().__init__(parent)
         uic.loadUi('proteus/resources/ui/new.ui', self)
-        
+
         # Here we get the text like ("Name", "Description", etc) and translate them
         self.setWindowTitle(trans(self.windowTitle()))
         self.description_label.setText(trans(self.description_label.text()))

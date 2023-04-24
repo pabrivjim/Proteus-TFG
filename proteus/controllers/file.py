@@ -71,9 +71,19 @@ class FileController(Controller):
 
         if selected_files:
             filename = selected_files[0]
-            self.load_project(filename)
-            project_title = self.app.projectController.project.get_property("name").value
-            self.app.setWindowTitle("Proteus - " + project_title)
+
+            # Code in case we want to open the project in the same window.
+            # self.load_project(filename)
+            # project_title = self.app.projectController.project.get_property("name").value
+            # self.app.setWindowTitle("Proteus - " + project_title)
+
+
+            main_class = self.app.__class__
+            project: Project = Project.load(pathlib.Path(filename).parent)
+            project_title = project.get_property("name").value
+            m = main_class(project_path=filename, project_title=project_title, clean=True)
+            m.setWindowTitle("Proteus - " + project_title)
+            m.show()
     
     def req_save_new_project(self, archetype) -> None:
         """ 

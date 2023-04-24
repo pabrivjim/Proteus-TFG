@@ -39,7 +39,7 @@ class RibbonsLogic():
         actions = {}
         tab_content = self.parent.add_tab(tab_label)
         for group_name, group_archetypes  in content.items():
-            try:            
+            try:
                 button_group = tab_content.add_group(trans(group_name.capitalize()))
             except Exception as e:
                 proteus.logger.error(f"Error adding group {group_name} to ribbon: {e}")

@@ -69,61 +69,63 @@ class TreeLogic():
         """
         proteus.logger.info('TreeLogic - drop event')
 
-        # Get previous position
-        from_parent = self._draggedItem.parent()
-        from_row = from_parent.indexOfChild(self._draggedItem)
-        
+        # This if is needed because if the usre drag and drop from one project to another it will crash
+        if(self._draggedItem is not None):
+            # Get previous position
+            from_parent = self._draggedItem.parent()
+            from_row = from_parent.indexOfChild(self._draggedItem)
+            
 
-        # Exec Drop  
-        if(from_parent is not None):
-            event.setDropAction(Qt.MoveAction)
-            QTreeWidget.dropEvent(self.docInspector, event)
+            # Exec Drop
+            if(from_parent is not None):
+                event.setDropAction(Qt.MoveAction)
+                QTreeWidget.dropEvent(self.docInspector, event)
 
-            try: 
-                # Get new position
-                to_parent = self._draggedItem.parent()
-                to_row = to_parent.indexOfChild(self._draggedItem)
-                new_parent: Object = to_parent.data(0, Qt.UserRole)
-            except:
-                print("HERE")
+                try: 
+                    # Get new position
+                    to_parent = self._draggedItem.parent()
+                    to_row = to_parent.indexOfChild(self._draggedItem)
+                    new_parent: Object = to_parent.data(0, Qt.UserRole)
+                except Exception as e:
+                    proteus.logger.info(f'TreeLogic - drop event - {e}')
+                    project: Project = self.parent.projectController.project
+
+                    command = MoveNode(
+                            project,
+                            self._draggedItem.data(0, Qt.UserRole),
+                            from_parent.data(0, Qt.UserRole),
+                            from_parent.data(0, Qt.UserRole),
+                            from_row,
+                            from_row)
+                    self.parent.undoStack.push(command)
+                    return
+                
+                dragged_object: Object = self._draggedItem.data(0, Qt.UserRole)
+
+                # If the new parent doesn't havent all the types or the new parent doesnt accept any of the classes
+                # that the dragged object has, then we don't do anything and we warn the user.
+                if (not((PROTEUS_ANY in new_parent.acceptedChildren) or
+                    any(x in new_parent.acceptedChildren for x in dragged_object.classes))):
+                    proteus.logging.warning('TreeLogic - drop event - Not accepted children')
+
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Warning)
+                    msg.setText(f"'{new_parent.get_property('name').value}' doesn't accept '{dragged_object.get_property('name').value}' as a child")
+                    msg.setDetailedText(f"{new_parent.get_property('name').value} accepted children (classes): {new_parent.acceptedChildren}\n{dragged_object.get_property('name').value} classes: {dragged_object.classes}")
+                    msg.setWindowTitle("Not accepted children")
+                    msg.exec_()
+
+
                 project: Project = self.parent.projectController.project
 
                 command = MoveNode(
                         project,
                         self._draggedItem.data(0, Qt.UserRole),
                         from_parent.data(0, Qt.UserRole),
-                        from_parent.data(0, Qt.UserRole),
+                        to_parent.data(0, Qt.UserRole),
                         from_row,
-                        from_row)
+                        to_row)
                 self.parent.undoStack.push(command)
-                return
-            
-            dragged_object: Object = self._draggedItem.data(0, Qt.UserRole)
-
-            # If the new parent doesn't havent all the types or the new parent doesnt accept any of the classes
-            # that the dragged object has, then we don't do anything and we warn the user.
-            if (not((PROTEUS_ANY in new_parent.acceptedChildren) or
-                any(x in new_parent.acceptedChildren for x in dragged_object.classes))):
-                proteus.logging.warning('TreeLogic - drop event - Not accepted children')
-
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Warning)
-                msg.setText(f"'{new_parent.get_property('name').value}' doesn't accept '{dragged_object.get_property('name').value}' as a child")
-                msg.setDetailedText(f"{new_parent.get_property('name').value} accepted children (classes): {new_parent.acceptedChildren}\n{dragged_object.get_property('name').value} classes: {dragged_object.classes}")
-                msg.setWindowTitle("Not accepted children")
-                msg.exec_()
-
-
-            project: Project = self.parent.projectController.project
-
-            command = MoveNode(
-                    project,
-                    self._draggedItem.data(0, Qt.UserRole),
-                    from_parent.data(0, Qt.UserRole),
-                    to_parent.data(0, Qt.UserRole),
-                    from_row,
-                    to_row)
-            self.parent.undoStack.push(command)
 
     def fillItem(self, inItem, outItem):
         """
@@ -208,7 +210,7 @@ class TreeLogic():
         obj_classes = child.classes
         klass = obj_classes[len(obj_classes) - 1]
 
-        child_item = QTreeWidgetItem(parent, [trans(klass)])
+        child_item = QTreeWidgetItem(parent, [name])
         child_item.setIcon(0, QIcon(f"{config.Config().resources_directory}/assets/icons/{klass}.svg"))
         child_item.setData(0, Qt.UserRole, child)
         child_item.setExpanded(True)

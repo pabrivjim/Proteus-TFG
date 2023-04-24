@@ -10,7 +10,7 @@ from os.path import normpath, expanduser
 import pathlib
 from PyQt5.QtCore import (QCoreApplication, QFile, QSettings, QTextStream,
                           QTranslator)
-from PyQt5.QtWidgets import (QMainWindow, QDialog, QMessageBox, QWidget, QLabel)
+from PyQt5.QtWidgets import (QMainWindow, QDialog, QMessageBox)
 import proteus.config as config
 from proteus.utils.i18n import trans
 from proteus.utils.loader import resource_path
@@ -88,7 +88,7 @@ class PreferencesDialog(QDialog):
         proteus.logger.info('Init PreferencesDialog')
         super(PreferencesDialog, self).__init__(parent)
         uic.loadUi(f"{config.Config().resources_directory}/ui/preferences.ui", self)
-        
+
         # Translate the text of the dialog
         self.setWindowTitle(trans("Preferences"))
         self.groupBox_5.setTitle(trans(self.groupBox_5.title()))
