@@ -30,6 +30,6 @@ class EditProject():
         self.edit_tb.setText(trans("edit"))
         self.edit_tb.setToolTip(trans("edit project properties"))
         self.edit_tb.setEnabled(False)
-        self.edit_tb.setIcon(QIcon(resource_path("icons/settings.png")))
+        self.edit_tb.setIcon(QIcon(resource_path("icons/edit.png")))
         # self.edit_tb.setShortcut("Ctrl+O")
         return self.edit_tb
