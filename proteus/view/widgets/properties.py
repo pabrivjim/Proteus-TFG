@@ -53,8 +53,6 @@ class PropertyDialog(QDialog):
             elif isinstance(widgets[key], MarkdownWidget):
                 markdown_widget = widgets[key]
                 markdown_widgets[key] = markdown_widget
-                widgets[key].btn.clicked.connect(
-                    lambda: markdown_widget.switch())
                 widgets[key].widget.textChanged.connect(
                     lambda key=key: self.properties_logic.update_property(key, markdown_widgets[key].get_value()))
             elif hasattr(widgets[key], "textChanged"):

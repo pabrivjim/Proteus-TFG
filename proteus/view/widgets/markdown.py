@@ -23,7 +23,8 @@ class MarkdownWidget(QWidget):
         self.widget = QTextEdit(parent)
         self.widget.setPlainText(obj.value)
         # self.widget.setEnabled(False)
-        self.btn = QPushButton("Visualize")
+        self.btn = QPushButton(trans("Visualize"))
+        self.btn.clicked.connect(lambda: self.switch())
         self.visualize_html = False
 
         lv = QVBoxLayout()
@@ -50,4 +51,4 @@ class MarkdownWidget(QWidget):
         Returns the value of the widget.
         """
         proteus.logger.info('MarkdownWidget - get value')
-        return self.widget.toMarkdown() if self.visualize_html else self.widget.toPlainText()
+        return self.widget.toMarkdown() if not self.visualize_html else self.widget.toPlainText()
