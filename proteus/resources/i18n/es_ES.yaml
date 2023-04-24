@@ -3,7 +3,9 @@ general: general
 Project Archetype: Arquetipo de proyecto
 General: General
 comments: Comentarios
+details: detalles
 details: Detalles
+Detail: Detalles
 detail: Detalles
 estilo: Estilo
 contenido: Contenido
@@ -81,6 +83,10 @@ high: Alto
 PreCondition: PreCondición
 PostCondition: PostCondición
 Style: Estilo
+View source: Ver texto
+Visualize: Visualizar
+priority: prioridad
+Priority: Prioridad
 Main: Principal
 Archetypes directory:: "Directorio de arquetipos:"
 XSLT directory:: "Directorio XSLT:"

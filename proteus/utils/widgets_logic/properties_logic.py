@@ -74,7 +74,7 @@ class PropertiesLogic():
             for name, prop in properties.items():
                 w = QWidget()
                 hl = QHBoxLayout() if prop.element_tagname != "text" else QVBoxLayout()
-                label = QLabel(trans(name))
+                label = QLabel(trans(name.capitalize()))
 
 
                 widgets[name] = widgets_utils.get_widget_for_property(prop)
@@ -87,5 +87,5 @@ class PropertiesLogic():
 
             layout.addStretch(1)
             widget.setLayout(layout)
-            self.parent.tab_widget.addTab(widget, trans(category))
+            self.parent.tab_widget.addTab(widget, trans(category.capitalize()))
         return widgets

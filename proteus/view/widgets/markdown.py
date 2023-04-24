@@ -9,6 +9,7 @@ import proteus
 from PyQt5.QtWidgets import (QWidget, QTextEdit, QPushButton, QVBoxLayout)
 
 from proteus.model.property import MarkdownProperty
+from proteus.utils.i18n import trans
 
 class MarkdownWidget(QWidget):
     """
@@ -37,10 +38,10 @@ class MarkdownWidget(QWidget):
         """
         proteus.logger.info('MarkdownWidget - switch')
         if self.visualize_html:
-            self.btn.setText("Visualize")
+            self.btn.setText(trans("Visualize"))
             self.widget.setPlainText(self.widget.toMarkdown())
         else:
-            self.btn.setText("View source")
+            self.btn.setText(trans("View source"))
             self.widget.setMarkdown(self.widget.toPlainText())
         self.visualize_html = not self.visualize_html
 

@@ -5,7 +5,7 @@
 # Version: 1.0.0
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
-from PyQt5.QtCore import (QTime, QDate)
+from PyQt5.QtCore import (QTime, QDate, QLocale)
 from PyQt5.QtWidgets import (QWidget, QTimeEdit, QLineEdit, QDateEdit, QComboBox,
                              QCheckBox, QDoubleSpinBox, QListWidget, QSpinBox)
 from proteus.model.property import (BooleanProperty, ClassListProperty,
@@ -121,6 +121,13 @@ def real_widget(parent: QWidget, obj: FloatProperty) -> QDoubleSpinBox:
     proteus.logger.info('widgets utils - number widget')
     
     w = QDoubleSpinBox(parent)
+
+    # create a QLocale object for English United States
+    locale = QLocale(QLocale.English, QLocale.UnitedStates)
+
+    # set the locale for the spinbox
+    w.setLocale(locale)
+
     if(obj.value is None or obj.value == "None"):
         obj.value = 1
     

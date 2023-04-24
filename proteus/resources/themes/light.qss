@@ -73,8 +73,4 @@ QLineEdit:focus, QTimeEdit:focus, QDateEdit:focus, QComboBox:focus, QSpinBox:foc
     border: 1px solid #5a5a5a;
 }
 
-QCheckBox {
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-}
 
