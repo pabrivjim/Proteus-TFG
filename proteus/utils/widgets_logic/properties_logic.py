@@ -42,10 +42,10 @@ class PropertiesLogic():
         app = self.parent.parentWidget()
         project_data = app.projectController.project
         if(isinstance(self.updated_item, Project)):
-            command = UpdateProject(project_data, self.updated_item)
+            command = UpdateProject(project_data, self.updated_item, app)
             self.parent.parentWidget().undoStack.push(command)
         else:
-            command = UpdateObject(project_data, self.obj, self.updated_item)
+            command = UpdateObject(project_data, self.obj, self.updated_item, app)
             self.parent.parentWidget().undoStack.push(command)
 
         self.parent.close()

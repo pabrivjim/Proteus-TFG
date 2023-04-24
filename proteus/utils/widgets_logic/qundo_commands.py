@@ -66,7 +66,7 @@ class CreateObject(QUndoCommand):
         else:
             dict.update(self.parent_obj.parent.children, updated_doc)
 
-def change_combo_box(app):
+def change_combo_box(app, index = None):
     """
     This function changes the combo box of the document dialog.
     And updates the combobox with the new documents.
@@ -81,7 +81,10 @@ def change_combo_box(app):
     app.document_combobox.currentIndexChanged.connect(
         lambda index: app.projectController.change_document_index(index=index))
     app.document_combobox.currentIndexChanged.connect(lambda index: app.projectController.change_document(document = app.document_combobox.itemData(index)))
-    app.document_combobox.setCurrentIndex(len(project.documents) - 1)
+    if (index is None):
+        app.document_combobox.setCurrentIndex(len(project.documents) - 1)
+    else:
+        app.document_combobox.setCurrentIndex(index)
 
 
 class CreateDocument(QUndoCommand):
@@ -206,9 +209,10 @@ class UpdateObject(QUndoCommand):
     Command to update node attributes.
     """
 
-    def __init__(self, project: Project, obj:Object, new_obj:Object):
+    def __init__(self, project: Project, obj:Object, new_obj:Object, app):
         proteus.logger.info('Init UpdateObject')
         super(UpdateObject, self).__init__()
+        self.app = app
         self.obj = obj
         self.project = project
         self.project_state = deepcopy(project.state)
@@ -236,7 +240,8 @@ class UpdateObject(QUndoCommand):
             self.obj.state = ProteusState.DIRTY
             self.project.state = ProteusState.DIRTY
             self.obj.properties = self.new_obj.properties
-
+        if(isinstance(self.new_obj.parent, Project)):
+            change_combo_box(self.app, self.app.document_combobox.currentIndex())
     def undo(self):
         """
         Replace node attributes with old attributes.
@@ -246,6 +251,8 @@ class UpdateObject(QUndoCommand):
         self.obj.state = self.obj_state
         self.project.state = self.project_state
         self.obj.properties = self.back_up_obj_properties
+        if(isinstance(self.new_obj.parent, Project)):
+            change_combo_box(self.app, self.app.document_combobox.currentIndex())
 
 
 
@@ -254,9 +261,10 @@ class UpdateProject(QUndoCommand):
     Command to update node attributes.
     """
 
-    def __init__(self, project:Project, new_project:Project):
+    def __init__(self, project:Project, new_project:Project, app):
         proteus.logger.info('Init UpdateProject')
         super(UpdateProject, self).__init__()
+        self.app = app
         self.project = project
         self.back_up_project_properties = deepcopy(project.properties)
         self.new_project = new_project
@@ -277,10 +285,16 @@ class UpdateProject(QUndoCommand):
                         xml_declaration=True,
                         encoding='utf-8',
                         pretty_print=True).decode())
+
+        # If the project name is updated, then the window title is changed
+        if(self.project.get_property("name").value != self.new_project.get_property("name").value):
+            self.app.setWindowTitle("Proteus - " + self.new_project.get_property("name").value)
+
         if(project_xml != new_project_xml):
             self.project.state = ProteusState.DIRTY
             self.project.properties = self.new_project.properties
 
+    # If the project name is updated, then the window title is changed
     def undo(self):
         """
         Replace node attributes with old attributes.
@@ -290,6 +304,10 @@ class UpdateProject(QUndoCommand):
         self.project.state = self.project_state
         self.project.properties = self.back_up_project_properties
 
+        # If the project name was updated, then the window title is changed
+        if(self.project.get_property("name").value != self.new_project.get_property("name").value):
+            self.app.setWindowTitle("Proteus - " + self.project.get_property("name").value)
+        
 
 class MoveNode(QUndoCommand):
     """

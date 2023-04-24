@@ -38,6 +38,10 @@ class DocumentDialogLogic():
         document: Object = documents[archetype].get_document(project)
         document.id = id
 
+        # Update document name
+        new_prop = document.get_property("name").clone(self.parent.name.text())
+        document.set_property(new_prop)
+
         #TODO reassign id to children
         command = CreateDocument(project, document, app, len(project.documents))
         app.undoStack.push(command)
