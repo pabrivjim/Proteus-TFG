@@ -56,7 +56,7 @@ class ViewsController(Controller):
         """
         selected_files = Dialog.request(
             self.app, "Export current view as pdf", "application/pdf", "pdf",
-            QFileDialog.AcceptSave, self.app.projectController.project.get_property("name").value)
+            QFileDialog.AcceptSave, self.app.document_combobox.currentText())
 
         if selected_files:
             filename = selected_files[0]
@@ -69,7 +69,7 @@ class ViewsController(Controller):
         """
         selected_files = Dialog.request(
             self.app, "Export current view as html", "application/html", "html",
-            QFileDialog.AcceptSave, self.app.projectController.project.get_property("name").value)
+            QFileDialog.AcceptSave, self.app.document_combobox.currentText())
 
         if selected_files:
             filename = selected_files[0]

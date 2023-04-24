@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5 import uic
 import proteus.config as config
 import proteus
+from proteus.utils.i18n import trans
 
 class ExportDialog(QDialog):
     """
@@ -18,6 +19,8 @@ class ExportDialog(QDialog):
         proteus.logger.info('Init ExportDialog')
         super().__init__(parent)
         uic.loadUi(f"{config.Config().resources_directory}/ui/export.ui", self)
+        self.setWindowTitle(trans("Export"))
+        self.label.setText(trans(self.label.text()))
         self.types.addItems(["PDF", "HTML"])
         self.buttonBox.accepted.connect(
             lambda: parent.views.print_view() if self.types.currentIndex() == 0 else self.parent().views.export_view())

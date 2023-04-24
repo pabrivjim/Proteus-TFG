@@ -349,5 +349,5 @@ class Visualizer(QWebEngineView):
         loop = QEventLoop()
         self.toHtmlFinished.connect(loop.quit)
         loop.exec_()
-        with open(save_path, "w") as f:
+        with open(save_path, "w", encoding='utf-8') as f:
             f.write(self.html)

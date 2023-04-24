@@ -39,8 +39,9 @@ class DocumentDialogLogic():
         document.id = id
 
         # Update document name
-        new_prop = document.get_property("name").clone(self.parent.name.text())
-        document.set_property(new_prop)
+        if(self.parent.name.text().strip() != ""):
+            new_prop = document.get_property("name").clone(self.parent.name.text())
+            document.set_property(new_prop)
 
         #TODO reassign id to children
         command = CreateDocument(project, document, app, len(project.documents))

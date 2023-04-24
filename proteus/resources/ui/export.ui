@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Export Type</string>
+      <string>Export to:</string>
      </property>
     </widget>
    </item>

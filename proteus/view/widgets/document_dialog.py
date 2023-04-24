@@ -28,7 +28,7 @@ class DocumentDialog(QDialog):
         self.name_label.setText(trans(self.name_label.text()))
         self.project_label.setText(trans(self.project_label.text()))
 
-        self.setWindowTitle("New document")
+        self.setWindowTitle(trans("New document"))
 
         # Get dict from project file name and DocumentArcheTypeProxy
         self.document_archetypes = parent.archetype_controller.get_document_archetypes()

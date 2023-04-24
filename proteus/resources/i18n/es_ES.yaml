@@ -61,7 +61,8 @@ traceabilityMatrix: Matriz de trazabilidad
 useCase: Caso de uso
 archetypes: Arquetipos
 requirements: Requisitos
-export: Exportar
+export: exportar
+Export: Exportar
 export current document: Exportar documento actual
 QUIT: Salir
 If you leave before saving, your changes will be lost.: Si sales antes de guardar, los cambios serán descartados.
@@ -87,7 +88,9 @@ View source: Ver texto
 Visualize: Visualizar
 priority: prioridad
 Priority: Prioridad
+New document: Nuevo documento
 Main: Principal
 Archetypes directory:: "Directorio de arquetipos:"
 XSLT directory:: "Directorio XSLT:"
+Export to:: "Exportar a:"
 Application style: Estilo de la aplicación
