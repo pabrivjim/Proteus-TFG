@@ -301,6 +301,10 @@ class Object(AbstractObject):
     # Version    : 0.2
     # Author     : Pablo Rivera Jiménez
     # ----------------------------------------------------------------------
+    # Update: 25/04/2023 (Pablo Rivera Jiménez)
+    # Description:
+    # - Solved bug that didn't allow to clone an object with recursive children.
+    # ----------------------------------------------------------------------
 
     def clone_object(self, parent: Union[Object,Project]):
         """
@@ -327,21 +331,24 @@ class Object(AbstractObject):
 
         # Clone children
         def rename_ids(object: Object):
+            new_dict = {}
             # For every child we generate a new uuid and set the state to FRESH
             for child in object.children.values():
                 child.id = generate_uuid()
+                child.parent = object.id
                 child.state = ProteusState.FRESH
+                new_dict[child.id] = child
 
                 # Check if object has children
                 if(child.children):
-                    rename_ids(child)
+                    child.children = rename_ids(child)
+            return new_dict
 
         # Check if object has children
         if(new_object.children):
-            rename_ids(new_object)
+            new_object.children = rename_ids(new_object)
         # We set the state of the partent of the new object to DIRTY and the new object
         # state to FRESH
         parent.state = ProteusState.DIRTY
         new_object.state = ProteusState.FRESH
-
         return new_object
