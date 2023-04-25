@@ -62,6 +62,12 @@ useCase: Caso de uso
 archetypes: Arquetipos
 requirements: Requisitos
 export: exportar
+Edit document: Editar documento
+Delete document: Eliminar documento
+Clone document: Clonar documento
+Edit object: Editar objeto
+Delete object: Eliminar objeto
+Clone object: Clonar objeto
 Export: Exportar
 export current document: Exportar documento actual
 QUIT: Salir

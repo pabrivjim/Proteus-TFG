@@ -254,13 +254,13 @@ class TreeLogic():
 
         right_click_menu = QMenu()
         txt = "object" if item.parent() else "document"
-        act_edit = right_click_menu.addAction(self.docInspector.tr(f"Edit {txt}"))
+        act_edit = right_click_menu.addAction(self.docInspector.tr(trans(f"Edit {txt}")))
         act_edit.triggered.connect(partial(self.edit_item, mdlIdx))
 
-        act_del = right_click_menu.addAction(self.docInspector.tr(f"Delete {txt}"))
+        act_del = right_click_menu.addAction(self.docInspector.tr(trans(f"Delete {txt}")))
         act_del.triggered.connect(partial(self.delete_item, item))
 
-        act_clone = right_click_menu.addAction(self.docInspector.tr(f"Clone {txt}"))
+        act_clone = right_click_menu.addAction(self.docInspector.tr(trans(f"Clone {txt}")))
         act_clone.triggered.connect(partial(self.clone_item, item))
 
         right_click_menu.exec(self.docInspector.sender().viewport().mapToGlobal(position))

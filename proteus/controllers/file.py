@@ -31,7 +31,6 @@ class Dialog:
         dialog.setMimeTypeFilters([mime])
 
         #We set the default name for the file that is going to be saved
-        print(default_file_name)
         dialog.selectFile(default_file_name)
 
         #Type of mode (if we are going to save (QFileDialog.AcceptSave)
@@ -41,7 +40,6 @@ class Dialog:
         #We set the suffix for the file
         dialog.setDefaultSuffix(suffix)
 
-        
         if "SNAP" in os.environ:
             dialog.setOption(QFileDialog.DontUseNativeDialog)
 
