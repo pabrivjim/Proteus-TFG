@@ -184,9 +184,9 @@ class Visualizer(QWebEngineView):
             If the text is not found, show a message box.
             """
             if not result:
-                QMessageBox.information(self, "Search Results", "No matches found.")
+                QMessageBox.information(self, trans("Search Results"), trans("No matches found."))
 
-        text, ok = QInputDialog.getText(self, "Search", "Enter text to search:")
+        text, ok = QInputDialog.getText(self, trans("Search"), trans("Enter text to search:"))
 
         if ok:
             flags = QWebEnginePage.FindFlags(0)
