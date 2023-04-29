@@ -8,8 +8,8 @@
 
 from PyQt5.QtWidgets import QAction, QUndoStack
 from PyQt5.QtGui import QIcon, QKeySequence
+from proteus import config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 from proteus.view.widgets.ribbons.ribbon import Ribbon
 import proteus
 
@@ -30,8 +30,8 @@ class UndoAction(QUndoStack):
         undoStack = self.parent()
         undo_action = undoStack.createUndoAction(self, trans("undo"))
         undo_action.setShortcut(QKeySequence.Undo)
-        undo_action.setIcon(QIcon(resource_path("icons/undo.png")))
+        undo_action.setIcon(QIcon(f"{config.Config().icons_directory}/undo.png"))
         undo_button = ribbon.undo_tb
         undo_button.setDefaultAction(undo_action)
-        undo_button.setIcon(QIcon(resource_path("icons/undo.png")))
+        undo_button.setIcon(QIcon(f"{config.Config().icons_directory}/undo.png"))
         return undo_button

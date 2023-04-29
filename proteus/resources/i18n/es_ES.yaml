@@ -49,11 +49,11 @@ figure: Figura
 paragraph: Parrafo
 section: Seccion
 actor: Actor
-constraintRequirement: Requisito de restricción
-functionalRequirement: Requisito functional
-informationRequirement: Requisito de informacion
+constraintRequirement: Restricción
+functionalRequirement: Functional
+informationRequirement: Información
 meeting: Reunion
-nonFunctionalRequirement: Requisito no functional
+nonFunctionalRequirement: No funcional
 objective: Objetivo
 organization: Organización
 stakeholder: Stakeholder

@@ -7,8 +7,8 @@
 # ==========================================================================
 from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
+from proteus import config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 import proteus
 
 class EditProject():
@@ -30,6 +30,6 @@ class EditProject():
         self.edit_tb.setText(trans("edit"))
         self.edit_tb.setToolTip(trans("edit project properties"))
         self.edit_tb.setEnabled(False)
-        self.edit_tb.setIcon(QIcon(resource_path("icons/edit.png")))
+        self.edit_tb.setIcon(QIcon(f"{config.Config().icons_directory}/edit.png"))
         # self.edit_tb.setShortcut("Ctrl+O")
         return self.edit_tb

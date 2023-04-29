@@ -13,7 +13,6 @@ from PyQt5.QtCore import (QCoreApplication, QFile, QSettings, QTextStream,
 from PyQt5.QtWidgets import (QMainWindow, QDialog, QMessageBox)
 import proteus.config as config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 from PyQt5 import uic
 from PyQt5.QtWidgets import QFileDialog
 from configparser import ConfigParser
@@ -37,8 +36,7 @@ class Preferences:
         :param theme: Theme.
         """
         proteus.logger.info('Preferences - load theme')
-
-        file = QFile(resource_path(f'themes/{theme}.qss'))
+        file = QFile(f"{config.Config().resources_directory}/themes/{theme}.qss")
         file.open(QFile.ReadOnly | QFile.Text)
         stream = QTextStream(file)
         Preferences.get_app_instance().setStyleSheet(stream.readAll())

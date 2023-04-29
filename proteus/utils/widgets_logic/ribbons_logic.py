@@ -51,6 +51,7 @@ class RibbonsLogic():
                 icon_path = f"{config.Config().resources_directory}/assets/icons/{archetype.classes}.svg"
                 tool_button = QToolButton()
                 tool_button.setText(archetype_type)
+                tool_button.resize(tool_button.sizeHint())
                 tool_button.setToolTip(archetype_type)
                 tool_button.setEnabled(False)
                 tool_button.setIcon(QIcon(icon_path))

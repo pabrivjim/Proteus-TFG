@@ -7,8 +7,8 @@
 # ==========================================================================
 from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
+from proteus import config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 import proteus
 
 class ExportDocument():
@@ -30,6 +30,6 @@ class ExportDocument():
         self.export_tb.setText(trans("export"))
         self.export_tb.setToolTip(trans("export current document"))
         self.export_tb.setEnabled(False)
-        self.export_tb.setIcon(QIcon(resource_path("icons/export.png")))
+        self.export_tb.setIcon(QIcon(f"{config.Config().icons_directory}/export.png"))
         # self.open_tb.setShortcut("Ctrl+N")
         return self.export_tb

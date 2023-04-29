@@ -32,7 +32,7 @@ class RibbonButtonGroup(QWidget):
         proteus.logger.info('RibbonButtonGroup - add button')
         button.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         button.setMinimumSize(48, 48)
-        button.setMaximumWidth(48)
+        # button.setMaximumWidth(48)
         # button.setAutoRaise(True)
         button.setIconSize(QSize(32, 32))
         button.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)

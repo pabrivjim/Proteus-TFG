@@ -7,8 +7,8 @@
 # ==========================================================================
 from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
+from proteus import config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 import proteus
 
 class Settings():
@@ -29,5 +29,5 @@ class Settings():
         self.settings_tb.setText(trans("Settings"))
         self.settings_tb.setToolTip(trans("Change settings"))
         self.settings_tb.setEnabled(True)
-        self.settings_tb.setIcon(QIcon(resource_path("icons/settings.png")))
+        self.settings_tb.setIcon(QIcon(f"{config.Config().icons_directory}/settings.png"))
         return self.settings_tb

@@ -7,7 +7,7 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 from .ribbon_button_group import RibbonButtonGroup
-from PyQt5.QtWidgets import (QWidget)
+from PyQt5.QtWidgets import (QWidget, QSizePolicy)
 from PyQt5 import uic
 import proteus
 
@@ -31,5 +31,6 @@ class RibbonTabContent(QWidget):
         proteus.logger.info('RibbonTabContent - add group')
 
         button_group = RibbonButtonGroup(title)
+        button_group.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         self.ribbonHorizontalLayout.addWidget(button_group)
         return button_group

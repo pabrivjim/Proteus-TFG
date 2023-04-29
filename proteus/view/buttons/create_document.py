@@ -7,8 +7,8 @@
 # ==========================================================================
 from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
+from proteus import config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 import proteus
 
 class CreateDocument():
@@ -30,6 +30,6 @@ class CreateDocument():
         self.create_tb.setText(trans("create"))
         self.create_tb.setToolTip(trans("new document from archetype"))
         self.create_tb.setEnabled(False)
-        self.create_tb.setIcon(QIcon(resource_path("icons/add.png")))
+        self.create_tb.setIcon(QIcon(f"{config.Config().icons_directory}/add.png"))
         # self.open_tb.setShortcut("Ctrl+N")
         return self.create_tb

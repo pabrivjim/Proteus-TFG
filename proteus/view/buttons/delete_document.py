@@ -7,8 +7,8 @@
 # ==========================================================================
 from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
+from proteus import config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 import proteus
 
 class DeleteDocument():
@@ -30,6 +30,6 @@ class DeleteDocument():
         self.delete_tb.setText(trans("delete"))
         self.delete_tb.setToolTip(trans("delete current document"))
         self.delete_tb.setEnabled(False)
-        self.delete_tb.setIcon(QIcon(resource_path("icons/delete.svg")))
+        self.delete_tb.setIcon(QIcon(f"{config.Config().icons_directory}/delete.svg"))
         # self.delete_tb.setShortcut("Ctrl+D")
         return self.delete_tb

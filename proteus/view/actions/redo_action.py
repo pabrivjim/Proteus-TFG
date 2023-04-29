@@ -8,8 +8,8 @@
 
 from PyQt5.QtWidgets import QAction, QUndoStack
 from PyQt5.QtGui import QIcon, QKeySequence
+from proteus import config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 from proteus.view.widgets.ribbons.ribbon import Ribbon
 import proteus
 
@@ -29,8 +29,8 @@ class RedoAction(QUndoStack):
         redoStack = self.parent()
         redo_action = redoStack.createRedoAction(self, trans("redo"))
         redo_action.setShortcut(QKeySequence.Redo)
-        redo_action.setIcon(QIcon(resource_path("icons/redo.png")))
+        redo_action.setIcon(QIcon(f"{config.Config().icons_directory}/redo.png"))
         redo_button = ribbon.redo_tb
         redo_button.setDefaultAction(redo_action)
-        redo_button.setIcon(QIcon(resource_path("icons/redo.png")))
+        redo_button.setIcon(QIcon(f"{config.Config().icons_directory}/redo.png"))
         return redo_button

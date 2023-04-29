@@ -7,8 +7,8 @@
 # ==========================================================================
 from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
+from proteus import config
 from proteus.utils.i18n import trans
-from proteus.utils.loader import resource_path
 import proteus
 
 class SaveProject():
@@ -30,6 +30,6 @@ class SaveProject():
         self.save_tb.setText(trans("save"))
         self.save_tb.setToolTip(trans("save project"))
         self.save_tb.setEnabled(False)
-        self.save_tb.setIcon(QIcon(resource_path("icons/save.svg")))
+        self.save_tb.setIcon(QIcon(f"{config.Config().icons_directory}/save.svg"))
         # self.save_tb.setShortcut("Ctrl+O")
         return self.save_tb
