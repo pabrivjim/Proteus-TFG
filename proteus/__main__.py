@@ -10,11 +10,14 @@ File where the entry point for the PROTEUS application is defined.
 # ==========================================================================
 
 #https://stackoverflow.com/questions/1551605/how-to-set-applications-taskbar-icon-in-windows-7/1552105#1552105
-import ctypes
 import sys
 import os
-myappid = 'US.proteus.1.0'
-ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+try:
+    from ctypes import windll  # Only exists on Windows.
+    myappid = 'US.proteus.1.0'
+    windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+except ImportError:
+    pass
 
 # This is need to import the proteus package. If we run with -m or not it will works the same.
 project_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
