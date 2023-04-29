@@ -27,8 +27,8 @@ class CreateDocument():
 
         self.create_tb = QToolButton()
         self.create_tb.setObjectName("Create Document")
-        self.create_tb.setText(trans("create"))
-        self.create_tb.setToolTip(trans("new document from archetype"))
+        self.create_tb.setText(trans("Create"))
+        self.create_tb.setToolTip(trans("New Document from Archetype"))
         self.create_tb.setEnabled(False)
         self.create_tb.setIcon(QIcon(f"{config.Config().icons_directory}/add.png"))
         # self.open_tb.setShortcut("Ctrl+N")

@@ -27,8 +27,8 @@ class DeleteDocument():
 
         self.delete_tb = QToolButton()
         self.delete_tb.setObjectName("Delete Document")
-        self.delete_tb.setText(trans("delete"))
-        self.delete_tb.setToolTip(trans("delete current document"))
+        self.delete_tb.setText(trans("Delete"))
+        self.delete_tb.setToolTip(trans("Delete Current Document"))
         self.delete_tb.setEnabled(False)
         self.delete_tb.setIcon(QIcon(f"{config.Config().icons_directory}/delete.svg"))
         # self.delete_tb.setShortcut("Ctrl+D")

@@ -27,8 +27,8 @@ class SaveProject():
 
         self.save_tb = QToolButton()
         self.save_tb.setObjectName("Save Project")
-        self.save_tb.setText(trans("save"))
-        self.save_tb.setToolTip(trans("save project"))
+        self.save_tb.setText(trans("Save"))
+        self.save_tb.setToolTip(trans("Save Project"))
         self.save_tb.setEnabled(False)
         self.save_tb.setIcon(QIcon(f"{config.Config().icons_directory}/save.svg"))
         # self.save_tb.setShortcut("Ctrl+O")

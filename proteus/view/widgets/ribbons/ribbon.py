@@ -88,23 +88,23 @@ class Ribbon:
         Adds buttons to the tabs.
         """
         proteus.logger.info('Ribbon - tabs add button')
-        tab_content = self.add_tab(trans("project"))
+        tab_content = self.add_tab(trans("Project"))
 
         # Project Tab
-        project_group = tab_content.add_group(trans("project"))
+        project_group = tab_content.add_group(trans("Project"))
         project_group.add_button(self.open_tb)
         project_group.add_button(self.new_tb)
         project_group.add_button(self.save_tb)
         project_group.add_button(self.edit_tb)
 
         # Document Tab
-        document_group = tab_content.add_group(trans("document"))
+        document_group = tab_content.add_group(trans("Document"))
         document_group.add_button(self.create_tb)
         document_group.add_button(self.delete_tb)
         document_group.add_button(self.export_tb)
 
         #Edit Tab
-        edit_group = tab_content.add_group(trans("edit"))
+        edit_group = tab_content.add_group(trans("Edit"))
         edit_group.add_button(self.undo_tb)
         edit_group.add_button(self.redo_tb)
 

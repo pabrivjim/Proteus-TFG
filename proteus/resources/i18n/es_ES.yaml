@@ -24,43 +24,61 @@ Preferences: Preferencias
 Requirements: Requisitos
 Update language: Actualizar idioma
 The language will be updated after restarting the application.: El idioma se actualizará después de reiniciar la aplicación.
-project: Proyecto
-open: Abrir
-open project: Abrir proyecto
-new: Nuevo
-new project: nuevo proyecto
+project: proyecto
+Project: Proyecto
+open: abrir
+Open: Abrir
+open project: abrir proyecto
+Open Project: Abrir Proyecto
+new: nuevo
+New: Nuevo
+New Project: Nuevo Proyecto
 New project: Nuevo proyecto
-save: Guardar
-save project: Guardar proyecto
-edit: Editar
+save: guardar
+Save: Guardar
+save project: guardar proyecto
+Save Project: Guardar Proyecto
+edit: editar
+Edit: Editar
 edit project properties: Editar propiedades del proyecto
+Edit Project Properties: Editar Propiedades del Proyecto
 document: documento
 Document: Documento
 Documents: Documentos
-create: Crear
-new document from archetype: Nuevo documento de arquetipo
-delete: Eliminar
-delete current document: Eliminar documento actual
-undo: Deshacer
-undo action: Deshacer accion
+create: crear
+Create: Crear
+new document from archetype: nuevo documento de arquetipo
+New Document from Archetype: Nuevo Documento de Arquetipo
+delete: eliminar
+Delete: Eliminar
+delete current document: eliminar documento actual
+Delete Current Document: Eliminar Documento Actual
+undo: deshacer
+Undo: Deshacer
+undo action: deshacer acción
+Undo Action: Deshacer Acción
 redo: Rehacer
-redo action: Rehacer accion
+Redo: Rehacer
+redo action: rehacer acción
+Redo Action: Rehacer Acción
 figure: Figura
 paragraph: Parrafo
 section: Seccion
 actor: Actor
 constraintRequirement: Restricción
-functionalRequirement: Functional
+functionalRequirement: Funcional
 informationRequirement: Información
 meeting: Reunion
 nonFunctionalRequirement: No funcional
 objective: Objetivo
 organization: Organización
 stakeholder: Stakeholder
-traceabilityMatrix: Matriz de trazabilidad
+traceabilityMatrix: Trazabilidad
 useCase: Caso de uso
-archetypes: Arquetipos
-requirements: Requisitos
+archetypes: arquetipos
+Archetypes: Arquetipos
+requirements: requisitos
+Requirements: Requisitos
 export: exportar
 Edit document: Editar documento
 Delete document: Eliminar documento
@@ -70,6 +88,7 @@ Delete object: Eliminar objeto
 Clone object: Clonar objeto
 Export: Exportar
 export current document: Exportar documento actual
+Export Current Document: Exportar Documento Actual
 QUIT: Salir
 If you leave before saving, your changes will be lost.: Si sales antes de guardar, los cambios serán descartados.
 Yes: Sí

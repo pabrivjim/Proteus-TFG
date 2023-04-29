@@ -43,10 +43,10 @@ def default_ribbon_project_buttons(window: MainWindow):
     Test the default buttons of the project ribbon.
     It also checks that the buttons are enabled and disabled correctly.
     """
-    assert window.ribbon.open_tb.text() == trans("open")
-    assert window.ribbon.new_tb.text() == trans("new")
-    assert window.ribbon.save_tb.text() == trans("save")
-    assert window.ribbon.edit_tb.text() == trans("edit")
+    assert window.ribbon.open_tb.text() == trans("Open")
+    assert window.ribbon.new_tb.text() == trans("New")
+    assert window.ribbon.save_tb.text() == trans("Save")
+    assert window.ribbon.edit_tb.text() == trans("Edit")
 
     assert window.ribbon.open_tb.objectName() == "Open Project"
     assert window.ribbon.new_tb.objectName() == "New Project"
@@ -63,9 +63,9 @@ def default_ribbon_document_buttons(window: MainWindow):
     Test the default buttons of the document ribbon.
     It also checks that the buttons are enabled and disabled correctly.
     """
-    assert window.ribbon.create_tb.text() == trans("create")
-    assert window.ribbon.delete_tb.text() == trans("delete")
-    assert window.ribbon.export_tb.text() == trans("export")
+    assert window.ribbon.create_tb.text() == trans("Create")
+    assert window.ribbon.delete_tb.text() == trans("Delete")
+    assert window.ribbon.export_tb.text() == trans("Export")
 
     assert window.ribbon.create_tb.objectName() == "Create Document"
     assert window.ribbon.delete_tb.objectName() == "Delete Document"
@@ -80,8 +80,8 @@ def default_ribbon_qundostack_buttons(window: MainWindow):
     Test the default buttons of the undo/redo ribbon.
     It also checks that the buttons are enabled and disabled correctly.
     """
-    assert window.ribbon.undo_tb.text() == trans("undo")
-    assert window.ribbon.redo_tb.text() == trans("redo")
+    assert window.ribbon.undo_tb.text() == trans("Undo")
+    assert window.ribbon.redo_tb.text() == trans("Redo")
 
     assert window.ribbon.undo_tb.isEnabled() == False
     assert window.ribbon.redo_tb.isEnabled() == False

@@ -27,8 +27,8 @@ class NewProject():
 
         self.new_tb = QToolButton()
         self.new_tb.setObjectName("New Project")
-        self.new_tb.setText(trans("new"))
-        self.new_tb.setToolTip(trans("new project"))
+        self.new_tb.setText(trans("New"))
+        self.new_tb.setToolTip(trans("New Project"))
         self.new_tb.setEnabled(True)
         self.new_tb.setIcon(QIcon(f"{config.Config().icons_directory}/file.svg"))
         # self.new_tb.setShortcut("Ctrl+N")
