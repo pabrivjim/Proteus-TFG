@@ -25,7 +25,7 @@ class ProjectDialogLogic():
         if selected_files:
             main_class = self.parent.parent().__class__
             project_title = self.parent.name.text()
-            m = main_class(project_path=path, project_title=project_title, clean=True)
+            m = main_class(project_path=selected_files[0], project_title=project_title, clean=True)
             m.setWindowTitle("Proteus - " + project_title)
             m.show()
 

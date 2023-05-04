@@ -28,7 +28,7 @@ class UndoAction(QUndoStack):
         """
         proteus.logger.info('UndoAction - get action')
         undoStack = self.parent()
-        undo_action = undoStack.createUndoAction(self, trans("undo"))
+        undo_action = undoStack.createUndoAction(self, trans("Undo"))
         undo_action.setShortcut(QKeySequence.Undo)
         undo_action.setIcon(QIcon(f"{config.Config().icons_directory}/undo.png"))
         undo_button = ribbon.undo_tb

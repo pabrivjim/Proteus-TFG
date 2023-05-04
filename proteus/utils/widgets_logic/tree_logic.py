@@ -11,6 +11,7 @@ from PyQt5.QtCore import (Qt, QByteArray, QPoint, QModelIndex)
 from PyQt5.QtGui import (QDrag, QIcon)
 from PyQt5.QtWidgets import (QTreeWidget, QMenu, QTreeWidgetItem, QMessageBox)
 from proteus.model import PROTEUS_ANY
+from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
 from proteus.model.project import Project
 from proteus.utils.i18n import trans
@@ -163,8 +164,9 @@ class TreeLogic():
         proteus.logger.info('TreeLogic - load document')
 
         self.docInspector.clear()
-        documents: dict = self.parent.projectController.project.documents
-
+        # documents: dict = self.parent.projectController.project.documents
+        documents = {key: value for key, value in self.parent.projectController.project.documents.items() if value.state != ProteusState.DEAD}
+        
         list_documents: list = list(documents.values())
         if (self.parent.projectController.selected_document_index == len(documents)):
             self.parent.projectController.selected_document_index = self.parent.projectController.selected_document_index-1
@@ -193,8 +195,9 @@ class TreeLogic():
 
         children = doc.children.values()
         for child in children:
-            child_item = self.add_child(root, child)
-            self.loadData(child, root=child_item)
+            if(child.state != ProteusState.DEAD):
+                child_item = self.add_child(root, child)
+                self.loadData(child, root=child_item)
 
     def add_child(self, parent: Object, child: Object) -> QTreeWidgetItem:
         """
@@ -281,7 +284,7 @@ class TreeLogic():
             self.parent.undoStack.push(command)
         else:
             command = DeleteDocument(self.parent.projectController.project, proteus_item,
-                                     self.parent.document_combobox, self.parent.projectController.selected_document_index)
+                                     self.parent, self.parent.projectController.selected_document_index)
             self.parent.undoStack.push(command)
 
     def edit_item(self, index: QModelIndex) -> None:

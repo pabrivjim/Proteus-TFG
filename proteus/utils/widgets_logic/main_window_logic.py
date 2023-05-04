@@ -8,6 +8,7 @@
 import copy
 import shortuuid
 from PyQt5.QtCore import (Qt, QModelIndex)
+from proteus.model.abstract_object import ProteusState
 from proteus.model.archetype_proxys import ObjectArchetypeProxy
 from proteus.model.object import Object
 from proteus.utils.widgets_logic.qundo_commands import CreateObject
@@ -66,5 +67,6 @@ class MainWindowLogic():
         proteus.logger.info('Main Window Logic - combo box add item')
 
         for document in self.parent.projectController.project.documents.values():
-            name = document.get_property("name").value
-            self.parent.document_combobox.addItem(name, document)
+            if(document != ProteusState.DEAD):
+                name = document.get_property("name").value
+                self.parent.document_combobox.addItem(name, document)

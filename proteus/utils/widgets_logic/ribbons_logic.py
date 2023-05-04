@@ -34,11 +34,12 @@ class RibbonsLogic():
         Add tabs to ribbon and adds archetypes buttons.
         """
         proteus.logger.info('RibbonsLogic - init tabs')
-        tab_label = trans("archetypes")
+        # Archetype tab
+        tab_label = trans("Archetypes")
         self.parent.buttons = {}
         actions = {}
         tab_content = self.parent.add_tab(tab_label)
-        for group_name, group_archetypes  in content.items():
+        for group_name, group_archetypes in content.items():
             try:
                 button_group = tab_content.add_group(trans(group_name.capitalize()))
             except Exception as e:

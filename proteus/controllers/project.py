@@ -35,8 +35,7 @@ class ProjectController(Controller):
         """
         self.app.views.update_views()
         self.app.document_tree.load_document()
-        can_save = self.saved_command != self.app.undoStack.index()
-        self.app.ribbon.save_tb.setEnabled(can_save)
+        self.app.ribbon.save_tb.setEnabled(True)
 
 
     #TODO FIXME it works but the index is not the proper one. We also should search for the id and not the index
@@ -60,7 +59,7 @@ class ProjectController(Controller):
         """
         if self.project.documents:
             command = DeleteDocument(self.project, self.project.documents[self.selected_document.id],
-                                     self.app.document_combobox, self.selected_document_index)
+                                     self.app, self.selected_document_index)
             self.app.undoStack.push(command)
 
 

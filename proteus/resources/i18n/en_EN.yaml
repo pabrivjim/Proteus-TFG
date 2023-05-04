@@ -1,2 +1,16 @@
 visualizer: Visualizer
 constraintRequirement: Constraint
+figure: Figure
+paragraph: Paragraph
+section: Section
+actor: Actor
+constraintRequirement: Constraint
+functionalRequirement: Functional
+informationRequirement: Information
+meeting: Meeting
+nonFunctionalRequirement: No functional
+objective: Objetive
+organization: Organization
+stakeholder: Stakeholder
+traceabilityMatrix: Traceability
+useCase: Use case

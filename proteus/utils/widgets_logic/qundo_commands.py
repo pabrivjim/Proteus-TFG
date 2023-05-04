@@ -39,7 +39,8 @@ class CreateObject(QUndoCommand):
         proteus.logger.info('CreateObject - redo')
         self.obj.state = ProteusState.FRESH
         self.obj.parent = self.parent_obj
-        self.parent_obj.state = ProteusState.DIRTY
+        if(self.obj.parent.state != ProteusState.FRESH):
+            self.parent_obj.state = ProteusState.DIRTY
         self.project.state = ProteusState.DIRTY
         self.parent_obj.children[self.obj.id] = self.obj
         updated_doc = {self.parent_obj.id: self.parent_obj}
@@ -55,9 +56,11 @@ class CreateObject(QUndoCommand):
         Set parent's state to previous state.
         """
         proteus.logger.info('CreateObject - undo')
-        self.obj.state = ProteusState.DEAD
+        if(self.obj.parent.state != ProteusState.FRESH):
+            self.obj.state = ProteusState.DEAD
+        else:
+            self.parent_obj.children.pop(self.obj.id)
         self.parent_obj.state = self.parent_obj_state
-        self.parent_obj.children.pop(self.obj.id)
         self.project_state = self.project.state
         updated_doc = {self.parent_obj.id: self.parent_obj}
         #FIXME
@@ -122,9 +125,11 @@ class CreateDocument(QUndoCommand):
         """
         proteus.logger.info('CreateDocument - undo')
         #FIXME SET TO DEAD
-        self.document.state = ProteusState.DEAD
+        if(self.document.state != ProteusState.FRESH):
+            self.document.state = ProteusState.DEAD
+        else:
+            self.project.documents.pop(self.document.id)
         self.project.state = self.project_state
-        self.project.documents.pop(self.document.id)
         self.combo_box.removeItem(self.position)
 
 class DeleteObject(QUndoCommand):
@@ -138,6 +143,7 @@ class DeleteObject(QUndoCommand):
         self.project = project
         self.parent: Object = parent
         self.obj = child_obj
+        self.old_obj = deepcopy(child_obj)
         self.parent_state = deepcopy(parent.state)
         self.obj_state = deepcopy(child_obj.state)
         self.project_state = deepcopy(project.state)
@@ -149,8 +155,10 @@ class DeleteObject(QUndoCommand):
         Set parent's object to DIRTY.
         """
         proteus.logger.info('DeleteObject - redo')
-        self.obj.state = ProteusState.DEAD
-        self.parent.children.pop(self.obj.id)	
+        if(self.obj.state == ProteusState.FRESH):
+            self.parent.children.pop(self.obj.id)
+        else:
+            self.obj.state = ProteusState.DEAD
         self.parent.state = ProteusState.DIRTY
         self.project.state = ProteusState.DIRTY
 
@@ -161,7 +169,24 @@ class DeleteObject(QUndoCommand):
         Set parent's state to previous state.
         """
         proteus.logger.info('DeleteObject - undo')
-        self.obj.state = self.obj_state
+        self.obj = self.old_obj
+        # In case it's a section with objects in side ant this section could have other sectiosn etc,
+        # we need to set all of them to dirty so it will be saved again.
+        def set_all_to_dirty(parent):
+            for child in parent.children.values():
+                if(child.state == ProteusState.CLEAN):
+                    child.state = ProteusState.DIRTY
+                if(child.children):
+                    set_all_to_dirty(child)
+        if(self.obj.children):
+            set_all_to_dirty(self.obj)
+
+        # THIS IS NEEDED BECAUSE WITHOUT, IF THE USER DELETE A ITEM, SAVE AND UNDO THE ITEM WILL BE CLEAN AND WON'T BE SAVED.
+        # DOING THIS, THE ITEM WILL BE DIRTY AND WILL BE SAVED.
+        if(self.obj_state == ProteusState.CLEAN):
+            self.obj.state = ProteusState.DIRTY
+        else:
+            self.obj.state = self.obj_state
         self.parent.state = self.parent_state
         self.project.state = self.project_state
         self.parent.children[self.obj.id] = self.obj
@@ -172,13 +197,15 @@ class DeleteDocument(QUndoCommand):
     Command to delete document from project.
     """
 
-    def __init__(self, project: Project, document: Object, combo_box: QComboBox, combo_box_index: int):
+    def __init__(self, project: Project, document: Object, app, combo_box_index: int):
         proteus.logger.info('Init DeleteDocument')
         super(DeleteDocument, self).__init__()
         self.document: Object = document
         self.project: Project = project
-        self.combo_box: QComboBox = combo_box
+        self.app = app
+        self.combo_box: QComboBox = app.document_combobox
         self.combo_box_index: int = combo_box_index
+        self.old_document = deepcopy(document)
         self.old_document_state = deepcopy(document.state)
         self.old_project_state = deepcopy(project.state)
 
@@ -188,10 +215,13 @@ class DeleteDocument(QUndoCommand):
         Sets all objects in document to DELETED.
         """
         proteus.logger.info('DeleteDocument - redo')
-        self.project.documents.pop(self.document.id)
-        self.document.state = ProteusState.DEAD
+        if(self.document.state == ProteusState.FRESH):
+            self.project.documents.pop(self.document.id)
+        else:
+            self.document.state = ProteusState.DEAD
         self.project.state = ProteusState.DIRTY
         self.combo_box.removeItem(self.combo_box_index)
+        # change_combo_box(self.app, 0)
 
     def undo(self):
         """
@@ -199,8 +229,26 @@ class DeleteDocument(QUndoCommand):
         Sets all objects states to previous states.
         """
         proteus.logger.info('DeleteDocument - undo')
-        self.document.state= self.old_document_state
-        self.project.state = self.old_project_state
+        self.document = self.old_document
+        if(self.old_document_state == ProteusState.CLEAN):
+            self.document.state = ProteusState.DIRTY
+        else:
+            self.document.state= self.old_document_state
+        
+        # This is necessary because in case we delete the document, and the child is clean,
+        # when we undo, the child will be clean and won't be saved.
+        def set_all_to_dirty(parent):
+            for child in parent.children.values():
+                if(child.state == ProteusState.CLEAN):
+                    child.state = ProteusState.DIRTY
+                if(child.children):
+                    set_all_to_dirty(child)
+        set_all_to_dirty(self.document)
+        
+        if(self.old_project_state == ProteusState.CLEAN):
+            self.project.state = ProteusState.DIRTY
+        else:
+            self.project.state = self.old_project_state
         self.project.documents[self.document.id] = self.document
         self.combo_box.addItem(self.document.get_property("name").value, self.document)
 
@@ -237,7 +285,8 @@ class UpdateObject(QUndoCommand):
                         pretty_print=True).decode())
 
         if(obj_xml != new_obj_xml):
-            self.obj.state = ProteusState.DIRTY
+            if(self.obj.state != ProteusState.FRESH):
+                self.obj.state = ProteusState.DIRTY
             self.project.state = ProteusState.DIRTY
             self.obj.properties = self.new_obj.properties
         if(isinstance(self.new_obj.parent, Project)):

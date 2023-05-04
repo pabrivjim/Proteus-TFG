@@ -27,8 +27,8 @@ class EditProject():
 
         self.edit_tb = QToolButton()
         self.edit_tb.setObjectName("Edit Project")
-        self.edit_tb.setText(trans("edit"))
-        self.edit_tb.setToolTip(trans("edit project properties"))
+        self.edit_tb.setText(trans("Edit"))
+        self.edit_tb.setToolTip(trans("Edit Project Properties"))
         self.edit_tb.setEnabled(False)
         self.edit_tb.setIcon(QIcon(f"{config.Config().icons_directory}/edit.png"))
         # self.edit_tb.setShortcut("Ctrl+O")

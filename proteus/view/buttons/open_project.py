@@ -27,8 +27,8 @@ class OpenProject():
 
         self.open_tb = QToolButton()
         self.open_tb.setObjectName("Open Project")
-        self.open_tb.setText(trans("open"))
-        self.open_tb.setToolTip(trans("open project"))
+        self.open_tb.setText(trans("Open"))
+        self.open_tb.setToolTip(trans("Open Project"))
         self.open_tb.setEnabled(True)
         self.open_tb.setIcon(QIcon(f"{config.Config().icons_directory}/folder.svg"))
         # self.open_tb.setShortcut("Ctrl+O")

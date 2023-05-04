@@ -27,8 +27,8 @@ class ExportDocument():
 
         self.export_tb = QToolButton()
         self.export_tb.setObjectName("Export Document")
-        self.export_tb.setText(trans("export"))
-        self.export_tb.setToolTip(trans("export current document"))
+        self.export_tb.setText(trans("Export"))
+        self.export_tb.setToolTip(trans("Export Current Document"))
         self.export_tb.setEnabled(False)
         self.export_tb.setIcon(QIcon(f"{config.Config().icons_directory}/export.png"))
         # self.open_tb.setShortcut("Ctrl+N")

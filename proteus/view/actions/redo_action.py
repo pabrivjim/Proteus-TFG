@@ -27,7 +27,7 @@ class RedoAction(QUndoStack):
         """
         proteus.logger.info('RedoAction - get action')
         redoStack = self.parent()
-        redo_action = redoStack.createRedoAction(self, trans("redo"))
+        redo_action = redoStack.createRedoAction(self, trans("Redo"))
         redo_action.setShortcut(QKeySequence.Redo)
         redo_action.setIcon(QIcon(f"{config.Config().icons_directory}/redo.png"))
         redo_button = ribbon.redo_tb
