@@ -14,7 +14,7 @@ import os
 from lxml import etree as ET
 from proteus import config
 from proteus.tests import PATH
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.i18n import trans
 from proteus.view.main_window import MainWindow
 #python -m pytest .\proteus\tests\pyqt\test_pyqt.py
 def test_pyqt(qtbot):

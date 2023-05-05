@@ -5,6 +5,7 @@
 /tmp/*
 !tmp/.gitkeep
 /proteus-model/
+/uml/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -6,7 +6,7 @@ Pytest file for PROTEUS class list properties.
 # Description: pytest file for PROTEUS class list properties
 # Date: 22/10/2022
 # Version: 0.1
-# Author: Amador Durán Toro
+# Author: Pablo Rivera Jiménez
 # ==========================================================================
 
 # --------------------------------------------------------------------------

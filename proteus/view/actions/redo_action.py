@@ -9,7 +9,7 @@
 from PyQt5.QtWidgets import QAction, QUndoStack
 from PyQt5.QtGui import QIcon, QKeySequence
 from proteus import config
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.i18n import trans
 from proteus.view.widgets.ribbons.ribbon import Ribbon
 import proteus
 

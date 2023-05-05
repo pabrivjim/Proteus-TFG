@@ -31,7 +31,7 @@ import numpy as np
 from PyQt5.QtCore import QBuffer
 import proteus
 import os
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.i18n import trans
 
 
 # DEBUG INSPECTOR

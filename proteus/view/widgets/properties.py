@@ -12,8 +12,8 @@ from PyQt5.QtCore import (Qt)
 from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QComboBox, QCheckBox,
                              QDialogButtonBox, QLabel, QTabWidget, QHBoxLayout,
                              QDialog)
-from proteus.utils.widgets_logic.properties_logic import PropertiesLogic
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.widgets_logic.properties_logic import PropertiesLogic
+from proteus.controllers.utils.i18n import trans
 from proteus.view.widgets.markdown import MarkdownWidget
 import proteus
 

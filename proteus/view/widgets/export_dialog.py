@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5 import uic
 import proteus.config as config
 import proteus
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.i18n import trans
 
 class ExportDialog(QDialog):
     """

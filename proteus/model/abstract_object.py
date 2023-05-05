@@ -35,6 +35,7 @@ from proteus.model.property import Property, PropertyFactory
 # Date: 17/09/2022
 # Version: 0.1
 # Author: Amador Durán Toro
+#         Pablo Rivera Jiménez  
 # --------------------------------------------------------------------------
 
 class ProteusState(Enum):

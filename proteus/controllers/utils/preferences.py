@@ -12,7 +12,7 @@ from PyQt5.QtCore import (QCoreApplication, QFile, QSettings, QTextStream,
                           QTranslator)
 from PyQt5.QtWidgets import (QMainWindow, QDialog, QMessageBox)
 import proteus.config as config
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.i18n import trans
 from PyQt5 import uic
 from PyQt5.QtWidgets import QFileDialog
 from configparser import ConfigParser

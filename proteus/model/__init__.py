@@ -4,16 +4,13 @@
 # Date: 10/08/2022
 # Version: 0.1
 # Author: Amador Durán Toro
+#         Pablo Rivera Jiménez
 # ==========================================================================
 
 # standard library imports
 from typing import NewType
 
 # local imports
-#from model.abstract_object import AbstractObject
-#from model.property import Property, PropertyFactory
-#from model.project import Project
-#from model.object import Object
 
 # constants
 PROJECT_FILE_NAME  = str('proteus.xml')

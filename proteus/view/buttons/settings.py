@@ -8,7 +8,7 @@
 from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QIcon
 from proteus import config
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.i18n import trans
 import proteus
 
 class Settings():

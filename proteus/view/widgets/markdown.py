@@ -9,7 +9,7 @@ import proteus
 from PyQt5.QtWidgets import (QWidget, QTextEdit, QPushButton, QVBoxLayout)
 
 from proteus.model.property import MarkdownProperty
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.i18n import trans
 
 class MarkdownWidget(QWidget):
     """

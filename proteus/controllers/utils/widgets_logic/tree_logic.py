@@ -14,11 +14,11 @@ from proteus.model import PROTEUS_ANY
 from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
 from proteus.model.project import Project
-from proteus.utils.i18n import trans
+from proteus.controllers.utils.i18n import trans
 from .qundo_commands import CreateDocument
-from proteus.utils.widgets_logic.qundo_commands import CreateObject
+from proteus.controllers.utils.widgets_logic.qundo_commands import CreateObject
 from proteus.view.widgets.properties import PropertyDialog
-from proteus.utils.widgets_logic.qundo_commands import DeleteObject, DeleteDocument, MoveNode
+from proteus.controllers.utils.widgets_logic.qundo_commands import DeleteObject, DeleteDocument, MoveNode
 import proteus.config as config
 import proteus
 

@@ -66,9 +66,7 @@ class Object(AbstractObject):
     # Date: 16/09/2022
     # Version: 0.2
     # Author: Amador Durán Toro
-    # ----------------------------------------------------------------------
-    # NOTE: Current working directory is set by Project.load().
-    #       Do not change current directory in this method.
+    #         Pablo Rivera Jiménez
     # ----------------------------------------------------------------------
 
     @staticmethod
@@ -118,6 +116,7 @@ class Object(AbstractObject):
     # Date       : 16/09/2022
     # Version    : 0.2
     # Author     : Amador Durán Toro
+    #              Pablo Rivera Jiménez
     # ----------------------------------------------------------------------
 
     def __init__(self, project:Project, object_file_path: str) -> None:
