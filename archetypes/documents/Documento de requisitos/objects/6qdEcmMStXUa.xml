@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<object id="6qdEcmMStXUa" classes="informationRequirement" acceptedChildren=":Proteus-none">
+  <properties>
+    <stringProperty name="identifier" category="general"><![CDATA[IRQ-0002]]></stringProperty>
+    <stringProperty name="name" category="general"><![CDATA[Información sobre documentos]]></stringProperty>
+    <floatProperty name="version" category="general">1.0</floatProperty>
+    <dateProperty name="date" category="general">2022-10-10</dateProperty>
+    <enumProperty name="stability" category="priority" choices="PD low medium high">PD</enumProperty>
+    <enumProperty name="developmentState" category="priority" choices="PD developing finished">PD</enumProperty>
+    <enumProperty name="urgency" category="priority" choices="PD low medium high">PD</enumProperty>
+    <markdownProperty name="description" category="detail"><![CDATA[The system shall store the information corresponding to...]]></markdownProperty>
+    <markdownProperty name="comments" category="comments"><![CDATA[None]]></markdownProperty>
+  </properties>
+  <children/>
+</object>

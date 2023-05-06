@@ -18,7 +18,9 @@ A PROTEUS object.
 # for using classes as return type hints in methods
 # (this will change in Python 3.11)
 from __future__ import annotations
-import pathlib # it has to be the first import
+import inspect
+import pathlib
+import traceback # it has to be the first import
 # standard library imports
 import shortuuid
 import os
@@ -70,7 +72,7 @@ class Object(AbstractObject):
     # ----------------------------------------------------------------------
 
     @staticmethod
-    def load(project:Project, id:ProteusID) -> Object:
+    def load(project:Project, id:ProteusID, directory = None) -> Object:
         """
         Static factory method for loading a PROTEUS object given a project
         and a short UUID.
@@ -88,26 +90,39 @@ class Object(AbstractObject):
         assert project is not None, \
             f"Invalid project object when loading object from {id}.xml"
 
-        # Extract project directory from project path
-        project_directory : str = os.path.dirname(project.path)
-        log.info(f"Loading a PROTEUS object from {project_directory}/{OBJECTS_REPOSITORY}/{id}.xml")
+        #In case there is a directory variable (this happened when called from DocumentArchetypeProxy)
+        if(directory):
+            print("INSIDE DIR")
+            # Complete path to object file
+            object_file_path = f"{directory}/{id}.xml"
 
-        # Create path to objects repository
-        objects_repository : str = f"{project_directory}/{OBJECTS_REPOSITORY}"
+            # Check if object file exists
+            assert os.path.isfile(object_file_path), \
+                f"PROTEUS object file {object_file_path} not found in {objects_repository}."
+            
+            # Create and return the project object
+            return Object(project, object_file_path, is_document_proxy_archetype=True)
+        else:
+            # Extract project directory from project path
+            project_directory : str = os.path.dirname(project.path)
+            log.info(f"Loading a PROTEUS object from {project_directory}/{OBJECTS_REPOSITORY}/{id}.xml")
 
-        # Check objects repository is a directory
-        assert os.path.isdir(objects_repository), \
-            f"PROTEUS projects must have an objects repository. {objects_repository} is not a directory."
+            # Create path to objects repository
+            objects_repository : str = f"{project_directory}/{OBJECTS_REPOSITORY}"
 
-        # Complete path to object file
-        object_file_path = f"{objects_repository}/{id}.xml"
+            # Check objects repository is a directory
+            assert os.path.isdir(objects_repository), \
+                f"PROTEUS projects must have an objects repository. {objects_repository} is not a directory."
 
-        # # Check if object file exists
-        assert os.path.isfile(object_file_path), \
-            f"PROTEUS object file {object_file_path} not found in {objects_repository}."
+            # Complete path to object file
+            object_file_path = f"{objects_repository}/{id}.xml"
 
-        # Create and return the project object
-        return Object(project, object_file_path)
+            # Check if object file exists
+            assert os.path.isfile(object_file_path), \
+                f"PROTEUS object file {object_file_path} not found in {objects_repository}."
+
+            # Create and return the project object
+            return Object(project, object_file_path)
 
     # ----------------------------------------------------------------------
     # Method     : __init__
@@ -119,18 +134,26 @@ class Object(AbstractObject):
     #              Pablo Rivera Jiménez
     # ----------------------------------------------------------------------
 
-    def __init__(self, project:Project, object_file_path: str) -> None:
+    def __init__(self, project:Project, object_file_path: str, is_document_proxy_archetype = False) -> None:
         """
         It initializes and builds a PROTEUS object from an XML file.
 
         :param project: Project object where the object is located.
         :type project: Project
         :param object_file_path: Path to the object's XML file.
-        :type object_file_path: str
+        :type object_file_path:  str
+        :param is_document_proxy_archetype: Variable that indicates whether if the object is a DocumentArchetypeProxy.
         """
         # Initialize property dictionary in superclass
         # TODO: pass some arguments?
         super().__init__(object_file_path)
+        # NOTE: Use the inspect class to get the class of the caller and the fuction. If it's called by DocumentArchetypeProxy
+        # and by the function "get_document", then we set the is_document_proxy_archetype variable to True. This is needed because
+        # later in load_children if it's called from the DocumentArchetypeProxy it means that we have to set the directory to look
+        # for the children to the same where the document is in the load() function.
+        # if (inspect.currentframe().f_back.f_locals.get("self").__class__.__name__ == "DocumentArchetypeProxy" and inspect.getframeinfo(inspect.currentframe().f_back).function == "get_document"):
+        #     is_document_proxy_archetype = True
+
 
         # Check project object
         assert project is not None, \
@@ -175,7 +198,7 @@ class Object(AbstractObject):
         self.children : dict[ProteusID,Object] = dict[ProteusID,Object]()
 
         # Load object's children
-        self.load_children(root)
+        self.load_children(root, is_document_proxy_archetype)
 
     # ----------------------------------------------------------------------
     # Method     : load_children
@@ -186,7 +209,7 @@ class Object(AbstractObject):
     # Author     : Amador Durán Toro
     # ----------------------------------------------------------------------
 
-    def load_children(self, root : ET.Element) -> None:
+    def load_children(self, root : ET.Element, is_document_proxy_archetype = False) -> None:
         """
         It loads a PROTEUS object's children from an XML root element.
 
@@ -215,7 +238,12 @@ class Object(AbstractObject):
                 f"PROTEUS object file {self.id} includes a child without ID."
 
             # Add the child to the children dictionary and set the parent
-            object = Object.load(self.project, child_id)
+            if(is_document_proxy_archetype):
+                directory_path = str(pathlib.Path(self.path).parent)
+                object = Object.load(self.project, child_id, directory_path)
+                print("CHILD: ", object.id, " NAME: ", object.get_property("name").value)
+            else:
+                object = Object.load(self.project, child_id)
             
             object.parent = self
 

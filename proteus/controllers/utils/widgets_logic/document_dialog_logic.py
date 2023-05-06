@@ -6,6 +6,7 @@
 # Author: Pablo Rivera Jiménez
 # ==========================================================================
 import shortuuid
+from proteus.model.abstract_object import ProteusState
 from proteus.model.object import Object
 from proteus.model.project import Project
 from proteus.controllers.utils.widgets_logic.qundo_commands import CreateDocument
@@ -29,14 +30,23 @@ class DocumentDialogLogic():
         proteus.logger.info('DocumentDialogLogic - create document')
 
         documents = self.parent.document_archetypes
+        for doc in documents.values():
+            print(doc.path)
 
         app = self.parent.parentWidget()
         project: Project  = app.projectController.project
         id: str = str(shortuuid.random(length=12))
         documents[archetype].id = id
-
+        
         document: Object = documents[archetype].get_document(project)
         document.id = id
+        def _set_to_fresh(parent: Object):
+            for child in parent.children.values():
+                child.state = ProteusState.FRESH
+                if(child.children):
+                    _set_to_fresh(child)
+        _set_to_fresh(document)
+
 
         # Update document name
         if(self.parent.name.text().strip() != ""):

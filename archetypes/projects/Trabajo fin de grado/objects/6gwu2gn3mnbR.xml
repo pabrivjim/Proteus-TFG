@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<object id="6gwu2gn3mnbR" classes="section" acceptedChildren=":Proteus-any">
+  <properties>
+    <stringProperty name="name" category="general"><![CDATA[Requisitos no funcionales]]></stringProperty>
+    <floatProperty name="version" category="general">1.0</floatProperty>
+    <dateProperty name="date" category="general">2022-10-10</dateProperty>
+    <markdownProperty name="comments" category="comments"><![CDATA[None]]></markdownProperty>
+  </properties>
+  <children>
+    <child id="6ab6Rby2HZtj"/>
+    <child id="59dumUsU9Yio"/>
+  </children>
+</object>

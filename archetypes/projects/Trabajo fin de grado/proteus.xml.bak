@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project id="empty-project">
+  <properties>
+    <stringProperty name="name" category="general"><![CDATA[Requisitos Trabajo Fin De Grado]]></stringProperty>
+    <floatProperty name="version" category="general">1.0</floatProperty>
+    <dateProperty name="date" category="general">2022-10-10</dateProperty>
+    <stringProperty name="author" category="general"><![CDATA[Pablo Rivera Jiménez]]></stringProperty>
+    <markdownProperty name="description" category="detail"><![CDATA[Proyecto dedicado a los requisitos del trabajo fin de grado.]]></markdownProperty>
+    <markdownProperty name="comments" category="comments"><![CDATA[None2]]></markdownProperty>
+  </properties>
+  <documents>
+    <document id="empty-document-01"/>
+  </documents>
+</project>

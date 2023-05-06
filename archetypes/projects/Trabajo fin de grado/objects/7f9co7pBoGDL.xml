@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<object id="7f9co7pBoGDL" classes="useCase" acceptedChildren=":Proteus-none">
+  <properties>
+    <stringProperty name="identifier" category="general"><![CDATA[UC-0001]]></stringProperty>
+    <stringProperty name="name" category="general"><![CDATA[Crear proyecto]]></stringProperty>
+    <floatProperty name="version" category="general">1.0</floatProperty>
+    <dateProperty name="date" category="general">2022-10-10</dateProperty>
+    <enumProperty name="stability" category="priority" choices="PD low medium high">PD</enumProperty>
+    <enumProperty name="developmentState" category="priority" choices="PD developing finished">PD</enumProperty>
+    <enumProperty name="urgency" category="priority" choices="PD low medium high">PD</enumProperty>
+    <markdownProperty name="description" category="detail"><![CDATA[El sistema debera permitir crear proyectos mediante el uso de de la clonacion
+de proyectos arquetipos.]]></markdownProperty>
+    <markdownProperty name="preCondition" category="detail"><![CDATA[Niguna.]]></markdownProperty>
+    <markdownProperty name="postCondition" category="detail"><![CDATA[Niguna.]]></markdownProperty>
+    <markdownProperty name="comments" category="comments"><![CDATA[Niguno]]></markdownProperty>
+  </properties>
+  <children/>
+</object>

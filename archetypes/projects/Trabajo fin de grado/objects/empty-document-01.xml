@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<object id="empty-document-01" classes=":Proteus-document" acceptedChildren=":Proteus-any">
+  <properties>
+    <stringProperty name="name" category="general"><![CDATA[Requisitos trabajo fin de grado]]></stringProperty>
+    <floatProperty name="version" category="general">1.0</floatProperty>
+    <dateProperty name="date" category="general">2023-04-10</dateProperty>
+    <stringProperty name="author" category="general"><![CDATA[Pablo Rivera Jiménez]]></stringProperty>
+    <markdownProperty name="description" category="detail"><![CDATA[Requisitos del TFG.]]></markdownProperty>
+    <markdownProperty name="comments" category="comments"><![CDATA[Ultima actualización: 2023-05-05]]></markdownProperty>
+  </properties>
+  <children>
+    <child id="3DnVbHe8KWxV"/>
+    <child id="4gszeGsDct9u"/>
+    <child id="Wzyk6hx7aLjU"/>
+    <child id="6gwu2gn3mnbR"/>
+    <child id="4cMT6G8wcyY8"/>
+  </children>
+</object>

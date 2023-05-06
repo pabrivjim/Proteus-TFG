@@ -117,7 +117,7 @@ class DocumentArchetypeProxy:
         :return: Instance of an object.
         :rtype: object.Object
         """
-        return object.Object(project, self.path)
+        return object.Object(project, self.path, is_document_proxy_archetype=True)
 
 
 # --------------------------------------------------------------------------
