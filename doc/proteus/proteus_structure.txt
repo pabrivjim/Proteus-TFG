@@ -19,6 +19,12 @@
 |  |  |-- base.py
 |  |  |-- file.py
 |  |  |-- project.py
+|  |  |-- utils
+|  |  |  |-- i18n.rst
+|  |  |  |-- index.rst
+|  |  |  |-- preferences.rst
+|  |  |  |-- widgets_logic.rst
+|  |  |  `-- widgets_utils.rst
 |  |  `-- views.py
 |  |-- model
 |  |  |-- __init__.py
@@ -77,20 +83,6 @@
 |  |  |-- test_directories.py
 |  |  |-- test_objects.py
 |  |  `-- test_projects.py
-|  |-- utils
-|  |  |-- __init__.py
-|  |  |-- i18n.py
-|  |  |-- loader.py
-|  |  |-- preferences.py
-|  |  |-- widgets_logic
-|  |  |  |-- document_dialog_logic.py
-|  |  |  |-- main_window_logic.py
-|  |  |  |-- project_dialog_logic.py
-|  |  |  |-- properties_logic.py
-|  |  |  |-- qundo_commands.py
-|  |  |  |-- ribbons_logic.py
-|  |  |  `-- tree_logic.py
-|  |  `-- widgets_utils.py
 |  `-- view
 |     |-- actions
 |     |  |-- redo_action.py

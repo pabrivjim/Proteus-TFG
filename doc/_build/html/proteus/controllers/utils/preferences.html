@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utils Preferences Module &mdash; Proteus 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Utils Widgets Module" href="widgets_utils.html" />
+    <link rel="prev" title="Utils i18n Module" href="i18n.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Proteus
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../module.html">PROTEUS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../structure.html">Proteus Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../main_app.html">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../view/index.html">View Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../model/index.html">Model Package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Controllers Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../archetype.html">Controllers Archetype Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../base.html">Controllers Base Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../file.html">Controllers File Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../project.html">Controllers Project Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../view.html">Controllers Views Module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Utils Package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="i18n.html">Utils i18n Module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Utils Preferences Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets_utils.html">Utils Widgets Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets_logic.html">Utils Widgets Logic Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/index.html">Tests Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Proteus</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../module.html">PROTEUS</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Controllers Package</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Utils Package</a></li>
+      <li class="breadcrumb-item active">Utils Preferences Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/proteus/controllers/utils/preferences.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-proteus.controllers.utils.preferences">
+<span id="utils-preferences-module"></span><h1>Utils Preferences Module<a class="headerlink" href="#module-proteus.controllers.utils.preferences" title="Permalink to this heading"></a></h1>
+<p>Module to load preferences.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.Preferences">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.controllers.utils.preferences.</span></span><span class="sig-name descname"><span class="pre">Preferences</span></span><a class="headerlink" href="#proteus.controllers.utils.preferences.Preferences" title="Permalink to this definition"></a></dt>
+<dd><p>Class to load settings from registry.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.Preferences.load_all">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QMainWindow</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QSettings</span></span></span><a class="headerlink" href="#proteus.controllers.utils.preferences.Preferences.load_all" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>main</strong> – Main Window.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>QSettings class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.Preferences.load_language">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_language</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QMainWindow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.utils.preferences.Preferences.load_language" title="Permalink to this definition"></a></dt>
+<dd><p>Method that load the language.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main</strong> – Main window.</p></li>
+<li><p><strong>language</strong> – Language.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.Preferences.load_theme">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_theme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QMainWindow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.utils.preferences.Preferences.load_theme" title="Permalink to this definition"></a></dt>
+<dd><p>Method that load the theme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main</strong> – Main window.</p></li>
+<li><p><strong>theme</strong> – Theme.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.PreferencesDialog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proteus.controllers.utils.preferences.</span></span><span class="sig-name descname"><span class="pre">PreferencesDialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#proteus.controllers.utils.preferences.PreferencesDialog" title="Permalink to this definition"></a></dt>
+<dd><p>Dialog to change preferences.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.PreferencesDialog.load_preferences">
+<span class="sig-name descname"><span class="pre">load_preferences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.utils.preferences.PreferencesDialog.load_preferences" title="Permalink to this definition"></a></dt>
+<dd><p>Method that load preferences from the settings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.PreferencesDialog.select_archetypes_path">
+<span class="sig-name descname"><span class="pre">select_archetypes_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.controllers.utils.preferences.PreferencesDialog.select_archetypes_path" title="Permalink to this definition"></a></dt>
+<dd><p>Method that select the path of the archetypes directory, save it in settings with the name archetype_custom_folder,
+as well as in the input path field.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.PreferencesDialog.select_xslt_path">
+<span class="sig-name descname"><span class="pre">select_xslt_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#proteus.controllers.utils.preferences.PreferencesDialog.select_xslt_path" title="Permalink to this definition"></a></dt>
+<dd><p>Method that select the path of the XSLT directory, save it in the settings with the name xslt_custom_folder,
+as well as in the input path field.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="proteus.controllers.utils.preferences.PreferencesDialog.update_preferences">
+<span class="sig-name descname"><span class="pre">update_preferences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#proteus.controllers.utils.preferences.PreferencesDialog.update_preferences" title="Permalink to this definition"></a></dt>
+<dd><p>Method that update the preferences.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="i18n.html" class="btn btn-neutral float-left" title="Utils i18n Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="widgets_utils.html" class="btn btn-neutral float-right" title="Utils Widgets Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Pablo R..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
