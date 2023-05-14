@@ -271,7 +271,9 @@ class UpdateObject(QUndoCommand):
     def redo(self):
         """
         Update node dict attributes.
-        Set object state to DIRTY.
+        Set object state to DIRTY if it's not FRESH.
+        Set project state to DIRTY.
+        If the object is a document, update the combo box (the view).
         """
         proteus.logger.info('UpdateObject - redo')
         obj_xml = (ET.tostring(self.obj.generate_xml(),
@@ -295,6 +297,8 @@ class UpdateObject(QUndoCommand):
         """
         Replace node attributes with old attributes.
         Set object state to previous state.
+        Set project state to previous state.
+        If the object is a document, update the combo box (the view).
         """
         proteus.logger.info('UpdateObject - undo')
         self.obj.state = self.obj_state
@@ -317,7 +321,7 @@ class UpdateProject(QUndoCommand):
         self.project = project
         self.back_up_project_properties = deepcopy(project.properties)
         self.new_project = new_project
-        self.project_state = project.state
+        self.project_state = deepcopy(project.state)
 
     def redo(self):
         """

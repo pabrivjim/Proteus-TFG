@@ -16,8 +16,8 @@ import markdown
 from PyQt5.QtCore import QSettings
 from proteus.controllers.views import load_views
 from PyQt5 import QtWebEngineWidgets, QtCore
-from PyQt5.QtGui import QKeyEvent
-from PyQt5.QtCore import QUrl, pyqtSignal, QEventLoop, Qt
+from PyQt5.QtGui import QKeyEvent, QPageLayout, QPageSize
+from PyQt5.QtCore import QUrl, pyqtSignal, QEventLoop, Qt, QMarginsF
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings, QWebEnginePage
 from PyQt5.QtWidgets import QShortcut, QInputDialog, QMessageBox
 from lxml import etree
@@ -328,7 +328,13 @@ class Visualizer(QWebEngineView):
         """
         proteus.logger.info('visualizer - save pdf')
 
-        self.page().printToPdf(save_path)
+        margin_top = 45
+        margin_right = 20
+        margin_bottom = 35
+        margin_left = 20
+        layout = QPageLayout(QPageSize(QPageSize.A4), QPageLayout.Portrait, QMarginsF(margin_left, margin_top, margin_right, margin_bottom))
+        self.page().printToPdf(save_path, layout)
+        
 
     #https://stackoverflow.com/questions/47067050/is-there-any-way-to-call-synchronously-the-method-tohtml-which-is-qwebenginepa
     def store_html(self, html):

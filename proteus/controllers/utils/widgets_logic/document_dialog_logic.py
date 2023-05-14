@@ -30,8 +30,6 @@ class DocumentDialogLogic():
         proteus.logger.info('DocumentDialogLogic - create document')
 
         documents = self.parent.document_archetypes
-        for doc in documents.values():
-            print(doc.path)
 
         app = self.parent.parentWidget()
         project: Project  = app.projectController.project

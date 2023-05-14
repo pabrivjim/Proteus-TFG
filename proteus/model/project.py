@@ -249,7 +249,6 @@ class Project(AbstractObject):
         # For each document in the project
         documents_to_be_removed : list = []
         for document in self.documents.values():
-            print("DOCUMENT CHIDLREN: ", document.children)
             document_path = f"{objects_repository}/{document.id}.xml"
             if(document.children):
                 # If the document has children we save them and if the child has children

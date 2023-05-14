@@ -113,8 +113,8 @@ class ArchetypeManager:
         #       level of subdirectories is allowed.
         subdirs : list[str] = [f for f in listdir(archetypes_dir) if isdir(join(archetypes_dir, f))]
 
-        # Result as a list of pairs (path,name) <-- is that enough?
-        result : dict[str, list] = dict ()
+        # Result as a list of pairs (subdir name,ObjectArchetypeProxy)?
+        result : dict[str, ObjectArchetypeProxy] = dict ()
 
         # For each subdirectory
         for subdir in subdirs:
@@ -124,20 +124,18 @@ class ArchetypeManager:
             # Build the full path to the subdirectory
             subdir_path : str = join(archetypes_dir, subdir)
 
-            # We get all the XML files in the subdirectory
+            # Get all the XML files in the subdirectory
             archetype_files : list[str] = [f for f in listdir(subdir_path) if (isfile(join(subdir_path, f)) and f.endswith('.xml'))]
 
             # For each archetype file, we add it to the result
             for archetype_file in archetype_files:
                 archetype_file_path = join(subdir_path, archetype_file)
 
-                # We parse the root element
-                object : ET.Element = ET.parse(archetype_file_path)
-                
-                # We get the root
+                # Parse the root element
+                object : ET.Element = ET.parse(archetype_file_path) 
+                # Get the root
                 root_object = object.getroot()
-
-                #We get id, class, path, acceptedChildren and name
+                # Get id, class, path, acceptedChildren and name
                 object_dicc["id"] = root_object.attrib["id"]
                 object_dicc["classes"] = root_object.attrib["classes"]
                 object_dicc["acceptedChildren"] = root_object.attrib["acceptedChildren"]

@@ -92,7 +92,6 @@ class Object(AbstractObject):
 
         #In case there is a directory variable (this happened when called from DocumentArchetypeProxy)
         if(directory):
-            print("INSIDE DIR")
             # Complete path to object file
             object_file_path = f"{directory}/{id}.xml"
 
@@ -241,7 +240,6 @@ class Object(AbstractObject):
             if(is_document_proxy_archetype):
                 directory_path = str(pathlib.Path(self.path).parent)
                 object = Object.load(self.project, child_id, directory_path)
-                print("CHILD: ", object.id, " NAME: ", object.get_property("name").value)
             else:
                 object = Object.load(self.project, child_id)
             
