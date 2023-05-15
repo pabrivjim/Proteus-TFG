@@ -21,6 +21,14 @@ h2 {
   color: rgb(30 58 138);
 }
 
+.chart-title{
+  color: rgb(0, 0, 0)
+}
+
+.background-chart-color{
+  background-color: rgb(191 219 254);
+}
+
 ul {
   margin-left: 2rem;
   list-style-type: disc;
